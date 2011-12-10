@@ -11,7 +11,8 @@ class Invitation < ActiveRecord::Base
   
   def generate_token
     #self.token = Digest::SHA1.hexdigest([Time.now, rand].join)
-    self.token = SecureRandom.urlsafe_base64
+    self.token = SecureRandom.hex
+    #urlsafe_base64
   end
   
 end
