@@ -1,0 +1,11 @@
+<%= @pilot.first_name%> <%= @pilot.last_name%>,
+
+You recently signed up for Caregaroo. To complete signup. please click this link:
+
+<%= signup_with_token_url(@pilot.token) %>
+
+or, you can copy and paste this link into your browser.
+
+Thank you,
+The Caregaroo Team
+
