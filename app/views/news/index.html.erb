@@ -1,0 +1,35 @@
+<h1>News Stream</h1>
+
+<table>
+<tr><td><%= render 'form_new' %></td></tr>
+<% @news.each do |news| %>
+  <tr>
+    <td>
+<div id="news" data-id="<%= news.id %>">
+		<strong><%= news.name %></strong><br/>
+    <%= news.content %><br/>
+	<% unless news.comments.empty? %>
+	    <div id="comments">
+	      <%= render news.comments %>
+	    </div>
+    <% end %>
+  <h3>Add your comment:</h3>
+<%= form_for Comment.new do |f| %>
+  <%= f.hidden_field :news_id, :value => "#{news.id}" %>
+  <%= f.text_area :content, :size => "50x2" %>
+  <p><%= f.submit %></p>
+<% end %>
+	<%= link_to 'Show', news %> | 
+    <%= link_to 'Edit', edit_news_path(news) %> | 
+    <%= link_to 'Destroy', news, :confirm => 'Are you sure?', :method => :delete %>
+</div>
+   </td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New News', new_news_path %>
+<p><%= link_to "Back to Home", root_path %></p>

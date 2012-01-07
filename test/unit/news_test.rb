@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PilotsControllerTest < ActionController::TestCase
+class NewsTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

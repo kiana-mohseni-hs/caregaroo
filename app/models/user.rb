@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
   
   def steps
-    %w[network network_photo profile add_photo]
+    %w[network profile]
   end
   
   def next_step

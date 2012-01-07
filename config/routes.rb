@@ -7,11 +7,14 @@ Auth::Application.routes.draw do
   get "signup/:invitation_token" => "signup#new", :as => "signup_with_token"
   get "pilot" => "invitations#new", :as => "pilot"
   get "pilot/success" => "invitations#success", :as => "pilot_success"
+#  get "news" => "news#index", :as => "news"
   root :to => "home#index"
   
   resources :users
   resources :sessions
   resources :password_resets
   resources :invitations
+  resources :news
+  resources :comments
   
 end
