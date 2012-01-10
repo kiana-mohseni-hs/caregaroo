@@ -1,10 +1,241 @@
-<h1>Home Care Collaboration</h1>
+<!DOCTYPE HTML> <html lang="en"> <head>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<!-- Meta information -->
 
- <% if current_user %>
-<%= link_to "Invite Friends!", pilot_path %><br/>
-<%= link_to "News Stream", news_index_path %><br/>
-  <% else %>
-<%= link_to "Sign up for Pilot Now!", pilot_path %>
-  <% end %>
+<meta charset="utf-8"> <!--[if IE]><![endif]-->
+
+<title>Caregaroo: Home Care Collaboration</title> <meta name="keywords" content="" /> <meta
+name="description" content="Caregaroo is a private online community for families to share news,
+coordinate care and contribute to help older parents living independantly." /> <meta name="robots"
+content="index, follow" /> <meta name="viewport" content="width=device-width; initial-scale=1.0;
+maximum-scale=1.0;">
+
+<%= stylesheet_link_tag    "application" %>
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+
+<!-- favicon & idevice homepage thumb --> <link rel="shortcut icon" href="favicon.jpg">
+
+<!--[if lt IE 9]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <link
+rel="stylesheet" href="css/ie8.css"> <![endif]-->
+
+<!-- fancy box stylesheet --> 
+<link rel="stylesheet" href="fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" /> 
+<!-- default stylesheet --> 
+<link rel="stylesheet" href="css/style.css" />
+
+<!--[if IE 8]> <link rel="stylesheet" href="css/ie8.css"> <![endif]--> <!--[if lt IE 8]> <link
+rel="stylesheet" href="css/ie7.css"> <![endif]-->
+
+<!-- import jQuery --> 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<!-- fancy box , easing & mouse wheel nav--> <script type="text/javascript"
+src="fancybox/jquery.fancybox-1.3.4.pack.js"></script> <script type="text/javascript"
+src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script> 
+<!--import custom js file --> 
+<script type="text/javascript" src="js/scripts.js"></script>
+
+<!-- font replacement --> 
+<script type="text/javascript" src="js/cufon.js"></script> 
+<script type="text/javascript" src="js/League_Gothic_400.font.js"></script>
+<script type="text/javascript">
+	Cufon.replace('h2');
+</script> 
+<!--end font replacement-->
+
+</head>
+
+<body class="clearfix">
+
+<div id="siteWrapper" class="container_16">
+
+<div id="header">
+
+<!-- logo  --> <a href="http://caregaroo.com" id="logo" title="Home Care Collaboration"> <img
+src="img/CaregarooLogo.png" alt="caregaroo logo" /> </a>
+
+<!-- tagline  --> <div class="tagline grid_16" > <h1></h1> <p></p> </div>
+
+<div id="newsletter" class="right"> <h3>Sign-up to participate in our Pilot Program</h3> 
+<form action="#" method="post" id="newsletterSignUp"> 
+	<input class="rounded shadowBtm" type="text" name="email" value="Enter your email address" /> 
+	<input type="submit" name="signUp" value="Invite Me!"/> 
+</form> 
+<h3 id="socialTitle">Tell Your Friends:</h3> <ul id="socialMedia"> <li><a href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank"><img
+src="img/facebook.png" alt="facebook" /></a></li> <li><a href="https://twitter.com/#!/CaregarooTweet" target="_blank"><img src="img/twitter.png"
+alt="twitter" /></a></li></ul>
+
+</div>  <!-- end finish newsletter --> </div> <!-- end header  -->
+
+<!-- benefits  --> 
+<div id="benefits" class="grid_14 clearfix"> 
+<img class="separator" src="img/line.png" alt="separator line" /> 
+<ul> 
+<li><a href="#downloadebook" title="Download Caregaroo's eBook" id="custom"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
+<li class="second"><a href="#demo" title="Request A Demo" id="custom"><img src="img/requestADemo.jpg" alt="requestADemo"/></a></li>
+<li class="third"><a href="#pilot" title="Request Pilot Program" id="custom"><img src="img/requestApilot.jpg" alt="CareagrooPilot" /></a></li> </ul> 
+<img class="separator" src="img/line.png" alt="separator line" />
+</div>  <!-- end benefits -->
+
+<div id="features" class="grid_14 clearfix"> <div class="tagline grid_14"> <h1>Key Benefits</h1> <p></p></div>
+
+<div id="feature1" class="feature grid_14">
+
+<div class="featureLeft grid_6">
+
+<img class="featureImage" src="img/feature1.jpg" alt="full deeplink support"/>
+
+</div>
+
+<div class="featureDetails"> <h2>Are you caring for aging parents or a loved one?</h2> <p>Is it a
+struggle to coordinate all the activities and events? Is it a constant challenge to keep friends and
+family informed? Do you wish you could enlist more help from other members of the care circle? Caregaroo
+provides simple-to-use online tools to help you communicate and coordinate care for your loved ones.</p>
+
+</div>
+
+</div>  <!-- end  feature 1-->
+
+<div id="feature2" class="feature grid_14">
+
+<div class="featureRight grid_6">
+
+<img class="featureImage" src="img/feature2.jpg" alt="full deeplink support" /> </div>
+
+<div class="featureDetails withIcon"> <h2>Share News</h2> <p>Create an online community around your
+loved one by inviting friends, family and other members of the care community to join a private network
+dedicated to your loved one. Exchange news and share updates on health, upcoming needs and daily
+activities. With Caregaroo it is now easy to keep everyone informed and up to date.</p> </div>
+
+</div>  <!-- end  feature 2-->
+
+
+<div id="feature3" class="feature grid_14">
+
+<div class="featureLeft grid_6">
+
+<img class="featureImage" src="img/feature3.jpg" alt="coordinate care" />
+
+</div>
+
+<div class="featureDetails"> <h2>Coordinate Care</h2> <p>List activities and ask members of the care
+community volunteer to get things done. Need a ride to a medical appointment or help with meal
+preparation? With Caregaroo, it is easy to communicate what you need help with and organize
+contributions of the community towards improving your loved one’s quality of life.</p>
+
+</div>
+
+</div>  <!-- end  feature 3-->
+
+
+<div id="feature4" class="feature grid_14">
+
+<div class="featureRight grid_6">
+
+
+<img class="featureImage" src="img/feature4.jpg" alt="user editable playlist" />
+
+
+</div>
+
+<div class="featureDetails"> <div class="featureDetails"><h2>Works with Email</h2> <p>Since it’s not
+possible to stay logged into Caregaroo around the clock, you can choose to be notified via email when
+something important happens in your network. You can also send updates and respond to messages directly
+from your email. Can’t find that old email you are looking for? No problem, Caregaroo makes it easy to
+find and track all communications.</p> </div>
+
+</div>  <!-- end  feature 4-->
+
+
+<div id="feature3" class="feature grid_14">
+
+<div class="featureLeft grid_6">
+
+<img class="featureImage" src="img/feature5.jpg" alt="coordinate care" />
+
+</div>
+
+<div class="featureDetails"> <h2>Find Professional Caregivers</h2> <p>Search and find professional care
+providers with the skills you need. View their professional profiles, area of expertise and previous
+employment history. Since all listed professionals have been members of the Caregaroo network, you can
+request first-hand references from their previous employers with a click of a button!</p>
+
+</div>
+
+</div>  <!-- end  feature 5-->
+
+
+</div><!-- end features -->
+
+
+<div id="footer" class="grid_14 clearfix">
+
+<img class="separator" src="img/line.png" alt="separator line" /> <div id="newsletter" class="grid_6">
+
+
+<h3>Participate in our Pilot Program!</h3> <form
+action="#" method="post" id="newsletterSignUp"> <input class="rounded shadowBtm" type="text"
+name="email" value="Enter your email address" /> <input type="submit" name="signUp" value="Invite Me!"
+/> </form> <h3 id="socialTitle">Tell Your Friends:</h3>
+<ul id="socialMedia"> <li><a href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank"><img
+src="img/facebook.png" alt="facebook" /></a></li> <li><a href="https://twitter.com/#!/CaregarooTweet" target="_blank"><img src="img/twitter.png"
+alt="twitter" /></a></li></ul> </div>  <!-- end finish newsletter
+-->
+
+<div id="testimonial" class="grid_8">
+
+<h2>Want to find out more?</h2> <h3>Join Caregaroo community on Facebook, follow our updates, ask
+questions, make suggestions, send us confidential messages and find out what others are saying about <a
+href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank">Caregaroo</a>.</h3>
+
+</div>  <!-- end testimonial  -->
+
+
+
+<img class="separator" src="img/line.png" alt="separator line" /> <p id="copyright" class="grid_14
+clearfix"> Copyright 2011, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com"
+target="_blank">info@caregaroo.com</a></p>
+
+
+
+
+</div>  <!-- end footer -->
+</div>  <!-- end site wrapper -->
+<div style="display:none">
+	<div id="downloadebook" class="popup">
+		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'download_ebook_form' } do |f| %>
+		  <%= f.hidden_field :signup_type, :value => "ebook" %>
+		  <%= f.text_field :first_name, "value" => "Enter your first name", :class => "rounded shadowBtm error signup_first_name" %>
+		  <%= f.text_field :last_name, "value" => "Enter your last name", :class => "rounded shadowBtm error signup_last_name" %>
+		  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm error signup_email" %>
+		  <p><%= f.submit :value => "Download" %></p>
+		<% end %>
+	</div>
+</div>
+<div style="display:none">
+	<div id="demo" class="popup">
+		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'demo_form' } do |f| %>
+		  <%= f.hidden_field :signup_type, :value => "demo" %>
+		  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm error signup_email" %>
+		  <p><%= f.submit :value => "Request" %></p>
+		<% end %>
+	</div>
+</div>
+</div>
+<div style="display:none">
+	<div id="pilot" class="popup">
+		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'pilot_form' } do |f| %>
+		  <%= f.hidden_field :signup_type, :value => "pilot" %>
+		  <%= f.text_field :first_name, "value" => "Enter your first name", :class => "rounded shadowBtm error signup_first_name" %>
+		  <%= f.text_field :last_name, "value" => "Enter your last name", :class => "rounded shadowBtm error signup_last_name" %>
+		  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm error signup_email" %>
+		  <p><%= f.submit :value => "Signup" %></p>
+		<% end %>
+	</form>		
+	</div>
+</div>
+
+
+
+</body> </html>

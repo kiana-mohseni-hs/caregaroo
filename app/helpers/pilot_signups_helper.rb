@@ -1,0 +1,2 @@
+module PilotSignupsHelper
+end

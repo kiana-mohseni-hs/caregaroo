@@ -1,0 +1,33 @@
+<%= form_for(@pilot_signup) do |f| %>
+  <% if @pilot_signup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pilot_signup.errors.count, "error") %> prohibited this pilot_signup from being saved:</h2>
+
+      <ul>
+      <% @pilot_signup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :signup_type %><br />
+    <%= f.text_field :signup_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

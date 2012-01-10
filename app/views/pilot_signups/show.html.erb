@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Email:</b>
+  <%= @pilot_signup.email %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @pilot_signup.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @pilot_signup.last_name %>
+</p>
+
+<p>
+  <b>Signup type:</b>
+  <%= @pilot_signup.signup_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_pilot_signup_path(@pilot_signup) %> |
+<%= link_to 'Back', pilot_signups_path %>

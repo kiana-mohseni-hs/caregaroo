@@ -1,0 +1,29 @@
+<h1>Listing pilot_signups</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Signup type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pilot_signups.each do |pilot_signup| %>
+  <tr>
+    <td><%= pilot_signup.email %></td>
+    <td><%= pilot_signup.first_name %></td>
+    <td><%= pilot_signup.last_name %></td>
+    <td><%= pilot_signup.signup_type %></td>
+    <td><%= link_to 'Show', pilot_signup %></td>
+    <td><%= link_to 'Edit', edit_pilot_signup_path(pilot_signup) %></td>
+    <td><%= link_to 'Destroy', pilot_signup, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pilot signup', new_pilot_signup_path %>

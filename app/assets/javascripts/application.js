@@ -25,3 +25,4 @@ function updateComments () {
   $.getScript("/comments.js?news_id=" + news_id + "&after=" + after)
   setTimeout(updateComments, 10000);
 }
+
