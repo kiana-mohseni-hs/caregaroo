@@ -1,5 +1,7 @@
 class PilotSignupsController < ApplicationController
   respond_to :html, :js, :json
+#  before_filter :require_user # require_user will set the current_user in controllers
+#    before_filter :set_current_user
   
   def signup
      @pilot_signup = PilotSignup.new(params[:pilot_signup])
@@ -7,14 +9,22 @@ class PilotSignupsController < ApplicationController
      respond_with( @pilot_signup, :layout => false )
   end
   
+  def download
+#      send_file '/home/railsway/downloads/huge.zip', :type=>"application/zip" 
+      send_file '/Users/mwu/Projects/caregaroo/cg2_app/public/download/HowToCareForYou-EBook-by-Caregaroo.pdf', :type=>"application/pdf", :x_sendfile=>true      
+  end
+  
   # GET /pilot_signups
   # GET /pilot_signups.json
   def index
-    @pilot_signups = PilotSignup.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @pilot_signups }
+    if current_user    
+      @pilot_signups   = PilotSignup.all
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render :json => @pilot_signups }
+      end
+    else
+      redirect_to login_path
     end
   end
 
@@ -28,7 +38,8 @@ class PilotSignupsController < ApplicationController
       format.json { render :json => @pilot_signup }
     end
   end
-
+  
+=begin
   # GET /pilot_signups/new
   # GET /pilot_signups/new.json
   def new
@@ -49,10 +60,10 @@ class PilotSignupsController < ApplicationController
   # POST /pilot_signups.json
   def create
     @pilot_signup = PilotSignup.new(params[:pilot_signup])
-=begin      
-    flash[:notice] = "Comment successfully created" if @pilot_signup.save
-    respond_with( @pilot_signup, :layout => request.xhr? )
-=end
+      
+  #  flash[:notice] = "Comment successfully created" if @pilot_signup.save
+  #  respond_with( @pilot_signup, :layout => request.xhr? )
+
     respond_to do |format|
       if @pilot_signup.save
         format.html { redirect_to @pilot_signup, :notice => 'Pilot signup was successfully created.' }
@@ -63,7 +74,7 @@ class PilotSignupsController < ApplicationController
       end
     end
   end
-
+  
   # PUT /pilot_signups/1
   # PUT /pilot_signups/1.json
   def update
@@ -91,4 +102,5 @@ class PilotSignupsController < ApplicationController
       format.json { head :ok }
     end
   end
+=end
 end

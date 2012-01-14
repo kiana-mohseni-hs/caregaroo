@@ -13,19 +13,20 @@ var el = $('#downloadebook');
   el.find('.errors').html(errors);
 
 <% else %>	
-	var fnMessage = 'Enter your first name'
-	var lnMessage = 'Enter your last name'
-	var emailMessage = 'Enter your email address'
-	$('.signup_email').val(emailMessage)
-	$('.signup_first_name').val(fnMessage)
-	$('.signup_last_name').val(lnMessage)
 
 	<% if @pilot_signup.signup_type == 'demo' %>
-		$('#demo').html('<form id="demoSuccess" method="post" action="#"><p>Thank you!<br/>We will contact you to arrange demo.</p><input type="submit" value="Okay" name="okay"> </form>')
+		<% if params[:quick_signup] == 'top' %>
+			$('.top_signup_email').val('THANK YOU FOR PARTICIPATING')
+		<% elsif params[:quick_signup] == 'bottom' %>
+			$('.bottom_signup_email').val('THANK YOU FOR PARTICIPATING')
+		<% else %>
+			$('#demo').html('<form id="demoSuccess" method="post" action="#"><p>Thank you!<br/>We will contact you to arrange demo.</p><input type="submit" value="Okay" name="okay"> </form>')
+		<% end %>	
 	<% elsif @pilot_signup.signup_type == 'pilot' %>	
 		$('#pilot').html('<form id="pilotSuccess" method="post" action="#"><p>Thank you!<br/>We will contact you to arrange demo.</p><input type="submit" value="Okay" name="okay"> </form>')
 	<% elsif @pilot_signup.signup_type == 'ebook' %>	
 		$.fancybox.close()
+		window.location = 'download'
 	<% end %>
 	
 <% end %>

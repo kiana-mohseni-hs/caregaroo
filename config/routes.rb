@@ -1,5 +1,4 @@
 Auth::Application.routes.draw do
-  resources :pilot_signups
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
@@ -10,8 +9,10 @@ Auth::Application.routes.draw do
   get "pilot" => "invitations#new", :as => "pilot"
   get "pilot/success" => "invitations#success", :as => "pilot_success"
   post "pilotsignup" => "pilot_signups#signup", :as => "pilot_signup"
+  get "download" => "pilot_signups#download", :as => "download_ebook"
+  get "admin" => "pilot_signups#index", :as => "admin"
 #  get "news" => "news#index", :as => "news"
-  root :to => "home#index"
+  root :to => "home#index", :as => "root"
   
   resources :users
   resources :sessions

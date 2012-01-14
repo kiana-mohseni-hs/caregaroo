@@ -525,7 +525,7 @@ margin: auto;
         margin-left:8px;
     }
     
-    #newsletter h3#socialTitle{
+	.socialTitle{
         float:left;
         padding-top:20px;
         padding-bottom:0;
@@ -533,14 +533,22 @@ margin: auto;
         display:inline;
         color: #14377D;
         font-size: 14px;
-    }
+	}
     
-    #newsletter #socialMedia{
-    padding-top:20px;
-	display: inline;
-	float: left;
-
-}
+	.socialMedia{
+    	padding-top:20px;
+		display: inline;
+		float: left;
+	}
+	
+	.socialMedia ul{
+		float: left;
+	}
+	
+	.socialMedia li{
+		margin-left:8px;
+		float: left;
+	}
     
     /* NEWSLETTER FORM */
     
@@ -548,45 +556,53 @@ margin: auto;
         height:65px;
         margin-bottom:25px;
     }
+
 	#downloadebook {
 		background: url("../img/download.png") no-repeat scroll 0 0 #000000;
 		color: #444444;
-		height: 288px;
-		width: 401px;
+		height: 354px;
+		width: 419px;
 		position: relative;
 		margin: 0;
 		padding: 0;
 	}
 	
 	#downloadebook form{
-        margin-left: 70px;
-		padding-top: 105px;
+      margin-left: 80px;
+		padding-top: 115px;
     }
+
 	#demo {
 		background: url("../img/demo.png") no-repeat scroll 0 0 #000000;
 		color: #444444;
-		height: 284px;
-		width: 397px;
+		height: 285px;
+		width: 398px;
 		position: relative;
 		margin: 0;
 		padding: 0;
 	}
 	
 	#demo form{
-        margin-left: 55px;
+      margin-left: 65px;
 		padding-top: 155px;
-    }	
+   }
+
+	.error {
+		padding-bottom: 5px;
+		color: #F47D29;
+	}
+	
 	#pilot {
 		background: url("../img/pilot.png") no-repeat scroll 0 0 #000000;
 		color: #444444;
-		height: 339px;
-		width: 672px;
+		height: 410px;
+		width: 698px;
 		position: relative;
 		margin: 0;
 		padding: 0;
 	}
 	#pilot form{
-        margin-left: 385px;
+      margin-left: 400px;
 		padding-top: 55px;
     }	
     	
@@ -648,8 +664,7 @@ margin: auto;
         box-shadow: 0 1px 1px #999999; 
     }
 	
-	
-    #newsletter input[type=text] {
+    .quickSignup input[type=text] {
         display:block;
         width:310px;
         /*height:30px;*/
@@ -667,7 +682,7 @@ margin: auto;
         padding-left:10px;
     }
     
-    #newsletter input[type=submit] {
+    .quickSignup input[type=submit] {
         margin-left:190px;
         border:none;
         -moz-border-radius: 9px; 
@@ -688,7 +703,7 @@ margin: auto;
         box-shadow: 0 1px 1px #999999; 
     }
     
-    #newsletter form span{
+    .quickSignup form span{
         padding-left:5px;
         font-size:10px;
         line-height:20px;
