@@ -95,7 +95,7 @@ jQuery(document).ready(function() {
 		padding:0,
 		overlayColor:"#000",
 		titlePosition:'outside',
-		overlayOpacity:0.9,
+		overlayOpacity:0.7,
 		'titleShow'		: false,
 //		'onComplete' : function(){ $('#downloadebook :input:visible:enabled:first').focus()},
 		'onClosed'		: function() {

@@ -10,8 +10,7 @@ class PilotSignupsController < ApplicationController
   end
   
   def download
-#      send_file '/home/railsway/downloads/huge.zip', :type=>"application/zip" 
-      send_file '/Users/mwu/Projects/caregaroo/cg2_app/public/download/HowToCareForYou-EBook-by-Caregaroo.pdf', :type=>"application/pdf", :x_sendfile=>true      
+      send_data Rails.root.join('app','assets','download','HowToCareForYou-EBook-by-Caregaroo.pdf'), :type=>"application/pdf", :x_sendfile=>true      
   end
   
   # GET /pilot_signups
