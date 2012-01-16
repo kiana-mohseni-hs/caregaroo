@@ -963,3 +963,14 @@ margin: auto;
     
     /* END CONTACT FORM */
     
+	#faq { padding-bottom: 20px;}
+	#faq a {
+		font-family: Lucida Grande;
+		font-weight: bold;
+		font-size: 13px;
+		color: #f47d29;
+	}
+	
+	#faq a:hover {
+		color: #14377d;
+	}

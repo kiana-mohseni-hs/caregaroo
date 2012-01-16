@@ -8,11 +8,7 @@ class PilotSignupsController < ApplicationController
      flash[:notice] = "Comment successfully created" if @pilot_signup.save
      respond_with( @pilot_signup, :layout => false )
   end
-  
-  def download
-      send_file Rails.root.join('app','assets','download','HowToCareForYou-EBook-by-Caregaroo.pdf'), :type=>"application/pdf"      
-  end
-  
+ 
   # GET /pilot_signups
   # GET /pilot_signups.json
   def index

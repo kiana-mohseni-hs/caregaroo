@@ -75,6 +75,7 @@ src="img/CaregarooLogo.png" alt="caregaroo logo" /> </a>
   <%= f.hidden_field :signup_type, :value => "demo" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="top" />
   <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm top_signup_email" %>
+  <div id="faq"><%= link_to 'Download Pilot Program FAQ', download_faq_path %></div>
   <p><%= f.submit :value => "Invite Me!" %></p>
 <% end %>	
 <h3 class="socialTitle">Tell Your Friends:</h3> <ul class="socialMedia"> <li><a href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank"><img

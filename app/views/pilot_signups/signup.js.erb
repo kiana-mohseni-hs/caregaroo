@@ -26,7 +26,7 @@ var el = $('#downloadebook');
 		$('#pilot').html('<form id="pilotSuccess" method="post" action="#"><p>Thank you!<br/>We will contact you when the pilot program begins.</p><input type="submit" value="Okay" name="okay"> </form>')
 	<% elsif @pilot_signup.signup_type == 'ebook' %>	
 		$.fancybox.close()
-		window.location = 'download'
+		window.location = 'download/ebook'
 	<% end %>
 	
 <% end %>
