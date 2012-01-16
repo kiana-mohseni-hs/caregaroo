@@ -10,7 +10,7 @@ class PilotSignupsController < ApplicationController
   end
   
   def download
-      send_data Rails.root.join('app','assets','download','HowToCareForYou-EBook-by-Caregaroo.pdf'), :type=>"application/pdf", :x_sendfile=>true      
+      send_file Rails.root.join('app','assets','download','HowToCareForYou-EBook-by-Caregaroo.pdf'), :type=>"application/pdf"      
   end
   
   # GET /pilot_signups
