@@ -70,7 +70,7 @@ src="img/CaregarooLogo.png" alt="caregaroo logo" /> </a>
 <!-- tagline  --> <div class="tagline grid_16" > <h1></h1> <p></p> </div>
 
 <div id="topSignup" class="quickSignup right"> <h3>Sign-up to participate in our Pilot Program</h3> 
-<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'top_signup_form' } do |f| %>
+<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'top_signup_form' } do |f| %>
   <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
   <%= f.hidden_field :signup_type, :value => "quick_signup" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="top" />
@@ -195,7 +195,7 @@ request first-hand references from their previous employers with a click of a bu
 <img class="separator" src="img/line.png" alt="separator line" /> <div id="newsletter" class="grid_6">
 
 <div id="bottomSignup" class="popup"> <h3>Participate in our Pilot Program</h3> 
-<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'bottom_signup_form' } do |f| %>
+<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'bottom_signup_form' } do |f| %>
   <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
   <%= f.hidden_field :signup_type, :value => "quick_signup" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="bottom" />
@@ -230,7 +230,7 @@ target="_blank">info@caregaroo.com</a></p>
 </div>  <!-- end site wrapper -->
 <div style="display:none">
 	<div id="downloadebook" class="popup">
-		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'download_ebook_form' } do |f| %>
+		<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'download_ebook_form' } do |f| %>
 		  <div id="ebookError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "ebook" %>
 		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
@@ -242,7 +242,7 @@ target="_blank">info@caregaroo.com</a></p>
 </div>
 <div style="display:none">
 	<div id="demo" class="popup">
-		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'demo_form' } do |f| %>
+		<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'demo_form' } do |f| %>
 		  <div id="demoError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "demo" %>
 		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
@@ -253,7 +253,7 @@ target="_blank">info@caregaroo.com</a></p>
 </div>
 <div style="display:none">
 	<div id="pilot" class="popup pilot">
-		<%= form_for PilotSignup.new, :url => pilot_signup_path, :class => 'popupForm', :remote => true, :html => { :id => 'pilot_form' } do |f| %>
+		<%= form_for PilotSignup.new, :url => signup_path, :class => 'popupForm', :remote => true, :html => { :id => 'pilot_form' } do |f| %>
 		  <div id="pilotError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "pilot" %>
 		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>

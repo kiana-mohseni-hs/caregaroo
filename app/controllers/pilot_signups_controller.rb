@@ -3,17 +3,6 @@ class PilotSignupsController < ApplicationController
 #  before_filter :require_user # require_user will set the current_user in controllers
 #    before_filter :set_current_user
   
-  def signup
-     @pilot_signup = PilotSignup.new(params[:pilot_signup])
-     @pilot_signup.save
-     if @pilot_signup.signup_type == 'ebook'
-       cookies[:ebook] = "1"
-     else
-       cookies[:pilot] = "1"
-     end
-     respond_with( @pilot_signup, :layout => false )     
-  end
-  
   # GET /pilot_signups
   # GET /pilot_signups.json
   def index
@@ -39,6 +28,22 @@ class PilotSignupsController < ApplicationController
     end
   end
   
+  # DELETE /pilot_signups/1
+   # DELETE /pilot_signups/1.json
+   def destroy
+     if current_user  
+       @pilot_signup = PilotSignup.find(params[:id])
+       @pilot_signup.destroy
+
+       respond_to do |format|
+         format.html { redirect_to pilot_signups_url }
+         format.json { head :ok }
+       end
+    else
+       redirect_to login_path
+    end
+   end
+   
 =begin
   # GET /pilot_signups/new
   # GET /pilot_signups/new.json
@@ -91,16 +96,6 @@ class PilotSignupsController < ApplicationController
     end
   end
 
-  # DELETE /pilot_signups/1
-  # DELETE /pilot_signups/1.json
-  def destroy
-    @pilot_signup = PilotSignup.find(params[:id])
-    @pilot_signup.destroy
-
-    respond_to do |format|
-      format.html { redirect_to pilot_signups_url }
-      format.json { head :ok }
-    end
-  end
+ 
 =end
 end
