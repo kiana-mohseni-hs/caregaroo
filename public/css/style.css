@@ -960,6 +960,14 @@ margin: auto;
     #newsletter input[type=text].error {
     	background-color: #6ad4f3;
     }
+
+.blueFont {
+  font-weight:bold;
+  color:#14377D;
+  margin:0px;
+  paddng:0px;
+}
+.blueFont a { color:#14377D; }
     
     /* END CONTACT FORM */
     

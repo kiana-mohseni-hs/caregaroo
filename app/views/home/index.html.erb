@@ -1,5 +1,5 @@
 <!DOCTYPE HTML> <html lang="en"> <head>
-
+a
 <!-- Meta information -->
 
 <meta charset="utf-8"> <!--[if IE]><![endif]-->
@@ -72,7 +72,7 @@ src="img/CaregarooLogo.png" alt="caregaroo logo" /> </a>
 <div id="topSignup" class="quickSignup right"> <h3>Sign-up to participate in our Pilot Program</h3> 
 <%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'top_signup_form' } do |f| %>
   <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
-  <%= f.hidden_field :signup_type, :value => "demo" %>
+  <%= f.hidden_field :signup_type, :value => "pilot" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="top" />
   <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm top_signup_email" %>
   <div id="faq"><%= link_to 'Download Pilot Program FAQ', download_faq_path %></div>
@@ -104,9 +104,8 @@ alt="twitter" /></a></li></ul>
 
 </div>
 
-<div class="featureDetails"> <h2>Are you caring for aging parents or a loved one?</h2> <p>Is it a
-struggle to coordinate all the activities and events? Is it a constant challenge to keep friends and
-family informed? Do you wish you could enlist more help from other members of the care circle? Caregaroo
+<div class="featureDetails"> <h2>Are you caring for aging parents or a loved one?</h2> <p>Is it a constant challenge to keep friends and
+family informed? Do you wish you could enlist more help from other members of the care circle? <font class="blueFont">Caregaroo</font>
 provides simple-to-use online tools to help you communicate and coordinate care for your loved ones.</p>
 
 </div>
@@ -120,9 +119,8 @@ provides simple-to-use online tools to help you communicate and coordinate care 
 <img class="featureImage" src="img/feature2.jpg" alt="full deeplink support" /> </div>
 
 <div class="featureDetails withIcon"> <h2>Share News</h2> <p>Create an online community around your
-loved one by inviting friends, family and other members of the care community to join a private network
-dedicated to your loved one. Exchange news and share updates on health, upcoming needs and daily
-activities. With Caregaroo it is now easy to keep everyone informed and up to date.</p> </div>
+loved one and invite friends, family and other members of the care community to join. Exchange news and share updates on health, upcoming needs and daily
+activities. With <font class="blueFont">Caregaroo</font> it is now easy to keep everyone informed.</p> </div>
 
 </div>  <!-- end  feature 2-->
 
@@ -137,8 +135,7 @@ activities. With Caregaroo it is now easy to keep everyone informed and up to da
 
 <div class="featureDetails"> <h2>Coordinate Care</h2> <p>List activities and ask members of the care
 community volunteer to get things done. Need a ride to a medical appointment or help with meal
-preparation? With Caregaroo, it is easy to communicate what you need help with and organize
-contributions of the community towards improving your loved one’s quality of life.</p>
+preparation? With <font class="blueFont">Caregaroo</font>, it is easy to communicate the support you need and organize contributors from the community towards improving your loved one’s quality of life.</p>
 
 </div>
 
@@ -156,9 +153,9 @@ contributions of the community towards improving your loved one’s quality of l
 </div>
 
 <div class="featureDetails"> <div class="featureDetails"><h2>Works with Email</h2> <p>Since it’s not
-possible to stay logged into Caregaroo around the clock, you can choose to be notified via email when
+possible to stay logged into <font class="blueFont">Caregaroo</font> around the clock, you can choose to be notified via email when
 something important happens in your network. You can also send updates and respond to messages directly
-from your email. Can’t find that old email you are looking for? No problem, Caregaroo makes it easy to
+from your email. Can’t find that old email you are looking for? No problem, <font class="blueFont">Caregaroo</font> makes it easy to
 find and track all communications.</p> </div>
 
 </div>  <!-- end  feature 4-->
@@ -174,7 +171,7 @@ find and track all communications.</p> </div>
 
 <div class="featureDetails"> <h2>Find Professional Caregivers</h2> <p>Search and find professional care
 providers with the skills you need. View their professional profiles, area of expertise and previous
-employment history. Since all listed professionals have been members of the Caregaroo network, you can
+employment history. Since all listed professionals have been members of the <font class="blueFont">Caregaroo</font> network, you can
 request first-hand references from their previous employers with a click of a button!</p>
 
 </div>
@@ -192,7 +189,7 @@ request first-hand references from their previous employers with a click of a bu
 <div id="bottomSignup" class="popup"> <h3>Participate in our Pilot Program</h3> 
 <%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'bottom_signup_form' } do |f| %>
   <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
-  <%= f.hidden_field :signup_type, :value => "demo" %>
+  <%= f.hidden_field :signup_type, :value => "pilot" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="bottom" />
   <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm bottom_signup_email" %>
   <p><%= f.submit :value => "Invite Me!" %></p>
@@ -207,8 +204,8 @@ alt="twitter" /></a></li></ul> </div>  <!-- end finish newsletter
 <div id="testimonial" class="grid_8">
 
 <h2>Want to find out more?</h2> <h3>Join Caregaroo community on Facebook, follow our updates, ask
-questions, make suggestions, send us confidential messages and find out what others are saying about <a
-href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank">Caregaroo</a>.</h3>
+questions, make suggestions, send us confidential messages and find out what others are saying about <span class="blueFont"><a
+href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank">Caregaroo</a></span>.</h3>
 
 </div>  <!-- end testimonial  -->
 
@@ -228,9 +225,9 @@ target="_blank">info@caregaroo.com</a></p>
 		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'download_ebook_form' } do |f| %>
 		  <div id="ebookError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "ebook" %>
-		  <%= f.text_field :first_name, "value" => "Enter your first name", :class => "rounded shadowBtm signup_first_name" %>
-		  <%= f.text_field :last_name, "value" => "Enter your last name", :class => "rounded shadowBtm signup_last_name" %>
-		  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm signup_email" %>
+		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
+		  <%= f.text_field :last_name, "value" => "Enter your last name", :autocomplete => 'off', :class => "rounded shadowBtm signup_last_name" %>
+		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
 		  <p><%= f.submit :value => "Download" %></p>
 		<% end %>
 	</div>
@@ -240,7 +237,7 @@ target="_blank">info@caregaroo.com</a></p>
 		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'demo_form' } do |f| %>
 		  <div id="demoError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "demo" %>
-		  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm signup_email" %>
+		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
 		  <p><%= f.submit :value => "Request" %></p>
 		<% end %>
 	</div>
@@ -251,10 +248,10 @@ target="_blank">info@caregaroo.com</a></p>
 		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'pilot_form' } do |f| %>
 		  <div id="pilotError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "pilot" %>
-		  <%= f.text_field :first_name, "value" => "Enter your first name", :class => "rounded shadowBtm signup_first_name" %>
-		  <%= f.text_field :last_name, "value" => "Enter your last name", :class => "rounded shadowBtm signup_last_name" %>
-		  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm signup_email" %>
-		  <p><%= f.submit :value => "Signup" %></p>
+		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
+		  <%= f.text_field :last_name, "value" => "Enter your last name", :autocomplete => 'off', :class => "rounded shadowBtm signup_last_name" %>
+		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
+		  <p><%= f.submit :value => "Sign-up" %></p>
 		<% end %>
 	</form>		
 	</div>
