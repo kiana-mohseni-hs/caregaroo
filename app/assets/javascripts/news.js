@@ -12,6 +12,6 @@ function updateComments () {
   } else {
     var after = "0";
   }
-  $.getScript("/comments.js?news_id=" + news_id + "&after=" + after)
-  //setTimeout(updateComments, 10000);
+//  $.getScript("/comments.js?news_id=" + news_id + "&after=" + after)
+//  setTimeout(updateComments, 10000);
 }

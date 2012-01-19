@@ -6,7 +6,8 @@ class PilotSignupsController < ApplicationController
   # GET /pilot_signups
   # GET /pilot_signups.json
   def index
-    if current_user    
+    @user = current_user
+    if @user && @user.email == 'mwu@caregaroo.com'
       @pilot_signups   = PilotSignup.all
       respond_to do |format|
         format.html # index.html.erb
@@ -21,7 +22,8 @@ class PilotSignupsController < ApplicationController
   # DELETE /pilot_signups/1
    # DELETE /pilot_signups/1.json
    def destroy
-     if current_user  
+     @user = current_user
+     if @user && @user.email == 'mwu@caregaroo.com'
        @pilot_signup = PilotSignup.find(params[:id])
        @pilot_signup.destroy
 
