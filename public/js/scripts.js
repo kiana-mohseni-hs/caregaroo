@@ -44,7 +44,7 @@ jQuery(document).ready(function() {
 			$(this).val("")
 		}
 	});			
-	
+
 	function pilotSignup() {
 		var email = $(this).find('input[name="pilot_signup[email]"]')
 		var error = $(this).find('div[class="error"]')

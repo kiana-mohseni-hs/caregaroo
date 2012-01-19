@@ -14,7 +14,7 @@ var el = $('#downloadebook');
 
 <% else %>	
 
-	<% if @pilot_signup.signup_type == 'demo' %>
+	<% if @pilot_signup.signup_type == 'quick_signup' %>
 		<% if params[:quick_signup] == 'top' %>
 			$('.top_signup_email').val('THANK YOU FOR PARTICIPATING')
 		<% elsif params[:quick_signup] == 'bottom' %>

@@ -1,5 +1,4 @@
 <!DOCTYPE HTML> <html lang="en"> <head>
-a
 <!-- Meta information -->
 
 <meta charset="utf-8"> <!--[if IE]><![endif]-->
@@ -72,7 +71,7 @@ src="img/CaregarooLogo.png" alt="caregaroo logo" /> </a>
 <div id="topSignup" class="quickSignup right"> <h3>Sign-up to participate in our Pilot Program</h3> 
 <%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'top_signup_form' } do |f| %>
   <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
-  <%= f.hidden_field :signup_type, :value => "pilot" %>
+  <%= f.hidden_field :signup_type, :value => "quick_signup" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="top" />
   <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm top_signup_email" %>
   <div id="faq"><%= link_to 'Download Pilot Program FAQ', download_faq_path %></div>
@@ -189,7 +188,7 @@ request first-hand references from their previous employers with a click of a bu
 <div id="bottomSignup" class="popup"> <h3>Participate in our Pilot Program</h3> 
 <%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'bottom_signup_form' } do |f| %>
   <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
-  <%= f.hidden_field :signup_type, :value => "pilot" %>
+  <%= f.hidden_field :signup_type, :value => "quick_signup" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="bottom" />
   <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm bottom_signup_email" %>
   <p><%= f.submit :value => "Invite Me!" %></p>
@@ -203,7 +202,7 @@ alt="twitter" /></a></li></ul> </div>  <!-- end finish newsletter
 
 <div id="testimonial" class="grid_8">
 
-<h2>Want to find out more?</h2> <h3>Join Caregaroo community on Facebook, follow our updates, ask
+<h2>Want to find out more?</h2> <h3>Join us on Facebook, follow our updates, ask
 questions, make suggestions, send us confidential messages and find out what others are saying about <span class="blueFont"><a
 href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank">Caregaroo</a></span>.</h3>
 
