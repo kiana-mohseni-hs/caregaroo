@@ -17,6 +17,7 @@
     <td><%= pilot_signup.first_name %></td>
     <td><%= pilot_signup.last_name %></td>
     <td><%= pilot_signup.signup_type %></td>
+    <td><%= pilot_signup.created_at %></td>
     <td><%= link_to 'Delete', signup_delete_path(pilot_signup.id), :confirm => 'Are you sure?', :method => :destroy %></td>
 	
   </tr>

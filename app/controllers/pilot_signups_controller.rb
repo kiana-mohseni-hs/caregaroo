@@ -17,16 +17,6 @@ class PilotSignupsController < ApplicationController
     end
   end
 
-  # GET /pilot_signups/1
-  # GET /pilot_signups/1.json
-  def show
-    @pilot_signup = PilotSignup.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @pilot_signup }
-    end
-  end
   
   # DELETE /pilot_signups/1
    # DELETE /pilot_signups/1.json
@@ -45,6 +35,17 @@ class PilotSignupsController < ApplicationController
    end
    
 =begin
+# GET /pilot_signups/1
+# GET /pilot_signups/1.json
+def show
+  @pilot_signup = PilotSignup.find(params[:id])
+
+  respond_to do |format|
+    format.html # show.html.erb
+    format.json { render :json => @pilot_signup }
+  end
+end
+
   # GET /pilot_signups/new
   # GET /pilot_signups/new.json
   def new

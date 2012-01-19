@@ -584,7 +584,7 @@ margin: auto;
 	
 	#demo form{
       margin-left: 65px;
-		padding-top: 155px;
+		padding-top: 140px;
    }
 
 	.error {
@@ -602,12 +602,12 @@ margin: auto;
 		padding: 0;
 	}
 	.pilot form{
-      margin-left: 400px;
+      margin-left: 385px;
 		padding-top: 55px;
     }
 
 	.pilotPopupDialog {
-      margin-left: 400px;
+      margin-left: 385px;
 		padding-top: 55px;
     }
     	
@@ -989,13 +989,19 @@ margin: auto;
     	background-color: #6ad4f3;
     }
 
-.blueFont {
-  font-weight:bold;
-  color:#14377D;
-  margin:0px;
-  paddng:0px;
-}
-.blueFont a { color:#14377D; }
+	.blueFont {
+	  font-weight:bold;
+	  color:#14377D;
+	  margin:0px;
+	  paddng:0px;
+	}
+	.blueFont a { color:#14377D; }
+	.successMsg { font-family: Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		font-size: 24px;
+		color: #f47d29;
+		line-height:120%;
+	}
     
     /* END CONTACT FORM */
     
