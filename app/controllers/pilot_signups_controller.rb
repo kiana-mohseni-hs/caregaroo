@@ -5,10 +5,15 @@ class PilotSignupsController < ApplicationController
   
   def signup
      @pilot_signup = PilotSignup.new(params[:pilot_signup])
-     flash[:notice] = "Comment successfully created" if @pilot_signup.save
-     respond_with( @pilot_signup, :layout => false )
+     @pilot_signup.save
+     if @pilot_signup.signup_type == 'ebook'
+       cookies[:ebook] = "1"
+     else
+       cookies[:pilot] = "1"
+     end
+     respond_with( @pilot_signup, :layout => false )     
   end
- 
+  
   # GET /pilot_signups
   # GET /pilot_signups.json
   def index

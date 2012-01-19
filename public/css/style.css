@@ -592,7 +592,7 @@ margin: auto;
 		color: #F47D29;
 	}
 	
-	#pilot {
+	.pilot {
 		background: url("../img/pilot.png") no-repeat scroll 0 0 #000000;
 		color: #444444;
 		height: 410px;
@@ -601,10 +601,15 @@ margin: auto;
 		margin: 0;
 		padding: 0;
 	}
-	#pilot form{
+	.pilot form{
       margin-left: 400px;
 		padding-top: 55px;
-    }	
+    }
+
+	.pilotPopupDialog {
+      margin-left: 400px;
+		padding-top: 55px;
+    }
     	
     .popup input[type=text] {
         display:block;
@@ -623,6 +628,28 @@ margin: auto;
         box-shadow: 0 1px 1px #eeeeee; 
         padding-left:10px;
     }
+
+	.popup input[type=button] {
+        margin-left:135px;
+        border:none;
+        -moz-border-radius: 9px; 
+        -webkit-border-radius: 9px;
+        cursor:pointer;
+        border-radius: 9px; 
+        background: #F47D29;
+        width:126px;
+        height:20px;
+        color:#ffffff;
+        font-size:11px;
+        font-weight:bold;
+        text-shadow: 0 1px 0 #F47D29;
+        font-family: helvetica, arial, sans-serif;
+        line-height:20px;
+        -moz-box-shadow: 0 1px 1px #999999; 
+        -webkit-box-shadow: 0 1px 1px #999999; 
+        box-shadow: 0 1px 1px #999999; 
+    }
+
 	.popup input[type=submit] {
         margin-left:135px;
         border:none;
@@ -643,6 +670,7 @@ margin: auto;
         -webkit-box-shadow: 0 1px 1px #999999; 
         box-shadow: 0 1px 1px #999999; 
     }
+
     #newsletter input[type=submit] {
         margin-left:130px;
         border:none;

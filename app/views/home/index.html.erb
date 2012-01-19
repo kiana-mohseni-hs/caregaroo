@@ -26,6 +26,7 @@ maximum-scale=1.0;">
 
 <%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
+<meta http-equiv="cache-control" content="no-cache" />
 
 <!--[if lt IE 9]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <link
 rel="stylesheet" href="css/ie8.css"> <![endif]-->
@@ -86,10 +87,18 @@ alt="twitter" /></a></li></ul>
 <!-- benefits  --> 
 <div id="benefits" class="grid_14 clearfix"> 
 <img class="separator" src="img/line.png" alt="separator line" /> 
-<ul> 
+<ul>
+<% if cookies[:ebook] == "1" %> 
+<li><a href="/download/ebook" title="Download Caregaroo's eBook" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
+<% else %>
 <li><a href="#downloadebook" title="Download Caregaroo's eBook" class="custom" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
+<% end %>
 <li class="second"><a href="#demo" title="Request A Demo" class="custom" id="demoLink"><img src="img/requestADemo.jpg" alt="requestADemo"/></a></li>
-<li class="third"><a href="#pilot" title="Request Pilot Program" class="custom" id="pilotLink"><img src="img/requestApilot.jpg" alt="CareagrooPilot" /></a></li> </ul> 
+<% if cookies[:pilot] == "1" %> 
+<li class="third"><a href="#pilotsuccess" title="Request Pilot Program" class="custom" id="pilotLink"><img src="img/requestApilot.jpg" alt="Careagroo Pilot" /></a></li> </ul> 
+<% else %>
+<li class="third"><a href="#pilot" title="Request Pilot Program" class="custom" id="pilotLink"><img src="img/requestApilot.jpg" alt="Careagroo Pilot" /></a></li> </ul> 
+<% end %>
 <img class="separator" src="img/line.png" alt="separator line" />
 </div>  <!-- end benefits -->
 
@@ -243,8 +252,8 @@ target="_blank">info@caregaroo.com</a></p>
 </div>
 </div>
 <div style="display:none">
-	<div id="pilot" class="popup">
-		<%= form_for PilotSignup.new, :url => pilot_signup_path, :remote => true, :html => { :id => 'pilot_form' } do |f| %>
+	<div id="pilot" class="popup pilot">
+		<%= form_for PilotSignup.new, :url => pilot_signup_path, :class => 'popupForm', :remote => true, :html => { :id => 'pilot_form' } do |f| %>
 		  <div id="pilotError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "pilot" %>
 		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
@@ -255,7 +264,13 @@ target="_blank">info@caregaroo.com</a></p>
 	</form>		
 	</div>
 </div>
-
+<div style="display:none">
+	<div id="pilotsuccess" class="popup pilot">
+		<div id="pilotsuccess_form" class="pilotPopupDialog">
+			<p>Thank you!<br/>We will contact you when the pilot program begins.</p><input type="button" id="pilotSuccessBtn" value="Okay" name="okay">
+		</div>		
+	</div>
+</div>
 
 
 </body> </html>

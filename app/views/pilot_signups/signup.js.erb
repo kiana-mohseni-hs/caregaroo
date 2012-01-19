@@ -23,7 +23,7 @@ var el = $('#downloadebook');
 			$('#demo').html('<form id="demoSuccess" method="post" action="#"><p>Thank you!<br/>We will contact you to arrange a demo.</p><input type="submit" value="Okay" name="okay"> </form>')
 		<% end %>	
 	<% elsif @pilot_signup.signup_type == 'pilot' %>	
-		$('#pilot').html('<form id="pilotSuccess" method="post" action="#"><p>Thank you!<br/>We will contact you when the pilot program begins.</p><input type="submit" value="Okay" name="okay"> </form>')
+		$('#pilot').html('<form id="pilotsuccess_form" method="post" action="#"><p>Thank you!<br/>We will contact you when the pilot program begins.</p><input type="submit" value="Okay" name="okay"> </form>')
 	<% elsif @pilot_signup.signup_type == 'ebook' %>	
 		$.fancybox.close()
 		window.location = 'download/ebook'

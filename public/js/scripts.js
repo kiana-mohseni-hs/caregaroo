@@ -43,7 +43,11 @@ jQuery(document).ready(function() {
 		if ($(this).val() == lnMessage) {
 			$(this).val("")
 		}
-	});			
+	});
+	
+	$('#pilotSuccessBtn').click(function() {
+		$.fancybox.close()
+	});
 
 	function pilotSignup() {
 		var email = $(this).find('input[name="pilot_signup[email]"]')
