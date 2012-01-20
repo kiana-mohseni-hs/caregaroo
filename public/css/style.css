@@ -154,10 +154,10 @@ Caregaroo: Home Care Collaboration
        }
 */
 	#circleOfCareLogo {
-	 	background-image:url(../img/CircleOfCare.png);
+	 	background-image:url(../img/circleOfCare.jpg);
 		background-position: center top;
-		height: 477px;
-		width: 477px;
+		height: 480px;
+		width: 480px;
 		float:left;
 		margin: 35px 0 0 45px;
 	}
