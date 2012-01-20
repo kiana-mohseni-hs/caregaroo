@@ -68,8 +68,11 @@ src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 src="img/CaregarooLogo.png" alt="caregaroo logo" /> </a>
 
 <!-- tagline  --> <div class="tagline grid_16" > <h1></h1> <p></p> </div>
-
-<div id="topSignup" class="quickSignup right"> <h3>Sign-up to participate in our Pilot Program</h3> 
+<div id="circleOfCareLogo"></div>
+<div id="topSignup" class="quickSignup right"> 
+	<h1 id="homeCareTitle">Home Care Collaboration</h1>
+	<h3 id="homeCareDesc"><font class="blueFont">Caregaroo</font> is a private online network for families to share news, coordinate care and contribute to loved one's living independently.</h3> 
+	<h3>Sign-up to participate in our Pilot Program</h3> 
 <%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'top_signup_form' } do |f| %>
   <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
   <%= f.hidden_field :signup_type, :value => "quick_signup" %>

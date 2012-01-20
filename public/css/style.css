@@ -141,17 +141,42 @@ Caregaroo: Home Care Collaboration
         overflow:hidden;
     }
     
+/*
     #header{        
-		background-image:url(../img/showcase.jpg);
-		background-repeat:no-repeat;
-		background-position:center top;
-        height:604px;
-        position:relative;
-        text-align:left;
-        margin-bottom:0px;
-        margin-top:0;
+   		background-image:url(../img/showcase.jpg);
+   		background-repeat:no-repeat;
+   		background-position:center top;
+           height:604px;
+           position:relative;
+           text-align:left;
+           margin-bottom:0px;
+           margin-top:0;
+       }
+*/
+	#circleOfCareLogo {
+	 	background-image:url(../img/CircleOfCare.png);
+		background-position: center top;
+		height: 477px;
+		width: 477px;
+		float:left;
+		margin: 35px 0 0 45px;
+	}
+	#homeCareTitle {
+		color: #F47D29;
+		font-size: 30px;
+	}
+	#homeCareDesc {
+		line-height: 130%;
+	}
+	#header{        
+ 		background-repeat:no-repeat;
+ 		background-position:center top;
+		height:604px;
+		position:relative;
+		text-align:left;
+		margin-bottom:0px;
+		margin-top:0;
     }
-    
     #header a:hover{
         cursor:pointer;
     }
@@ -190,9 +215,8 @@ margin: auto;
     
     
     #newsletter, .right{
-    
-    width: 400px;
-    margin-top: 246px;
+      width: 355px;
+    	margin: 120px 60px 0 0;
     }
     
     /* END HEADER */
