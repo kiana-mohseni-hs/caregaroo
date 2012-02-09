@@ -10,8 +10,16 @@ class SessionsController < ApplicationController
       else
         cookies[:auth_token] = user.auth_token
       end     
-#      redirect_to root_url, :notice => "Logged in!"
-        redirect_to admin_path
+      # redirect_to root_url, :notice => "Logged in!"
+      # redirect_to news_path
+      if session[:referer]
+        referer = session[:referer]
+        logger.debug "(login) referer=#{referer}"
+        redirect_to(:controller => referer[:controller], :action => referer[:action] )
+      else
+        redirect_to root_url
+      end
+
     else
       flash.now.alert = "Invalid email or password"
       render "new"
@@ -20,6 +28,7 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete(:auth_token)
+    session[:referer] = nil
     redirect_to root_url, :notice => "Logged out!"
   end
 end

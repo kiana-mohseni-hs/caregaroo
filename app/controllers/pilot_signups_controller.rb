@@ -1,40 +1,29 @@
 class PilotSignupsController < ApplicationController
   respond_to :html, :js, :json
-#  before_filter :require_user # require_user will set the current_user in controllers
-#    before_filter :set_current_user
-  
+  before_filter :require_user_admin, :only => [:index, :destroy]
+    
   # GET /pilot_signups
   # GET /pilot_signups.json
   def index
-    @user = current_user
-    if @user && @user.email == 'mwu@caregaroo.com'
-      @pilot_signups   = PilotSignup.all
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render :json => @pilot_signups }
-      end
-    else
-      redirect_to login_path
+    @pilot_signups   = PilotSignup.all
+    respond_to do |format|
+      format.html #index.html.erb
+      format.json { render :json => @pilot_signups }
     end
   end
 
   
   # DELETE /pilot_signups/1
-   # DELETE /pilot_signups/1.json
-   def destroy
-     @user = current_user
-     if @user && @user.email == 'mwu@caregaroo.com'
-       @pilot_signup = PilotSignup.find(params[:id])
-       @pilot_signup.destroy
+  # DELETE /pilot_signups/1.json
+  def destroy
+    @pilot_signup = PilotSignup.find(params[:id])
+    @pilot_signup.destroy
 
-       respond_to do |format|
-         format.html { redirect_to pilot_signups_url }
-         format.json { head :ok }
-       end
-    else
-       redirect_to login_path
+    respond_to do |format|
+      format.html { redirect_to pilot_signups_url }
+      format.json { head :ok }
     end
-   end
+  end
    
 =begin
 # GET /pilot_signups/1

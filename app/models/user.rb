@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :network_name, :network_for_who, :network_relationship, :first_name, :last_name
   has_secure_password
   validates_presence_of :password, :on => :create
+  validates :email, :uniqueness => true
   before_create { generate_token(:auth_token) }
+  has_many :news
 
   def send_password_reset
     generate_token(:password_reset_token)

@@ -13,11 +13,15 @@ class RegisterController < ApplicationController
   end
   
   def index
+    @user = User.new()
+  end
+  
+  def invite
     logger.debug "(index) #{params[:invitation_token]}"
       
     session[:signup_params] ||= {}
     @user = User.new(session[:signup_params])
-    @user.current_step = session[:signup_step]
+    #@user.current_step = session[:signup_step]
     
     @invitations = Invitation.find_by_token(params[:invitation_token])
     if @invitations
@@ -30,8 +34,19 @@ class RegisterController < ApplicationController
   
   def create
     logger.debug "(create) #{params[:user]}"    
-    session[:signup_params].deep_merge!(params[:user]) if params[:user]
-    @user = User.new(session[:signup_params])
+#    session[:signup_params].deep_merge!(params[:user]) if params[:user]
+#    @user = User.new(session[:signup_params])
+    @user = User.new(params[:user])
+    if @user.save
+      cookies[:auth_token] = @user.auth_token
+      logger.debug "(create) token=#{@user.auth_token}"
+      render "success"
+    else
+      render :action => "index"
+    end
+    
+    
+=begin
     @user.current_step = session[:signup_step]
     
     if params[:back_button]
@@ -44,14 +59,17 @@ class RegisterController < ApplicationController
     
     session[:signup_step] = @user.current_step 
 
+
     if @user.new_record?
-      render "new"
+      render "success"
     else
       session[:signup_params] = session[:signup_step] = nil
       #flash[:notice] = "User created!"
       cookies[:auth_token] = @user.auth_token
-      redirect_to signup_success_path
-    end  
+      #redirect_to register_success_path
+      render "success"
+#    end  
+=end
   end
   
   def success

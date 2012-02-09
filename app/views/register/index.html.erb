@@ -1,0 +1,37 @@
+<%= form_for @user, :url => register_path do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3>Network</h3>
+  <p>
+    <%= f.label :network_name %>
+    <%= f.text_field :network_name %></br>
+    <%= f.label :network_for_who %>
+    <%= f.text_field :network_for_who %></br>
+    <%= f.label :network_relationship, 'Relationship to the person at the centre of network' %>
+    <%= f.text_field :network_relationship %>
+  </p>
+  <h3>Profile</h3>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %><br/>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %><br/>
+    <%= f.label :password %>
+    <%= f.password_field :password %><br/>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p><%= link_to "Cancel", root_path %> <%= f.submit "Register" %> </p>
+<% end %>
+
+

@@ -1,8 +1,11 @@
 class NewsController < ApplicationController
+  before_filter :require_user
+  
   # GET /news
   # GET /news.json
   def index
     @news = News.all
+#    @news = News.find_by_uid()
 
     respond_to do |format|
       format.html # index.html.erb
