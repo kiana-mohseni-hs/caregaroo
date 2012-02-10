@@ -1,18 +1,13 @@
-class CommentsController < ApplicationController
+class CommentsController < ApplicationController  
+  before_filter :require_user
+  
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.where("news_id = ? and created_at > ?", params[:news_id], Time.at(params[:after].to_i + 1))
-=begin
-    @comments = Comment.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @comments }
-    end
-=end
+    @comments = Comment.where("post_id = ? and created_at > ?", params[:post_id], Time.at(params[:after].to_i + 1))
   end
 
+=begin
   # GET /comments/1
   # GET /comments/1.json
   def show
@@ -34,6 +29,7 @@ class CommentsController < ApplicationController
       format.json { render :json => @comment }
     end
   end
+=end
 
   # GET /comments/1/edit
   def edit
@@ -43,19 +39,23 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    logger.debug "(comment_create) #{params}"
+    logger.debug "(comment_create) #{params[:comment]}"
     @comment = Comment.new(params[:comment])
+    @comment.user_id = @user.id
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to news_index_path, :notice => 'Comment was successfully created.' }
+        format.html { redirect_to news_path, :notice => 'Comment was successfully created.' }
         format.json { render :json => @comment, :status => :created, :location => @comment }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @comment.errors, :status => :unprocessable_entity }
+      # else
+        # format.html { render :action => "new" }
+        # format.json { render :json => @comment.errors, :status => :unprocessable_entity }
       end
     end
   end
 
+=begin
   # PUT /comments/1
   # PUT /comments/1.json
   def update
@@ -83,4 +83,5 @@ class CommentsController < ApplicationController
       format.json { head :ok }
     end
   end
+=end  
 end

@@ -5,8 +5,8 @@ Auth::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "register" => "register#index", :as => "register"
   post "register" => "register#create", :as => "register"
-  get "profile/:id" => "profile#index", :as => "profile"
-  get "news/:id" => "news#index", :as => "news"
+  get "profile" => "profile#index", :as => "profile"
+  get "news" => "posts#index", :as => "news"
 
 # post "signup/create" => "signup#create", :as => "signup_create"
 #  get "signup/success" => "signup#success", :as => "signup_success"
@@ -27,7 +27,7 @@ Auth::Application.routes.draw do
   resources :sessions
   resources :password_resets
 #  resources :invitations
-  resources :news
+  resources :posts
   resources :comments
   resources :pilot_signups
   

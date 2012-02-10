@@ -1,0 +1,32 @@
+<h1>News Stream</h1>
+
+<table>
+<tr><td><%= render 'form_new' %></td></tr>
+<% @posts.each do |post| %>
+  <tr>
+    <td>
+	<div id="post" data-id="<%= post.id %>">
+			<strong><%= post.name %></strong><br/>
+	    <%= post.content %><br/>
+		<% unless post.comments.empty? %>
+		    <div id="comments">
+		      <%= render post.comments %>
+		    </div>
+	    <% end %>
+	    <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %>
+	  	<h3>Add your comment:</h3>
+		<%= form_for Comment.new do |f| %>
+		  <%= f.hidden_field :post_id, :value => "#{post.id}" %>
+		  <%= f.text_area :content, :size => "50x2" %>
+		  <p><%= f.submit %></p>
+		<% end %>
+	</div>
+   </td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<p><%= link_to "Back to Home", root_path %></p>

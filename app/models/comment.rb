@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :news_id, :name, :content
-  belongs_to :news
+  attr_accessible :post_id, :name, :content
+  belongs_to :posts
+  has_one :users
 end
