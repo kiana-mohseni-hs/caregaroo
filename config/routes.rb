@@ -6,6 +6,11 @@ Auth::Application.routes.draw do
   get "register" => "register#index", :as => "register"
   post "register" => "register#create", :as => "register"
   get "profile" => "profile#index", :as => "profile"
+  get "profile/basic" => "profile#basic", :as => "basic_profile"
+  put "profile/basic" => "profile#update_basic", :as => "update_basic_profile"
+  get "profile/info" => "profile#info", :as => "info_profile"
+  get "profile/password" => "profile#basic", :as => "password_profile"
+  get "profile/notifications" => "profile#notifications", :as => "notifications_profile"
   get "news" => "posts#index", :as => "news"
 
 # post "signup/create" => "signup#create", :as => "signup_create"
