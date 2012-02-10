@@ -7,21 +7,30 @@ class ProfileController < ApplicationController
 
   def update_basic
     logger.debug "(update_basic_profile) #{params}"
-
-    @user.update_attributes(params[:user])
-    logger.debug "(update_basic_profile) #{@user.first_name}"
     
-    if @user.save
-      redirect_to profile_path, notice: 'User was successfully created.'
+    if @user.update_attributes(params[:user])
+      redirect_to profile_path, :notice => 'User was successfully updated.'
     else
-      redirect_to :back
+      render :action => "index"
     end    
   end
+  
   
   def info
   end
   
-  def password    
+  def password   
+    @user 
+  end
+  
+  def update_password
+    logger.debug "(update_password) #{params}"
+    
+    if @user.update_attributes(params[:user])
+      redirect_to password_profile_path, :notice => 'Password was successfully updated.'
+    else
+      render :action => "password"
+    end    
   end
   
   def notifications    

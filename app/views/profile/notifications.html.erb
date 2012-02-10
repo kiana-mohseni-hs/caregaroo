@@ -1,6 +1,6 @@
 <div><%= render 'sub_nav' %></div>
 
-<%= form_for @user, :url => update_basic_profile_path, :method => :post, :html => { :id => 'basic_form' } do |f| %>
+<%= form_for @user, :url => update_password_profile_path, :method => :post, :html => { :id => 'basic_form' } do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -14,19 +14,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name%>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+	<%= f.label :password %>
+  	<%= f.password_field :password %><br/>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Password" %>
   </div>
 <% end %>
 

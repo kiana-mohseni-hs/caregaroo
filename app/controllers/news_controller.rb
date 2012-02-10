@@ -44,6 +44,7 @@ class NewsController < ApplicationController
   # POST /news.json
   def create
     @news = News.new(params[:news])
+    Post.create(:author => Author.create)
 
     respond_to do |format|
       if @news.save
