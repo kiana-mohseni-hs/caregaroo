@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  isUnread: false
+  isDeleted: false
+  message_id: 1
+
+two:
+  isUnread: false
+  isDeleted: false
+  message_id: 1

@@ -1,11 +1,28 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :network_name, :network_for_who, :network_relationship, :first_name, :last_name
+  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name
+  attr_accessor :new_network_name, :new_network_for_who
   has_secure_password
   validates_presence_of :password, :on => :create
   validates :email, :uniqueness => true
-  before_create { generate_token(:auth_token) }
-  has_many :news
+  before_create { 
+    create_new_network
+    generate_token(:auth_token) 
+  }
+  has_many :posts, :class_name => "Post", :finder_sql => Proc.new {
+      %Q{
+        SELECT DISTINCT *
+        FROM posts p
+        WHERE p.network_id = #{network_id}
+        ORDER BY p.created_at DESC 
+      }
+  }
+  belongs_to :network, :foreign_key => "network_id", :class_name => "Network"
+  accepts_nested_attributes_for :network
 
+  def create_new_network
+    create_network(:network_name => new_network_name, :network_for_who => new_network_for_who, :host_user_id => id)
+  end
+  
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now

@@ -13,7 +13,7 @@ class RegisterController < ApplicationController
   end
   
   def index
-    @user = User.new()
+    @user = User.new
   end
   
   def invite
