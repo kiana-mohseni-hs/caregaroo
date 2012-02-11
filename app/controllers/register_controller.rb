@@ -16,22 +16,6 @@ class RegisterController < ApplicationController
     @user = User.new
   end
   
-  def invite
-    logger.debug "(index) #{params[:invitation_token]}"
-      
-    session[:signup_params] ||= {}
-    @user = User.new(session[:signup_params])
-    #@user.current_step = session[:signup_step]
-    
-    @invitations = Invitation.find_by_token(params[:invitation_token])
-    if @invitations
-      logger.debug "(new) #{@invitations.email}"
-      session[:signup_params]['email'] = @invitations.email 
-      session[:signup_params]['first_name'] = @invitations.first_name 
-      session[:signup_params]['last_name'] = @invitations.last_name 
-    end
-  end
-  
   def create
     logger.debug "(create) #{params[:user]}"    
 #    session[:signup_params].deep_merge!(params[:user]) if params[:user]

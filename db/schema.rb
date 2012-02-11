@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211055955) do
+ActiveRecord::Schema.define(:version => 20120211100706) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20120211055955) do
     t.datetime "sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "send_id"
   end
 
   create_table "messages", :force => true do |t|
@@ -43,14 +44,6 @@ ActiveRecord::Schema.define(:version => 20120211055955) do
     t.string   "network_name"
     t.string   "network_for_who"
     t.integer  "host_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "news", :force => true do |t|
-    t.string   "name"
-    t.string   "content"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

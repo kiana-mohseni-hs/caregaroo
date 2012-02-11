@@ -3,21 +3,37 @@ class SignupController < ApplicationController
   def new
     logger.debug "(new) #{params[:invitation_token]}"
       
-    session[:sigup_params] ||= {}
-    @user = User.new(session[:sigup_params])
-    @user.current_step = session[:signup_step]
+    session[:signup_params] ||= {}
+    @user = User.new(session[:signup_params])
     
     @invitations = Invitation.find_by_token(params[:invitation_token])
-    if @invitations
-      logger.debug "(new) #{@invitations.email}"
-      session[:sigup_params]['email'] = @invitations.email 
-      session[:sigup_params]['first_name'] = @invitations.first_name 
-      session[:sigup_params]['last_name'] = @invitations.last_name 
+    if @invitations && @invitations.send_id
+      logger.debug "(new) send_id=#{@invitations.send_id}"
+      
+      @sender = User.find(@invitations.send_id)
+      @network = @sender.network
+      logger.debug "(new) network=#{@network.network_name}"
+      @user.network_id = @sender.network.id
+      session[:signup_params]['email'] = @invitations.email 
+      session[:signup_params]['first_name'] = @invitations.first_name 
+      session[:signup_params]['last_name'] = @invitations.last_name 
+    else
+      redirect_to :root
     end
+    
   end
   
   def create
     logger.debug "(create) #{params[:user]}"    
+    @user = User.new(params[:user])
+    if @user.save
+      cookies[:auth_token] = @user.auth_token
+      logger.debug "(create) token=#{@user.auth_token}"
+      render "success"
+    else
+      render :action => "new"
+    end
+=begin
     session[:sigup_params].deep_merge!(params[:user]) if params[:user]
     @user = User.new(session[:sigup_params])
     @user.current_step = session[:signup_step]
@@ -40,6 +56,7 @@ class SignupController < ApplicationController
       cookies[:auth_token] = @user.auth_token
       redirect_to signup_success_path
     end  
+=end
   end
   
   def success
