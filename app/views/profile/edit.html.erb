@@ -1,0 +1,58 @@
+<h1>Editing profile</h1>
+
+<%= form_for @profile, :url => update_info_profile_path, :method => :post, :html => { :id => 'info_form' } do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bio %><br />
+    <%= f.text_area :bio %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :significant_other %><br />
+    <%= f.text_field :significant_other %>
+  </div>
+  <div class="field">
+    <%= f.label :kids_name %><br />
+    <%= f.text_field :kids_name %>
+  </div>
+  <div class="field">
+    <%= f.label :birthdate %><br />
+    <%= f.date_select :birthdate %>
+  </div>
+  <div class="field">
+    <%= f.label :expertise %><br />
+    <%= f.text_field :expertise %>
+  </div>
+  <div class="field">
+    <%= f.label :can_help_with %><br />
+    <%= f.text_field :can_help_with %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_work %><br />
+    <%= f.text_field :phone_work %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_mobile %><br />
+    <%= f.text_field :phone_mobile %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Update profile' %>
+  </div>
+<% end %>
+
+
+

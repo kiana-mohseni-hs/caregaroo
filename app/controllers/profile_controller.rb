@@ -1,6 +1,56 @@
 class ProfileController < ApplicationController
   before_filter :require_user
   
+  def info
+    logger.debug "(info_profile) #{params}"
+    
+    if params[:user_id].nil?
+      @profile = @user.profile
+    
+      if @profile.nil?
+        @profile = Profile.new
+      end
+    else
+      @profile = Profile.where("user_id=?", params[:user_id])
+      if !@profile.nil?
+        @profile = @profile.first
+      end
+    end
+  end
+  
+  def edit_info
+    logger.debug "(edit_info_profile) #{params}"
+    
+    @profile = @user.profile
+    if @profile.nil?      
+      @profile = Profile.new
+    end
+
+    render :edit
+  end
+  
+  def update_info
+    logger.debug "(update_profile) #{params}"
+    
+    @profile = @user.profile
+    
+    if @profile.nil?
+      @profile = Profile.new(params[:profile])
+      @profile.user_id = @user.id   
+      if @profile.save
+        redirect_to info_profile_path, :notice => 'Profile was successfully created.'
+      else
+        render :edit
+      end
+    else  
+      if @profile.update_attributes(params[:profile])
+        redirect_to info_profile_path, :notice => 'Profile was successfully updated.'
+      else
+        render :edit
+      end
+    end
+  end
+  
   def index
     @user
   end
@@ -13,10 +63,6 @@ class ProfileController < ApplicationController
     else
       render :action => "index"
     end    
-  end
-  
-  
-  def info
   end
   
   def password   

@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   belongs_to :network, :foreign_key => "network_id", :class_name => "Network"
   accepts_nested_attributes_for :network
   has_many :invitations
+  has_one :profile
 
   def create_new_network
     if network_id.blank?

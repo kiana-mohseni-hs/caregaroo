@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211100706) do
+ActiveRecord::Schema.define(:version => 20120214070507) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(:version => 20120211100706) do
   end
 
   create_table "messages", :force => true do |t|
-    t.string   "body"
-    t.integer  "sender_id"
     t.integer  "parent_id"
+    t.integer  "sender_id"
+    t.string   "body"
+    t.integer  "recepient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,10 +66,26 @@ ActiveRecord::Schema.define(:version => 20120211100706) do
     t.integer  "network_id"
   end
 
-  create_table "recipient_infos", :force => true do |t|
-    t.boolean  "isUnread"
-    t.boolean  "isDeleted"
+  create_table "profiles", :force => true do |t|
+    t.string   "bio"
+    t.string   "location"
+    t.string   "significant_other"
+    t.string   "kids_name"
+    t.date     "birthdate"
+    t.string   "expertise"
+    t.string   "can_help_with"
+    t.string   "phone_work"
+    t.string   "phone_mobile"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recepients", :force => true do |t|
+    t.integer  "user_id"
     t.integer  "message_id"
+    t.boolean  "is_read"
+    t.boolean  "is_deleted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

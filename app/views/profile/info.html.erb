@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+<% if !@profile.nil? %>
+<% if @profile.user_id == @user.id %>
+	<%= link_to "Edit", edit_info_profile_path %>
+<% end %>
+
+<p>
+  <b>Bio:</b>
+  <%= @profile.bio %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @profile.location %>
+</p>
+
+<p>
+  <b>Significant other:</b>
+  <%= @profile.significant_other %>
+</p>
+
+<p>
+  <b>Kids name:</b>
+  <%= @profile.kids_name %>
+</p>
+
+<p>
+  <b>Birthdate:</b>
+  <%= @profile.birthdate %>
+</p>
+
+<p>
+  <b>Expertise:</b>
+  <%= @profile.expertise %>
+</p>
+
+<p>
+  <b>Can help with:</b>
+  <%= @profile.can_help_with %>
+</p>
+
+<p>
+  <b>Phone work:</b>
+  <%= @profile.phone_work %>
+</p>
+
+<p>
+  <b>Phone mobile:</b>
+  <%= @profile.phone_mobile %>
+</p>
+<% else %>
+<p>There's no profile.
+<% end %>
+
+

@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  body: MyString
-  sender_id: 1
   parent_id: 1
+  sender_id: 1
+  body: MyString
+  recepient_id: 1
 
 two:
-  body: MyString
-  sender_id: 1
   parent_id: 1
+  sender_id: 1
+  body: MyString
+  recepient_id: 1
