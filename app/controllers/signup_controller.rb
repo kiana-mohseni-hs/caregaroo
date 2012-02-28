@@ -1,7 +1,7 @@
 class SignupController < ApplicationController
   
   def new
-    logger.debug "(new) #{params[:invitation_token]}"
+    logger.debug "(new_signup) #{params[:invitation_token]}"
       
     session[:signup_params] ||= {}
     @user = User.new(session[:signup_params])
@@ -12,7 +12,7 @@ class SignupController < ApplicationController
       
       @sender = User.find(@invitations.send_id)
       @network = @sender.network
-      logger.debug "(new) network=#{@network.network_name}"
+      logger.debug "(new_signup) network=#{@network.network_name}"
       @user.network_id = @sender.network.id
       session[:signup_params]['email'] = @invitations.email 
       session[:signup_params]['first_name'] = @invitations.first_name 
@@ -24,11 +24,11 @@ class SignupController < ApplicationController
   end
   
   def create
-    logger.debug "(create) #{params[:user]}"    
+    logger.debug "(create_signup) #{params[:user]}"    
     @user = User.new(params[:user])
     if @user.save
       cookies[:auth_token] = @user.auth_token
-      logger.debug "(create) token=#{@user.auth_token}"
+      logger.debug "(create_signup) token=#{@user.auth_token}"
       render "success"
     else
       render :action => "new"

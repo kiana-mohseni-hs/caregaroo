@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120214070507) do
+ActiveRecord::Schema.define(:version => 20120226015158) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20120214070507) do
     t.datetime "updated_at"
     t.integer  "post_id"
     t.integer  "user_id"
+  end
+
+  create_table "folders", :force => true do |t|
+    t.integer  "parent_id"
+    t.string   "display_name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "invitations", :force => true do |t|
@@ -33,10 +41,9 @@ ActiveRecord::Schema.define(:version => 20120214070507) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "parent_id"
+    t.integer  "folder_id"
     t.integer  "sender_id"
     t.string   "body"
-    t.integer  "recepient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20120214070507) do
     t.datetime "updated_at"
   end
 
-  create_table "recepients", :force => true do |t|
+  create_table "recipients", :force => true do |t|
     t.integer  "user_id"
     t.integer  "message_id"
     t.boolean  "is_read"

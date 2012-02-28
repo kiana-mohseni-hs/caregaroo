@@ -1,0 +1,28 @@
+<p><%= link_to 'Back', messages_path %></p>
+<table>
+<% @messages.each do |message| %>
+  <tr>
+    <td width="20%"><%= message.user.first_name %> <%= message.user.last_name %></td>
+    <td width="50%"><%= message.body %></td>
+    <td><%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= form_for @message, :url => reply_message_path, :method => :post, :html => { :id => 'reply_message_form' } do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+	<%= hidden_field :message, :folder_id %>
+    <%= f.text_area :body, :rows => '2'%> <%= f.submit 'Reply' %>
+  </div>
+<% end %>

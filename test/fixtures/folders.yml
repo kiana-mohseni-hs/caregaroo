@@ -2,10 +2,10 @@
 
 one:
   parent_id: 1
-  sender_id: 1
-  body: MyString
+  display_name: MyString
+  description: MyString
 
 two:
   parent_id: 1
-  sender_id: 1
-  body: MyString
+  display_name: MyString
+  description: MyString

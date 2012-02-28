@@ -2,8 +2,6 @@ class PilotSignupsController < ApplicationController
   respond_to :html, :js, :json
   before_filter :require_user_admin, :only => [:index, :destroy]
     
-  # GET /pilot_signups
-  # GET /pilot_signups.json
   def index
     @pilot_signups   = PilotSignup.all
     respond_to do |format|
@@ -12,9 +10,6 @@ class PilotSignupsController < ApplicationController
     end
   end
 
-  
-  # DELETE /pilot_signups/1
-  # DELETE /pilot_signups/1.json
   def destroy
     @pilot_signup = PilotSignup.find(params[:id])
     @pilot_signup.destroy

@@ -1,0 +1,12 @@
+<h1>Private Messages</h1>
+<%= render 'form' %>
+<table>
+<% @messages.each do |message| %>
+  <tr>
+    <td width="20%"><%= message.user.first_name %> <%= message.user.last_name %></td>
+    <td width="50%"><%= message.body %></td>
+	<td><%= link_to "Show", :controller => "messages", :action => "show", :id => message.folder_id %></td>
+    <td><%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

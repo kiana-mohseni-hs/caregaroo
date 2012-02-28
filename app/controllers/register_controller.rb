@@ -13,24 +13,25 @@ class RegisterController < ApplicationController
   end
   
   def index
-    @user = User.new
+    @network = Network.new
+    @network.users.build
   end
   
   def create
-    logger.debug "(create) #{params[:user]}"    
-#    session[:signup_params].deep_merge!(params[:user]) if params[:user]
-#    @user = User.new(session[:signup_params])
-    @user = User.new(params[:user])
-    if @user.save
-      cookies[:auth_token] = @user.auth_token
-      logger.debug "(create) token=#{@user.auth_token}"
+    @network = Network.new(params[:network])
+    
+    if @network.save
+      cookies[:auth_token] = @network.users.first.auth_token
+      logger.debug "(create) token=#{@network.users.first.auth_token}"
       render "success"
     else
       render :action => "index"
     end
     
     
-=begin
+=begin    
+    session[:signup_params].deep_merge!(params[:user]) if params[:user]
+    @user = User.new(session[:signup_params])
     @user.current_step = session[:signup_step]
     
     if params[:back_button]

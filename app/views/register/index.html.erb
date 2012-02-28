@@ -1,36 +1,29 @@
-<%= form_for @user, :url => register_path do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for @network, :url => register_path do |f| %>
+  <%= render "shared/error_messages", :target => @network %>  
   <h3>Network</h3>
   <p>
-	<%= f.label :new_network_name %>
-	<%= f.text_field :new_network_name %>
-    <%= f.label :new_network_for_who %>
-	<%= f.text_field :new_network_for_who %>
-    <%= f.label :network_relationship, 'Relationship to the person at the centre of network' %>
-    <%= f.text_field :network_relationship %>
-  </p>
-  <h3>Profile</h3>
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %><br/>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %><br/>
-    <%= f.label :password %>
-    <%= f.password_field :password %><br/>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </p>
+	<%= f.label :network_name %>
+	<%= f.text_field :network_name %>
+    <%= f.label :network_for_who %>
+	<%= f.text_field :network_for_who %>
+	<%= f.fields_for :users do |u| %>
+	    <%= u.label :network_relationship, 'Relationship to the person at the centre of network' %>
+	    <%= u.text_field :network_relationship %>
+	  </p>
+	  <h3>Profile</h3>
+	  <p>
+	    <%= u.label :email %>
+	    <%= u.text_field :email %>
+	    <%= u.label :first_name %>
+	    <%= u.text_field :first_name %><br/>
+	    <%= u.label :last_name %>
+	    <%= u.text_field :last_name %><br/>
+	    <%= u.label :password %>
+	    <%= u.password_field :password %><br/>
+	    <%= u.label :password_confirmation %>
+	    <%= u.password_field :password_confirmation %>
+	  </p>
+	<% end %>
   <p><%= link_to "Cancel", root_path %> <%= f.submit "Register" %> </p>
 <% end %>
 

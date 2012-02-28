@@ -1,17 +1,14 @@
 Auth::Application.routes.draw do
 
-  resources :profiles
-
   # pilot app
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "register" => "register#index", :as => "register"
   post "register" => "register#create", :as => "register"
   get "profile" => "profile#index", :as => "profile"
-  get "profile/basic" => "profile#basic", :as => "basic_profile"
   post "profile/basic" => "profile#update_basic", :as => "update_basic_profile"
   get "profile/info" => "profile#info", :as => "info_profile"
-  get "profile/:user_id/info" => "profile#info", :as => "info_profile"
+  get "profile/:user_id/info" => "profile#info"
   get "profile/info/edit" => "profile#edit_info", :as => "edit_info_profile"
   post "profile/info" => "profile#update_info", :as => "update_info_profile"
   get "profile/password" => "profile#password", :as => "password_profile"
@@ -22,6 +19,7 @@ Auth::Application.routes.draw do
   get "invite" => "invitations#index", :as => "invitation"
   get "invite/success" => "invitations#success", :as => "success_invitation"
   post "invite/send" => "invitations#create", :as => "send_invitation"
+  post "messages/reply" => "messages#reply", :as => "reply_message"
 
   post "signup/create" => "signup#create", :as => "signup_create"
   get "signup/success" => "signup#success", :as => "signup_success"
@@ -38,12 +36,13 @@ Auth::Application.routes.draw do
   post "signup" => "register#signup", :as => "signup"
   root :to => "home#index", :as => "root"
   
-#  resources :users
+  # resources :users
   resources :sessions
   resources :password_resets
-#  resources :invitations
+  # resources :invitations
+  resources :messages
+  # resources :profiles
   resources :posts
   resources :comments
   resources :pilot_signups
-  
 end

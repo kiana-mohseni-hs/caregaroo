@@ -1,4 +1,5 @@
-<h1>Editing profile</h1>
+<div><%= render 'sub_nav' %></div>
+<h3>Editing profile</h3>
 
 <%= form_for @profile, :url => update_info_profile_path, :method => :post, :html => { :id => 'info_form' } do |f| %>
   <% if @profile.errors.any? %>
@@ -15,7 +16,7 @@
 
   <div class="field">
     <%= f.label :bio %><br />
-    <%= f.text_area :bio %>
+    <%= f.text_area :bio, :rows => "2"%>
   </div>
   <div class="field">
     <%= f.label :location %><br />

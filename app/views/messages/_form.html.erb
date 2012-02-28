@@ -1,0 +1,26 @@
+<%= form_for(@message) do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+	<p>
+	<% for member in @members %>
+      <%= check_box_tag "recipients[]", "#{member.id}", false, :style => "clear:both" =%>
+		<%= member.first_name %> <%= member.last_name %>
+    <% end %>
+	</p>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :body, :rows => '2'%> <%= f.submit %>
+  </div>
+<% end %>
