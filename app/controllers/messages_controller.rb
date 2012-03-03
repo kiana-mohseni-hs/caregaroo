@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   def index
     logger.debug "(index_messages)"
     
-    @messages = @user.messages
+    @messages = @user.latest_messages
     @message = Message.new
     @members = @user.get_members
 
@@ -15,16 +15,10 @@ class MessagesController < ApplicationController
   end
 
   def show
-=begin    
-    @recent_message = Message.find(params[:id])
-    @messages = Array.new
-    if @recent_message.folder_id == 0
-      @messages << @recent_message
-    else
-      @messages = @recent_message.get_related_messages
-    end
-=end
-    @messages = Message.where("folder_id = ?", params[:id]).order("created_at")
+    @messages = []
+    if @user.messages.find_by_folder_id(params[:id])
+      @messages = Message.where("folder_id = ?", params[:id]).order("created_at")
+    end      
     
     @message = Message.new
     @message.folder_id = params[:id]
@@ -63,8 +57,10 @@ class MessagesController < ApplicationController
     end
       
     params[:recipients].each do |recipient|        
-      @message.recipient.build(:user_id => recipient)
+      @message.recipients.build(:user_id => recipient)
     end
+    
+    @message.recipients.build(:user_id => @user.id)
     
     if @message.save
       redirect_to messages_path, :notice => 'Message was successfully created.'

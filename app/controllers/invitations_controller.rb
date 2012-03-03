@@ -5,9 +5,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new
   end
   
-  def create
-    logger.debug "(send) #{params}"
-    
+  def create    
     @invitations = Invitation.new(params[:invitation])
     @invitations.send_id = @user.id
     if @invitations.save

@@ -1,22 +1,17 @@
 class SignupController < ApplicationController
   
-  def new
-    logger.debug "(new_signup) #{params[:invitation_token]}"
-      
-    session[:signup_params] ||= {}
-    @user = User.new(session[:signup_params])
-    
+  def new    
+    @user = User.new
     @invitations = Invitation.find_by_token(params[:invitation_token])
     if @invitations && @invitations.send_id
       logger.debug "(new) send_id=#{@invitations.send_id}"
       
       @sender = User.find(@invitations.send_id)
       @network = @sender.network
-      logger.debug "(new_signup) network=#{@network.network_name}"
       @user.network_id = @sender.network.id
-      session[:signup_params]['email'] = @invitations.email 
-      session[:signup_params]['first_name'] = @invitations.first_name 
-      session[:signup_params]['last_name'] = @invitations.last_name 
+      @user.email = @invitations.email
+      @user.first_name = @invitations.first_name 
+      @user.last_name = @invitations.last_name 
     else
       redirect_to :root
     end
@@ -24,7 +19,6 @@ class SignupController < ApplicationController
   end
   
   def create
-    logger.debug "(create_signup) #{params[:user]}"    
     @user = User.new(params[:user])
     if @user.save
       cookies[:auth_token] = @user.auth_token
