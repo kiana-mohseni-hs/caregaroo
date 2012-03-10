@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
         logger.debug "(login) referer=#{referer}"
         redirect_to(:controller => referer[:controller], :action => referer[:action] )
       else
-        redirect_to root_url
-      end
+        redirect_to news_url
+      end      
 
     else
       flash.now.alert = "Invalid email or password"

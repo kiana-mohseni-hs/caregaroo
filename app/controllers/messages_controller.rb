@@ -2,8 +2,6 @@ class MessagesController < ApplicationController
   before_filter :require_user
   
   def index
-    logger.debug "(index_messages)"
-    
     @messages = @user.latest_messages
     @message = Message.new
     @members = @user.get_members
@@ -30,7 +28,6 @@ class MessagesController < ApplicationController
   end
 
   def reply
-    logger.debug "(reply_message)"
     @message = Message.new(params[:message])
     @message.sender_id = @user.id
     if @message.save
@@ -42,8 +39,6 @@ class MessagesController < ApplicationController
   end
   
   def create
-    logger.debug "(create_message)"
-    
     @message = Message.new(params[:message])
     @message.sender_id = @user.id
     @message.create_folder()

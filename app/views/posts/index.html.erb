@@ -1,4 +1,4 @@
-<h1>News Stream</h1>
+<h1>Message Board</h1>
 
 <table>
 <tr><td><%= render 'form_new' %></td></tr>
@@ -7,7 +7,8 @@
     <td>
 	<div id="post" data-id="<%= post.id %>">
 			<strong><%= post.name %></strong><br/>
-	    <%= post.content %><br/>
+		<%= post.content %><br/>
+		by <%= post.user.first_name %> <%= post.user.first_name %> at <%= post.created_at.strftime('%b %d, %Y at %I:%M %p')  %>  
 		<% unless post.comments.empty? %>
 		    <div id="comments">
 		      <%= render post.comments %>
