@@ -16,7 +16,7 @@ gem 'coffee-script'
 gem 'uglifier'
 
 gem 'jquery-rails'
-
+gem 'event-calendar', :require => 'event_calendar'
 
 # gem "mail", "2.1.3"
 

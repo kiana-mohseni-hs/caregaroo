@@ -10,6 +10,7 @@
   <div id="container">
     <div id="user_nav">
       <% if current_user %>
+      <%= link_to "Calendar", calendar_path %>
       <%= link_to "Message Board", news_path %>
       <%= link_to "Private Messages", messages_path %>
       <%= link_to "My Profile", profile_path %>
