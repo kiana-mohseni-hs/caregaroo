@@ -10,7 +10,7 @@ class InvitationsController < ApplicationController
     @invitations.send_id = @user.id
     if @invitations.save
       UserMailer.pilot_invitation(@invitations).deliver
-      redirect_to success_invitation_path, :notice => "Signed up!"
+      redirect_to success_invitation_path, :notice => "Invitation sent!"
     else
       render "new"
     end
