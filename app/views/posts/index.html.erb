@@ -8,7 +8,7 @@
 	<div id="post" data-id="<%= post.id %>">
 			<strong><%= post.name %></strong><br/>
 		<%= post.content %><br/>
-		by <%= post.user.first_name %> <%= post.user.first_name %> at <%= post.created_at.strftime('%b %d, %Y at %I:%M %p')  %>  
+		by <%= post.user.first_name if post.user %> <%= post.user.last_name if post.user %> at <%= post.created_at.strftime('%b %d, %Y at %I:%M %p')  %>  
 		<% unless post.comments.empty? %>
 		    <div id="comments">
 		      <%= render post.comments %>
