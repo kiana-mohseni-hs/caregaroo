@@ -1,4 +1,4 @@
-<h1>News Stream</h1>
+<h3>News Stream</h3>
 
 <table>
 <tr><td><%= render 'form_new' %></td></tr>
@@ -6,9 +6,11 @@
   <tr>
     <td>
 	<div id="post" data-id="<%= post.id %>">
+		<img src="img/placeHolder.png" alt="placeholder icon" height="44" width="50" style="float:left;padding-right:5px">
+		<strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br/>
 			<strong><%= post.name %></strong><br/>
 		<%= post.content %><br/>
-		by <%= post.user.first_name %> <%= post.user.first_name %> at <%= post.created_at.strftime('%b %d, %Y at %I:%M %p')  %>  
+		by <%= post.user.first_name if post.user %> <%= post.user.last_name if post.user %> at <%= post.created_at.strftime('%b %d, %Y at %I:%M %p')  %>  
 		<% unless post.comments.empty? %>
 		    <div id="comments">
 		      <%= render post.comments %>
@@ -21,6 +23,7 @@
 		  <%= f.text_area :content, :size => "50x2" %>
 		  <p><%= f.submit %></p>
 		<% end %>
+		<hr color="#cccccc"/>
 	</div>
    </td>
     
