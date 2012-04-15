@@ -12,6 +12,8 @@ maximum-scale=1.0;">
 <!-- favicon & idevice homepage thumb --> 
 <link rel="shortcut icon" href="favicon.ico">
 
+<!-- PT San font-->
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,700italic' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-23336907-1']);
@@ -24,7 +26,6 @@ maximum-scale=1.0;">
 	  })();
    </script>
 
-<%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
 <meta http-equiv="cache-control" content="no-cache" />
 
@@ -49,11 +50,13 @@ src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
 
 <!-- font replacement --> 
+<!--
 <script type="text/javascript" src="js/cufon.js"></script> 
 <script type="text/javascript" src="js/League_Gothic_400.font.js"></script>
 <script type="text/javascript">
 	Cufon.replace('h2');
 </script> 
+-->
 <!--end font replacement-->
 
 </head>
@@ -64,15 +67,14 @@ src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 
 <div id="header">
 
-<!-- logo  --> <a href="http://caregaroo.com" id="logo" title="Home Care Collaboration"> <img
+<!-- logo  <a href="http://caregaroo.com" id="logo" title="Home Care Collaboration"> <img
 src="img/CaregarooLogo.png" alt="caregaroo logo" /> </a>
-
-<div>
-| <%= link_to "Create Community", register_path %> |  <%= link_to "Member Sign-In", login_path %>
+-->
+<!-- tagline   <div class="tagline grid_16" > <h1></h1> <p></p> </div>
+-->
+<div id="marketingVideo">
+	<iframe width="425" height="246" src="http://www.youtube.com/embed/clwJtIzR-Xk?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
-
-<!-- tagline  --> <div class="tagline grid_16" > <h1></h1> <p></p> </div>
-<div id="circleOfCareLogo"></div>
 <div id="topSignup" class="quickSignup right"> 
 	<h1 id="homeCareTitle">Home Care Collaboration</h1>
 	<h3 id="homeCareDesc"><font class="blueFont">Caregaroo</font> is a private online network for families to share news, coordinate care and contribute to loved one's living independently.</h3> 
@@ -82,18 +84,15 @@ src="img/CaregarooLogo.png" alt="caregaroo logo" /> </a>
   <%= f.hidden_field :signup_type, :value => "quick_signup" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="top" />
   <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm top_signup_email" %>
-  <div id="faq"><%= link_to 'Download Pilot Program FAQ', download_faq_path %></div>
+  <!--<div id="faq"><%= link_to 'Download Pilot Program FAQ', download_faq_path %></div>-->
   <p><%= f.submit :value => "Invite Me!" %></p>
 <% end %>	
-<h3 class="socialTitle">Tell Your Friends:</h3> <ul class="socialMedia"> <li><a href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank"><img
-src="img/facebook.png" alt="facebook" /></a></li> <li><a href="https://twitter.com/#!/CaregarooTweet" target="_blank"><img src="img/twitter.png"
-alt="twitter" /></a></li></ul>
 
 </div>  <!-- end finish newsletter --> </div> <!-- end header  -->
 
 <!-- benefits  --> 
 <div id="benefits" class="grid_14 clearfix"> 
-<img class="separator" src="img/line.png" alt="separator line" /> 
+
 <ul>
 <% if cookies[:ebook] == "1" %> 
 <li><a href="/download/ebook" title="Download Caregaroo's eBook" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
@@ -167,7 +166,7 @@ preparation? With <font class="blueFont">Caregaroo</font>, it is easy to communi
 
 </div>
 
-<div class="featureDetails"> <div class="featureDetails"><h2>Works with Email</h2> <p>Since it’s not
+<div class="featureDetails"> <div class="featureDetails"><h2>Works with Email</h2> <p>Since it’s not
 possible to stay logged into <font class="blueFont">Caregaroo</font> around the clock, you can choose to be notified via email when
 something important happens in your network. You can also send updates and respond to messages directly
 from your email. Can’t find that old email you are looking for? No problem, <font class="blueFont">Caregaroo</font> makes it easy to
@@ -184,7 +183,7 @@ find and track all communications.</p> </div>
 
 </div>
 
-<div class="featureDetails"> <h2>Find Professional Caregivers</h2> <p>Search and find professional care
+<div class="featureDetails"> <div id="coming_soon_icon"></div><h2>Find Professional Caregivers</h2> <p>Search and find professional care
 providers with the skills you need. View their professional profiles, area of expertise and previous
 employment history. Since all listed professionals have been members of the <font class="blueFont">Caregaroo</font> network, you can
 request first-hand references from their previous employers with a click of a button!</p>
@@ -197,43 +196,6 @@ request first-hand references from their previous employers with a click of a bu
 </div><!-- end features -->
 
 
-<div id="footer" class="grid_14 clearfix">
-
-<img class="separator" src="img/line.png" alt="separator line" /> <div id="newsletter" class="grid_6">
-
-<div id="bottomSignup" class="popup"> <h3>Participate in our Pilot Program</h3> 
-<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'bottom_signup_form' } do |f| %>
-  <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
-  <%= f.hidden_field :signup_type, :value => "quick_signup" %>
-  <input id="quick_signup" name="quick_signup" type="hidden" value="bottom" />
-  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm bottom_signup_email" %>
-  <p><%= f.submit :value => "Invite Me!" %></p>
-<% end %>
-</div>
-<h3 class="socialTitle">Tell Your Friends:</h3>
-<ul class="socialMedia" style="float:left;margin-left:0px"> <li><a href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank"><img
-src="img/facebook.png" alt="facebook" /></a></li> <li><a href="https://twitter.com/#!/CaregarooTweet" target="_blank"><img src="img/twitter.png"
-alt="twitter" /></a></li></ul> </div>  <!-- end finish newsletter
--->
-
-<div id="testimonial" class="grid_8">
-
-<h2>Want to find out more?</h2> <h3>Join us on Facebook, follow our updates, ask
-questions, make suggestions, send us confidential messages and find out what others are saying about <span class="blueFont"><a
-href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank">Caregaroo</a></span>.</h3>
-
-</div>  <!-- end testimonial  -->
-
-
-
-<img class="separator" src="img/line.png" alt="separator line" /> <p id="copyright" class="grid_14
-clearfix"> Copyright 2011, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com"
-target="_blank">info@caregaroo.com</a></p>
-
-
-
-
-</div>  <!-- end footer -->
 </div>  <!-- end site wrapper -->
 <div style="display:none">
 	<div id="downloadebook" class="popup">

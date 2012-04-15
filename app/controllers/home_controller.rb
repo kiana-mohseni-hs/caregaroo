@@ -1,8 +1,11 @@
 class HomeController < ApplicationController
   
   def index
-    render :layout => false
+    render :layout => "marketing"
   end
-  
+
+  def product
+    render :layout => "marketing"
+  end  
   
 end

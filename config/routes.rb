@@ -38,6 +38,7 @@ Auth::Application.routes.draw do
   get "download/faq" => "download#faq", :as => "download_faq"
   get "admin" => "pilot_signups#index", :as => "admin"
   post "signup" => "register#signup", :as => "signup"
+  match "product" => "home#product"
   root :to => "home#index", :as => "root"
   
   # resources :users
