@@ -1,19 +1,22 @@
 <div id="header">
 	<div id="marketingVideo">
-		<iframe width="425" height="246" src="http://www.youtube.com/embed/clwJtIzR-Xk?rel=0" frameborder="0" allowfullscreen></iframe>
+		<iframe width="420" height="315" src="http://www.youtube.com/embed/PXKXjTpEWy4" frameborder="0" allowfullscreen></iframe>
 	</div>
 <div id="topSignup" class="quickSignup right"> 
 	<h1 id="homeCareTitle">Home Care Collaboration</h1>
-	<h3 id="homeCareDesc"><font class="blueFont">Caregaroo</font> is a private online network for families to share news, coordinate care and contribute to loved one's living independently.</h3> 
+	<h3 id="homeCareDesc"><font class="blueFont">Caregaroo</font> is a private secure network for families to share news, coordinate home care and assist loved ones living independently.</h3> 
+	<div id="tryForFreeBtn"><a href="signup/create"></a></div>
+	<!--
 	<h3>Sign-up to participate in our Pilot Program</h3> 
 <%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'top_signup_form' } do |f| %>
   <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
   <%= f.hidden_field :signup_type, :value => "quick_signup" %>
   <input id="quick_signup" name="quick_signup" type="hidden" value="top" />
   <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm top_signup_email" %>
-  <!--<div id="faq"><%= link_to 'Download Pilot Program FAQ', download_faq_path %></div>-->
+  <!--<div id="faq"><%= link_to 'Download Pilot Program FAQ', download_faq_path %></div>
   <p><%= f.submit :value => "Invite Me!" %></p>
 <% end %>	
+-->
 
 </div>  <!-- end finish newsletter --> </div> <!-- end header  -->
 
@@ -27,11 +30,7 @@
 <li><a href="#downloadebook" onclick="_gaq.push(['_trackEvent', 'Links', 'Download e-Book', 'Download e-Book - Home Page']);" title="Download Caregaroo's eBook" class="custom" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
 <% end %>
 <li class="second"><a href="#demo" title="Request A Demo" class="custom" id="demoLink"><img src="img/requestADemo.jpg" alt="requestADemo"/></a></li>
-<% if cookies[:pilot] == "1" %> 
-<li class="third"><a href="#pilotsuccess" title="Request Pilot Program" class="custom" id="pilotLink"><img src="img/requestApilot.jpg" alt="Careagroo Pilot" /></a></li> </ul> 
-<% else %>
-<li class="third"><a href="#pilot" title="Request Pilot Program" class="custom" id="pilotLink"><img src="img/requestApilot.jpg" alt="Careagroo Pilot" /></a></li> </ul> 
-<% end %>
+<li class="third"><a href="/product" title="Take A Tour" id="tourLink"><img src="img/TakeATourHomecare.jpg" alt="Take A Tour" /></a></li> </ul> 
 <img class="separator" src="img/line.png" alt="separator line" />
 </div>  <!-- end benefits -->
 
@@ -45,7 +44,7 @@
 
 </div>
 
-<div class="featureDetails"> <h2>Are you caring for aging parents or a loved one?</h2> <p>Is it a constant challenge to keep friends and
+<div class="featureDetails"> <h2>Are you caring for a loved one with health issues?</h2> <p>Is it a constant challenge to keep friends and
 family informed? Do you wish you could enlist more help from other members of the care circle? <font class="blueFont">Caregaroo</font>
 provides simple-to-use online tools to help you communicate and coordinate care for your loved ones.</p>
 

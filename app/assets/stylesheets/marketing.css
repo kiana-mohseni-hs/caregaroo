@@ -154,16 +154,8 @@ ul{
        margin-top:0;
    }
 */
-#circleOfCareLogo {
-background-image:url(../img/circleOfCare.jpg);
-background-position: center top;
-height: 480px;
-width: 480px;
-float:left;
-margin: 35px 0 0 45px;
-}
-#marketingVideo {
 
+#marketingVideo {
 height: 280px;
 width: 480px;
 float:left;
@@ -228,6 +220,17 @@ margin: auto;
   width: 355px;
 	margin: 70px 60px 0 0;
 }
+
+
+
+#tryForFreeBtn a
+{
+	height:40px;
+	width:195px;
+	display:block;
+	background:url('../img/homecareSlices.png') no-repeat -176px -85px;
+}
+#tryForFreeBtn a:hover{background:url('../img/homecareSlices.png') no-repeat -176px -128px;}
 
 /* END HEADER */
 
@@ -1058,31 +1061,52 @@ background:url('../img/homecareSlices.png') no-repeat -188px -4px;
 {
 	height: 82px;
 	width: 200px;
-	margin:0px 0px 0px 200px;
+	margin:0px 0px 0px 20px;
 	float:left;
 	display:block;
 }
-#product_page_nav
+#top_nav_list
 {
 	color:#14377d;
 	height: 20px;
-	width: 100px;
-	margin: 40px 50px 0px 50px;
+	margin: 40px 50px 0px 20px;
 	float:left;
 	display:inline;
 }
-#tri_icon
+#top_nav_ptr
 {
-	margin-left:20px;
+	margin-top:28px;
 	height:15px;
 	width:15px;
 	background:url('../img/homecareSlices.png') no-repeat -136px -40px;
 }
+#top_nav_ptr.home
+{
+	margin-left:24px;
+}
+#top_nav_ptr.product
+{
+	margin-left:88px;
+}
 
-.socialMedia{
-	margin: 40px 30px 0px 150px;
+.horizontal_list{
+	margin: 0px 0px 0px 0px;
 	display: inline;
 	float: left;
+}
+.horizontal_list ul{
+	float: left;
+}
+.horizontal_list li{
+	float: left;
+	margin-left:10px;
+	height:20px;
+}
+
+.socialMedia{
+	margin: 40px 100px 0px 150px;
+	display: inline;
+	float: right;
 }
 
 .socialMedia ul{
@@ -1091,23 +1115,23 @@ background:url('../img/homecareSlices.png') no-repeat -188px -4px;
 
 .socialMedia li{
 	float: left;
-	margin-left:10px;
+	margin-left:16px;
 	height:30px;
 	width:30px;
 }
 .socialMedia a{height:30px; width:30px;display:block;}
 #facebook{	background:url('../img/homecareSlices.png') no-repeat -43px -24px;}
-#twitter{	background:url('../img/homecareSlices.png') no-repeat -84px -24px;}
+#twitter{	background:url('../img/homecareSlices.png') no-repeat -83px -24px;}
 
 #mkt_sign_in_box
 {
-	margin: 40px 0px 0px 0px;
-	float:left;
+	margin: 40px 120px 0px 0px;
+	float:right;
 	display:inline;
 }
 #mkt_profile_icon
 {
-	float:left;
+	float:right;
 	background:url('../img/placeHolder.png') no-repeat;
 	background-size: 20px 20px;
 	height:20px;
