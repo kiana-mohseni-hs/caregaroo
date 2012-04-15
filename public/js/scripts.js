@@ -88,8 +88,8 @@ jQuery(document).ready(function() {
 	
 	//features images
 	$("a.single_image").fancybox({
-		'overlayColor' : '#000',
-		'overlayOpacity':0.85
+		overlayColor : '#000',
+		overlayOpacity:0.85
 	});
     
  	//showcase swf
