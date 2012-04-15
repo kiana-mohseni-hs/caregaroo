@@ -69,30 +69,6 @@ jQuery(document).ready(function() {
 	topSignupForm.submit(pilotSignup)
 	bottomSignupForm.submit(pilotSignup)
 	
-	
-	/* preload background image for :hover rules */
-	var hoverRe = /:hover/;
-	var imgRe = /\(\"?([^\"]+)\"?\)/;
-	var preload = [];
-	var img
-	var url
- 	$.each($.makeArray(document.styleSheets), function(){
-		var path = this.href ? this.href.replace(/\w+\.css/,"") : ""
-		$.each(this.cssRules || this.rules, function(){
-			if (hoverRe.test(this.selectorText)) {
-				src = this.style.backgroundImage
-				if (src) {
-					//url = imgRe.exec(src)[1]										
-					//img = document.createElement('img')
-					//img.src = url.indexOf("http") == 0 ? url : path+url
-					//preload.push(img);
-				}
-			}
-		 });
-	});
-
-			
-	/* fancybox setup code */
             
 	$("a.custom").fancybox({
 		scrolling:"no",
