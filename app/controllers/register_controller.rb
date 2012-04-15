@@ -1,6 +1,7 @@
 class RegisterController < ApplicationController
   respond_to :html, :js, :json
-    
+
+  # create signup    
   def signup
      @pilot_signup = PilotSignup.new(params[:pilot_signup])
      @pilot_signup.save
@@ -9,14 +10,16 @@ class RegisterController < ApplicationController
      elsif @pilot_signup.signup_type == 'pilot'
        cookies[:pilot] = "1"
      end
-     respond_with( @pilot_signup, :layout => false )     
+     respond_with( @pilot_signup, :layout => false )
   end
   
+  # display community network form
   def index
     @network = Network.new
     @network.users.build
   end
   
+  # create community network
   def create
     @network = Network.new(params[:network])
     @network.users.first.role = 'ADMIN'
