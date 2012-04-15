@@ -15,105 +15,87 @@
 <script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script> 
 <script type="text/javascript" src="js/scripts.js"></script>
 <script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-23336907-1']);
-	  _gaq.push(['_trackPageview']);
+	var _gaq = _gaq || [];
+  	_gaq.push(['_setAccount', 'UA-23336907-1']);
+  	_gaq.push(['_trackPageview']);
 
-	  (function() {
+  	(function() {
 		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+  	})();
 </script>
-
 </head>
-
 <body class="clearfix <%= params[:controller] %>">
-
 <div id="siteWrapper" class="container_16">
 <div id="mkt_top_nav_frame"> 
-	
-		<!-- logo  --> 
-		<a href="http://caregaroo.com" id="mkt_top_nav_logo" title="Home Care Collaboration"> <img 
-src="img/CaregarooLogo.png" alt="caregaroo logo"/> </a>
-
-		<div id="top_nav_list">
-			<ul class="horizontal_list">
-				<li><%= link_to "Home", root_path %></li>
-				<li><%= link_to "Product", product_path %></li>
-			</ul>
-			
-			<% if @page == 'product' %>	
-				<div id="top_nav_ptr" class="product"></div>					
-			<% else %>
-				<div id="top_nav_ptr" class="home"></div>	
-			<% end %>
-		</div>
-
-		<!-- remove sign in for marketing page
-		<div id="mkt_sign_in_box">
-			<% if current_user %>
-				<div id="mkt_profile_icon"></div>
-				<%= current_user.email %>.
-	      		<%= link_to "Log out", logout_path %>
-	      		
-	     	<% else %>
-	        	<div id="sign_in_button"><a href="/login"></a></div>
-	      	<% end %>
-      	</div>
-		-->
-		<ul class="socialMedia"> 
-			<li id="facebook"><a href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank">
-				</a></li> 
-			<li id="twitter"><a href="https://twitter.com/#!/CaregarooTweet" target="_blank">
-				</a></li>
+	<a href="http://caregaroo.com" id="mkt_top_nav_logo" title="Home Care Collaboration"> <img src="img/CaregarooLogo.png" alt="caregaroo logo"/> </a>
+	<div id="top_nav_list">
+		<ul class="horizontal_list">
+			<li><%= link_to "Home", root_path %></li>
+			<li><%= link_to "Product", product_path %></li>
 		</ul>
-
-	</div>
-	
-	<div id="main_frame">
-	    
-		<div id="container">
-		    <% flash.each do |name, msg| %>
-		      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-		    <% end %>
-		    <%= yield %>
-	    </div>
-	    
-	</div><!-- main_frame end -->
-		<div id="siteWrapper" class="container_16">
-	<div id="footer" class="grid_14 clearfix">	
-		<img class="separator" src="img/line.png" alt="separator line" /> 
-		<div id="newsletter" class="grid_6">
-		
-		<div id="bottomSignup" class="popup"> 
-			<h2 class="footer">Want to see how Caregaroo works? Try it today, for free.</h2> 
-			<h3 class="footer">No setup. Nothing to install. <br/>No credit card required.</h3>
-			<div id="tryForFreeBtn"><a href="signup/create"></a></div>
-			<!--
-			<h3>Participate in our Pilot Program</h3> 
-		<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'bottom_signup_form' } do |f| %>
-		  <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
-		  <%= f.hidden_field :signup_type, :value => "quick_signup" %>
-		  <input id="quick_signup" name="quick_signup" type="hidden" value="bottom" />
-		  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm bottom_signup_email" %>
-		  <p><%= f.submit :value => "Invite Me!" %></p>
+		<% if @page == 'product' %>	
+			<div id="top_nav_ptr" class="product"></div>					
+		<% else %>
+			<div id="top_nav_ptr" class="home"></div>	
 		<% end %>
-		-->
-		</div>
-		</div>  <!-- end finish newsletter-->
-		
-		<div id="testimonial" class="grid_8">
-		
-		<img src='../img/CaregarooFooterImage.png' alt="Footer Image"></img>
-		
-		</div>  <!-- end testimonial  -->
-		
-		
-		<img class="separator" src="img/line.png" alt="separator line" /> <p id="copyright" class="grid_14
-		clearfix"> Copyright 2011, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com"
-		target="_blank">info@caregaroo.com</a></p>
-	</div>  <!-- end footer -->
 	</div>
+	<ul class="socialMedia"> 
+		<li id="facebook"><a href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank">
+			</a></li> 
+		<li id="twitter"><a href="https://twitter.com/#!/CaregarooTweet" target="_blank">
+			</a></li>
+	</ul>
+</div>
+<div id="main_frame">
+	<div id="container">
+	    <% flash.each do |name, msg| %>
+	      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	    <% end %>
+	    <%= yield %>
+    </div>
+</div>
+<div id="siteWrapper" class="container_16">
+<div id="footer" class="grid_14 clearfix">	
+	<img class="separator" src="img/line.png" alt="separator line" /> 
+	<div id="newsletter" class="grid_6">
+	
+	<div id="bottomSignup" class="popup"> 
+		<h2 class="footer">Want to see how Caregaroo works? Try it today, for free.</h2> 
+		<h3 class="footer">No setup. Nothing to install. <br/>No credit card required.</h3>
+		<div id="tryForFreeBtn">
+			<a href="#pilot" onclick="_gaq.push(['_trackEvent', 'Links', 'Try it free', 'Try it free - Footer'])" title="Try Caregaroo Free" class="custom" id="pilotLink"></a>
+		</div>
+	</div>
+	</div>
+	<div id="testimonial" class="grid_8">
+		<img src='../img/CaregarooFooterImage.png' alt="Footer Image"></img>
+	</div>
+	<img class="separator" src="img/line.png" alt="separator line" /> <p id="copyright" class="grid_14
+	clearfix"> Copyright 2011, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com"
+	target="_blank">info@caregaroo.com</a></p>
+</div>
+</div>
+<div style="display:none">
+	<div id="pilot" class="popup pilot">
+		<%= form_for PilotSignup.new, :url => signup_path, :class => 'popupForm', :remote => true, :html => { :id => 'pilot_form' } do |f| %>
+		  <div id="pilotError" class="error" style="display:none">* Please enter a valid email</div>
+		  <%= f.hidden_field :signup_type, :value => "pilot" %>
+		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
+		  <%= f.text_field :last_name, "value" => "Enter your last name", :autocomplete => 'off', :class => "rounded shadowBtm signup_last_name" %>
+		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
+		  <p><%= f.submit :value => "Sign-up" %></p>
+		<% end %>
+	</form>		
+	</div>
+</div>
+<div style="display:none">
+	<div id="pilotsuccess" class="popup pilot">
+		<div id="pilotsuccess_form" class="pilotPopupDialog">
+			<p class="successMsg">Thank you!<br/>for signing-up!<br/>We will contact you when Beta Program begins.</p><input type="button" id="pilotSuccessBtn" value="Okay" name="okay">
+		</div>		
+	</div>
+</div>	
 </body>
 </html>

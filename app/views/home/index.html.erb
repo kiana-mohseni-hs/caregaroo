@@ -1,128 +1,76 @@
 <div id="header">
 	<div id="marketingVideo">
-		<iframe width="420" height="315" src="http://www.youtube.com/embed/PXKXjTpEWy4" frameborder="0" allowfullscreen></iframe>
+		<iframe id="ytvideo" width="420" height="315" 
+			src="http://www.youtube.com/embed/PXKXjTpEWy4?rel=0&autoplay=0&enablejsapi=1" 
+			frameborder="0" allowfullscreen="true"></iframe>
 	</div>
-<div id="topSignup" class="quickSignup right"> 
-	<h1 id="homeCareTitle">Home Care Collaboration</h1>
-	<h3 id="homeCareDesc"><font class="blueFont">Caregaroo</font> is a private secure network for families to share news, coordinate home care and assist loved ones living independently.</h3> 
-	<div id="tryForFreeBtn"><a href="signup/create"></a></div>
-	<!--
-	<h3>Sign-up to participate in our Pilot Program</h3> 
-<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'top_signup_form' } do |f| %>
-  <div id="quickPilotError" class="error" style="display:none">* Please enter a valid email</div>
-  <%= f.hidden_field :signup_type, :value => "quick_signup" %>
-  <input id="quick_signup" name="quick_signup" type="hidden" value="top" />
-  <%= f.text_field :email, "value" => "Enter your email address", :class => "rounded shadowBtm top_signup_email" %>
-  <!--<div id="faq"><%= link_to 'Download Pilot Program FAQ', download_faq_path %></div>
-  <p><%= f.submit :value => "Invite Me!" %></p>
-<% end %>	
--->
-
-</div>  <!-- end finish newsletter --> </div> <!-- end header  -->
-
-<!-- benefits  --> 
+	<div id="topSignup" class="quickSignup right"> 
+		<h1 id="homeCareTitle">Home Care Collaboration</h1>
+		<h3 id="homeCareDesc"><font class="blueFont">Caregaroo</font> is a private secure network for families to share news, coordinate home care and assist loved ones living independently.</h3> 
+		<div id="tryForFreeBtn">
+			<a href="#pilot" onclick="_gaq.push(['_trackEvent', 'Links', 'Try it free', 'Try it free - Home Page Top'])" title="Try Caregaroo Free" class="custom" id="pilotLink"></a>
+		</div>
+	</div> 
+</div>
 <div id="benefits" class="grid_14 clearfix"> 
-
 <ul>
 <% if cookies[:ebook] == "1" %> 
-<li><a href="/download/ebook" title="Download Caregaroo's eBook" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
+<li><a href="/download/ebook" onclick="_gaq.push(['_trackEvent', 'Links', 'Download e-Book', 'Download e-Book - Home Page']);" title="Download Caregaroo's eBook" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
 <% else %>
 <li><a href="#downloadebook" onclick="_gaq.push(['_trackEvent', 'Links', 'Download e-Book', 'Download e-Book - Home Page']);" title="Download Caregaroo's eBook" class="custom" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
 <% end %>
-<li class="second"><a href="#demo" title="Request A Demo" class="custom" id="demoLink"><img src="img/requestADemo.jpg" alt="requestADemo"/></a></li>
-<li class="third"><a href="/product" title="Take A Tour" id="tourLink"><img src="img/TakeATourHomecare.jpg" alt="Take A Tour" /></a></li> </ul> 
+<li class="second"><a href="#demo" onclick="_gaq.push(['_trackEvent', 'Links', 'Request Demo', 'Request demo - Home Page']);" title="Request A Demo" class="custom" id="demoLink"><img src="img/requestADemo.jpg" alt="requestADemo"/></a></li>
+<li class="third"><a href="/product" onclick="_gaq.push(['_trackEvent', 'Links', 'Product Tour', 'Product Tour - Home Page']);" title="Take A Tour" id="tourLink"><img src="img/TakeATourHomecare.jpg" alt="Take A Tour" /></a></li> </ul> 
 <img class="separator" src="img/line.png" alt="separator line" />
-</div>  <!-- end benefits -->
-
+</div> 
 <div id="features" class="grid_14 clearfix"> <div class="tagline grid_14"> <h1>Key Benefits</h1> <p></p></div>
-
 <div id="feature1" class="feature grid_14">
-
 <div class="featureLeft grid_6">
-
 <img class="featureImage" src="img/feature1.jpg" alt="full deeplink support"/>
-
 </div>
-
 <div class="featureDetails"> <h2>Are you caring for a loved one with health issues?</h2> <p>Is it a constant challenge to keep friends and
 family informed? Do you wish you could enlist more help from other members of the care circle? <font class="blueFont">Caregaroo</font>
 provides simple-to-use online tools to help you communicate and coordinate care for your loved ones.</p>
-
 </div>
-
-</div>  <!-- end  feature 1-->
-
+</div> 
 <div id="feature2" class="feature grid_14">
-
 <div class="featureRight grid_6">
-
 <img class="featureImage" src="img/feature2.jpg" alt="full deeplink support" /> </div>
-
 <div class="featureDetails withIcon"> <h2>Share News</h2> <p>Create an online community around your
 loved one and invite friends, family and other members of the care community to join. Exchange news and share updates on health, upcoming needs and daily
 activities. With <font class="blueFont">Caregaroo</font> it is now easy to keep everyone informed.</p> </div>
-
-</div>  <!-- end  feature 2-->
-
-
-<div id="feature3" class="feature grid_14">
-
-<div class="featureLeft grid_6">
-
-<img class="featureImage" src="img/feature3.jpg" alt="coordinate care" />
-
 </div>
-
+<div id="feature3" class="feature grid_14">
+<div class="featureLeft grid_6">
+<img class="featureImage" src="img/feature3.jpg" alt="coordinate care" />
+</div>
 <div class="featureDetails"> <h2>Coordinate Care</h2> <p>List activities and ask members of the care
 community volunteer to get things done. Need a ride to a medical appointment or help with meal
 preparation? With <font class="blueFont">Caregaroo</font>, it is easy to communicate the support you need and organize contributors from the community towards improving your loved one’s quality of life.</p>
-
 </div>
-
-</div>  <!-- end  feature 3-->
-
-
+</div>
 <div id="feature4" class="feature grid_14">
-
 <div class="featureRight grid_6">
-
-
 <img class="featureImage" src="img/feature4.jpg" alt="user editable playlist" />
-
-
 </div>
-
 <div class="featureDetails"> <div class="featureDetails"><h2>Works with Email</h2> <p>Since it’s not
 possible to stay logged into <font class="blueFont">Caregaroo</font> around the clock, you can choose to be notified via email when
 something important happens in your network. You can also send updates and respond to messages directly
 from your email. Can’t find that old email you are looking for? No problem, <font class="blueFont">Caregaroo</font> makes it easy to
 find and track all communications.</p> </div>
-
-</div>  <!-- end  feature 4-->
-
-
-<div id="feature3" class="feature grid_14">
-
-<div class="featureLeft grid_6">
-
-<img class="featureImage" src="img/feature5.jpg" alt="coordinate care" />
-
 </div>
-
+<div id="feature3" class="feature grid_14">
+<div class="featureLeft grid_6">
+<img class="featureImage" src="img/feature5.jpg" alt="coordinate care" />
+</div>
 <div class="featureDetails"> <div id="coming_soon_icon"></div><h2>Find Professional Caregivers</h2> <p>Search and find professional care
 providers with the skills you need. View their professional profiles, area of expertise and previous
 employment history. Since all listed professionals have been members of the <font class="blueFont">Caregaroo</font> network, you can
 request first-hand references from their previous employers with a click of a button!</p>
-
 </div>
-
-</div>  <!-- end  feature 5-->
-
-
-</div><!-- end features -->
-
-
-</div>  <!-- end site wrapper -->
+</div>
+</div>
+</div>
 <div style="display:none">
 	<div id="downloadebook" class="popup">
 		<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'download_ebook_form' } do |f| %>
@@ -146,23 +94,24 @@ request first-hand references from their previous employers with a click of a bu
 	</div>
 </div>
 </div>
-<div style="display:none">
-	<div id="pilot" class="popup pilot">
-		<%= form_for PilotSignup.new, :url => signup_path, :class => 'popupForm', :remote => true, :html => { :id => 'pilot_form' } do |f| %>
-		  <div id="pilotError" class="error" style="display:none">* Please enter a valid email</div>
-		  <%= f.hidden_field :signup_type, :value => "pilot" %>
-		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
-		  <%= f.text_field :last_name, "value" => "Enter your last name", :autocomplete => 'off', :class => "rounded shadowBtm signup_last_name" %>
-		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
-		  <p><%= f.submit :value => "Sign-up" %></p>
-		<% end %>
-	</form>		
-	</div>
-</div>
-<div style="display:none">
-	<div id="pilotsuccess" class="popup pilot">
-		<div id="pilotsuccess_form" class="pilotPopupDialog">
-			<p class="successMsg">Thank you!<br/>for signing-up!<br/>We will contact you when the pilot program begins.</p><input type="button" id="pilotSuccessBtn" value="Okay" name="okay">
-		</div>		
-	</div>
-</div>
+<script>
+  	var playedOnce = false;
+	function onYouTubePlayerReady(playerid) {
+		var player = $("#ytvideo")
+		player.addEventListener("onStateChange", "youtubeEvent");
+	}
+	function youtubeEvent(state) {
+		if (state == 1) {
+			if (!playedOnce) {
+				playedOnce = true;
+				_gaq.push(['_trackEvent', 'Videos', 'unique_play_per_page'])
+			}
+			_gaq.push(['_trackEvent', 'Videos', 'Play', 'Play - Marketing Video'])
+			return;
+		}
+		if (state == 0) {
+			_gaq.push(['_trackEvent', 'Videos', 'Ended', 'Ended - Marketing Video'])
+			return;
+		}
+	}
+</script>	
