@@ -24,7 +24,7 @@
 <% if cookies[:ebook] == "1" %> 
 <li><a href="/download/ebook" title="Download Caregaroo's eBook" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
 <% else %>
-<li><a href="#downloadebook" title="Download Caregaroo's eBook" class="custom" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
+<li><a href="#downloadebook" onclick="_gaq.push(['_trackEvent', 'Links', 'Download e-Book', 'Download e-Book - Home Page']);" title="Download Caregaroo's eBook" class="custom" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
 <% end %>
 <li class="second"><a href="#demo" title="Request A Demo" class="custom" id="demoLink"><img src="img/requestADemo.jpg" alt="requestADemo"/></a></li>
 <% if cookies[:pilot] == "1" %> 
