@@ -1,0 +1,17 @@
+<!DOCTYPE HTML> <html lang="en"> 
+<head>
+<meta charset="utf-8">
+<title>Caregaroo: Admin</title> 
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tag %>
+<body class="clearfix <%= params[:controller] %>">
+<div id="main_frame">
+	<div id="container">
+	    <% flash.each do |name, msg| %>
+	      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	    <% end %>
+	    <%= yield %>
+    </div>
+</div>
+</body>
+</html>

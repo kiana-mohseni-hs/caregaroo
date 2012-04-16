@@ -4,16 +4,12 @@ class PilotSignupsController < ApplicationController
     
   def index
     @pilot_signups   = PilotSignup.all
-    respond_to do |format|
-      format.html #index.html.erb
-      format.json { render :json => @pilot_signups }
-    end
+    render :layout => "admin"
   end
 
   def destroy
     @pilot_signup = PilotSignup.find(params[:id])
     @pilot_signup.destroy
-
     respond_to do |format|
       format.html { redirect_to pilot_signups_url }
       format.json { head :ok }
