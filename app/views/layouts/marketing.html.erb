@@ -14,6 +14,7 @@
 <script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script> 
 <script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script> 
 <script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/ga_dpc_youtube.js"></script>
 <%= csrf_meta_tag %>
 <script type="text/javascript">
 	var _gaq = _gaq || [];
@@ -25,6 +26,13 @@
 		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   	})();
+  	
+	try{
+        function yt_callback(category,action,label,value){
+        	_gaq.push(['_trackEvent',category,action,label,value]);
+        }
+        var ytTracker = new YoutubeTracker(false, yt_callback, true);
+	} catch(e){}
 </script>
 </head>
 <body class="clearfix <%= params[:controller] %>">

@@ -1,8 +1,12 @@
 <div id="header">
 	<div id="marketingVideo">
-		<iframe id="ytvideo" width="560" height="315" 
-			src="http://www.youtube.com/embed/PXKXjTpEWy4?rel=0&autoplay=0&enablejsapi=1&wmode=transparent&showinfo=0" wmode="Opaque"
-			frameborder="0" allowfullscreen="true"></iframe>
+		<object style="height:315px; width: 560px">
+		<param name="movie" value="https://www.youtube.com/v/PXKXjTpEWy4?version=3&feature=player_embedded&rel=0&autoplay=0&enablejsapi=1&wmode=transparent&showinfo=0">
+		<param name="allowFullScreen" value="true">
+		<param name="allowScriptAccess" value="always">
+		<embed src="https://www.youtube.com/v/PXKXjTpEWy4?version=3&feature=player_embedded&rel=0&autoplay=0&enablejsapi=1&wmode=transparent&showinfo=0" 
+			type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" height="315" width="560" >
+		</object>
 	</div>
 	<div id="topSignup" class="quickSignup right"> 
 		<h1 id="homeCareTitle">Home Care Coordinate</h1>
@@ -94,24 +98,3 @@ request first-hand references from their previous employers with a click of a bu
 	</div>
 </div>
 </div>
-<script>
-  	var playedOnce = false;
-	function onYouTubePlayerReady(playerid) {
-		var player = $("#ytvideo")
-		player.addEventListener("onStateChange", "youtubeEvent");
-	}
-	function youtubeEvent(state) {
-		if (state == 1) {
-			if (!playedOnce) {
-				playedOnce = true;
-				_gaq.push(['_trackEvent', 'Videos', 'unique_play_per_page'])
-			}
-			_gaq.push(['_trackEvent', 'Videos', 'Play', 'Play - Marketing Video'])
-			return;
-		}
-		if (state == 0) {
-			_gaq.push(['_trackEvent', 'Videos', 'Ended', 'Ended - Marketing Video'])
-			return;
-		}
-	}
-</script>	
