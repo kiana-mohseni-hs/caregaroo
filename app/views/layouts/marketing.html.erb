@@ -28,9 +28,11 @@
 </script>
 </head>
 <body class="clearfix <%= params[:controller] %>">
+
 <div id="siteWrapper" class="container_16">
 <div id="mkt_top_nav_frame"> 
-	<a href="http://caregaroo.com" id="mkt_top_nav_logo" title="Home Care Collaboration"> <img src="img/CaregarooLogo.png" alt="caregaroo logo"/> </a>
+	
+	<a href="http://caregaroo.com" id="mkt_top_nav_logo" title="Home Care Collaboration"> <img src="img/CaregarooLogo.jpg" alt="caregaroo logo"/> </a>
 	<div id="top_nav_list">
 		<ul class="horizontal_list">
 			<li><%= link_to "Home", root_path %></li>
@@ -48,7 +50,9 @@
 		<li id="twitter"><a href="https://twitter.com/#!/CaregarooTweet" target="_blank">
 			</a></li>
 	</ul>
+	<div id="mkt_top_nav_separator"></div>
 </div>
+	
 <div id="main_frame">
 	<div id="container">
 	    <% flash.each do |name, msg| %>
@@ -59,7 +63,8 @@
 </div>
 <div id="siteWrapper" class="container_16">
 <div id="footer" class="grid_14 clearfix">	
-	<img class="separator" src="img/line.png" alt="separator line" /> 
+	<div id="footer_separator"></div>
+	<!--<img class="separator" src="img/line.png" alt="separator line" />--> 
 	<div id="newsletter" class="grid_6">
 	
 	<div id="bottomSignup" class="popup"> 
