@@ -869,17 +869,16 @@ margin-left:35px;
 #mkt_top_nav_separator
 {
 	position:absolute;
-	margin:73px 0 0 0;
-	height:15px;
+	margin:80px 0 0 0;
 	width:100%;
-	background:url('../img/MenuLine.png') repeat-x;
-	z-index:-1;
+	border: 1px solid #CCCCCC;
+	z-index:-1;	
 }
 #mkt_top_nav_logo
 {
 	height: 82px;
 	width: 200px;
-	margin:0px 0px 0px 20px;
+	margin:-1px 0;
 	float:left;
 	display:block;
 }
