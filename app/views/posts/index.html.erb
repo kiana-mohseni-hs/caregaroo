@@ -6,23 +6,28 @@
   <tr>
     <td>
 	<div id="post" data-id="<%= post.id %>">
-		<img src="img/placeHolder.png" alt="placeholder icon" height="44" width="50" style="float:left;padding-right:5px">
-		<strong><%= post.user.first_name %> <%= post.user.last_name %></strong><br/>
-			<strong><%= post.name %></strong><br/>
-		<%= post.content %><br/>
-		by <%= post.user.first_name if post.user %> <%= post.user.last_name if post.user %> at <%= post.created_at.strftime('%b %d, %Y at %I:%M %p')  %>  
+		<div id="news">
+			<img src="img/placeHolder.png" alt="placeholder icon" height="44" width="50" style="float:left;padding-right:5px">
+			<span class="name_text"><%= post.user.first_name %> (<%= post.user.network_relationship %>)</span>
+			<span class="time_text"><%= post.created_at.strftime('%b %d, %Y at %I:%M %p')  %> </span> 
+			<br/>
+			<%= post.content %><br/>
+			<%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %><br/>
+		</div>
+		
 		<% unless post.comments.empty? %>
 		    <div id="comments">
 		      <%= render post.comments %>
 		    </div>
 	    <% end %>
-	    <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %>
-	  	<h3>Add your comment:</h3>
+	    
+	    <div id="reply">  	
 		<%= form_for Comment.new do |f| %>
 		  <%= f.hidden_field :post_id, :value => "#{post.id}" %>
-		  <%= f.text_area :content, :size => "50x2" %>
+		  <%= f.text_area :content, :size => "40x2" %>
 		  <p><%= f.submit %></p>
 		<% end %>
+		</div>
 		<hr color="#cccccc"/>
 	</div>
    </td>

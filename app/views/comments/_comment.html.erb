@@ -1,5 +1,11 @@
 <div class="comment" data-time="<%= comment.created_at.to_i %>">
-  <strong><%= comment.name %></strong>
-  <%= simple_format comment.content %>
-by <%= comment.user.first_name %> <%= comment.user.last_name %> at <%= comment.created_at.strftime('%b %d, %Y at %I:%M %p') %>
+ 
+	<img src="img/placeHolder.png" alt="placeholder icon" height="44" width="50" style="float:left;padding-right:5px">
+	
+	<span class="name_text"><%= comment.user.first_name %> (<%= comment.user.network_relationship %>)</span>
+	<span class="time_text"><%= comment.created_at.strftime('%b %d, %Y at %I:%M %p')  %> </span> 
+	<br/>
+	<%= simple_format comment.content %><br/>
+	<%= link_to 'Delete', comment, :confirm => 'Are you sure?', :method => :delete %><br/>
+	
 </div>

@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @page = 'posts'
     @posts = Post.where("network_id = ?", @user.network).order("created_at DESC")
 
     respond_to do |format|

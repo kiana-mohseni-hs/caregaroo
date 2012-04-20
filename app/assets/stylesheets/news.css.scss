@@ -13,12 +13,20 @@
   color: #333;
 }
 
+#news
+{
+  display:block;
+}
+
 #comments {
+  
+  display:block;
   font-size: 12px;
-  background-color: #DDD;
-  padding: 0 20px;
-  width: 325px;
-  border: solid 1px #333;
+  background-color: #ebebeb;
+  padding: 0 10px;
+  width: 365px;
+  border: solid 1px #cccccc;
+  margin-left: 55px;
 }
 
 .comment {
@@ -34,9 +42,21 @@
   border-bottom: none;
 }
 
+.comment_text
+{
+  padding-left:50px;
+}
+
+#reply
+{
+   background-color: #ebebeb;
+   padding: 0 10px;
+   margin-left: 55px;
+}
+
 #update_button
 {
-  margin-left:390px;
+  margin-left:384px;
 }
 .orange_button{
   height:20px;
@@ -44,4 +64,16 @@
   background-color:#f47d29;
   color:#ffffff;
   border:0px;
+}
+
+.name_text
+{
+  color: #14377d;
+  font-size:14px;
+}
+.time_text
+{
+  font-weight:normal;
+  font-size:11px;
+  color:#666666;
 }
