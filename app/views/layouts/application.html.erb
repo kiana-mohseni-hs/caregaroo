@@ -55,10 +55,7 @@
     	<div id="invite_shortcut">
 			<img id="invite_shortcut_icon" src="img/InviteFriends.png" alt="Invite Friends" >
 			<p>	Invite friends and family to join someone's community.</p>
-			<%= form_for Invitation.new, :url => send_invitation_path, :remote => true, :html => { :id => 'invitation_form' } do |f| %>
-				<%= f.text_field :email, "value" => "Email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
-			  	<%= f.submit :value => "Send Invite" %></p>
-			<% end %>
+			<div><a href="/invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite" id="sendInvite"></div>
 		</div>
 		<br/>
 		<hr/>
