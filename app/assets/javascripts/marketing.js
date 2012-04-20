@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery_ujs
 
 jQuery(document).ready(function() {
 	
@@ -11,24 +12,12 @@ jQuery(document).ready(function() {
 	var demoform = $('#demo form')			
 	var downloadform = $('#downloadebook form')
 	var pilotform = $('#pilot form')			
-	var topSignupForm = $('#topSignup form')			
-	var bottomSignupForm = $('#bottomSignup form')			
 				
 	var fnMessage = 'Enter your first name'
 	var lnMessage = 'Enter your last name'
 	var emailMessage = 'Enter your email address'
 	var successMessage = 'Thank you for contacting us, we will respond to your support request as soon as we can. <br/>Your message has been sent successfully.'
 	
-	$('.top_signup_email').focus(function(){
-		if ($(this).val() == emailMessage) {
-			$(this).val("")
-		}
-	});	
-	$('.bottom_signup_email').focus(function(){
-		if ($(this).val() == emailMessage) {
-			$(this).val("")
-		}
-	});	
 	$('.signup_email').focus(function(){
 		if ($(this).val() == emailMessage) {
 			$(this).val("")
@@ -66,9 +55,6 @@ jQuery(document).ready(function() {
 	demoform.submit(pilotSignup)
 	downloadform.submit(pilotSignup)
 	pilotform.submit(pilotSignup)
-	topSignupForm.submit(pilotSignup)
-	bottomSignupForm.submit(pilotSignup)
-	
             
 	$("a.custom").fancybox({
 		scrolling:"no",
