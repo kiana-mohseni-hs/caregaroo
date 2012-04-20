@@ -12,6 +12,7 @@ class SignupController < ApplicationController
       @user.email = @invitations.email
       @user.first_name = @invitations.first_name 
       @user.last_name = @invitations.last_name 
+      render "signup_form", :layout => "app_no_nav"
     else
       redirect_to :root
     end
