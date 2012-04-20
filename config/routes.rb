@@ -6,7 +6,7 @@ Auth::Application.routes.draw do
 
   # pilot app
   get "logout" => "sessions#destroy", :as => "logout"
-  get "login" => "sessions#new", :as => "login"
+  get "login" => "sessions#login", :as => "login"
   get "register" => "register#index", :as => "register"
   post "register" => "register#create", :as => "register"
   get "profile" => "profile#index", :as => "profile"

@@ -3,7 +3,7 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require_tree .
+ *= require_tree ./app
 */
 /* RESET */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -25,9 +25,21 @@ a img {
   border: none;
 }
 
+p, ol, ul, td {
+  font-size: 13px;
+  line-height: 18px; }
+  
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px; }
+  
 a {
-  color: #0000FF;
-}
+  color: #000;
+  &:visited {
+    color: #000; }
+  &:hover {
+    color: #000; }}
 
 .clear {
   clear: both;
@@ -123,6 +135,7 @@ a {
 #nav_members:before{background:url('../img/icons.png') no-repeat -101px 3px;}
 #nav_invite:before{background:url('../img/icons.png') no-repeat -50px 3px;}
 
+/*
 #container {
   float:left;
   width: 482px;
@@ -139,7 +152,11 @@ a {
 	width: 240px;
 	padding: 10px 10px;
 	margin-top: -11px;
-}
+}*/
+
+#container { float:left; width: 466px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: 0px; }
+#container_nonav { float:left; width: 600px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: 0px; }
+#shortcuts { float:right; width: 240px;	padding: 10px 10px; }
 #invite_shortcut_icon{height:96px; width:129px; display:block;}
 #contact_shortcut_icon{height:96px; width:129px; display:block;}
 #questions_shortcut_icon{height:70px; width:220px; display:block;}
