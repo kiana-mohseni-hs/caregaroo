@@ -102,22 +102,9 @@ a {
 #nav_members:before{background:url('../img/icons.png') no-repeat -101px 3px;}
 #nav_invite:before{background:url('../img/icons.png') no-repeat -50px 3px;}
 
-#container {
-	float:left;
-  width: 466px;
-
-  background-color: #FFF;
-  padding: 20px 20px;
-  border-left: solid 1px #CCCCCC;
-  border-right: solid 1px #CCCCCC;
-  margin-top: 0px;
-}
-#shortcuts
-{
-	float:right;
-	width: 240px;
-	padding: 10px 10px;
-}
+#container { float:left; width: 466px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: 0px; }
+#container_nonav { float:left; width: 600px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: 0px; }
+#shortcuts { float:right; width: 240px;	padding: 10px 10px; }
 #invite_shortcut_icon{height:96px; width:129px; display:block;}
 #contact_shortcut_icon{height:96px; width:129px; display:block;}
 #questions_shortcut_icon{height:70px; width:220px; display:block;}

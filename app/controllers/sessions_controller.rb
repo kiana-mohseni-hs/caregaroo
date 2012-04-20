@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  def new
+  def login
+    render :layout => "app_no_nav"
   end
 
   def create
