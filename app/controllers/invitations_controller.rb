@@ -3,6 +3,7 @@ class InvitationsController < ApplicationController
   
   def index
     @invitation = Invitation.new
+    render :layout => false
   end
   
   def create    

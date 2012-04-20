@@ -27,3 +27,19 @@ try{
 } catch(e){}
 
 
+jQuery(document).ready(function() {
+	
+	$('#loginEmail').focus();
+
+	$("a.sendInvite").fancybox({
+		scrolling:"no",	
+		padding:0,
+		overlayColor:"#000",
+		titlePosition:'outside',
+		overlayOpacity:0.7,
+		titleShow		: false,
+		onClosed		: function() {
+		}
+	});
+
+});
