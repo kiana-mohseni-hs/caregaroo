@@ -7,7 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-// disable require_tree .
+//= require_tree ./app
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-23336907-1']);
@@ -29,17 +29,15 @@ try{
 
 jQuery(document).ready(function() {
 	
-	$('#loginEmail').focus();
+	$('#login_email').focus();
 
-	$("a.sendInvite").fancybox({
+	$("a.send_invite").fancybox({
 		scrolling:"no",	
 		padding:0,
 		overlayColor:"#000",
 		titlePosition:'outside',
 		overlayOpacity:0.7,
-		titleShow		: false,
-		onClosed		: function() {
-		}
+		titleShow		: false
 	});
-
+	
 });

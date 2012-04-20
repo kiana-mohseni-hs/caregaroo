@@ -1,5 +1,5 @@
 <div>
-<%= form_for @user, :url => signup_create_path do |f| %>
+<%= form_for @user, :url => signup_create_path do |f|, :id => "invite_form" %>
 <%= render "shared/error_messages", :target => @user %>  
   <h3>Network</h3>
   <p>

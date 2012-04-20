@@ -7,17 +7,18 @@ class InvitationsController < ApplicationController
   end
   
   def create    
-    @invitations = Invitation.new(params[:invitation])
-    @invitations.send_id = @user.id
-    if @invitations.save
-      UserMailer.pilot_invitation(@invitations).deliver
+    @invitation = Invitation.new(params[:invitation])
+    @invitation.send_id = @user.id
+    if @invitation.save
+      UserMailer.pilot_invitation(@invitation).deliver
       redirect_to success_invitation_path, :notice => "Invitation sent!"
     else
-      render "new"
+      render "index", :layout => false
     end
   end
   
   def success
+    render :layout => false
   end
   
 end
