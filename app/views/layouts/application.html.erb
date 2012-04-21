@@ -17,11 +17,11 @@
 <body class="<%= params[:controller] %>">
 <div id="header_frame"> 
 	<a href="http://caregaroo.com" id="top_nav_logo" title="Home Care Coordination"> <img src="img/LogoForApp.png" alt="caregaroo logo"/> </a>
-	
+	<div id="top_nav_msg_icon"> </div>
 	<div id="user_selector">
 		<div id="user_icon"></div>
 		<% if current_user %>
-			<%= current_user.email %>.
+			<span class="name_text"><%= current_user.first_name %></span>
       		<%= link_to "Log out", logout_path %>
      	<% else %>
         	<%= link_to "Create Community", register_path %> or
@@ -31,40 +31,62 @@
 
   	
   	<div id="top_nav_separator"></div>
-</div>
+</div><!--header_frame-->
+
 <div id="main_frame">
     <div id="user_nav">
     	<div id="CoC_frame">
-    		<img src="../img/circlePlaceHolder.png" alt="circle placeholder image" height="35" width="38" >
-    		Saye's Circle
-    	</div>
-    	<ul id="nav_list">
+    		<!-- need picture of network centre-->
+    		<img id="CoC_Pic" src="../img/placeHolder.png" alt="circle placeholder image" height="45" width="50" >
+    		<!-- need name of network -->
+    		<div id="CoC_right">
+    		<p id="CoC_name">Saye's Awesome Health Care Circle </p>
+    		</div>
+    	</div><!--CoC_frame-->
+    	
+    	<h6 id="nav_list_header">NETWORKS</h6>
+    	
+    	<ul id="nav_list">	
 	      <li id="nav_msg_board"><%= link_to "News Stream", news_path %></li>
-	      <li id="nav_invite"><a href="/invite" id="invite" class="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>
+	      <li id="nav_invite"><a href="/invite" id="invite" class="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>     
 	      <!--
 	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>
-	      <% if @page == 'posts' %>	
-			<li id="nav_msg_board" class="current"><%= link_to "Message Board", news_path %></li>			
-		  <% else %>
-			<li id="nav_msg_board"><%= link_to "Message Board", news_path %></li>
-		  <% end %>
 	      <li id="nav_private_msg"><%= link_to "Private Messages", messages_path %></li>
 	      <li id="nav_my_profile"><%= link_to "My Profile", profile_path %></li>
 	      <li id="nav_members"><%= link_to "Members", members_path %></li>
 	      -->
   		</ul>
-    </div>
+  		<% if @page == 'posts' %>	
+  		<div id="nav_list_highlight" class="hl_posts"></div>
+  		<%end%>
+
+		</br>
+		<h6 id="member_list_header">MEMBERS</h6>
+		<ul id="member_list">	
+			<!-- TODO: Need member info and pictures here-->
+			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.1</li>
+			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.2</li>
+			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.3</li>
+			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.4</li>
+			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.5</li>
+			<li>All Members</li>
+		</ul>
+		
+    </div><!--user_nav-->
+    
 	<div id="container">
 	    <% flash.each do |name, msg| %>
 	      <%= content_tag :div, msg, :id => "flash_#{name}" %>
 	    <% end %>
 	    <%= yield %>
-    </div>
+ 	</div><!--container"-->
+    
     <div id="shortcuts">
     	<div id="invite_shortcut">
 			<img id="invite_shortcut_icon" src="img/InviteFriends.png" alt="Invite Friends" >
 			<p>	Invite friends and family to join someone's community.</p>
-			<div><a href="/invite" id="send_invite" class="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Send Invite</a></div>
+			<div class="shortcut_icon"></div>
+			<a href="/invite" id="send_invite" class="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Send Invite</a>
 		</div>
 		<!--
 		<br/>
@@ -76,15 +98,15 @@
 		</div>
 		<br/>
 		-->
-		</br/>
+	
 		<hr/>
 		<div id="questions_shortcut">
 			<img id="questions_shortcut_icon" src="img/QuestionsForCaregaroo.png" alt="Questions" > 
 			<p>Need someone to guide you through our website? Got feedback?</p>
-			<div><a href="mailto:support@caregaroo.com?Subject=Feedback" id="emailUs" class="" onclick="_gaq.push(['_trackEvent', 'Links', 'Email us', 'Email us']);" title="Email us now!">Email us now!</a></div>
-		<br/>
+			<div class="shortcut_icon"></div>
+			<a href="mailto:support@caregaroo.com?Subject=Feedback" id="emailUs" class="" onclick="_gaq.push(['_trackEvent', 'Links', 'Email us', 'Email us']);" title="Email us now!">Email us now!</a>
 		<hr/>
-    </div>
-</div>
+    </div><!--shortcuts-->
+</div><!--mainframe-->
 </body>
 </html>

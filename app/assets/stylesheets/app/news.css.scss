@@ -19,44 +19,44 @@
 }
 
 #comments {
-  
   display:block;
   font-size: 12px;
-  background-color: #ebebeb;
-  padding: 0 10px;
-  width: 365px;
-  border: solid 1px #cccccc;
+  width: 385px;
   margin-left: 55px;
 }
 
 .comment {
-  border-bottom: solid 1px #999;
-  margin: 15px 0;
-}
-
-.comment .author_name {
-  font-weight: bold;
+  background-color: #ebebeb;
+  border-bottom: solid 1px #ccc;
+  margin: 5px 0;
+  padding: 8px;
 }
 
 .comment:last-child {
   border-bottom: none;
 }
 
-.comment_text
+.comment_content
 {
-  padding-left:50px;
+  padding-left:58px;
 }
 
-#reply
+#new_comment_section
 {
-   background-color: #ebebeb;
-   padding: 0 10px;
+  
    margin-left: 55px;
+   width: 370px;
+}
+#text_background{ background-color: #ebebeb;  padding: 8px ;   width: 370px; margin-bottom:6px;}
+
+#reply_button
+{
+  margin-left:324px;
 }
 
 #update_button
 {
-  margin-left:384px;
+  margin-left:380px;
 }
 .orange_button{
   height:20px;
@@ -64,12 +64,6 @@
   background-color:#f47d29;
   color:#ffffff;
   border:0px;
-}
-
-.name_text
-{
-  color: #14377d;
-  font-size:14px;
 }
 .time_text
 {
