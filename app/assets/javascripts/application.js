@@ -39,5 +39,8 @@ jQuery(document).ready(function() {
 		overlayOpacity:0.7,
 		titleShow		: false
 	});
-	
+	$("a.news_comment").click(function(){
+		var id = $(this).attr("newsid");
+		$("#new_comment_section_"+id).show();
+	});
 });
