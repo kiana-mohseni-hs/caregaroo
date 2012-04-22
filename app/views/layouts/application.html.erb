@@ -19,10 +19,14 @@
 	<a href="http://caregaroo.com" id="top_nav_logo" title="Home Care Coordination"> <img src="img/LogoForApp.png" alt="caregaroo logo"/> </a>
 	<div id="top_nav_msg_icon"> </div>
 	<div id="user_selector">
-		<div id="user_icon"></div>
+		
 		<% if current_user %>
-			<span class="name_text"><%= current_user.first_name %></span>
-      		<%= link_to "Log out", logout_path %>
+		<dl id="user_dropdown" class="dropdown">
+			<dt><a href="#"><div id="user_icon"></div><span><%= current_user.first_name %></span></a></dt>
+	        <dd><ul>
+				<li style="width:200px;"><span><a href="#">Settings</a></li><li><%= link_to "Log out", logout_path %></span></li>
+			</ul></dd>
+		</dl>
      	<% else %>
         	<%= link_to "Create Community", register_path %> or
         	<%= link_to "Member Sign-In", login_path %>
