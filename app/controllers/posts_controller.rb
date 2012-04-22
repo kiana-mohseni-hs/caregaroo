@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @page = 'posts'
-    @posts = Post.where("network_id = ?", @user.network).order("created_at DESC")
+    @posts = Post.where("network_id = ?", @current_user.network).order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,8 +46,8 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-    @post.network_id = @user.network_id
-    @post.user_id = @user.id
+    @post.network_id = @current_user.network_id
+    @post.user_id = @current_user.id
 
     respond_to do |format|
       if @post.save

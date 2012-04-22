@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = user.auth_token
       end     
       # redirect_to root_url, :notice => "Logged in!"
-      # redirect_to news_path
       if session[:referer]
         referer = session[:referer]
         logger.debug "(login) referer=#{referer}"
@@ -23,7 +22,7 @@ class SessionsController < ApplicationController
 
     else
       flash.now.alert = "Invalid email or password"
-      render "new"
+      render "login"
     end
   end
 

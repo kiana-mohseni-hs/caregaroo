@@ -2,9 +2,9 @@ class MessagesController < ApplicationController
   before_filter :require_user
   
   def index
-    @messages = @user.latest_messages
+    @messages = @current_user.latest_messages
     @message = Message.new
-    @members = @user.get_members
+    @members = @current_user.get_members
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
 
   def show
     @messages = []
-    if @user.messages.find_by_folder_id(params[:id])
+    if @current_user.messages.find_by_folder_id(params[:id])
       @messages = Message.where("folder_id = ?", params[:id]).order("created_at")
     end      
     
@@ -29,7 +29,7 @@ class MessagesController < ApplicationController
 
   def reply
     @message = Message.new(params[:message])
-    @message.sender_id = @user.id
+    @message.sender_id = @current_user.id
     if @message.save
       redirect_to :back, :notice => 'Message replied.'
     else
@@ -40,13 +40,13 @@ class MessagesController < ApplicationController
   
   def create
     @message = Message.new(params[:message])
-    @message.sender_id = @user.id
+    @message.sender_id = @current_user.id
     @message.create_folder()
  
     if params[:recipients].nil?
       flash[:error] = "Sender or Message cannot be empty"
-      @members = @user.get_members
-      @messages = @user.messages
+      @members = @current_user.get_members
+      @messages = @current_user.messages
       return render :index
       # return redirect_to :back, alert => "error"
     end
@@ -55,7 +55,7 @@ class MessagesController < ApplicationController
       @message.recipients.build(:user_id => recipient)
     end
     
-    @message.recipients.build(:user_id => @user.id)
+    @message.recipients.build(:user_id => @current_user.id)
     
     if @message.save
       redirect_to messages_path, :notice => 'Message was successfully created.'

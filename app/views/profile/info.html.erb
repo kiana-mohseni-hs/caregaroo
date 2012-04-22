@@ -2,7 +2,7 @@
 
 <p id="notice"><%= notice %></p>
 <% if !@profile.nil? %>
-<% if @profile.user_id == @user.id %>
+<% if @profile.user_id == @current_user.id %>
 	<%= link_to "Edit", edit_info_profile_path %>
 <% end %>
 
