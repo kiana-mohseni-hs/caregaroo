@@ -25,8 +25,8 @@ class SignupController < ApplicationController
       cookies[:auth_token] = @user.auth_token
       logger.debug "(create_signup) token=#{@user.auth_token}"
       render "success"
-    else
-      render :action => "new"
+    else  
+      render "signup_form", :layout => "app_no_nav"
     end
 =begin
     session[:sigup_params].deep_merge!(params[:user]) if params[:user]
