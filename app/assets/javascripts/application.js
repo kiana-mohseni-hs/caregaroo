@@ -43,4 +43,19 @@ jQuery(document).ready(function() {
 		var id = $(this).attr("newsid");
 		$("#new_comment_section_"+id).show();
 	});
+	
+	 //call the equalize height function
+    equalHeight($("div#user_nav, div#container, div#shortcuts"));
+
+    //equalize funciton
+    function equalHeight(group) {
+        tallest = 0;
+        group.each(function() {
+            thisHeight = $(this).height();
+            if(thisHeight > tallest) {
+                tallest = thisHeight;
+            }
+        });
+        group.height(tallest);
+    }
 });
