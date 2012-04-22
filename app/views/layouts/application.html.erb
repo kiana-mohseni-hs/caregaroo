@@ -16,13 +16,13 @@
 </head>
 <body class="<%= params[:controller] %>">
 <div id="header_frame"> 
-	<a href="http://caregaroo.com" id="top_nav_logo" title="Home Care Coordination"> <img src="img/LogoForApp.png" alt="caregaroo logo"/> </a>
-	<div id="top_nav_msg_icon"> </div>
+	<a href="<%= url_for root_path %>" id="top_nav_logo" title="Home Care Coordination"><%= image_tag "logo_app.png", :alt => "caregaroo logo" %></a>
+	<div id="top_nav_msg_icon"></div>
 	<div id="user_selector">
 		
-		<% if current_user %>
+		<% if @current_user %>
 		<dl id="user_dropdown" class="dropdown">
-			<dt><a href="#"><span><%= current_user.first_name %></span></a></dt>
+			<dt><a href="#"><span><%= @current_user.first_name %></span></a></dt>
 	        <dd><ul>
 				<li><span style="text-align:center"><a href="#">Settings</a></span></li>
 				<li><span style="text-align:center"><%= link_to "Log out", logout_path %></span></li>
@@ -41,11 +41,9 @@
 <div id="main_frame">
     <div id="user_nav">
     	<div id="CoC_frame">
-    		<!-- need picture of network centre-->
-    		<img id="CoC_Pic" src="../img/placeHolder.png" alt="circle placeholder image" height="45" width="50" >
-    		<!-- need name of network -->
+ 			<%= image_tag "photo_place_holder.png", :id => "CoC_Pic", :height => "44", :width => "50" %>
     		<div id="CoC_right">
-    		<p id="CoC_name">Saye's Awesome Health Care Circle </p>
+    		<p id="CoC_name"><%= @current_user.network.network_name %></p>
     		</div>
     	</div><!--CoC_frame-->
     	
@@ -68,13 +66,11 @@
 		</br>
 		<h6 id="member_list_header">MEMBERS</h6>
 		<ul id="member_list">	
-			<!-- TODO: Need member info and pictures here-->
-			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.1</li>
-			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.2</li>
-			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.3</li>
-			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.4</li>
-			<li><img src="img/placeHolder.png" alt="placeholder icon" height="30" width="33" style="float:left;padding-right:5px">Member No.5</li>
-			<li>All Members</li>
+		<% for member in @current_user.network.users.limit(10) %>
+			<li><%= image_tag "photo_place_holder.png", :height => "30", :width => "33", :style => "float:left;padding-right:5px" %>
+				<%= link_to member.first_name, user_info_profile_path(member) %></li>
+		<% end %>
+			<li><%= link_to "All Members", members_path %></li>
 		</ul>
 		
     </div><!--user_nav-->
@@ -88,7 +84,7 @@
     
     <div id="shortcuts">
     	<div id="invite_shortcut">
-			<img id="invite_shortcut_icon" src="img/InviteFriends.png" alt="Invite Friends" >
+			<%= image_tag "panel_invite_friends.png", :id => "invite_shortcut_icon", :alt => "Invite Friends" %>
 			<p>	Invite friends and family to join someone's community.</p>
 			<div class="shortcut_icon"></div>
 			<a href="/invite" id="send_invite" class="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Send Invite</a>
@@ -97,7 +93,7 @@
 		<br/>
 		<hr/>
 		<div id="contact_shortcut">
-			<img id="contatct_shortcut_icon" src="img/ContactDetails.png" alt="Update Contact Details"> 
+			<%= image_tag "panel_contact_details.png", :id => "contatct_shortcut_icon", :alt => "Update Contact Details" %>
 			<p>Make sure your contact information is up to date.</p>
 			<input type="button" value="Update Now!" style="float:left;"/><br/>
 		</div>
@@ -106,7 +102,7 @@
 	
 		<hr/>
 		<div id="questions_shortcut">
-			<img id="questions_shortcut_icon" src="img/QuestionsForCaregaroo.png" alt="Questions" > 
+			<%= image_tag "panel_questions_for_caregaroo.png", :id => "questions_shortcut_icon", :alt => "Questions" %>
 			<p>Need someone to guide you through our website? Got feedback?</p>
 			<div class="shortcut_icon"></div>
 			<a href="mailto:support@caregaroo.com?Subject=Feedback" id="emailUs" class="" onclick="_gaq.push(['_trackEvent', 'Links', 'Email us', 'Email us']);" title="Email us now!">Email us now!</a>

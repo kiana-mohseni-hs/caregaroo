@@ -12,7 +12,7 @@ Auth::Application.routes.draw do
   get "profile" => "profile#index", :as => "profile"
   post "profile/basic" => "profile#update_basic", :as => "update_basic_profile"
   get "profile/info" => "profile#info", :as => "info_profile"
-  get "profile/:user_id/info" => "profile#info"
+  get "profile/:user_id/info" => "profile#info", :as => "user_info_profile"
   get "profile/info/edit" => "profile#edit_info", :as => "edit_info_profile"
   post "profile/info" => "profile#update_info", :as => "update_info_profile"
   get "profile/password" => "profile#password", :as => "password_profile"

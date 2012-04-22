@@ -1,0 +1,20 @@
+<div style="width:600px; height:500px; padding:20px">
+<h1>Invite your friend</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<%= form_for @invitation, :url => send_invitation_path, :method => :post, :html => { :id => 'basic_form' } do |f| %>
+<%= render "shared/error_messages", :target => @invitation %>  
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="actions"><%= f.submit "Invite your friend" %></div>
+<% end %>
+<div>

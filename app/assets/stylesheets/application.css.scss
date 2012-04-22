@@ -15,7 +15,7 @@ body{font:18px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
 
 body
 {
-  background: url('../img/CaregarooPattern.png');
+  background: url('bg_pattern.png');
 }
 h3{
     color: #414042;
@@ -75,7 +75,7 @@ a {
 #user_icon
 {
 	float:left;
-	background:url('../img/placeHolder.png') no-repeat;
+	background:url('photo_place_holder.png') no-repeat;
 	background-size: 34px 30px;
 	margin: -6px 6px 0 0;
 	height:30px;
