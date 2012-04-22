@@ -17,6 +17,7 @@ class RegisterController < ApplicationController
   def index
     @network = Network.new
     @network.users.build
+    render :action => "index", :layout => "app_no_nav"
   end
   
   # create community network
