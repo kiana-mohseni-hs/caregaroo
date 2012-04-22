@@ -17,9 +17,11 @@
 <body class="<%= params[:controller] %>">
 <div id="header_frame"> 
 	<a href="<%= url_for root_path %>" id="top_nav_logo" title="Home Care Coordination"><%= image_tag "logo_app.png", :alt => "caregaroo logo" %></a>
-	<div id="top_nav_msg_icon"></div>
-	<div id="user_selector">
-		
+	
+	<!-- disable the msg icon for now since private message page is not ready-->
+	<!--<div id="top_nav_msg_icon"></div>-->
+	
+	<div id="user_selector">	
 		<% if @current_user %>
 		<dl id="user_dropdown" class="dropdown">
 			<dt><a href="#"><span><%= @current_user.first_name %></span></a></dt>
@@ -34,7 +36,6 @@
       	<% end %>
   	</div>
 
-  	
   	<div id="top_nav_separator"></div>
 </div><!--header_frame-->
 
@@ -47,8 +48,8 @@
     		</div>
     	</div><!--CoC_frame-->
     	
+    	<div id="nav_list_frame">
     	<h6 id="nav_list_header">NETWORKS</h6>
-    	
     	<ul id="nav_list">	
 	      <li id="nav_msg_board"><%= link_to "News Stream", news_path %></li>
 	      <li id="nav_invite"><a href="/invite" id="invite" class="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>     
@@ -62,7 +63,7 @@
   		<% if @page == 'posts' %>	
   		<div id="nav_list_highlight" class="hl_posts"></div>
   		<%end%>
-
+		</div>
 		</br>
 		<h6 id="member_list_header">MEMBERS</h6>
 		<ul id="member_list">	
