@@ -24,7 +24,7 @@ h3{
     font-weight: 700;
     margin-bottom:20px;
 }
-h3.page_title{margin-bottom:0px;}
+h3.page_title{margin-bottom:0px;color: #14377d;}
 
 a img {
   border: none;
@@ -177,17 +177,11 @@ form .field, form .actions {
   margin: 15px 0;
 }
 
-.orange_text
-{
-  color:#f47d29;
-}
+.orange_button{  background-color:#f47d29;  color:#ffffff;  border:0px;}
+.orange_text{  color:#f47d29;}
+.name_text{  color: #14377d;  font-size:14px;  font-weight:700;}
+.time_text{  font-weight:normal;  font-size:11px;  color:#666666;}
 
-.name_text
-{
-  color: #14377d;
-  font-size:14px;
-  font-weight:700;
-}
 
 /* top-nav user name drop down */
 #user_dropdown {margin-bottom:0px;}
