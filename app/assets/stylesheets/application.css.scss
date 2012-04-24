@@ -24,7 +24,7 @@ h3{
     font-weight: 700;
     margin-bottom:20px;
 }
-h3.page_title{margin-bottom:0px;}
+h3.page_title{margin-bottom:0px;color: #14377d;}
 
 a img {
   border: none;
@@ -54,7 +54,7 @@ a {
 #header_frame
 {
 	width:1024px;
-	height: 90px;
+
 	display:block;
 	color:#414042;
 	margin:auto;
@@ -65,7 +65,7 @@ a {
 	width: 200px;
 	margin-left:40px;
 	}
-#top_nav_msg_icon{float:left;margin:40px 0 0 0; width:20px;height:20px; background:url('../img/icons.png') no-repeat -166px -1px;}
+#top_nav_msg_icon{float:left;margin:40px 0 0 0; width:20px;height:20px; background:url('icons.png') no-repeat -166px -1px;}
 #user_selector
 {
 	margin: 40px 0 0 0;
@@ -98,31 +98,25 @@ a {
 	clear:both;
 }
 
-#user_nav
-{
-	float:left;
-	width: 220px;
-	padding: 10px 10px;
-	margin-top: -11px;
-	position:absolute;
-}
+#user_nav{	float:left;	width: 220px;	padding: 10px 10px;	margin-top: -11px;	position:absolute;}
 #CoC_frame{	width:170px;	margin: 16px 0 10px 50px;	padding: 0px;}
 #CoC_pic{float:left;}
 #CoC_right{width:120px;float:right;}
 #CoC_name{padding:0 10px; float:left;}
+#nav_list_frame{position:relative;}
 #nav_list_header, #member_list_header{font-weight:normal;margin-bottom:6px;margin-left:50px;}
 #nav_list_highlight{z-index:-1;background-color:#FFF; position:absolute;width:241px;height:24px; margin-left:-10px;border-top:solid 1px #CCC;border-bottom:solid 1px #CCC;}
-#nav_list_highlight.hl_posts{top:124px;}
-#nav_list_highlight.hl_invite{top:154px;}
+#nav_list_highlight.hl_posts{top:25px;}
+#nav_list_highlight.hl_invite{top:55px;}
 #nav_list{margin:0px 0 0 80px;}
 #nav_list li{height:20px; list-style:none;margin-left:0px; margin-bottom:10px;}
 #nav_list li:before{content:" "; width:24px; height:20px; display:block; position:absolute; margin-left: -30px;}
-#nav_calendar:before{background:url('../img/icons.png') no-repeat -1px -18px;}
-#nav_msg_board:before{background:url('../img/icons2.png') no-repeat -16px -1px;}
-#nav_private_msg:before{background:url('../img/icons.png') no-repeat -162px -1px;}
-#nav_my_profile:before{background:url('../img/icons.png') no-repeat 4px 3px;}
-#nav_members:before{background:url('../img/icons.png') no-repeat -101px 3px;}
-#nav_invite:before{background:url('../img/icons.png') no-repeat -49px 1px;}
+#nav_calendar:before{background:url('icons.png') no-repeat -1px -18px;}
+#nav_msg_board:before{background:url('icons2.png') no-repeat -16px -1px;}
+#nav_private_msg:before{background:url('icons.png') no-repeat -162px -1px;}
+#nav_my_profile:before{background:url('icons.png') no-repeat 4px 3px;}
+#nav_members:before{background:url('icons.png') no-repeat -101px 3px;}
+#nav_invite:before{background:url('icons.png') no-repeat -49px 1px;}
 
 #member_list{margin:0px 0 0 50px;}
 #member_list li{height:30px; list-style:none;margin-left:0px; margin-bottom:10px;}
@@ -130,7 +124,7 @@ a {
 #container { z-index:-2;position:relative; left:240px;float:left; width: 482px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: -11px; }
 #container_nonav { float:left; width: 600px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: -11px; }
 #shortcuts { position:relative;float:right; width: 220px;	padding: 20px 20px; margin-top:-11px;}
-.shortcut_icon {float:left;width:20px; height:20px; margin:4px 4px 0 0; background:url('../img/icons.png') no-repeat -48px -18px;}
+.shortcut_icon {float:left;width:20px; height:20px; margin:4px 4px 0 0; background:url('icons.png') no-repeat -48px -18px;}
 #invite_shortcut_icon{height:96px; width:129px; display:block;}
 #contact_shortcut_icon{height:96px; width:129px; display:block;}
 #questions_shortcut_icon{height:70px; width:220px; display:block;}
@@ -183,19 +177,14 @@ form .field, form .actions {
   margin: 15px 0;
 }
 
-.orange_text
-{
-  color:#f47d29;
-}
+.orange_button{  background-color:#f47d29;  color:#ffffff;  border:0px;}
+.orange_text{  color:#f47d29;}
+.name_text{  color: #14377d;  font-size:14px;  font-weight:700;}
+.time_text{  font-weight:normal;  font-size:11px;  color:#666666;}
 
-.name_text
-{
-  color: #14377d;
-  font-size:14px;
-  font-weight:700;
-}
 
 /* top-nav user name drop down */
+#user_dropdown {margin-bottom:0px;}
 .dropdown dd, .dropdown dt, .dropdown ul { margin:0px; padding:0px; }
 .dropdown dd { position:relative; }
 .dropdown a, .dropdown a:visited { text-decoration:none; outline:none;}

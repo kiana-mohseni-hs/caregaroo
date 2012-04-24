@@ -1,12 +1,31 @@
-<ul>
+<h3 class="page_title">Members</h3>
+<!-- do we need to invite here?
+<div>
+	<%= label_tag "Invite others to join your network..." %><br/>
+    <%= text_field_tag "Invite_Value", "Enter email address", :size=>52 %>
+    <%= submit_tag "Send Invite", :class =>"orange_button", :id=>"invite_button"%>
+    
+    <hr color="#cccccc"/>
+</div>-->
+
+<ul id="members">
 	<% for user in @members %>
-      <li><%=h user.last_name %>, <%=h user.first_name %>
-	<%=h user.network_relationship %> <% if user.role == 'ADMIN'%> <%= link_to "Remove", register_path %> <% end %>
-	<% if user.role == 'ADMIN' %>
-		<input type="checkbox" checked="true">Coordinate?</input>
-	<% else %>
-		<input type="checkbox" checked="false">Coordinate?</input>
-	<% end %>
+     <li class = "member">
+      	<%= image_tag "photo_place_holder.png", :alt => user.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+      	<div class="member_info">
+      		<span class="name_text"><%=h user.first_name %>: <%=h user.network_relationship %>
+      		<% if user.role == 'ADMIN'%>, coordinator <% end %>
+      		</span><br/>
+      		<div class="role_line">
+			<% if user.role == 'ADMIN'%> <%= link_to "Remove", register_path %> <% end %>
+			<% if user.role == 'ADMIN' %>
+				<input type="checkbox" checked="true">Coordinator</input>
+			<% else %>
+				<input type="checkbox" checked="false">Coordinator</input>
+			<% end %>
+			</div>
+		</div>
+		<hr color="#cccccc"/>
 	</li>
     <% end %>	
 </ul>
