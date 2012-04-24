@@ -1,6 +1,6 @@
 <div><%= render 'sub_nav' %></div>
 
-<%= form_for @current_user, :url => update_basic_profile_path, :method => :post, :html => { :id => 'basic_form' } do |f| %>
+<%= form_for @current_user, :url => update_info_profile_path, :method => :post, :html => { :id => 'update_info_form' } do |f| %>
   <%= render "shared/error_messages", :target => @current_user %>
 
   <div class="field">

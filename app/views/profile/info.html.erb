@@ -1,57 +1,65 @@
-<div><%= render 'sub_nav' %></div>
-
-<p id="notice"><%= notice %></p>
-<% if !@profile.nil? %>
-<% if @profile.user_id == @current_user.id %>
+<% if !@user.nil? %>
+<% if @user.id == @current_user.id %>
+	<div><%= render 'sub_nav' %></div>
 	<%= link_to "Edit", edit_info_profile_path %>
 <% end %>
 
-<p>
-  <b>Bio:</b>
-  <%= @profile.bio %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @profile.location %>
-</p>
-
-<p>
-  <b>Significant other:</b>
-  <%= @profile.significant_other %>
-</p>
-
-<p>
-  <b>Kids name:</b>
-  <%= @profile.kids_name %>
-</p>
-
-<p>
-  <b>Birthdate:</b>
-  <%= @profile.birthdate %>
-</p>
-
-<p>
-  <b>Expertise:</b>
-  <%= @profile.expertise %>
-</p>
-
-<p>
-  <b>Can help with:</b>
-  <%= @profile.can_help_with %>
-</p>
-
-<p>
-  <b>Phone work:</b>
-  <%= @profile.phone_work %>
-</p>
-
-<p>
-  <b>Phone mobile:</b>
-  <%= @profile.phone_mobile %>
-</p>
+<p id="notice"><%= notice %></p>
+<% if !@user.nil? %>
+	<p><b>First Name: </b><%= @user.first_name %></p>
+	<p><b>Last Name: </b><%= @user.last_name %></p>
+	<p><b>Email: </b><%= @user.email %></p>
 <% else %>
-<p>There's no profile.
+	<p>There's no profile.</p>
+<% end %>
+<% if !@user.profile.nil? %>
+	<p>
+	  <b>Bio:</b>
+	  <%= @user.profile.bio %>
+	</p>
+	
+	<p>
+	  <b>Location:</b>
+	  <%= @user.profile.location %>
+	</p>
+	
+	<p>
+	  <b>Significant other:</b>
+	  <%= @user.profile.significant_other %>
+	</p>
+	
+	<p>
+	  <b>Kids name:</b>
+	  <%= @user.profile.kids_name %>
+	</p>
+	
+	<p>
+	  <b>Birthdate:</b>
+	  <%= @user.profile.birthdate %>
+	</p>
+	
+	<p>
+	  <b>Expertise:</b>
+	  <%= @user.profile.expertise %>
+	</p>
+	
+	<p>
+	  <b>Can help with:</b>
+	  <%= @user.profile.can_help_with %>
+	</p>
+	
+	<p>
+	  <b>Phone work:</b>
+	  <%= @user.profile.phone_work %>
+	</p>
+	
+	<p>
+	  <b>Phone mobile:</b>
+	  <%= @user.profile.phone_mobile %>
+	</p>
+<% end %>
+<% else %>
+	<p>Profile not found.</p>
 <% end %>
 
 
