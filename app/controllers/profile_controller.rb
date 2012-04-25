@@ -2,33 +2,26 @@ class ProfileController < ApplicationController
   before_filter :require_user
   
   def info
-    logger.debug "(info_profile) #{params}"
-    
     if params[:user_id].nil?
-      @profile = @current_user.profile
-    
-      if @profile.nil?
-        @profile = Profile.new
-      end
+      @user = @current_user
     else
-      @profile = Profile.where("user_id=?", params[:user_id])
-      if !@profile.nil?
-        @profile = @profile.first
-      end
+      @user = User.where("id=?", params[:user_id]).first
     end
   end
   
   def edit_info
-    logger.debug "(edit_info_profile) #{params}"
-    
+    logger.debug "(edit_info) #{params}"
+
+=begin    
     @profile = @current_user.profile
     if @profile.nil?      
       @profile = Profile.new
     end
-
-    render :edit
+=end
+    render "basic"
   end
-  
+
+=begin  
   def update_info
     logger.debug "(update_profile) #{params}"
     
@@ -50,11 +43,8 @@ class ProfileController < ApplicationController
       end
     end
   end
-  
-  def index
-  end
-
-  def update_basic
+=end  
+  def update_info
     logger.debug "(update_basic_profile) #{params}"
     
     if @current_user.update_attributes(params[:user])
