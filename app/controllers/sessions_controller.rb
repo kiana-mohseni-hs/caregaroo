@@ -1,15 +1,21 @@
 class SessionsController < ApplicationController
   def login
+    @session = Session.new
     render :layout => "app_no_nav"
   end
 
   def create
-    user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
-      if params[:remember_me]
-        cookies.permanent[:auth_token] = user.auth_token
+    @session = Session.new(params[:session])
+    if !@session.valid?
+      return render "login", :layout => "app_no_nav"
+    end
+   
+    @user = User.find_by_email(@session.email)
+    if @user && @user.authenticate(@session.password)
+      if @session.remember_me
+        cookies.permanent[:auth_token] = @user.auth_token
       else
-        cookies[:auth_token] = user.auth_token
+        cookies[:auth_token] = @user.auth_token
       end     
       # redirect_to root_url, :notice => "Logged in!"
       if session[:referer]
@@ -22,7 +28,7 @@ class SessionsController < ApplicationController
 
     else
       flash.now.alert = "Invalid email or password"
-      render "login"
+      render "login", :layout => "app_no_nav"
     end
   end
 
