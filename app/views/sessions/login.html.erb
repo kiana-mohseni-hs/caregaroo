@@ -1,24 +1,30 @@
+<%= render "shared/error_messages", :target => @session %>
 <div id="login_box" >
 	<div id="login_box_left" >
 	<h3>Sign in</h3>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
 
-	<%= form_tag sessions_path do %>
-	  <div class="field">
-	    <%= label_tag :email %>
-	    <%= text_field_tag :email, params[:email], :id => 'login_email' ,:size => '35' %>
-	  </div>
-	  <div class="field">
-	    <%= label_tag :password %>
-	    <%= password_field_tag :password , "",:size => '35' %>
-	  </div>
-	  <a href="password_resets/new" style="TEXT-DECORATION: NONE"><span class="orange_text" >Forgotten password?</span></a>
-	  <div class="field">
-	    <%= check_box_tag :remember_me, 1, params[:remember_me] %> <p class="follow"> Remember me </p>
-	    <div class="actions follow">
-	    	<a><%= submit_tag "Sign In", :class =>"form_button", :id=>"sign_in_button"%></a>
+	<%= form_for @session, :url => sessions_path, :method => :post, :html => { :id => 'login_form' } do |f| %>
+		<div class="field">
+		    <%= f.label :email %>
+		    <%= f.text_field :email %>
+	  	</div>
+		<div class="field">
+		    <%= f.label :password %>
+		    <%= f.password_field :password %>
+		</div>
+		<a href="password_resets/new" style="TEXT-DECORATION: NONE"><span class="orange_text" >Forgotten password?</span></a>
+		<div class="field">
+		    <%= f.check_box :remember_me %>
+		    <%= label_tag :remember_me, nil, :class=>"follow cb_label" %>
+		    <%= submit_tag "Log In", :class =>"form_button", :id=>"sign_in_button"%>
+		</div>
+	
+		  <div class="actions follow">
+	    	
 	     </div>
-	  </div>
-	  
 	<% end %>
 	</div>
 	<div id="login_box_right">
@@ -29,4 +35,5 @@
 			<a href="register" class="orange_button_link"><span class="orange_button_label">Sign up</span></a>
 		</div>
 	</div>
+
 </div>
