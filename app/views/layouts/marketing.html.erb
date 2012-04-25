@@ -36,7 +36,7 @@
 
 <div id="siteWrapper" class="container_16">
 <div id="mkt_top_nav_frame"> 
-	<a href="http://caregaroo.com" id="mkt_top_nav_logo" title="Home Care Coordination"> <img src="img/CaregarooLogo.png" alt="caregaroo logo"/> </a>
+	<a href="<%= url_for root_path %>" id="mkt_top_nav_logo" title="Home Care Coordination"> <img src="img/CaregarooLogo.png" alt="caregaroo logo"/> </a>
 	<div id="top_nav_list">
 		<ul class="horizontal_list">
 			<li><%= link_to "Home", root_path %></li>
@@ -52,7 +52,7 @@
 	
 	<div id="mkt_sign_in_box">
 		<div id="sign_in_button">
-			<a href="login" title="Log In" ></a>
+			<%= link_to "", login_path %>
 		</div>
 	</div>
 	
