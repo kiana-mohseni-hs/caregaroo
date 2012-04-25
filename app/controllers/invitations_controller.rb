@@ -3,7 +3,6 @@ class InvitationsController < ApplicationController
   
   def index
     @invitation = Invitation.new
-    render :layout => false
   end
   
   def create    
@@ -13,12 +12,11 @@ class InvitationsController < ApplicationController
       UserMailer.pilot_invitation(@invitation).deliver
       redirect_to success_invitation_path, :notice => "Invitation sent!"
     else
-      render "index.js.erb", :layout => false
+      render "index"
     end
   end
   
   def success
-    render :layout => false
   end
   
 end

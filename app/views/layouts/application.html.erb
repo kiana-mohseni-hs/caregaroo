@@ -52,7 +52,7 @@
     	<h6 id="nav_list_header">NETWORKS</h6>
     	<ul id="nav_list">	
 	      <li id="nav_msg_board"><%= link_to "News Stream", news_path %></li>
-	      <li id="nav_invite"><a href="/invite" id="invite" class="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>     
+	      <li id="nav_invite"><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>     
 	      <!--
 	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>
 	      <li id="nav_private_msg"><%= link_to "Private Messages", messages_path %></li>
@@ -88,7 +88,7 @@
 			<%= image_tag "panel_invite_friends.png", :id => "invite_shortcut_icon", :alt => "Invite Friends" %>
 			<p>	Invite friends and family to join someone's community.</p>
 			<div class="shortcut_icon"></div>
-			<a href="/invite" id="send_invite" class="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Send Invite</a>
+			<a href="/invite" id="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Send Invite</a>
 		</div>
 		<!--
 		<br/>
