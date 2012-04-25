@@ -1,27 +1,32 @@
-<div style="display:block">
-	<div style="display:inline-block">
-	<h1>Sign in</h1>
+<div id="login_box" >
+	<div id="login_box_left" >
+	<h3>Sign in</h3>
 
 	<%= form_tag sessions_path do %>
 	  <div class="field">
 	    <%= label_tag :email %>
-	    <%= text_field_tag :email, params[:email], :id => 'login_email' %>
+	    <%= text_field_tag :email, params[:email], :id => 'login_email' ,:size => '35' %>
 	  </div>
 	  <div class="field">
 	    <%= label_tag :password %>
-	    <%= password_field_tag :password %>
+	    <%= password_field_tag :password , "",:size => '35' %>
 	  </div>
-	  <p><%= link_to "forgotten password?", new_password_reset_path %></p>
+	  <a href="password_resets/new" style="TEXT-DECORATION: NONE"><span class="orange_text" >Forgotten password?</span></a>
 	  <div class="field">
-	    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-	    <%= label_tag :remember_me %>
+	    <%= check_box_tag :remember_me, 1, params[:remember_me] %> <p class="follow"> Remember me </p>
+	    <div class="actions follow">
+	    	<a><%= submit_tag "Sign In", :class =>"form_button", :id=>"sign_in_button"%></a>
+	     </div>
 	  </div>
-	  <div class="actions"><%= submit_tag "Log in" %></div>
+	  
 	<% end %>
 	</div>
-	<div style="display:inline-block; width:300px; vertical-align:top; margin-left:100px;">
-		<p style="padding:10px 0;">Don't have an account</p>
-		<p style="padding:10px 0;">Sign up and create a network around your loved one to share news, feel connected and get help</p>
-		<p><%= link_to "Sign up", register_path %></p>
+	<div id="login_box_right">
+		<h3>Don't have an account</h3>
+		<p>Sign up and create a network around your loved one to share news, feel connected and get help</p>
+
+		<div id="sign_up_button" class="orange_button">
+			<a href="register" class="orange_button_link"><span class="orange_button_label">Sign up</span></a>
+		</div>
 	</div>
 </div>

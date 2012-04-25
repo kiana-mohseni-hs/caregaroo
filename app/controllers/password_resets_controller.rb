@@ -1,5 +1,6 @@
 class PasswordResetsController < ApplicationController
   def new
+    render :layout => "app_no_nav"
   end
 
   def create

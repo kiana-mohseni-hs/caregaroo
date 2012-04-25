@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
     else
       flash.now.alert = "Invalid email or password"
-      render "login"
+      render "login", :layout => "app_no_nav"
     end
   end
 

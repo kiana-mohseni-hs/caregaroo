@@ -122,7 +122,7 @@ a {
 #member_list li{height:30px; list-style:none;margin-left:0px; margin-bottom:10px;}
 
 #container { z-index:-2;position:relative; left:240px;float:left; width: 482px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: -11px; }
-#container_nonav { float:left; width: 600px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: -11px; }
+#container_nonav { width: 800px;  padding: 20px 20px; border-left: solid 0px #CCCCCC; border-right: solid 0px #CCCCCC;  margin: auto; }
 #shortcuts { position:relative;float:right; width: 220px;	padding: 20px 20px; margin-top:-11px;}
 .shortcut_icon {float:left;width:20px; height:20px; margin:4px 4px 0 0; background:url('icons.png') no-repeat -48px -18px;}
 #invite_shortcut_icon{height:96px; width:129px; display:block;}
@@ -177,8 +177,15 @@ form .field, form .actions {
   margin: 15px 0;
 }
 
-.orange_button{  background-color:#f47d29;  color:#ffffff;  border:0px;}
-.orange_text{  color:#f47d29;}
+.form_button{ display:block; width:60px; height:20px; background-color:#f47d29; font-size:14px; color:#ffffff;  padding:0 10px; border:none;}
+
+.orange_button a {display:block; width:60px; height:20px; background-color:#f47d29; padding: 0 10px;}
+.orange_button a:hover{}
+.orange_button_link{text-decoration:none;}
+.orange_button_label { font-size:14px; color:#FFF; position:relative; top:-5px; }
+.orange_button_label:hover { font-size:14px; color:#14377d; position:relative; top:-5px; }
+.orange_text{ color:#f47d29;}
+.orange_text:hover{color:#14377d;}
 .name_text{  color: #14377d;  font-size:14px;  font-weight:700;}
 .time_text{  font-weight:normal;  font-size:11px;  color:#666666;}
 
