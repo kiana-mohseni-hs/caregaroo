@@ -1,8 +1,14 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, :network_id, :role
   has_secure_password
-  validates_presence_of :password, :on => :create
-  validates :email, :uniqueness => true
+  validates_presence_of :network_relationship
+  validates :email, :presence => true, :email_format => true, :uniqueness => true
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :password
+  validates_length_of :password, :minimum => 6
+  validates_presence_of :password_confirmation
+  
   before_create { 
     generate_token(:auth_token) 
   }
