@@ -19,9 +19,10 @@ h3.page_title{margin-bottom:0px;color: #14377d;}
 p, ol, ul, td { font-size: 13px; line-height: 18px; }
 pre {  background-color: #eee;  padding: 10px;  font-size: 11px; }
 a img {  border: none; outline: none;}
-a { color: #000; outline: none;}
-a:visited { color: #000; }
-a:hover { color: #000; }
+a { color: #414042; outline: none;}
+a:link { text-decoration:none;}
+a:visited{}//removed color for now
+a:hover { color: #14377d; }
 .clear { clear: both; height: 0; overflow: hidden; }
 #header_frame {	width:1024px; display:block; color:#414042; margin:auto; }
 #top_nav_logo { float:left; height: 88px; width: 200px; margin-left:40px;	}
@@ -71,11 +72,9 @@ form .field, form .actions { margin: 12px 0;}
 .error_messages p { margin: 8px 10px;}
 .error_messages ul { margin: 15px 0;}
 .form_button{ display:block; width:60px; height:20px; background-color:#f47d29; font-size:14px; color:#ffffff;  padding:0 10px; border:none;}
-.orange_button a {display:block; width:60px; height:20px; background-color:#f47d29; padding: 0 10px;}
-.orange_button a:hover{}
-.orange_button_link{text-decoration:none;}
-.orange_button_label { font-size:14px; color:#FFF; position:relative; top:-5px; }
-.orange_button_label:hover { font-size:14px; color:#14377d; position:relative; top:-5px; }
+.form_button:hover {color:#14377d;}
+.orange_button_link{text-decoration:none;background-color:#f47d29;padding: 0 10px;margin:auto; color:#FFF; font-size:14px;}
+.grey_button_link{text-decoration:none;background-color:#aaaaaa;padding: 0 10px;margin:auto; color:#FFF; font-size:14px;}
 .orange_text{ color:#f47d29;}
 .orange_text:hover{color:#14377d;}
 .name_text{  color: #14377d;  font-size:14px;  font-weight:700;}

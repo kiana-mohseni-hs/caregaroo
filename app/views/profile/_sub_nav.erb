@@ -1,8 +1,11 @@
-<p>
-<%= link_to "Profile", profile_path %>
-Activities
-Tasks
-Thanks
-</p>
+<% if !@user.nil? %>
+	<%= image_tag "photo_place_holder.png", :alt => @user.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+	<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> (<%= @user.network_relationship %>)</p><br/>
+<% end %>
 
+
+<%= link_to "Profile", profile_path, :class=>"orange_button_link"%>
+<%= link_to "Activities", "", :class=>"grey_button_link" ,:onclick=>"return false"%>
+<%= link_to "Tasks", "", :class=>"grey_button_link" ,:onclick=>"return false"%>
+<%= link_to "Thanks", "", :class=>"grey_button_link" ,:onclick=>"return false"%>
 

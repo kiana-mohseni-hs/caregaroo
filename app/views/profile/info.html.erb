@@ -1,14 +1,15 @@
 <% if !@user.nil? %>
 <% if @user.id == @current_user.id %>
-	<div><%= render 'sub_nav' %></div>
-	<%= link_to "Edit", edit_info_profile_path %>
+	<%= render 'sub_nav' %><%= link_to "Edit", edit_info_profile_path, :class=>"orange_button_link"%>
+	<hr/>
 <% end %>
 
 <p id="notice"><%= notice %></p>
 <% if !@user.nil? %>
-	<p><b>First Name: </b><%= @user.first_name %></p>
-	<p><b>Last Name: </b><%= @user.last_name %></p>
-	<p><b>Email: </b><%= @user.email %></p>
+	<p class="sub_header">BASICS</p>
+	<hr/>
+	<div class="left_text">Name:</div><div class="right_text"><%= @user.first_name %> <%= @user.last_name %></div><br/>
+	<div class="left_text">Email:</div><div class="right_text"><%= @user.email %></div>
 <% else %>
 	<p>There's no profile.</p>
 <% end %>
