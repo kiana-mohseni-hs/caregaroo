@@ -28,9 +28,9 @@ class RegisterController < ApplicationController
     if @network.save
       cookies[:auth_token] = @network.users.first.auth_token
       logger.debug "(create) token=#{@network.users.first.auth_token}"
-      render "success"
+      render "success", :layout => "app_no_nav"
     else
-      render :action => "index"
+      render :action => "index", :layout => "app_no_nav"
     end
     
     

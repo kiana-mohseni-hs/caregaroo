@@ -1,17 +1,15 @@
+<h3>Create a Caregaroo Network</h3>
+<p>You are about to create a Caregaroo network. In two easy steps. The first step is to name the network and identify the person at the center of the network. The second step is to create your account</p>
 <%= form_for @network, :url => register_path do |f| %>
   <%= render "shared/error_messages", :target => @network %>  
-  <h3>Network</h3>
-  <p>
+  	<p>
 	<%= f.label :network_name %>
 	<%= f.text_field :network_name %>
     <%= f.label :network_for_who %>
 	<%= f.text_field :network_for_who %>
+  	</p>
 	<%= f.fields_for :users do |u| %>
-	    <%= u.label :network_relationship, 'Relationship to the person at the centre of network' %>
-	    <%= u.text_field :network_relationship %>
-	  </p>
-	  <h3>Profile</h3>
-	  <p>
+  	<p>
 	    <%= u.label :email %>
 	    <%= u.text_field :email %>
 	    <%= u.label :first_name %>
@@ -22,7 +20,9 @@
 	    <%= u.password_field :password %><br/>
 	    <%= u.label :password_confirmation %>
 	    <%= u.password_field :password_confirmation %>
-	  </p>
+	    <%= u.label :network_relationship, 'Relationship to the person at the centre of network' %>
+	    <%= u.text_field :network_relationship %>
+	</p>
 	<% end %>
   <p><%= link_to "Cancel", root_path %> <%= f.submit "Create my Community web site" %> </p>
 <% end %>

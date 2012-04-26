@@ -1,28 +1,31 @@
 <div>
 <%= form_for @user, :id => "invite_form", :url => signup_create_path do |f| %>
-<%= render "shared/error_messages", :target => @user %>  
-  <h3>Network</h3>
-  <p>
+	<% flash.each do |name, msg| %>
+  		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<% end %>
+	<%= render "shared/error_messages", :target => @user %>  
+  	<h3>Network</h3>
+	<p>
 	<% if @network %>
 		<%=h @network.network_name %>
 	<% end %>
 	<%= f.hidden_field :network_id %>
-    <%= f.label :network_relationship, 'Relationship to the person at the centre of network' %>
-    <%= f.text_field :network_relationship %>
-  </p>
-  <h3>Profile</h3>
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %><br/>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %><br/>
-    <%= f.label :password %>
-    <%= f.password_field :password %><br/>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p><%= link_to "Cancel", root_path %> <%= f.submit "Register" %> </p>
+	<%= f.label :network_relationship, 'Relationship to the person at the centre of network' %>
+	<%= f.text_field :network_relationship %>
+	</p>
+  	<h3>Profile</h3>
+  	<p>
+	    <%= f.label :email %>
+	    <%= f.text_field :email %>
+	    <%= f.label :first_name %>
+	    <%= f.text_field :first_name %><br/>
+	    <%= f.label :last_name %>
+	    <%= f.text_field :last_name %><br/>
+	    <%= f.label :password %>
+	    <%= f.password_field :password %><br/>
+	    <%= f.label :password_confirmation %>
+	    <%= f.password_field :password_confirmation %>
+  	</p>
+  	<p><%= link_to "Cancel", root_path %> <%= f.submit "Register" %> </p>
 <% end %>
 </div>
