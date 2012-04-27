@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  announcement: false
+  post_update: false
+  response_post: false
+  calendar_task_added: false
+  member_volunteer_task: false
+  receive_thanks: false
+  member_receives_thanks: false
+  user_id: 1
+
+two:
+  announcement: false
+  post_update: false
+  response_post: false
+  calendar_task_added: false
+  member_volunteer_task: false
+  receive_thanks: false
+  member_receives_thanks: false
+  user_id: 1

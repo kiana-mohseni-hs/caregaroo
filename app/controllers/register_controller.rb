@@ -24,6 +24,9 @@ class RegisterController < ApplicationController
   def create
     @network = Network.new(params[:network])
     @network.users.first.role = 'ADMIN'
+    if (params[:notification])
+      @network.users.first.notification = Notification.new(:announcement => true)
+    end
     
     if @network.save
       cookies[:auth_token] = @network.users.first.auth_token

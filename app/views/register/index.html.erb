@@ -24,6 +24,12 @@
 	    <%= u.text_field :network_relationship %>
 	</p>
 	<% end %>
+    <div class="field">
+	    <%= check_box_tag :notification %> Email me Caregaroo news and announcements.
+	</div>
+    <div class="field">
+	    <%= check_box_tag :tos %> I have read and agree to the Terms of Services
+	</div>
   <p><%= link_to "Cancel", root_path %> <%= f.submit "Create my Community web site" %> </p>
 <% end %>
 
