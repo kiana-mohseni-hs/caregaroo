@@ -24,6 +24,7 @@ a:link { text-decoration:none;}
 a:visited{}//removed color for now
 a:hover { color: #14377d; }
 .clear { clear: both; height: 0; overflow: hidden; }
+input {background:#ebebeb; border:solid 1px #ccc;}
 #header_frame {	width:1024px; display:block; color:#414042; margin:auto; }
 #top_nav_logo { float:left; height: 88px; width: 200px; margin-left:40px;	}
 #top_nav_msg_icon{float:left;margin:40px 0 0 0; width:20px;height:20px; background:url('icons.png') no-repeat -166px -1px;}

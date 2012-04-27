@@ -10,6 +10,7 @@ class ProfileController < ApplicationController
   end
   
   def edit_info
+    @user = @current_user
     logger.debug "(edit_info) #{params}"
 
 =begin    
@@ -45,12 +46,13 @@ class ProfileController < ApplicationController
   end
 =end  
   def update_info
+    @user = @current_user
     logger.debug "(update_basic_profile) #{params}"
     
     if @current_user.update_attributes(params[:user])
       redirect_to profile_path, :notice => 'User was successfully updated.'
     else
-      render :action => "index"
+      render "info"
     end    
   end
   
