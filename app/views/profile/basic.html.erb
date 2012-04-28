@@ -11,17 +11,17 @@
   <br/>
   <p class="sub_header">BASICS</p>
   <hr/>
-  <div class="row_space"><div class="left_text"><%= f.label :first_name, 'First Name:'%> </div><div class="right_text"><%= f.text_field :first_name, :size=>35; %>  </div></div>
-  <div class="row_space"><div class="left_text"><%= f.label :last_name, 'Last Name:'%> </div><div class="right_text"><%= f.text_field :last_name, :size=>35; %>  </div></div>
-  <div class="row_space"><div class="left_text"><%= f.label :email, 'Email:'%> </div><div class="right_text"><%= f.text_field :email, :size=>35; %>  </div></div>
+  <div class="row_space"><div class="left_text"><%= f.label :first_name, 'First Name:'%> </div><div class="right_text"><%= f.text_field :first_name, :size=>35 %>  </div></div>
+  <div class="row_space"><div class="left_text"><%= f.label :last_name, 'Last Name:'%> </div><div class="right_text"><%= f.text_field :last_name, :size=>35 %>  </div></div>
+  <div class="row_space"><div class="left_text"><%= f.label :email, 'Email:'%> </div><div class="right_text"><%= f.text_field :email, :size=>35 %>  </div></div>
   
   <br/>
   <p class="sub_header">PASSWORD</p>
   <hr/>
-  <div class="left_text"><%= f.label :password, 'Old Password:'%> </div><div class="right_text_2"><%= f.text_field :password, :size=>26; %>  
-  	<a href="/password_resets/new" .class="forgot_pw_link"><span class="orange_text" >Forgotten password?</span></a></div><br/>
-  <div class="left_text"><%= f.label :password, 'New Password:'%> </div><div class="right_text_2"><%= f.text_field :password, :size=>26; %>  </div><br />
-  <div class="left_text"><%= f.label :password_confirmation, 'Confirm New Password:'%> </div><div class="right_text_2"><%= f.text_field :password_confirmation, :size=>26; %>  </div><br />
+  <div class="left_text"><%= f.label :password, 'Old Password:'%> </div><div class="right_text_2"><%= f.text_field :password, :size=>26 %>  
+  	<a href="/password_resets/new" class="forgot_pw_link"><span class="orange_text" >Forgotten password?</span></a></div><br/>
+  <div class="left_text"><%= f.label :password, 'New Password:'%> </div><div class="right_text_2"><%= f.text_field :password, :size=>26 %>  </div><br />
+  <div class="left_text"><%= f.label :password_confirmation, 'Confirm New Password:'%> </div><div class="right_text_2"><%= f.text_field :password_confirmation, :size=>26 %>  </div><br />
 
   
   <div class="actions">
