@@ -1,5 +1,7 @@
-<h1>Reset Password</h1>
-
+<h3>Reset Password</h3>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
 <%= form_tag password_resets_path, :method => :post do %>
   <div class="field">
     <%= label_tag :email %>
