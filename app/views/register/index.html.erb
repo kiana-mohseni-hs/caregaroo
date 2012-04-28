@@ -31,21 +31,27 @@
 		    <%= u.label :password_confirmation, :class=>"right_text_with_icon label_space" %>
 		    <%= u.password_field :password_confirmation, :size=>35, :class=>"right_text_with_icon field_space" %>
 		    <%= u.label :network_relationship, 'Relationship to the person at the centre of network', :class=>"right_text_with_icon label_space" %>
-		    <%= u.text_field :network_relationship, :size=>35, :class=>"right_text_with_icon field_space" %>	
-
+		    <%= u.text_field :network_relationship, :size=>35, :class=>"right_text_with_icon field_space" %>
 		   </div>
 		<% end %>
 		
 		<div class="clear_format">
-		<br/>
-		<!-- Need checkbox here when we need to add email and terms of services option-->
-		
-		<!-- not letting user cancel?
-			<%= link_to "Cancel", root_path , :class=>"right_text"%>--> 
-	 	<%= f.submit "Create Network", :class=>"form_button", :id=>"create_btn"%> 
+			<br/>
+			
+			<div class="right_text_with_icon">
+		    <%= check_box_tag :notification %> Email me Caregaroo news and announcements.
+			</div>
+		    <div class="right_text_with_icon">
+			    <%= check_box_tag :tos %> I have read and agree to the Terms of Services
+			</div>
+			
+			<!-- not letting user cancel?
+				<%= link_to "Cancel", root_path , :class=>"right_text"%>--> 
+			<br style="clear:both"/>
+		 	<%= f.submit "Create Network", :class=>"form_button", :id=>"create_btn"%> 
 	 	</div>
 
 	<% end %>
-	<br style="clear:both"/>
+
 </div>
 

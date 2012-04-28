@@ -24,6 +24,9 @@ class RegisterController < ApplicationController
   def create
     @network = Network.new(params[:network])
     @network.users.first.role = 'ADMIN'
+    if (params[:notification])
+      @network.users.first.notification = Notification.new(:announcement => true)
+    end
     
     if @network.save
       cookies[:auth_token] = @network.users.first.auth_token
@@ -32,9 +35,12 @@ class RegisterController < ApplicationController
     else
       render :action => "index", :layout => "app_no_nav"
     end
+  end
     
+  def success
+  end
     
-=begin    
+=begin  // wizard step 
     session[:signup_params].deep_merge!(params[:user]) if params[:user]
     @user = User.new(session[:signup_params])
     @user.current_step = session[:signup_step]
@@ -60,9 +66,5 @@ class RegisterController < ApplicationController
       render "success"
 #    end  
 =end
-  end
-  
-  def success
-  end
   
 end
