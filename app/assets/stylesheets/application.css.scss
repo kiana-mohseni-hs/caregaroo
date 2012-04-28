@@ -54,9 +54,7 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 #member_list{margin:0px 0 0 50px;}
 #member_list li{height:30px; list-style:none;margin-left:0px; margin-bottom:10px;}
 #container { z-index:-2;position:relative; left:240px;float:left; width: 482px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: -11px; }
-
-#container_nonav { width: 800px;  padding: 20px 20px; border-left: solid 0px #CCCCCC; border-right: solid 0px #CCCCCC;  margin: auto; }
-
+#container_nonav {z-index:-2;position:relative; float:left; width: 800px;  padding: 0px 20px; margin-left:112px; margin-top:-11px;}
 #shortcuts { position:relative;float:right; width: 220px;	padding: 20px 20px; margin-top:-11px;}
 .shortcut_icon {float:left;width:20px; height:20px; margin:4px 4px 0 0; background:url('icons.png') no-repeat -48px -18px;}
 #invite_shortcut_icon{height:96px; width:129px; display:block;}

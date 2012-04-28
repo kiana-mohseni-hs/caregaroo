@@ -22,7 +22,7 @@
   <p class="sub_header">PASSWORD</p>
   <hr/>
   <div class="left_text"><%= f.label :password, 'Old Password:'%> </div><div class="right_text_2"><%= password_field_tag :old_password, '', :size => 26 %>  
-  	<a href="/password_resets/new" .class="forgot_pw_link"><span class="orange_text" >Forgotten password?</span></a></div><br/>
+  	<a href="/password_resets/new" class="forgot_pw_link"><span class="orange_text" >Forgotten password?</span></a></div><br/>
   <div class="left_text"><%= f.label :password, 'New Password:'%> </div><div class="right_text_2"><%= f.password_field :password, :size => "26" %>  </div><br />
   <div class="left_text"><%= f.label :password_confirmation, 'Confirm New Password:'%> </div><div class="right_text_2"><%= f.password_field :password_confirmation, :size => "26" %>  </div><br />
 
