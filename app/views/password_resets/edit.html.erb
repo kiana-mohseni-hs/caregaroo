@@ -1,5 +1,7 @@
-<h1>Reset Password</h1>
-
+<h3>Reset Password</h3>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
 <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
 <%= render "shared/error_messages", :target => @user %>  
   <div class="field">

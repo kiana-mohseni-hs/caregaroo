@@ -1,12 +1,16 @@
 class PasswordResetsController < ApplicationController
-  def new
-    render :layout => "app_no_nav"
+  def index
+    render "reset", :layout => "app_no_nav"
   end
 
   def create
+    if params[:email].empty?
+      flash[:error] = "Invalid email"
+      return render "reset", :layout => "app_no_nav"
+    end
     user = User.find_by_email(params[:email])
     user.send_password_reset if user
-    redirect_to root_url, :notice => "Email sent with password reset instructions."
+    render "success", :layout => "app_no_nav"
   end
   
   def edit
