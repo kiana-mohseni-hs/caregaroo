@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :email_format => true, :uniqueness => true
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_presence_of :password
-  validates_length_of :password, :minimum => 6
-  validates_presence_of :password_confirmation
+  validates_presence_of :password, :on => :create
+  validates_length_of :password, :minimum => 6, :on => :create
+  validates_presence_of :password_confirmation, :on => :create
   
   before_create { 
     generate_token(:auth_token) 

@@ -1,6 +1,5 @@
 <div><%= render 'sub_nav' %></div>
 <h3>Editing profile</h3>
-
 <%= form_for @profile, :url => update_info_profile_path, :method => :post, :html => { :id => 'info_form' } do |f| %>
  <%= render "shared/error_messages", :target => @profile %>
 

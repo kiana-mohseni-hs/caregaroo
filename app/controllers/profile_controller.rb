@@ -45,12 +45,16 @@ class ProfileController < ApplicationController
     end
   end
 =end  
+
   def update_info
-    @user = @current_user
-    logger.debug "(update_basic_profile) #{params}"
+    old_password = params[:old_password]
+    if !old_password.empty? && !@current_user.authenticate(old_password)
+      flash[:error] = "Old password incorrect."
+      return redirect_to edit_info_profile_path     
+    end
     
-    if @current_user.update_attributes(params[:user])
-      redirect_to profile_path, :notice => 'User was successfully updated.'
+    if @current_user.update_attributes!(params[:user])
+      redirect_to profile_path, :notice => 'Profile was successfully updated.'
     else
       render "info"
     end    
