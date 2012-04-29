@@ -9,8 +9,13 @@ class PasswordResetsController < ApplicationController
       return render "reset", :layout => "app_no_nav"
     end
     user = User.find_by_email(params[:email])
-    user.send_password_reset if user
-    render "success", :layout => "app_no_nav"
+    if user 
+      user.send_password_reset
+      render "success", :layout => "app_no_nav"
+    else
+      flash[:error] = "Invalid email"
+      render "reset", :layout => "app_no_nav"
+    end
   end
   
   def edit
