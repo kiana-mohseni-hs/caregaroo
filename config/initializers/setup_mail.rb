@@ -8,6 +8,12 @@ ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true
 }
 # port 465, 587
-ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+if Rails.env.development?
+  ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+elsif Rails.env.test?
+  ActionMailer::Base.default_url_options[:host] = "test.caregaroo.com"
+else
+  ActionMailer::Base.default_url_options[:host] = "caregaroo.com"
+end
 require 'development_mail_interceptor'
 ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
