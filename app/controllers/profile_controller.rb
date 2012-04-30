@@ -10,7 +10,6 @@ class ProfileController < ApplicationController
   end
   
   def edit_info
-    @user = @current_user
     logger.debug "(edit_info) #{params}"
 
 =begin    

@@ -1,7 +1,5 @@
-<% if !@user.nil? %>
-	<%= image_tag "photo_place_holder.png", :alt => @user.first_name, :class=>"profile_user_pic" %>
-	<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> (<%= @user.network_relationship %>)</p><br/>
-<% end %>
+<%= image_tag "photo_place_holder.png", :alt => @current_user.first_name, :class=>"profile_user_pic" %>
+<p class="name_text"><%= @current_user.first_name %> <%= @current_user.last_name %> (<%= @current_user.network_relationship %>)</p><br/>
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
