@@ -1,5 +1,6 @@
 class PasswordResetsController < ApplicationController
   def index
+    session[:last_visited_page] = request.env['HTTP_REFERER'] || root_url
     render "reset", :layout => "app_no_nav"
   end
 
@@ -11,6 +12,7 @@ class PasswordResetsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user 
       user.send_password_reset
+      @email = user.email
       render "success", :layout => "app_no_nav"
     else
       flash[:error] = "Invalid email"
