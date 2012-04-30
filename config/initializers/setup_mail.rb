@@ -8,7 +8,6 @@ ActionMailer::Base.smtp_settings = {
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
-=end
 
 email_settings = YAML::load(File.open("#{Rails.root.to_s}/config/email.yml"))
 ActionMailer::Base.smtp_settings = email_settings[Rails.env] unless email_settings[Rails.env].nil?
@@ -23,3 +22,5 @@ else
 end
 #require 'development_mail_interceptor'
 #ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
+
+=end

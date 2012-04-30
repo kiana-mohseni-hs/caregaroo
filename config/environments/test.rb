@@ -36,4 +36,19 @@ Auth::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  config.action_mailer.default_url_options = { :host => "test.caregaroo.com" }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => "587",
+    :domain               => "caregaroo.com",
+    :user_name            => "app@caregaroo.com",
+    :password             => "4MdRA+3[",
+    :authentication       => "login",
+    :enable_starttls_auto => true
+  }
 end
