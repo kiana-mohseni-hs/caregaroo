@@ -74,6 +74,7 @@ form .field, form .actions { margin: 12px 0;}
 .error_messages ul { margin: 15px 0;}
 .form_button{ display:block; width:60px; height:20px; background-color:#f47d29; font-size:14px; color:#ffffff;  padding:0 10px; border:none;}
 .form_button:hover {color:#14377d;}
+.form_button_disabled{ display:block; width:60px; height:20px; background-color:#aaaaaa; font-size:14px; color:#ffffff;  padding:0 10px; border:none;}
 .orange_button_link{text-decoration:none;background-color:#f47d29;padding: 0 10px;margin:auto; color:#FFF; font-size:14px;}
 .grey_button_link{text-decoration:none;background-color:#aaaaaa;padding: 0 10px;margin:auto; color:#FFF; font-size:14px;}
 .orange_text{ color:#f47d29;}
