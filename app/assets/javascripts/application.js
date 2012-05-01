@@ -45,6 +45,10 @@ jQuery(document).ready(function() {
 		$("#new_comment_section_"+id).show();
 	});
 	
+	$('input[title!=""]').hint();	
+	$('textarea[title!=""]').hint();	
+	
+	// dropdown
 	$(".dropdown dt a").click(function() {
 	    $(".dropdown dd ul").toggle();
 	});

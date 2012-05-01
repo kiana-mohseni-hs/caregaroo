@@ -76,9 +76,9 @@ request first-hand references from their previous employers with a click of a bu
 		<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'download_ebook_form' } do |f| %>
 		  <div id="ebookError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "ebook" %>
-		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
-		  <%= f.text_field :last_name, "value" => "Enter your last name", :autocomplete => 'off', :class => "rounded shadowBtm signup_last_name" %>
-		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
+		  <%= f.text_field :first_name, "title" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
+		  <%= f.text_field :last_name, "title" => "Enter your last name", :autocomplete => 'off', :class => "rounded shadowBtm signup_last_name" %>
+		  <%= f.text_field :email, "title" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
 		  <p><%= f.submit :value => "Download" %></p>
 		<% end %>
 	</div>
@@ -88,7 +88,7 @@ request first-hand references from their previous employers with a click of a bu
 		<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'demo_form' } do |f| %>
 		  <div id="demoError" class="error" style="display:none">* Please enter a valid email</div>
 		  <%= f.hidden_field :signup_type, :value => "demo" %>
-		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
+		  <%= f.text_field :email, "title" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
 		  <p><%= f.submit :value => "Request" %></p>
 		<% end %>
 	</div>

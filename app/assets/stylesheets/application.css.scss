@@ -23,6 +23,8 @@ a { color: #414042; outline: none;}
 a:link { text-decoration:none;}
 a:visited{}//removed color for now
 a:hover { color: #14377d; }
+input.blur { color: #999; }
+textarea.blur { color: #999; }
 .clear { clear: both; height: 0; overflow: hidden; }
 input {background:#ebebeb; border:solid 1px #ccc;}
 #header_frame {	width:1024px; display:block; color:#414042; margin:auto; }
