@@ -81,4 +81,15 @@ jQuery(document).ready(function() {
      group.height(tallest);
 	}
 
+	//enable submit button with a TOS checkbox
+	$('#tos').click(function () {
+		if (this.checked){
+			$('#create_btn').removeAttr('disabled');
+			$('#create_btn').attr('class', 'form_button');
+		
+		} else {
+			$('#create_btn').attr('disabled', 'disabled');
+			$('#create_btn').attr('class', 'form_button_disabled');
+	};
+	});
 });
