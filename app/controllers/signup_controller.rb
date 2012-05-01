@@ -24,7 +24,7 @@ class SignupController < ApplicationController
     if @user.save
       cookies[:auth_token] = @user.auth_token
       logger.debug "(create_signup) token=#{@user.auth_token}"
-      render "success"
+      render "success", :layout => "app_no_nav"
     else  
       render "signup_form", :layout => "app_no_nav"
     end
