@@ -95,21 +95,11 @@ p{
     font-weight: normal;
     line-height:18px;
 }
-a{
-    color:#14377d;
-    text-decoration:none;
-}
-a:hover{
-    color:#00B5EF;
-}
-a:focus, a:active , input:focus, input:active{
-outline: 0px;
--moz-outline-style: none;
-} 
-ul{
-    list-style:none;
-    margin:0 0;
-}
+a{ color:#14377d; text-decoration:none; }
+a:hover{ color:#00B5EF; }
+a:focus, a:active , input:focus, input:active{ outline: 0px; -moz-outline-style: none; } 
+ul{ list-style:none; margin:0 0;}
+
 /* END GENERIC STYLES */
 /* HEADER */
 #siteWrapper{

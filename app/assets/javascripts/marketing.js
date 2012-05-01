@@ -18,26 +18,9 @@ jQuery(document).ready(function() {
 	var emailMessage = 'Enter your email address'
 	var successMessage = 'Thank you for contacting us, we will respond to your support request as soon as we can. <br/>Your message has been sent successfully.'
 	
-	$('.signup_email').focus(function(){
-		if ($(this).val() == emailMessage) {
-			$(this).val("")
-		}
-	});		
-	$('.signup_first_name').focus(function(){	
-		if ($(this).val() == fnMessage) {
-			$(this).val("")
-		}
-	});						
-	$('.signup_last_name').focus(function(){	
-		if ($(this).val() == lnMessage) {
-			$(this).val("")
-		}
-	});
+	$('input[title!=""]').hint();	
+	$('textarea[title!=""]').hint();
 	
-	$('#pilotSuccessBtn').click(function() {
-		$.fancybox.close()
-	});
-
 	function pilotSignup() {
 		var email = $(this).find('input[name="pilot_signup[email]"]')
 		var error = $(this).find('div[class="error"]')
