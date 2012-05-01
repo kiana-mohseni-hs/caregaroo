@@ -9,6 +9,24 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 6, :on => :create
   validates_presence_of :password_confirmation, :on => :create
   
+  ROLES = {
+    "admin" => "Admin",
+    "initiator" => "Initiator",
+    "coordinator" => "Coordinator" 
+  }
+  def is_admin?
+    self.role == ROLES["admin"]
+  end
+  def is_initiator?
+    self.role == ROLES["initiator"]
+  end
+  def is_coordinator?
+    self.role == ROLES["coordinator"]
+  end
+  def is_initiator_or_coordinator?
+    self.role == ROLES["initiator"] || self.role == ROLES["coordinator"]
+  end
+  
   before_create { 
     generate_token(:auth_token) 
   }
@@ -52,7 +70,6 @@ class User < ActiveRecord::Base
 
   def generate_token(column)
     begin
-      #self[column] = SecureRandom.hex
       self[column] = SecureRandom.base64.tr("+/", "-_")
     end while User.exists?(column => self[column])
   end

@@ -23,7 +23,7 @@ class RegisterController < ApplicationController
   # create community network
   def create
     @network = Network.new(params[:network])
-    @network.users.first.role = 'ADMIN'
+    @network.users.first.role = User::ROLES["initiator"]
     if (params[:notification])
       @network.users.first.notification = Notification.new(:announcement => true)
     end
