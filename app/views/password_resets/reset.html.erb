@@ -9,8 +9,8 @@
 	    <%= label_tag :email %>
 	    <%= text_field_tag :email, params[:email] , :size=>35 %>
 	    <div>
-	    <%= link_to "Cancel", session[:last_visited_page] %>
 	    <%= submit_tag "Reset Password", :id=>"reset_pw_btn", :class=>"form_button" %>
+	    <%= link_to "Cancel", session[:last_visited_page], :class=>"orange_button_link", :id=>"reset_cancel_btn"%>    
 	    </div>
 	  </div>
 	<% end %>
