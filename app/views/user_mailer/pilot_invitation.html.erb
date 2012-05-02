@@ -1,8 +1,8 @@
 <p>Please join me on caregaroo, a secure private network to share news, coordinate activities and say thanks to those who help care for loved ones.</p>
 
-<p><%= link_to "Join  on Caregaroo", signup_with_token_url(@pilot.token) %></p>
+<p><%= link_to "Join #{@inviter.first_name} #{@inviter.last_name} on Caregaroo", signup_with_token_url(@pilot.token) %></p>
 
 <p>You were sent this by Caregaroo because someone provided your email address.<br/>
-	© 2011 Azra Ventures Inc. Learn more about <%= link_to "Caregaroo", root_path %><br/>
+	© 2011 Azra Ventures Inc. Learn more about <%= link_to "Caregaroo", root_path %>.<br/>
 	www.caregaroo.com</p>
 

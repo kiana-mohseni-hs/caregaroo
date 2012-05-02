@@ -13,7 +13,7 @@ class UserMailer < ActionMailer::Base
   
   def pilot_invitation(pilot, inviter)
     @pilot = pilot
-    @invite = inviter
+    @inviter = inviter
     #attachments["rails.png"] = File.read("#{Rails.root}/public/images/rails.png")
     #attachments.inline['image.jpg'] = File.read('/path/to/image.jpg')
     mail :to => "#{pilot.first_name} #{pilot.first_name} <#{pilot.email}>", :subject => "Join me on Caregaroo"
