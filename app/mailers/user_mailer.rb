@@ -11,11 +11,12 @@ class UserMailer < ActionMailer::Base
     mail :to => user.email, :subject => "Password Reset"
   end
   
-  def pilot_invitation(pilot)
+  def pilot_invitation(pilot, inviter)
     @pilot = pilot
+    @inviter = inviter
     #attachments["rails.png"] = File.read("#{Rails.root}/public/images/rails.png")
     #attachments.inline['image.jpg'] = File.read('/path/to/image.jpg')
-    mail :to => "#{pilot.first_name} #{pilot.first_name} <#{pilot.email}>", :subject => "Activate your Caregaroo account"
+    mail :to => "#{pilot.first_name} #{pilot.first_name} <#{pilot.email}>", :subject => "Join me on Caregaroo"
   end
   
 end
