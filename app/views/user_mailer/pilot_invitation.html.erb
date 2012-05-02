@@ -1,11 +1,8 @@
-<h3><%= @pilot.first_name%> <%= @pilot.last_name%>,</h3>
+<p>Please join me on caregaroo, a secure private network to share news, coordinate activities and say thanks to those who help care for loved ones.</p>
 
-<p>You recently signed up for Caregaroo. To complete signup. please click this link:</p>
+<p><%= link_to "Join #{inviter.first_name} #{inviter.last_name} on Caregaroo", signup_with_token_url(@pilot.token) %></p>
 
-<p><%= link_to "Sign up", signup_with_token_url(@pilot.token) %></p>
-
-<p>or, you can copy and paste this link into your browser.</p>
-
-<p>Thank you,<br/>
-The Caregaroo Team</p>
+<p>You were sent this by Caregaroo because someone provided your email address.<br/>
+	© 2011 Azra Ventures Inc. Learn more about <%= link_to "Caregaroo", root_path %><br/>
+	www.caregaroo.com</p>
 
