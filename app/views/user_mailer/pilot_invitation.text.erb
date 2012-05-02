@@ -1,11 +1,7 @@
-<%= @pilot.first_name%> <%= @pilot.last_name%>,
+Please join me on caregaroo, a secure private network to share news, coordinate activities and say thanks to those who help care for loved ones.
 
-You recently signed up for Caregaroo. To complete signup. please click this link:
+<%= link_to "Join #{@inviter.first_name} #{@inviter.last_name} on Caregaroo", signup_with_token_url(@pilot.token) %>
 
-<%= signup_with_token_url(@pilot.token) %>
-
-or, you can copy and paste this link into your browser.
-
-Thank you,
-The Caregaroo Team
-
+You were sent this by Caregaroo because someone provided your email address.
+© 2011 Azra Ventures Inc. Learn more about <%= link_to "Caregaroo", root_path %>.
+www.caregaroo.com

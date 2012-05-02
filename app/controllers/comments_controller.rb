@@ -69,6 +69,7 @@ class CommentsController < ApplicationController
       end
     end
   end
+=end  
 
   # DELETE /comments/1
   # DELETE /comments/1.json
@@ -77,9 +78,8 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to news_url }
       format.json { head :ok }
     end
   end
-=end  
 end
