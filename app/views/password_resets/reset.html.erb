@@ -6,7 +6,7 @@
 	<% end %>
 	<%= form_tag password_resets_path, :method => :post do %>
 	  <div class="field">
-	    <%= label_tag :email %>
+	    <%= label_tag :email, "Email", :class=>"pw_reset_label_text" %>
 	    <%= text_field_tag :email, params[:email] , :size=>35 %>
 	    <div>
 	    <%= submit_tag "Reset Password", :id=>"reset_pw_btn", :class=>"form_button" %>
