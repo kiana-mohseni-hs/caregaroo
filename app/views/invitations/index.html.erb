@@ -1,17 +1,17 @@
 <h3 class="page_title">Invite your friend</h3>
 <%= form_for @invitation, :url => send_invitation_path, :method => :post, :html => { :id => 'basic_form' } do |f| %>
-<%= render "shared/error_messages", :target => @invitation %>  
+<%= render "shared/error_messages", :target => @invitation %>
   <div class="field">
-    <%= f.label :email %>
+    <%= f.label :email, :class=>"invite_label_text" %>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :first_name %>
+    <%= f.label :first_name, :class=>"invite_label_text"  %>
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %>
+    <%= f.label :last_name, :class=>"invite_label_text"  %>
     <%= f.text_field :last_name %>
   </div>
-  <div class="actions"><%= f.submit "Invite your friend" %></div>
+  <div class="actions"><%= f.submit "Invite your friend" , :class =>"form_button", :id=>"submit_invite_btn"%></div>
 <% end %>
