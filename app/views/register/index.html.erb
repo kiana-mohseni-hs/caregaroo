@@ -12,18 +12,18 @@
 	  	<div id="vertical_line"></div>	
 	  	<%= f.label :network_name, :class=>"right_text_with_icon label_space" %> 
 	  	<%= f.text_field :network_name, :size=>35, :class=>"right_text_with_icon field_space" %>
-	  	<%= f.label :network_for_who, :class=>"right_text_with_icon label_space" %> 
+	  	<%= f.label :network_for_who, "Who is the network for?", :class=>"right_text_with_icon label_space" %> 
 	  	<%= f.text_field :network_for_who, :size=>35, :class=>"right_text_with_icon field_space" %>  	
 	  	</div>
 	  	<br/><br/>
 		<%= f.fields_for :users do |u| %>
 			<div class="clear_format">
 			<%= image_tag "num2.png", :alt => "Step 2", :class=>"num_icon" %>  		
-		    <%= u.label :email, :class=>"right_text_with_icon label_space" %>
+		    <%= u.label :email, "Your email", :class=>"right_text_with_icon label_space" %>
 		    <%= u.text_field :email, :size=>35, :class=>"right_text_with_icon field_space" %>
-		    <%= u.label :first_name, :class=>"right_text_with_icon label_space" %>
+		    <%= u.label :first_name, "Your first name", :class=>"right_text_with_icon label_space" %>
 		    <%= u.text_field :first_name, :size=>35, :class=>"right_text_with_icon field_space" %>
-		    <%= u.label :last_name, :class=>"right_text_with_icon label_space" %>
+		    <%= u.label :last_name, "Your last name", :class=>"right_text_with_icon label_space" %>
 		    <%= u.text_field :last_name, :size=>35, :class=>"right_text_with_icon field_space" %><br class="clear_format"/><br/>
 		    <%= u.label :password, :class=>"right_text_with_icon label_space" %>
 		    <%= u.password_field :password, :size=>35, :class=>"right_text_with_icon" %>
