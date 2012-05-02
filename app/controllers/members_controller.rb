@@ -6,12 +6,12 @@ class MembersController < ApplicationController
   end
   
   def delete
-    @user = User.find(params[:user_id])
-    @user.destroy
-    @post = Post.find_user_id(params[:user_id])
-    @post.destroy
-    @post = Comment.find_user_id(params[:user_id])
-    @post.destroy
+    if @current_user.is_initiator_or_coordinator?
+      @user = User.find(params[:user_id])
+      if !@user.nil?
+        @user.destroy 
+      end
+    end
     redirect_to members_path
   end
 end

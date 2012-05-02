@@ -7,9 +7,9 @@
     <td>
 	<div id="post" data-id="<%= post.id %>">
 		<div id="news">
- 			<%= image_tag "photo_place_holder.png", :alt => post.user.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+ 			<%= image_tag "photo_place_holder.png", :alt => !post.user.nil? ? post.user.first_name : 'Anonymous' , :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
 			<div class="comment_content">
-			<span class="name_text"><%= post.user.first_name %> (<%= post.user.network_relationship %>)</span>
+			<span class="name_text"><%= !post.user.nil? ? post.user.first_name : 'Anonymous' %> (<%= !post.user.nil? ? post.user.network_relationship : 'Removed' %>)</span>
 			<span class="time_text"><%= post.created_at.strftime('%b %d, %Y at %I:%M %p')  %> </span> 
 			<br/>
 			<%= post.content %><br/>

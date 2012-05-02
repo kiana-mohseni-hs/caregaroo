@@ -40,5 +40,6 @@ module Auth
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.time_zone = 'Pacific Time (US & Canada)'
   end
 end
