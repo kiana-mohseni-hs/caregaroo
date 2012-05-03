@@ -17,7 +17,7 @@
       		</span><br/>
       		<div class="role_line">
       		<% if @current_user.is_initiator_or_coordinator? && !user.is_initiator? %>
-				<%= link_to 'Remove', members_delete_path(user.id), :confirm => 'Are you sure?', :method => :delete %>
+				<%= link_to 'Remove', members_delete_path(user.id), :confirm => 'Are you sure?', :method => :delete, :class => "orange_text" %>
 			<% end %>
 			<% if @current_user.is_initiator_or_coordinator? && !user.is_initiator? %>
 				<%= check_box_tag  "coordinator_#{user.id}", user.id, user.is_coordinator?, { :class => 'coordinator', 'data-href' => members_update_path(user.id), 'data-method' => 'put' } %> Coordinator

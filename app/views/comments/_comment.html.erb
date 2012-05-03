@@ -5,7 +5,7 @@
 		<span class="time_text"><%= comment.created_at.strftime('%b %d, %Y at %I:%M %p')  %> </span> 
 		<%= simple_format comment.content %>
 		<% if !comment.user.nil? && @current_user.id == comment.user.id %>
-			<span class="orange_text"><%= link_to 'Delete', comment, :confirm => 'Are you sure?', :method => :delete %></span>
+			<span><%= link_to 'Delete', comment, :confirm => 'Are you sure?', :method => :delete, :class => "orange_text" %></span>
 		<% end %>
 	</div>
 </div>

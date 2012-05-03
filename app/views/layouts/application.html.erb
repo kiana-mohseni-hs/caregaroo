@@ -76,21 +76,20 @@
 			<li><%= image_tag "photo_place_holder.png", :height => "30", :width => "33", :style => "float:left;padding-right:5px" %>
 				<%= link_to member.first_name, user_info_profile_path(member) %></li>
 		<% end %>
-			<li><%= link_to "All Members", members_path %></li>
+			<li><%= link_to "All Members", members_path, :class => "orange_text" %></li>
 		</ul>
-		
-    </div><!--user_nav-->
-    
+    </div>
 	<div id="container">
 	    <%= yield %>
- 	</div><!--container"-->
-    
+ 	</div>
     <div id="shortcuts">
     	<div id="invite_shortcut">
 			<%= image_tag "panel_invite_friends.png", :id => "invite_shortcut_icon", :alt => "Invite Friends" %>
 			<p>	Invite friends and family to join someone's community.</p>
-			<div class="shortcut_icon"></div>
-			<a href="/invite" id="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Send Invite</a>
+			<div style="padding:20px 0">
+				<div class="shortcut_icon"></div>
+				<a href="/invite" id="send_invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Send Invite</a>
+			</div>
 		</div>
 		<!--
 		<br/>
@@ -107,12 +106,13 @@
 		<div id="questions_shortcut">
 			<%= image_tag "panel_questions_for_caregaroo.png", :id => "questions_shortcut_icon", :alt => "Questions" %>
 			<p>Need someone to guide you through our website? Got feedback?</p>
-			<div class="shortcut_icon"></div>
-			<a href="mailto:support@caregaroo.com?Subject=Feedback" id="emailUs" class="" onclick="_gaq.push(['_trackEvent', 'Links', 'Email us', 'Email us']);" title="Email us now!">Email us now!</a>
-		<hr/>
+			<div style="padding:20px 0">
+				<div class="shortcut_icon"></div>
+				<a href="mailto:support@caregaroo.com?Subject=Feedback" id="emailUs" class="" onclick="_gaq.push(['_trackEvent', 'Links', 'Email us', 'Email us']);" title="Email us now!">Email us now!</a>
+			<div>
 		</div>
-    </div><!--shortcuts-->
-
+    </div>
+    <hr/>
 </div><!--mainframe-->
 </body>
 </html>
