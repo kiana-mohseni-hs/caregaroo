@@ -92,6 +92,21 @@ jQuery(document).ready(function() {
 		} else {
 			$('#create_btn').attr('disabled', 'disabled');
 			$('#create_btn').attr('class', 'form_button_disabled');
-	};
+		};
 	});
+	
+	$('.coordinator').click(function() {
+		$.ajax({
+	    	url: $(this).data('href'),
+	    	type: 'PUT',
+	    	data: {checked:$(this).is(':checked')},
+	    	dataType: 'html',
+	    	success: function(data, textStatus, jqXHR) {
+	      		$( data ).purr({
+					usingTransparentPNG: true
+				});
+				return false;
+	    	}
+		});
+	})
 });
