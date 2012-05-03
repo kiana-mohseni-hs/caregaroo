@@ -59,6 +59,7 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 #container_nonav {z-index:-2;position:relative; float:left; width: 800px;  padding: 0px 20px; margin-left:112px; margin-top:-11px;}
 #shortcuts { position:relative;float:right; width: 220px;	padding: 20px 20px; margin-top:-11px;}
 .shortcut_icon {float:left;width:20px; height:20px; margin:4px 4px 0 0; background:url('icons.png') no-repeat -48px -18px;}
+#invite_shortcut, #contact_shortcut, #questions_shortcut { cursor: pointer; }
 #invite_shortcut_icon{height:96px; width:129px; display:block; padding:10px 0 5px;}
 #contact_shortcut_icon{height:96px; width:129px; display:block; padding:20px 0 5px;}
 #questions_shortcut_icon{height:70px; width:220px; display:block; padding:20px 0 0;}

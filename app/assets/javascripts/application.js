@@ -29,6 +29,16 @@ try{
 
 jQuery(document).ready(function() {
 	
+	$('#invite_shortcut').click(function(event){
+		_gaq.push(['_trackEvent', 'Links', 'Invite Members', 'Invite Members']);
+        document.location = '/invite';
+  	});
+  	
+	$('#questions_shortcut').click(function(event){
+		_gaq.push(['_trackEvent', 'Links', 'Email Us', 'Email Us']);
+        document.location.href = 'mailto:support@caregaroo.com?Subject=Feedback';
+  	});
+    
 	$('#login_email').focus();
 
 	$("a.send_invite").fancybox({
