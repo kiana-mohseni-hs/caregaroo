@@ -6,23 +6,23 @@
 
 <%= form_for @current_user, :url => update_info_profile_path, :method => :post, :html => { :id => 'update_info_form' } do |f| %>
   <%= render "shared/error_messages", :target => @current_user %>
-  
-  <h3 class="page_title" >My account settings</h3>
-  <br/>
+  <h3 class="page_title" style="margin-top:10px;">My account settings</h3>
   <p class="sub_header">BASICS</p>
   <hr/>
-  <div class="row_space"><div class="left_text"><%= f.label :first_name, 'First Name:'%> </div><div class="right_text"><%= f.text_field :first_name, :size => "35" %>  </div></div>
-  <div class="row_space"><div class="left_text"><%= f.label :last_name, 'Last Name:'%> </div><div class="right_text"><%= f.text_field :last_name, :size => "35" %>  </div></div>
-  <div class="row_space"><div class="left_text"><%= f.label :email, 'Email:'%> </div><div class="right_text"><%= f.text_field :email, :size => "35" %>  </div></div>
-  
+  <div class="profile_content">
+	  <div class="row_space"><div class="left_text"><%= f.label :first_name, 'First Name:'%> </div><div class="right_text"><%= f.text_field :first_name, :size => "35" %>  </div></div>
+	  <div class="row_space"><div class="left_text"><%= f.label :last_name, 'Last Name:'%> </div><div class="right_text"><%= f.text_field :last_name, :size => "35" %>  </div></div>
+	  <div class="row_space"><div class="left_text"><%= f.label :email, 'Email:'%> </div><div class="right_text"><%= f.text_field :email, :size => "35" %>  </div></div>
+  </div>
   <br/>
   <p class="sub_header">PASSWORD</p>
   <hr/>
-  <div class="left_text"><%= f.label :password, 'Old Password:'%> </div><div class="right_text_2"><%= password_field_tag :old_password, '', :size => 26 %>  
-  	<a href="/password_resets" class="forgot_pw_link"><span class="orange_text" >Forgotten password?</span></a></div><br/>
-  <div class="left_text"><%= f.label :password, 'New Password:'%> </div><div class="right_text_2"><%= f.password_field :password, :size => "26" %>  </div><br />
-  <div class="left_text"><%= f.label :password_confirmation, 'Confirm New Password:'%> </div><div class="right_text_2"><%= f.password_field :password_confirmation, :size => "26" %>  </div><br />
-
+  <div class="profile_content">
+	  <div class="row_space"><div class="left_text"><%= f.label :password, 'Old Password:'%> </div><div class="right_text_2"><%= password_field_tag :old_password, '', :size => 26 %>  
+	  	<a href="/password_resets" class="forgot_pw_link"><span class="orange_text" >Forgotten password?</span></a></div></div>
+	  <div class="row_space"><div class="left_text"><%= f.label :password, 'New Password:'%> </div><div class="right_text_2"><%= f.password_field :password, :size => "26" %>  </div></div>
+	  <div class="row_space"><div class="left_text"><%= f.label :password_confirmation, 'Confirm New Password:'%> </div><div class="right_text_2"><%= f.password_field :password_confirmation, :size => "26" %>  </div><br /></div>
+  </div>
   
   <div class="actions">
     <%= f.submit "Save Updates", :class =>"form_button", :id=>"save_updates_button"%>
