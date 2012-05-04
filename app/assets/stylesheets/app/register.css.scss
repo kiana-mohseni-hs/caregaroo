@@ -1,13 +1,13 @@
 #register_box{width:488px;background:#FFF; border-left:solid 1px #CCC; border-right:solid 1px #CCC;margin:auto; padding:20px;}
 #description_div{width:440px; margin:auto; display:block; padding:20px 0;}
 .clear_format{clear:both;}
-.num_icon{height:70px; width:70px;position:absolute;float:left;}
+.num_icon{height:90px; width:90px;position:absolute;float:left; margin:-10px 0 0 -10px;}
 .right_text_with_icon {font-size:12px; position:relative; margin-left:120px;}
 .label_space{margin-bottom:2px;}
 .field_space{margin-bottom:10px;}
 .note_text{font-size:10px; margin-bottom:10px;}
 #create_btn{width:120px; margin-left:320px; }
-#vertical_line{margin:68px 0 0 24px; height:98px; width:10px; position:absolute;border-right:solid 1px #ccc;}
+#vertical_line{z-index:1;margin:72px 0 0 24px; height:94px; width:10px; position:absolute;border-right:solid 1px #ccc;}
 
 #register_success_box{width:488px; height:140px; background:#FFF; border:solid 1px #ccc; margin-top: 70px; margin-left:auto; margin-right:auto;}
 #register_success_btn{margin-left:340px;}
