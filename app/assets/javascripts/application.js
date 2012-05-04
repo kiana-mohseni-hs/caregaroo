@@ -97,11 +97,15 @@ jQuery(document).ready(function() {
 	$('#tos').click(function () {
 		if (this.checked){
 			$('#create_btn').removeAttr('disabled');
+			$('#signup_next_btn').removeAttr('disabled');
 			$('#create_btn').attr('class', 'form_button');
+			$('#signup_next_btn').attr('class', 'form_button');
 		
 		} else {
 			$('#create_btn').attr('disabled', 'disabled');
+			$('#signup_next_btn').attr('disabled', 'disabled');
 			$('#create_btn').attr('class', 'form_button_disabled');
+			$('#signup_next_btn').attr('class', 'form_button_disabled');
 		};
 	});
 	

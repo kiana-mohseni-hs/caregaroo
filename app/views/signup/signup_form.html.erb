@@ -12,8 +12,9 @@
 		<% end %>
 		<%= f.hidden_field :network_id %>
 	
-	  	<p>Create your account.</p>
-	  	<p>
+	  	<p>Create your account.</p><br/>
+	  	
+	  	<div style="font-size:12px">
 		    <%= f.label :email %>
 		    <%= f.text_field :email, :size=>35 %><br/><br/>
 		    <%= f.label :first_name %>
@@ -30,9 +31,12 @@
 			<% elsif %>
 		    <%= f.label :network_relationship, 'Relationship to the person at the centre of network' %>
 		    <% end %>
-			<%= f.text_field :network_relationship, :size=>35 %><br/>
-	  	</p>
-	  	<p><%= f.submit "Next", :class=>"form_button", :id=>"signup_next_btn" %> </p>
+			<%= f.text_field :network_relationship, :size=>35 %><br/><br/>
+			<%= check_box_tag :notification, "", true %> Email me Caregaroo news and announcements.<br/>
+			<%= check_box_tag :tos %> I have read and agree to the <a class="tos" href="https://caregaroo.zendesk.com/entries/21360183-terms-of-services" target="_blank">Terms of Services</a>.		
+	  	</div>
+	  	<br/>		
+	  	<p><%= f.submit "Next", :disabled=>"disabled", :class=>"form_button_disabled", :id=>"signup_next_btn" %> </p>
 	<% end %>
 	</div>
 </div>
