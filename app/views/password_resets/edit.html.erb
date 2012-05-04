@@ -1,16 +1,21 @@
-<h3>Reset Password</h3>
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-<%= render "shared/error_messages", :target => @user %>  
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit "Update Password" %></div>
-<% end %>
+<div id="reset_pw_box" >
+	<h3 class="page_title">Reset password</h3>
+
+	<% flash.each do |name, msg| %>
+	  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<% end %>
+	<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+	<%= render "shared/error_messages", :target => @user %>  
+	  <div class="field" style="font-size:12px">
+	    <%= f.label :password %>
+	    <%= f.password_field :password %>
+	  </div>
+	  <div class="field" style="font-size:12px">
+	    <%= f.label :password_confirmation %>
+	    <%= f.password_field :password_confirmation %>
+	  </div>
+	  <div class="actions"><%= f.submit "Update Password", :id=>"update_pw_btn", :class=>"form_button" %></div>
+
+	<% end %>
+	<div class="clear"></div>
+</div>
