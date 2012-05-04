@@ -41,18 +41,18 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 #CoC_name{padding:0 4px; float:left; margin-bottom:10px;}
 #nav_list_frame{position:relative;}
 #nav_list_header, #member_list_header{font-weight:normal;margin-bottom:6px;margin-left:50px;}
-#nav_list_highlight{z-index:-1;background-color:#FFF; position:absolute;width:241px;height:24px; margin-left:-10px;border-top:solid 1px #CCC;border-bottom:solid 1px #CCC;}
-#nav_list_highlight.hl_posts{top:25px;}
-#nav_list_highlight.hl_invite{top:55px;}
-#nav_list{margin:0px 0 0 80px;}
-#nav_list li{height:20px; list-style:none;margin-left:0px; margin-bottom:10px;}
-#nav_list li:before{content:" "; width:24px; height:20px; display:block; position:absolute; margin-left: -30px;}
-#nav_calendar:before{background:url('icons.png') no-repeat -1px -18px;}
-#nav_msg_board:before{background:url('icons2.png') no-repeat -16px -1px;}
-#nav_private_msg:before{background:url('icons.png') no-repeat -162px -1px;}
-#nav_my_profile:before{background:url('icons.png') no-repeat 4px 3px;}
-#nav_members:before{background:url('icons.png') no-repeat -101px 3px;}
-#nav_invite:before{background:url('icons.png') no-repeat -49px 1px;}
+#nav_list{margin:0px;}
+#nav_list li{height:22px; list-style:none;margin-left:-10px; margin-bottom:4px;width:241px; padding-top:5px;}
+#nav_list li.highlight{height:21px; font-weight:bold; background-color:#fff;border-top:solid 1px #ccc;border-bottom:solid 1px #ccc; width:241px; padding-top:4px;}
+#nav_msg_board{background:url('icons2.png') no-repeat -16px -1px;width:24px; height:20px; float:left; margin:0 6px 0 60px;}
+.nav_list_icon{width:24px; height:20px; float:left;  margin:0 6px 0 60px;}
+#nav_invite{background:url('icons.png') no-repeat -49px 1px;}
+#nav_calendar{background:url('icons.png') no-repeat -49px 1px;}
+/*#nav_calendar{background:url('icons.png') no-repeat -1px -18px;}
+#nav_private_msg{background:url('icons.png') no-repeat -162px -1px;}
+#nav_my_profile{background:url('icons.png') no-repeat 4px 3px;}
+#nav_members{background:url('icons.png') no-repeat -101px 3px;}
+*/
 #member_list{margin:0px 0 0 50px;}
 #member_list li{height:30px; list-style:none;margin-left:0px; margin-bottom:10px;}
 #container { z-index:-2;position:relative; left:240px;float:left; width: 482px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: -11px; }
