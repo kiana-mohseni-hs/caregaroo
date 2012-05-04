@@ -54,8 +54,16 @@
     	<div id="nav_list_frame">
     	<h6 id="nav_list_header">NETWORKS</h6>
     	<ul id="nav_list">	
-	      <li id="nav_msg_board"><%= link_to "News Stream", news_path %></li>
-	      <li id="nav_invite"><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>     
+    		<% if @page == 'posts' %>	
+	      		<li class="highlight"><div id="nav_msg_board" class="nav_list_icon"></div><%= link_to "News Stream", news_path %></li>
+	       	<% elsif %>
+	        	<li ><div id="nav_msg_board" class="nav_list_icon"></div><%= link_to "News Stream", news_path %></li>
+	      	<%end%>
+	      	<% if @page == 'invite' %>	
+	      		<li class="highlight"><div id="nav_invite" class="nav_list_icon"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>
+	        <% elsif %> 
+	      		<li><div id="nav_invite" class="nav_list_icon"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>     
+	        <% end %>
 	      <!--
 	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>
 	      <li id="nav_private_msg"><%= link_to "Private Messages", messages_path %></li>
@@ -63,11 +71,6 @@
 	      <li id="nav_members"><%= link_to "Members", members_path %></li>
 	      -->
   		</ul>
-  		<% if @page == 'posts' %>	
-  		<div id="nav_list_highlight" class="hl_posts"></div>
-  		<% elsif @page == 'invite' %>	
-  		<div id="nav_list_highlight" class="hl_invite"></div>
-  		<%end%>
 		</div>
 		</br>
 		<h6 id="member_list_header">MEMBERS</h6>
