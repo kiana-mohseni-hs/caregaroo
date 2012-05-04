@@ -10,7 +10,7 @@
  			<%= image_tag "photo_place_holder.png", :alt => !post.user.nil? ? post.user.first_name : 'Anonymous' , :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
 			<div class="comment_content">
 			<span class="name_text"><%= !post.user.nil? ? post.user.first_name : 'Anonymous' %> (<%= !post.user.nil? ? post.user.network_relationship : 'Removed' %>)</span>
-			<span class="time_text"><%= time_ago_in_words(post.created_at) %> ago</span> 
+			<span class="time_text"><%= time_ago_in_words(post.created_at) %> ago at <%= post.created_at.strftime('%I:%M %p') %></span> 
 			<br/>
 			<%= post.content %><br/>
 			<ul><li class="comment_links"><a id="comment_<%= post.id %>" newsid="<%= post.id %>" class="orange_text news_comment" >Comment</a></li>  
