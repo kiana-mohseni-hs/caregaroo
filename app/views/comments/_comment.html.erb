@@ -2,7 +2,7 @@
  	<%= image_tag "photo_place_holder.png", :alt => !comment.user.nil? ? comment.user.first_name : 'Anonymous' , :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
 	<div class="comment_content">
 		<span class="name_text"><%= !comment.user.nil? ? comment.user.first_name : 'Anonymous'  %> (<%= !comment.user.nil? ? comment.user.network_relationship  : 'Removed' %>)</span>
-		<span class="time_text"><%= comment.created_at.strftime('%b %d, %Y at %I:%M %p')  %> </span> 
+		<span class="time_text"><%= time_ago_in_words(comment.created_at) %> ago</span> 
 		<%= simple_format comment.content %>
 		<% if !comment.user.nil? && @current_user.id == comment.user.id %>
 			<span><%= link_to 'Delete', comment, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => "orange_text" %></span>
