@@ -1,0 +1,2 @@
+$("#comments_count_<%= @comment.post_id %>").html("<%= pluralize(@comments.count, 'comment') %>");
+$("#comments_<%= @comment.post_id %>").html("<%= escape_javascript(render(:partial => "comment", :collection => @comments)) %>");

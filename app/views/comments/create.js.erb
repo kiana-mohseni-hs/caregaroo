@@ -1,0 +1,4 @@
+$("#comments_count_<%= @comment.post_id %>").html("<%= pluralize(@comments.count, 'comment') %>");
+$("#comments_<%= @comment.post_id %>").html("<%= escape_javascript(render(:partial => "comment", :collection => @comments)) %>");
+$("#comment_<%= @comment.id %>").effect("highlight", {}, 3000);
+$("#new_comment")[0].reset()

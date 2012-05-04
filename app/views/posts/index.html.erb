@@ -14,8 +14,8 @@
 			<br/>
 			<%= post.content %><br/>
 			<ul><li class="comment_links"><a id="comment_<%= post.id %>" newsid="<%= post.id %>" class="orange_text news_comment" >Comment</a></li>  
-			<% unless post.comments.empty? %> 
-				<li><a class="orange_text">View all comments</a></li>
+			<% if !post.comments.empty? && post.comments.count > 3 %> 
+				<li><a class="orange_text">View all <span id="comments_count_<%= post.id %>"><%= pluralize(post.comments.count, " comment") %></span></a></li>
 			<% end %>
 			</ul>
 			<!-- <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %><br/> -->
@@ -23,19 +23,19 @@
 			</div>
 		</div>
 		
-		<div id="comments">
+		<div id="comments_<%= post.id %>" class="comments">
 			<% unless post.comments.empty? %> 
 				<%= render post.comments %>	
 			<% end %>
-			<div id="new_comment_section_<%= post.id %>" style="<%= post.comments.empty? ? "display:none" : "display:block" %>" class="new_comment_section" >  	
-			<%= form_for Comment.new do |f| %>
+		</div>
+		<div id="new_comment_section_<%= post.id %>" style="<%= post.comments.empty? ? "display:none" : "display:block" %>" class="new_comment_section" >  	
+			<%= form_for Comment.new, :remote => true do |f| %>
 			  <%= f.hidden_field :post_id, :value => "#{post.id}" %>
 			  <div class="text_background">
 			  <%= f.text_area :content, :size => "43x1" %>
 			  </div>
 			  <%= f.submit "Reply", :class =>"form_button", :id=>"reply_button"%>
 			<% end %>
-			</div>
 		</div>
 	    
 	   
