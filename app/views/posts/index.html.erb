@@ -19,23 +19,15 @@
 			<% end %>
 			</ul>
 			<!-- <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %><br/> -->
+			<div class="clear"></div>
 			</div>
 		</div>
 		
 		<div id="comments">
-		<% unless post.comments.empty? %> 
-			<%= render post.comments %>		      		    
-			<div id="new_comment_section_<%= post.id %>" class="new_comment_section">  	
-				<%= form_for Comment.new do |f| %>
-				  <%= f.hidden_field :post_id, :value => "#{post.id}" %>
-				  <div class="text_background">
-				  <%= f.text_area :content, :size => "43x1" %>
-				  </div>
-				  <%= f.submit "Reply", :class =>"form_button", :id=>"reply_button"%>
-				<% end %>
-			</div>
-		<% else %>
-			<div id="new_comment_section_<%= post.id %>" style="display:none">  	
+			<% unless post.comments.empty? %> 
+				<%= render post.comments %>	
+			<% end %>
+			<div id="new_comment_section_<%= post.id %>" style="<%= post.comments.empty? ? "display:none" : "display:block" %>" class="new_comment_section" >  	
 			<%= form_for Comment.new do |f| %>
 			  <%= f.hidden_field :post_id, :value => "#{post.id}" %>
 			  <div class="text_background">
@@ -44,7 +36,6 @@
 			  <%= f.submit "Reply", :class =>"form_button", :id=>"reply_button"%>
 			<% end %>
 			</div>
-		<% end %>
 		</div>
 	    
 	   
