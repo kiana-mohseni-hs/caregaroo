@@ -13,6 +13,7 @@ Auth::Application.routes.draw do
   get "profile/:user_id" => "profile#info", :as => "user_info_profile"
   post "profile" => "profile#update_info", :as => "update_info_profile"
   get "news" => "posts#index", :as => "news"
+  get "news/:post_id/comments" => "posts#comments", :as => "post_commments"
   get "members" => "members#index", :as => "members"
   put "members/:user_id" => "members#update", :as => "members_update"
   delete "members/:user_id" => "members#delete", :as => "members_delete"

@@ -15,7 +15,7 @@
 			<%= post.content %><br/>
 			<ul><li class="comment_links"><a id="comment_<%= post.id %>" newsid="<%= post.id %>" class="orange_text news_comment" >Comment</a></li>  
 			<% if !post.comments.empty? && post.comments.count > 3 %> 
-				<li><a class="orange_text">View all <span id="comments_count_<%= post.id %>"><%= pluralize(post.comments.count, " comment") %></span></a></li>
+				<li><%= link_to "View all #{pluralize(post.comments.count, " comment")}", post_commments_path(post.id), :method => :get, :remote => true, :class => "orange_text" %></li>
 			<% end %>
 			</ul>
 			<!-- <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %><br/> -->
@@ -25,7 +25,7 @@
 		
 		<div id="comments_<%= post.id %>" class="comments">
 			<% unless post.comments.empty? %> 
-				<%= render post.comments %>	
+				<%= render post.comments.first(3) %>	
 			<% end %>
 		</div>
 		<div id="new_comment_section_<%= post.id %>" style="<%= post.comments.empty? ? "display:none" : "display:block" %>" class="new_comment_section" >  	

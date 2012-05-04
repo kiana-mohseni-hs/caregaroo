@@ -1,0 +1,1 @@
+$("#comments_<%= @post_id %>").html("<%= escape_javascript(render(:partial => "comments/comment", :collection => @comments)) %>");
