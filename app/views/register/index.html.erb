@@ -8,7 +8,7 @@
 	  <%= render "shared/error_messages", :target => @network %>  
 	  	
 	  	<div class="clear_format">  
-	  	<%= image_tag "num1.png", :alt => "Step 1", :class=>"num_icon" %>
+	  	<%= image_tag "num1.jpg", :alt => "Step 1", :class=>"num_icon" %>
 	  	<div id="vertical_line"></div>	
 	  	<%= f.label :network_name, :class=>"right_text_with_icon label_space" %> 
 	  	<%= f.text_field :network_name, :size=>35, :class=>"right_text_with_icon field_space" %>
@@ -18,7 +18,7 @@
 	  	<br/><br/>
 		<%= f.fields_for :users do |u| %>
 			<div class="clear_format">
-			<%= image_tag "num2.png", :alt => "Step 2", :class=>"num_icon" %>  		
+			<%= image_tag "num2.jpg", :alt => "Step 2", :class=>"num_icon" %>  		
 		    <%= u.label :email, "Your email", :class=>"right_text_with_icon label_space" %>
 		    <%= u.text_field :email, :size=>35, :class=>"right_text_with_icon field_space" %>
 		    <%= u.label :first_name, "Your first name", :class=>"right_text_with_icon label_space" %>
