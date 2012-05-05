@@ -13,12 +13,15 @@
 			<span class="time_text"><%= time_ago_in_words(post.created_at) %> ago at <%= post.created_at.strftime('%I:%M %p') %></span> 
 			<br/>
 			<%= post.content %><br/>
-			<ul><li class="comment_links"><span id="comment_<%= post.id %>" post-id="<%= post.id %>" class="orange_text news_comment" style="cursor:pointer">Comment</span></li>  
-			<% if !post.comments.empty? && post.comments.count > 3 %> 
-				<li><%= link_to "View all #{pluralize(post.comments.count, " comment")}", post_commments_path(post.id), :method => :get, :remote => true, :class => "orange_text" %></li>
-			<% end %>
-			</ulo>
-			<!-- <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %><br/> -->
+			<ul>
+				<li class="comment_links"><span id="comment_<%= post.id %>" post-id="<%= post.id %>" class="orange_text news_comment" style="cursor:pointer">Comment</span></li>  
+				<% if !post.comments.empty? && post.comments.count > 3 %> 
+					<li style="float:left; width:145px;color:#F47D29"><%= link_to "View all #{pluralize(post.comments.count, " comment")}", post_commments_path(post.id), :method => :get, :remote => true, :class => "orange_text" %></li>
+				<% end %>
+				<% if !post.user.nil? && @current_user.id == post.user.id %>
+					<li style="float:left; color:#F47D29"><%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :class => "orange_text" %></li> 
+				<% end %>
+			</ul>
 			<div class="clear"></div>
 			</div>
 		</div>
