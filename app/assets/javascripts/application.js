@@ -27,7 +27,7 @@ try{
 } catch(e){}
 
 
-jQuery(document).ready(function() {
+$(function() {
 	
 	$('#invite_shortcut').click(function(event){
 		_gaq.push(['_trackEvent', 'Links', 'Invite Members', 'Invite Members']);
@@ -81,17 +81,17 @@ jQuery(document).ready(function() {
 	});
 
 	// set the equalize height in layout
-	equalHeight($("div#user_nav, div#container, div#shortcuts"));
-	function equalHeight(group) {
-		tallest = $(window).height();
+	window.equalHeight = function(group) {
+		tallest = $(document).height();
 		group.each(function() {
 			thisHeight = $(this).height();
 			if(thisHeight > tallest) {
 				tallest = thisHeight;
 			}
-     });
-     group.height(tallest);
+		});
+     	group.height(tallest).css({cursor:"auto"});
 	}
+	equalHeight($("div#user_nav, div#container, div#shortcuts"));
 
 	//enable submit button with a TOS checkbox
 	$('#tos').click(function () {

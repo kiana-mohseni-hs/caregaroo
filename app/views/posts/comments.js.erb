@@ -1,1 +1,2 @@
 $("#comments_<%= @post_id %>").html("<%= escape_javascript(render(:partial => "comments/comment", :collection => @comments)) %>");
+equalHeight($("div#user_nav, div#container, div#shortcuts"));
