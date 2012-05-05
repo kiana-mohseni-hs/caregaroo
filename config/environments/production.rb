@@ -61,8 +61,8 @@ Auth::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => "587",
     :domain               => "caregaroo.com",
-    :user_name            => "app@caregaroo.com",
-    :password             => "4MdRA+3[",
+    :user_name            => "support@caregaroo.com",
+    :password             => "L3tm31n!",
     :authentication       => "login",
     :enable_starttls_auto => true
   }
