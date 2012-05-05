@@ -34,9 +34,14 @@ $(function() {
         document.location = '/invite';
   	});
   	
+	$('#help_shortcut').click(function(event){
+		_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help']);
+        window.open('https://caregaroo.zendesk.com/forums');
+  	}); 
+  	
 	$('#questions_shortcut').click(function(event){
 		_gaq.push(['_trackEvent', 'Links', 'Email Us', 'Email Us']);
-        document.location.href = 'mailto:support@caregaroo.com?Subject=Feedback';
+       window.open('https://caregaroo.zendesk.com/anonymous_requests/new');
   	});
     
 	$('#session_email').focus();
