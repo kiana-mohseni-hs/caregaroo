@@ -28,6 +28,7 @@ try{
 
 
 $(function() {
+	$('textarea').autosize();
 	
 	$('#invite_shortcut').click(function(event){
 		_gaq.push(['_trackEvent', 'Links', 'Invite Members', 'Invite Members']);
