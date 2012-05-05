@@ -69,13 +69,13 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 form label { display: block; margin-bottom: 2px; }
 form .field, form .actions { margin: 12px 0;}
 .fieldWithErrors { display: inline; }
-.error_messages { width: 400px; border: 2px solid #CF0000; padding: 0px; margin-bottom: 20px; background-color: #f0f0f0; font-size: 12px;}
-.error_messages h2 { text-align: left; font-weight: bold; padding: 5px 10px; font-size: 12px; margin: 0; background-color: #c00; color: #fff;}
+.error_messages { width: 400px; padding: 5px; margin-bottom: 20px; background-color: #F2DEDE; font-size: 12px; color: #B94A48}
+.error_messages h2 { display:none; text-align: left; font-weight: bold; padding: 5px 10px; font-size: 12px; margin: 0; background-color: #c00; color: #B94A48;}
 .error_messages p { margin: 8px 10px;}
-.error_messages ul { margin: 15px 0;}
+.error_messages ul { margin: 15px 0 15px 20px;}
 .form_button{ display:block; width:60px; height:20px; background-color:#f47d29; font-size:14px; color:#ffffff;  padding:0 10px 2px; border:none;}
 .form_button:hover {color:#14377d;}
-.form_button_disabled{ display:block; width:60px; height:20px; background-color:#aaaaaa; font-size:14px; color:#ffffff;  padding:0 10px; border:none;}
+.form_button_disabled{ display:block; width:60px; height:20px; background-color:#aaaaaa; font-size:14px; color:#ffffff;  padding:0 10px 2px; border:none;}
 .orange_button_link{text-decoration:none;background-color:#f47d29;padding: 0 10px;margin:auto; color:#FFF; font-size:14px;}
 .grey_button_link{text-decoration:none;background-color:#aaaaaa;padding: 0 10px;margin:auto; color:#FFF; font-size:14px;}
 .orange_text{ color:#f47d29;}

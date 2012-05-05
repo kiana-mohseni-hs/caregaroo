@@ -1,6 +1,5 @@
 <% if target.errors.any? %>
    <div class="error_messages">
-     <h2>Form is invalid</h2>
      <ul>
        <% for message in target.errors.full_messages %>
          <li><%= message %></li>

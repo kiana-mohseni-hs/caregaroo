@@ -39,7 +39,10 @@ $(function() {
         document.location.href = 'mailto:support@caregaroo.com?Subject=Feedback';
   	});
     
-	$('#login_email').focus();
+	$('#session_email').focus();
+	$('#network_network_name').focus();
+	$('#invitation_email').focus();
+	$('#user_email').focus();
 
 	$("a.send_invite").fancybox({
 		scrolling:"no",	
