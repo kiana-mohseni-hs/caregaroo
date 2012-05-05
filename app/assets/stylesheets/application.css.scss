@@ -66,15 +66,15 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 #contact_shortcut_icon{height:96px; width:129px; display:block; padding:20px 0 5px;}
 #questions_shortcut_icon{height:70px; width:220px; display:block; padding:20px 0 0;}
 #flash_notice, #flash_error, #flash_alert { padding: 2px 8px; margin: 10px 0; }
-#flash_notice { background-color: #CFC; border: solid 1px #6C6; }
-#flash_error, #flash_alert { background-color: #FCC; border: solid 1px #C66; }
+#flash_notice { background-color: #DFF0D8; border: solid 1px #D6E9C6; color: #468847;}
+#flash_error, #flash_alert { background-color: #F2DEDE; color: #B94A48; border: solid 1px #EED3D7}
 form label { display: block; margin-bottom: 2px; }
 form .field, form .actions { margin: 12px 0;}
 .fieldWithErrors { display: inline; }
-.error_messages { width: 400px; padding: 5px; margin-bottom: 20px; background-color: #F2DEDE; font-size: 12px; color: #B94A48}
+.error_messages { width: 350px; padding: 5px; margin-bottom: 20px; background-color: #F2DEDE; font-size: 12px; color: #B94A48; border: solid 1px #EED3D7}
 .error_messages h2 { display:none; text-align: left; font-weight: bold; padding: 5px 10px; font-size: 12px; margin: 0; background-color: #c00; color: #B94A48;}
 .error_messages p { margin: 8px 10px;}
-.error_messages ul { margin: 15px 0 15px 20px;}
+.error_messages ul { margin: 3px 0 3px 20px;}
 .form_button{ display:block; width:60px; height:20px; background-color:#f47d29; font-size:14px; color:#ffffff;  padding:0 10px 2px; border:none;}
 .form_button:hover {color:#14377d;}
 .form_button_disabled{ display:block; width:60px; height:20px; background-color:#aaaaaa; font-size:14px; color:#ffffff;  padding:0 10px 2px; border:none;}

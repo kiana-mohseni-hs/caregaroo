@@ -6,7 +6,7 @@ class PasswordResetsController < ApplicationController
 
   def create
     unless params[:email] =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i 
-      flash[:error] = "Invalid email"
+      flash[:error] = "Email is not valid"
       return render "reset", :layout => "app_no_nav"
     end
     user = User.find_by_email(params[:email])
@@ -15,7 +15,7 @@ class PasswordResetsController < ApplicationController
       @email = user.email
       render "success", :layout => "app_no_nav"
     else
-      flash[:error] = "Invalid email"
+      flash[:error] = "Email is not valid"
       render "reset", :layout => "app_no_nav"
     end
   end

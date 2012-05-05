@@ -3,7 +3,9 @@
 	<%= render 'sub_nav' %>
 <% end %>
 
-<p id="notice"><%= notice %></p>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
 <% if !@user.nil? %>
 	<p class="sub_header">BASICS</p>
 	<% if @user.id == @current_user.id %>
