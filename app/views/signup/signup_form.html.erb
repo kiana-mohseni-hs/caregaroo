@@ -6,11 +6,11 @@
 		<% end %>
 		<%= render "shared/error_messages", :target => @user %>  
 	
-		<h3>Welcome to <%=h @network_name %></h3>
+		<h3>Welcome to the network for <%=h @network_for_who %></h3>
 		<%= f.hidden_field :network_id %>
-		<%= hidden_field_tag "network_name", @network_name %>
-	
-	  	<p>Create your account.</p><br/>
+		<%= hidden_field_tag "network_for_who", @network_for_who %>
+		<p style="padding-bottom:10px">Caregaroo is a secure private network to share news, coordinate activities and say thanks to those who help care for loved ones.</p>
+	  	<p>Create your account:</p><br/>
 	  	
 	  	<div style="font-size:12px">
 		    <%= f.label :email %>

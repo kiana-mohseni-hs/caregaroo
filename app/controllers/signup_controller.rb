@@ -7,7 +7,7 @@ class SignupController < ApplicationController
       logger.debug "(new) send_id=#{@invitations.send_id}"
       
       @sender = User.find(@invitations.send_id)
-      @network_name = @sender.network.network_name
+      @network_for_who = @sender.network.network_for_who
       @user.network_id = @sender.network.id
       @user.email = @invitations.email
       @user.first_name = @invitations.first_name 
@@ -26,7 +26,7 @@ class SignupController < ApplicationController
       logger.debug "(create_signup) token=#{@user.auth_token}"
       render "success", :layout => "app_no_nav"
     else  
-      @network_name = params[:network_name]
+      @network_for_who = params[:network_for_who]
       render "signup_form", :layout => "app_no_nav"
     end
 =begin
