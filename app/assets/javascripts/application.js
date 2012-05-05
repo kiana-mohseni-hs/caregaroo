@@ -53,9 +53,10 @@ $(function() {
 		titleShow		: false
 	});
 	
-	$("a.news_comment").click(function(){
-		var id = $(this).attr("newsid");
+	$("span.news_comment").click(function(){
+		var id = $(this).attr("post-id");
 		$("#new_comment_section_"+id).show();
+		$("#new_comment_section_"+id+" textarea").focus();
 	});
 	
 	$('input[title!=""]').hint();	

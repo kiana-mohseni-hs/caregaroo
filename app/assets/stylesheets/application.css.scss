@@ -17,12 +17,14 @@ body {  background: url('bg_pattern.png'); }
 h3{ color: #414042; font-size:21px; font-weight: 700; margin-bottom:20px; }
 h3.page_title{margin-bottom:0px;color: #14377d;}
 p, ol, ul, td { font-size: 13px; line-height: 18px; }
-pre {  background-color: #eee;  padding: 10px;  font-size: 11px; }
+pre {  background-color: #eee;  padding: 10px; font-size: 11px; }
 a img {  border: none; outline: none;}
-a { color: #414042; outline: none;}
+a { color: #414042; outline: none; }
 a:link { text-decoration:none;}
+a:focus { outline: none; }
 a:visited{}//removed color for now
 a:hover { color: #14377d; }
+input::-moz-focus-inner { border: 0; }
 input.blur { color: #999; }
 textarea.blur { color: #999; }
 .clear { clear: both; height: 0; overflow: hidden; }

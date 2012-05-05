@@ -5,12 +5,10 @@
 	  		<%= content_tag :div, msg, :id => "flash_#{name}" %>
 		<% end %>
 		<%= render "shared/error_messages", :target => @user %>  
-	  
 	
-		<% if @network %>
-			<h3>Welcome to <%=h @network.network_name %></h3>
-		<% end %>
+		<h3>Welcome to <%=h @network_name %></h3>
 		<%= f.hidden_field :network_id %>
+		<%= hidden_field_tag "network_name", @network_name %>
 	
 	  	<p>Create your account.</p><br/>
 	  	
@@ -26,8 +24,8 @@
 		    <span class="note_text">Password must contain at least 6 characters.</span><br/><br/>
 		    <%= f.label :password_confirmation %>
 		    <%= f.password_field :password_confirmation, :size=>35 %><br/><br/>
-		    <% if @network %>
-			<label for="user_network_relationship">Relationship to <%=h @network.network_name %></label>
+		    <% if @network_name %>
+			<label for="user_network_relationship">Relationship to <%=h @network_name %></label>
 			<% elsif %>
 		    <%= f.label :network_relationship, 'Relationship to the person at the centre of network' %>
 		    <% end %>

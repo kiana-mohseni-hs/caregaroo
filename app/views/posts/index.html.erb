@@ -5,7 +5,7 @@
 <% @posts.each do |post| %>
   <tr>
     <td>
-	<div id="post" data-id="<%= post.id %>">
+	<div id="post_<%= post.id %>" data-id="<%= post.id %>">
 		<div id="news">
  			<%= image_tag "photo_place_holder.png", :alt => !post.user.nil? ? post.user.first_name : 'Anonymous' , :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
 			<div class="comment_content">
@@ -13,22 +13,21 @@
 			<span class="time_text"><%= time_ago_in_words(post.created_at) %> ago at <%= post.created_at.strftime('%I:%M %p') %></span> 
 			<br/>
 			<%= post.content %><br/>
-			<ul><li class="comment_links"><a id="comment_<%= post.id %>" newsid="<%= post.id %>" class="orange_text news_comment" >Comment</a></li>  
+			<ul><li class="comment_links"><span id="comment_<%= post.id %>" post-id="<%= post.id %>" class="orange_text news_comment" style="cursor:pointer">Comment</span></li>  
 			<% if !post.comments.empty? && post.comments.count > 3 %> 
 				<li><%= link_to "View all #{pluralize(post.comments.count, " comment")}", post_commments_path(post.id), :method => :get, :remote => true, :class => "orange_text" %></li>
 			<% end %>
-			</ul>
+			</ulo>
 			<!-- <%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %><br/> -->
 			<div class="clear"></div>
 			</div>
 		</div>
-		
 		<div id="comments_<%= post.id %>" class="comments">
 			<% unless post.comments.empty? %> 
 				<%= render post.comments.first(3) %>	
 			<% end %>
 		</div>
-		<div id="new_comment_section_<%= post.id %>" style="<%= post.comments.empty? ? "display:none" : "display:block" %>" class="new_comment_section" >  	
+		<div id="new_comment_section_<%= post.id %>" style="<%= post.comments.empty? ? "display:none" : "display:none" %>" class="new_comment_section" >  	
 			<%= form_for Comment.new, :remote => true do |f| %>
 			  <%= f.hidden_field :post_id, :value => "#{post.id}" %>
 			  <div class="text_background">
@@ -37,9 +36,7 @@
 			  <%= f.submit "Reply", :class =>"form_button", :id=>"reply_button"%>
 			<% end %>
 		</div>
-	    
-	   
-		<hr color="#cccccc"/>
+		<hr style="margin-top: 10px;"/>
 	</div>
    </td>
     
