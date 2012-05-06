@@ -2,9 +2,10 @@
 
 <table>
 <tr><td><%= render 'form_new' %></td></tr>
-<% @posts.each do |post| %>
   <tr>
     <td>
+<% if @posts.count > 0 %>
+<% @posts.each do |post| %>
 	<div id="post_<%= post.id %>" data-id="<%= post.id %>">
 		<div id="news">
  			<%= image_tag "photo_place_holder.png", :alt => !post.user.nil? ? post.user.first_name : 'Anonymous' , :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
@@ -41,9 +42,19 @@
 		</div>
 		<hr style="margin-top: 10px;"/>
 	</div>
-   </td>
-    
-  </tr>
 <% end %>
+<% else %>
+  <div id="news">
+  	<%= image_tag "photo_place_holder.png", :alt => 'Caregaroo' , :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+  	<div class="comment_content">
+		<span class="name_text">Caregaroo</span>
+		<br/>
+		Welcome to Caregaroo! Invite others in your circle of care to join the network. <%= link_to "Invite", invite_path, :class => "orange_text" %><br/>
+		<div class="clear"></div>
+	</div>
+  </div>
+<% end %>
+   </td>
+  </tr>
 </table>
 

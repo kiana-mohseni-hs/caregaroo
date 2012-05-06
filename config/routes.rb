@@ -17,7 +17,7 @@ Auth::Application.routes.draw do
   get "members" => "members#index", :as => "members"
   put "members/:user_id" => "members#update", :as => "members_update"
   delete "members/:user_id" => "members#delete", :as => "members_delete"
-  get "invite" => "invitations#index", :as => "invitation"
+  get "invite" => "invitations#index", :as => "invite"
   get "invite/success" => "invitations#success", :as => "success_invitation"
   post "invite/send" => "invitations#create", :as => "send_invitation"
   post "messages/reply" => "messages#reply", :as => "reply_message"
