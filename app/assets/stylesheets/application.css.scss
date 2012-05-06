@@ -45,10 +45,13 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 #nav_list_header, #member_list_header{font-weight:normal;margin-bottom:6px;margin-left:50px;}
 #nav_list{margin:0px;}
 #nav_list li{height:22px; list-style:none;margin-left:-10px; margin-bottom:4px;width:241px; padding-top:5px;}
-#nav_list li.highlight{height:21px; font-weight:bold; background-color:#fff;border-top:solid 1px #ccc;border-bottom:solid 1px #ccc; width:241px; padding-top:4px; border-left:1px solid #ccc }
-#nav_msg_board{background:url('icons2.png') no-repeat -16px -1px;width:24px; height:20px; float:left; margin:0 6px 0 60px;}
+#nav_list li.current{height:21px; font-weight:bold; background-color:#fff;border-top:solid 1px #ccc;border-bottom:solid 1px #ccc; width:240px; padding-top:4px; border-left:1px solid #ccc }
 .nav_list_icon{width:24px; height:20px; float:left;  margin:0 6px 0 60px;}
+.nav_list_icon_current{width:24px; height:20px; float:left;  margin:0 6px 0 59px;}
+#nav_msg_board{background:url('icons2.png') no-repeat -16px -1px;}
+.nav_wrapper:hover #nav_msg_board{background:url('icons2.png') no-repeat -16px -21px;}
 #nav_invite{background:url('icons.png') no-repeat -49px 1px;}
+.nav_wrapper:hover #nav_invite{background:url('icons.png') no-repeat -49px 1px;}
 #nav_calendar{background:url('icons.png') no-repeat -49px 1px;}
 /*#nav_calendar{background:url('icons.png') no-repeat -1px -18px;}
 #nav_private_msg{background:url('icons.png') no-repeat -162px -1px;}
