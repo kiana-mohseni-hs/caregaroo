@@ -16,10 +16,10 @@
       		<span class="name_text"><%=h user.first_name %> <%=h user.last_name %>: <%=h user.network_relationship %>
       		</span><br/>
       		<div class="role_line">
-      		<% if @current_user.is_initiator_or_coordinator? && !user.is_initiator? %>
+      		<% if @current_user.is_initiator_or_coordinator? && !(user.is_initiator? || (user.is_coordinator? && user.id == @current_user.id)) %>
 				<%= link_to 'Remove', members_delete_path(user.id), :confirm => 'Are you sure?', :method => :delete, :class => "orange_text" %>
 			<% end %>
-			<% if @current_user.is_initiator_or_coordinator? && !user.is_initiator? %>
+      		<% if @current_user.is_initiator_or_coordinator? && !(user.is_initiator? || (user.is_coordinator? && user.id == @current_user.id)) %>
 				<%= check_box_tag  "coordinator_#{user.id}", user.id, user.is_coordinator?, { :class => 'coordinator', 'data-href' => members_update_path(user.id), 'data-method' => 'put' } %> Coordinator
 			<% else %>            
 				<%= user.role %>
