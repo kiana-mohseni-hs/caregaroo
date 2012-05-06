@@ -27,6 +27,7 @@ a:hover { color: #14377d; }
 input::-moz-focus-inner { border: 0; }
 input.blur { color: #999; }
 textarea.blur { color: #999; }
+textarea { resize: none; }
 .clear { clear: both; height: 0; overflow: hidden; }
 input {background:#ebebeb; border:solid 1px #ccc;}
 #header_frame {	width:1024px; display:block; color:#414042; margin:auto; }

@@ -1,2 +1,3 @@
 $("#comments_count_<%= @comment.post_id %>").html("<%= pluralize(@comments.count, 'comment') %>");
 $("#comments_<%= @comment.post_id %>").html("<%= escape_javascript(render(:partial => "comment", :collection => @comments)) %>");
+equalHeight($("div#user_nav, div#container, div#shortcuts"));
