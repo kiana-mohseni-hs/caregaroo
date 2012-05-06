@@ -56,14 +56,14 @@
     	<h6 id="nav_list_header">NETWORKS</h6>
     	<ul id="nav_list">	
     		<% if @page == 'posts' %>	
-	      		<li class="highlight"><div id="nav_msg_board" class="nav_list_icon"></div><%= link_to "News Stream", news_path %></li>
+	      		<li class="current"><div class="nav_wrapper"><div id="nav_msg_board" class="nav_list_icon_current"></div><%= link_to "News Stream", news_path %></div></li>
 	       	<% elsif %>
-	        	<li ><div id="nav_msg_board" class="nav_list_icon"></div><%= link_to "News Stream", news_path %></li>
+	        	<li ><div class="nav_wrapper"><div id="nav_msg_board" class="nav_list_icon"></div><%= link_to "News Stream", news_path %></div></li>
 	      	<%end%>
 	      	<% if @page == 'invite' %>	
-	      		<li class="highlight"><div id="nav_invite" class="nav_list_icon"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>
+	      		<li class="current"><div class="nav_wrapper"><div id="nav_invite" class="nav_list_icon_current"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>
 	        <% elsif %> 
-	      		<li><div id="nav_invite" class="nav_list_icon"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></li>     
+	      		<li><div class="nav_wrapper"><div id="nav_invite" class="nav_list_icon"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>     
 	        <% end %>
 	      <!--
 	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>
