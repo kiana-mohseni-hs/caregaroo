@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = Post.where("id = ? and user_id = ?", params[:id], @current_user.id).first
     @post.destroy
 
     respond_to do |format|
@@ -46,4 +46,14 @@ class PostsController < ApplicationController
       format.js
     end
   end
+  
+  def full_post
+    @post = Post.where("id = ? and network_id = ?", params[:id], @current_user.network_id).first
+    
+    respond_to do |format|
+      format.html { redirect_to news_path }
+      format.js
+    end
+  end
+  
 end

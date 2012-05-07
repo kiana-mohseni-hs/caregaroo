@@ -5,7 +5,7 @@ class ProfileController < ApplicationController
     if params[:user_id].nil?
       @user = @current_user
     else
-      @user = User.where("id=?", params[:user_id]).first
+      @user = User.where("id=? and network_id=?", params[:user_id], @current_user.network_id).first
     end
   end
   

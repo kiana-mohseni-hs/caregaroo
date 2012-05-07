@@ -5,10 +5,6 @@ class CommentsController < ApplicationController
     @comments = Comment.where("post_id = ? and created_at > ?", params[:post_id], Time.at(params[:after].to_i + 1))
   end
 
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-
   def create
     @comment = Comment.new(params[:comment])
     @comment.user_id = @current_user.id
@@ -23,7 +19,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = Comment.where("id = ? and user_id = ?", params[:id], @current_user.id).first
     @comments = Comment.where("post_id = ?", @comment.post_id)
     @comment.destroy
 
