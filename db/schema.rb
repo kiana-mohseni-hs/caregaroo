@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120427045531) do
+ActiveRecord::Schema.define(:version => 20120507071418) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20120427045531) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
-    t.string   "content"
+    t.string   "content",    :limit => 1000
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "network_id"
