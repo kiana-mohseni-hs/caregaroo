@@ -27,10 +27,10 @@
 	<div id="user_selector">	
 		<% if @current_user %>
 		<dl id="user_dropdown" class="dropdown">
-			<dt><a href="#"><span><%= @current_user.first_name %></span></a></dt>
+			<dt><a href="#"><span><%= image_tag "photo_place_holder.png", :class=>"dt_icon", :height => "30", :width => "35" %><%= @current_user.first_name %><div class="dt_arrow"><div class="dt_arrow_bg"></div></div></span></a></dt>
 	        <dd><ul>
-				<li><span style="text-align:center"><a href="/profile">Settings</a></span></li>
-				<li><span style="text-align:center"><%= link_to "Log out", logout_path %></span></li>
+				<li><a href="/profile" style="padding-left:20px;">Settings</a></li>
+				<li><%= link_to "Log out", logout_path, :style=>"padding-left:20px;" %></li>
 			</ul></dd>
 		</dl>
      	<% else %>
