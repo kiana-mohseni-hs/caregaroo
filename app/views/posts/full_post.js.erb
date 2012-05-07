@@ -1,1 +1,4 @@
-$('#post_content_<%= post.id %>').html("<%= simple_format post.content %>")
+<% if !@post.nil? %>
+$('#post_content_<%= @post.id %>').html("<%=j simple_format(@post.content) %>")
+equalHeight($("div#user_nav, div#container, div#shortcuts"));
+<% end %>

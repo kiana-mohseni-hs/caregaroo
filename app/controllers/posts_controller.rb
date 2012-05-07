@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   end
   
   def full_post
-    @post = Post.where("id = ? and network_id = ?", params[:id], @current_user.network_id).first
+    @post = Post.where("id = ? and network_id = ?", params[:post_id], @current_user.network_id).first
     
     respond_to do |format|
       format.html { redirect_to news_path }
