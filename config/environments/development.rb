@@ -25,6 +25,9 @@ Auth::Application.configure do
   # Do not compress assets
   config.assets.compress = false
   
+  # hide assets log
+  config.assets.debug = false
+  
   config.log_tags = [ :subdomain, :uuid ]
 
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
