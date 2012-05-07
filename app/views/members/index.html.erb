@@ -13,7 +13,7 @@
      <li class = "member">
       	<%= image_tag "photo_place_holder.png", :alt => user.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
       	<div class="member_info">
-      		<span class="name_text"><%=h user.first_name %> <%=h user.last_name %>: <%=h user.network_relationship %>
+      		<span class="name_text"><%= link_to "#{user.first_name} #{user.last_name}", user_info_profile_path(user)%> : <%=h user.network_relationship %>
       		</span><br/>
       		<div class="role_line">
       		<% if @current_user.is_initiator_or_coordinator? && !(user.is_initiator? || (user.is_coordinator? && user.id == @current_user.id)) %>
