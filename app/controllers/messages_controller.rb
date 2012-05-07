@@ -82,7 +82,9 @@ class MessagesController < ApplicationController
 =end
   def destroy
     @message = Message.find(params[:id])
-    @message.destroy
+    if !@message.nil?
+      @message.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to messages_url }

@@ -9,7 +9,9 @@ class PilotSignupsController < ApplicationController
 
   def destroy
     @pilot_signup = PilotSignup.find(params[:id])
-    @pilot_signup.destroy
+    if !@pilot_signup.nil?
+      @pilot_signup.destroy
+    end
     respond_to do |format|
       format.html { redirect_to pilot_signups_url }
       format.json { head :ok }

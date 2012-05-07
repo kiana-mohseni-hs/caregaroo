@@ -19,9 +19,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.where("id = ? and user_id = ?", params[:id], @current_user.id).first
+    @comment = Comment.where("id = ? and user_id = ?", params[:comment_id], @current_user.id).first
     @comments = Comment.where("post_id = ?", @comment.post_id)
-    @comment.destroy
+    
+    if !@comment.nil?
+      @comment.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to news_url }

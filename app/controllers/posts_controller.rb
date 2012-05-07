@@ -7,7 +7,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @posts }
     end 
   end
 
@@ -28,12 +27,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.where("id = ? and user_id = ?", params[:id], @current_user.id).first
-    @post.destroy
+    @post = Post.where("id = ? and user_id = ?", params[:post_id], @current_user.id).first
+    if !@post.nil?
+      @post.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to news_path }
-      format.json { head :ok }
     end
   end
   
