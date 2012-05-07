@@ -15,6 +15,7 @@ Auth::Application.routes.draw do
   get "news" => "posts#index", :as => "news"
   get "news/:post_id/comments" => "posts#comments", :as => "post_commments"
   get "news/:post_id" => "posts#full_post", :as => "post"
+  get "comment/:comment_id" => "comments#full_comment", :as => "comment"
   get "members" => "members#index", :as => "members"
   put "members/:user_id" => "members#update", :as => "members_update"
   delete "members/:user_id" => "members#delete", :as => "members_delete"

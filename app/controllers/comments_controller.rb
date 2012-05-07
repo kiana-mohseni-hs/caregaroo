@@ -29,6 +29,14 @@ class CommentsController < ApplicationController
     end
   end
   
+  def full_comment
+    @comment = Comment.where("id = ?", params[:comment_id]).first
+    
+    respond_to do |format|
+      format.html { redirect_to news_path }
+      format.js
+    end
+  end
 =begin
   # PUT /comments/1
   # PUT /comments/1.json

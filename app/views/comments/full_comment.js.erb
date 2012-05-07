@@ -1,0 +1,4 @@
+<% if !@comment.nil? %>
+$('#comment_content_<%= @comment.id %>').html("<%=j simple_format(@comment.content) %>")
+equalHeight($("div#user_nav, div#container, div#shortcuts"));
+<% end %>
