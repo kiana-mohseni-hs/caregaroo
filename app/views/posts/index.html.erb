@@ -12,7 +12,7 @@
 			<div class="comment_content">
 			<span class="name_text"><%= !post.user.nil? ? link_to(post.user.first_name, user_info_profile_path(post.user)) : 'Anonymous' %> (<%= !post.user.nil? ? post.user.network_relationship : 'Removed' %>)</span>
 			<span class="time_text"><%= time_ago_in_words(post.created_at) %> ago at <%= post.created_at.strftime('%I:%M %p') %></span> 
-			<div id="post_content_<%= post.id %>" class="post_content_area"><%= raw truncate(post.content, :length => 320, :omission => link_to(' ... (Read More)', root_path, :method => :get, :remote => true, :class => "orange_text")) %></div>
+			<div id="post_content_<%= post.id %>" class="post_content_area"><%= raw truncate(post.content, :length => 240, :omission => link_to(' ... (Read More)', post_path(post.id), :method => :get, :remote => true, :class => "orange_text")) %></div>
 			<ul>
 				<li class="comment_links"><span id="comment_<%= post.id %>" post-id="<%= post.id %>" class="orange_text news_comment" style="cursor:pointer">Comment</span></li>  
 				<% if !post.comments.empty? && post.comments.count > 3 %> 
