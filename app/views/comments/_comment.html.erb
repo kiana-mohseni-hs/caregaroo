@@ -3,7 +3,7 @@
 	<div class="comment_content">
 		<span class="name_text"><%= !comment.user.nil? ? link_to(comment.user.first_name, user_info_profile_path(comment.user)) : 'Anonymous'  %> (<%= !comment.user.nil? ? comment.user.network_relationship  : 'Removed' %>)</span>
 		<span class="time_text"><%= time_ago_in_words(comment.created_at) %> ago at <%= comment.created_at.strftime('%I:%M %p') %></span> 
-		<div id="comment_content_<%= comment.id %>"><%= raw truncate(comment.content, :length => 250, :omission => link_to(' ... (Read More)', comment_path(comment.id), :method => :get, :remote => true, :class => "orange_text")) %></div>
+		<div id="comment_content_<%= comment.id %>"><%= raw truncate(comment.content, :length => 240, :omission => link_to(' ... (Read More)', comment_path(comment.id), :method => :get, :remote => true, :class => "orange_text")) %></div>
 		<% if !comment.user.nil? && @current_user.id == comment.user.id %>
 			<span><%= link_to 'Delete', comment, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => "orange_text" %></span>
 		<% end %>
