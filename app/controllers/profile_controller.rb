@@ -18,6 +18,7 @@ class ProfileController < ApplicationController
       @profile = Profile.new
     end
 =end
+    @user = @current_user
     render "basic"
   end
 

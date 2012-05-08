@@ -77,10 +77,20 @@
 		<h6 id="member_list_header">MEMBERS</h6>
 		<ul id="member_list">	
 		<% for member in @current_user.network.users.limit(10) %>
-			<li><%= image_tag "photo_place_holder.png", :height => "30", :width => "33", :style => "float:left;padding-right:5px" %>
+			<% if !@user.nil? && @user.id == member.id %>
+				<li class="current">
+				<%= image_tag "photo_place_holder.png", :height => "30", :width => "33", :style => "float:left;margin:-8px 6px 0 59px" %>
 				<%= link_to member.first_name, user_info_profile_path(member) %></li>
+			<% else %>
+				<li><%= image_tag "photo_place_holder.png", :height => "30", :width => "33", :style => "float:left;margin:-8px 6px 0 60px" %>
+				<%= link_to member.first_name, user_info_profile_path(member) %></li>
+			<% end %>
 		<% end %>
-			<li><%= link_to "All Members", members_path, :class => "orange_text" %></li>
+			<% if @page == "members" %>
+			<li class="current"><%= link_to "All Members", members_path, :class => "orange_text", :style => "float:left;margin:0px 6px 0 97px"  %></li>
+			<% else %>
+			<li><%= link_to "All Members", members_path, :class => "orange_text", :style => "float:left;margin:0px 6px 0 98px"  %></li>
+			<% end %>
 		</ul>
     </div>
 	<div id="container">

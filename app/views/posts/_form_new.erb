@@ -1,6 +1,6 @@
 <%= form_for Post.new do |f| %>
   <div class="field">
-    <%= f.text_area :content, :title => "Share news with your network...", :class => "post_textarea" %>
+    <%= f.text_area :content, :title => "Share news about #{current_user.network.network_name}.", :class => "post_textarea" %>
   </div>
   <div class="actions">
     <%= f.submit "Update", :class =>"form_button", :id=>"update_button"%>
