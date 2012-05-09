@@ -21,7 +21,7 @@
 		<div class="field">
 		    <%= f.check_box :remember_me %>
 		    <%= label_tag :remember_me, nil, :class=>"follow cb_label" %>
-		    <%= submit_tag "Log In", :class =>"form_button", :id=>"sign_in_button"%>
+		    <%= submit_tag "Login", :class =>"form_button", :id=>"sign_in_button"%>
 		</div>
 	
 		  <div class="actions follow">
@@ -32,8 +32,9 @@
 	<div id="login_box_right">
 		<h3>Don't have an account</h3>
 		<p>Sign up and create a network around your loved one to share news, feel connected and get help</p>
-
-		<%= link_to "Sign Up", register_path, :class=>"orange_button_link", :id=>"sign_up_button"%>
+		<%= form_for @session, :url => register_path, :method => :get, :html => { :id => 'register_form' } do |f| %>
+		    <div style="float:right"><%= submit_tag "Signup", :class =>"form_button", :id=>"register_button"%></div>
+		<% end %>
 	</div>
 
 </div>
