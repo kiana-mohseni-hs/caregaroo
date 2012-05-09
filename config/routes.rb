@@ -8,6 +8,7 @@ Auth::Application.routes.draw do
   get "login" => "sessions#login", :as => "login"
   get "register" => "register#index", :as => "register"
   post "register" => "register#create", :as => "register"
+  get "register/success" => "register#success", :as => "register_success"
   get "profile" => "profile#info", :as => "profile"
   get "profile/edit" => "profile#edit_info", :as => "edit_info_profile"
   get "profile/:user_id" => "profile#info", :as => "user_info_profile"

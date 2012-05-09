@@ -23,8 +23,7 @@ class SignupController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       cookies[:auth_token] = @user.auth_token
-      logger.debug "(create_signup) token=#{@user.auth_token}"
-      render "success", :layout => "app_no_nav"
+      redirect_to signup_success_path
     else  
       @network_for_who = params[:network_for_who]
       render "signup_form", :layout => "app_no_nav"
@@ -56,6 +55,7 @@ class SignupController < ApplicationController
   end
   
   def success
+      render "success", :layout => "app_no_nav"
   end
   
 end
