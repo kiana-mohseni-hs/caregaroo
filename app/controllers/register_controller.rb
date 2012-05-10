@@ -30,7 +30,7 @@ class RegisterController < ApplicationController
     
     if @network.save
       cookies[:auth_token] = @network.users.first.auth_token
-      logger.debug "(create) token=#{@network.users.first.auth_token}"
+      Resque.enqueue(WelcomeMailer, @network.users.first.id)
       redirect_to register_success_path
     else
       render :action => "index", :layout => "app_no_nav"

@@ -48,4 +48,6 @@ Auth::Application.routes.draw do
   resources :comments
   resources :pilot_signups
   resources :events
+  
+  mount Resque::Server, :at => "/resque"
 end

@@ -21,6 +21,10 @@ class SignupController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    if (params[:notification])
+      @user.notification = Notification.new(:announcement => true)
+    end
+    
     if @user.save
       cookies[:auth_token] = @user.auth_token
       redirect_to signup_success_path

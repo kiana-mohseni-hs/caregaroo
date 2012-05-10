@@ -39,14 +39,12 @@
 			<br/>
 			
 			<div class="right_text_with_icon">
-		    <%= check_box_tag :notification, "", true %> Email me Caregaroo news and announcements.
+		    <%= check_box_tag :notification, 1, true %> Email me Caregaroo news and announcements.
 			</div>
 		    <div class="right_text_with_icon">
 			    <%= check_box_tag :tos %> I have read and agree to the <a class="tos" href="https://caregaroo.zendesk.com/entries/21360183-terms-of-services" target="_blank">Terms of Services</a>.
 			</div>
 			
-			<!-- not letting user cancel?
-				<%= link_to "Cancel", root_path , :class=>"right_text"%>--> 
 			<br style="clear:both"/>
 		 	<%= f.submit "Create Network", :disabled=>"disabled", :class=>"form_button_disabled", :id=>"create_btn"%> 
 	 	</div>
