@@ -13,10 +13,14 @@ gem 'sqlite3'
 #gem 'sass-rails', "~> 3.1.0.rc"
 gem 'sass-rails', "~> 3.1.0"
 gem 'coffee-script'
+# jsvascript compressor
 gem 'uglifier'
 
 gem 'jquery-rails'
 gem 'event-calendar', :require => 'event_calendar'
+
+# background jobs and queues
+gem 'resque', :require => "resque/server"
 
 # gem "mail", "2.1.3"
 
