@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   def index
     @page = 'posts'
     @posts = Post.where("network_id = ?", @current_user.network).order("created_at DESC")
-
     respond_to do |format|
       format.html # index.html.erb
     end 
@@ -21,6 +20,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        Resque.enqueue(NewsActivityMailer, @post.id)
         format.html { redirect_to news_path }
       end
     end

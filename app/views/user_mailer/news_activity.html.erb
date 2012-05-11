@@ -1,22 +1,8 @@
-<p>Recent activities on <Azra Kermanshahi>'s network:</p>
+<h1>Recent activities on <%= @network_for_who %>'s network:</h1>
 
-<p>
-News updates and comments:
-Kayla Molin posted: "Sue is doing well. Thanks for ..." <Michael: display first 30 letters, followed by …”
-Kayla Molin posted: "Hi everyone, today Sue is ..."
-Roger Rampuri commented: "Sorry to hear that Kay ..."
-[Only list the 5 most recent posts and comments here]
-see more news updates ...</p>
+<h2>News updates and comments:</h2>
+<p><strong><%=h !@post.user.nil? ? "#{@post.user.first_name} #{@post.user.last_name}" : "Anonymous" %></strong> posted:<br/>
+	<%=h @post.content %></p>
+<p><%= link_to "see more news updates ...", news_url, :style => "text-decoration: none" %></p>
 
-<p>New members:
-Olga Orda joined the network.
-Nadine Fasbiner joined the network.
-[list 10 most recent members]
-see other new network members ...</p>
-
-
-<p>The Caregaroo Team</p>
-
-<p>Footer:	You were sent this email because you registered on www.caregaroo.com. If you don’t want to receive these emails from Caregaroo in the future please click
-<%= link_to "unsubscribe", root_path %>.<br/>
-© 2011 Azra Ventures Inc. <a href="http://www.caregaroo.com">Learn more about Caregaroo</a></p>
+<%= render 'footer' %>

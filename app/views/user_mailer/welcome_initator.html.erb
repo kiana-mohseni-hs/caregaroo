@@ -2,7 +2,7 @@
 
 <p>Congratulations on creating your Caregaroo account. You can now connect with members of <%= @user.network.network_for_who %>’s network. Here are some suggestions for what you can do next:</p>
 
-<ol>
+<ol style="font-weight: bold">
 <li>Invite caregivers, friends and family to join the network</li>
 <li>Share daily updates, news and messages of support</li>
 <li>update your profile so others can contact you</li>
@@ -10,8 +10,4 @@
 
 <a href="https://caregaroo.zendesk.com/forums">Learn more …</a>
 
-<p>The Caregaroo Team</p>
-
-<p>Footer:	You were sent this email because you registered on www.caregaroo.com. If you don’t want to receive these emails from Caregaroo in the future please click
-<%= link_to "unsubscribe", root_path %>.<br/>
-© 2011 Azra Ventures Inc. <a href="http://www.caregaroo.com">Learn more about Caregaroo</a></p>
+<%= render 'footer' %>

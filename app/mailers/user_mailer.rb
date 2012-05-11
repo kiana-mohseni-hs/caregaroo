@@ -25,10 +25,10 @@ class UserMailer < ActionMailer::Base
     mail :to => @user.email, :subject => "Welcome to Caregaroo"
   end
   
-   def news_activity(post_id)
-    @post = Post.find(post_id)
-    @members = User.joins(:notification).where("users.network_id = ?", @post.user.network.id)
-    mail :to => @user.email, :subject => "Recent activity on #{@post.network.network_for_who}'s network"
+  def news_activity(post, member, network_for_who)
+    @network_for_who = network_for_who
+    @post = post
+    mail(:to => member.email, :subject => "Recent activity on #{network_for_who}'s network")
   end
   
 end
