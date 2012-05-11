@@ -80,10 +80,4 @@ jQuery(document).ready(function() {
    });
 
     /* end fancybox setup code */
-
-  	
-  	$('#help_top_nav').click(function(event){
-		//_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help']);
-        window.open('https://caregaroo.zendesk.com/forums');
-  	});
 });
