@@ -10,15 +10,16 @@ class ProfileController < ApplicationController
   end
   
   def edit_info
-    logger.debug "(edit_info) #{params}"
-
+    @user = @current_user
+    if @user.notification.nil?
+      @user.notification = Notification.new
+    end
 =begin    
     @profile = @current_user.profile
     if @profile.nil?      
       @profile = Profile.new
     end
 =end
-    @user = @current_user
     render "basic"
   end
 
@@ -49,12 +50,10 @@ class ProfileController < ApplicationController
   def update_info
     old_password = params[:old_password]
     if !old_password.empty? && !@current_user.authenticate(old_password)
-      flash[:error] = "Old password incorrect."
-      return redirect_to edit_info_profile_path     
+      return redirect_to edit_info_profile_path, :alert => "Old password incorrect."   
     end
     
     if @current_user.update_attributes(params[:user])
-      flash[:notice] = "Profile was successfully updated."
       redirect_to profile_path, :notice => 'Profile was successfully updated.'
     else
       render "basic"

@@ -48,7 +48,7 @@ $(function() {
 	$('#session_email').focus();
 	$('#network_network_name').focus();
 	$('#invitation_email').focus();
-	$('#user_email').focus();
+	$('#signup_email').focus();
 
 	$("a.send_invite").fancybox({
 		scrolling:"no",	

@@ -33,8 +33,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to :back, :notice => 'Message replied.'
     else
-       flash[:error] = "Cound not reply message"
-       redirect_to :back
+      redirect_to :back, :alert => "Cound not reply message"
     end
   end
   
@@ -58,11 +57,9 @@ class MessagesController < ApplicationController
     @message.recipients.build(:user_id => @current_user.id)
     
     if @message.save
-      flash[:notice] = "Message was successfully created."
-      redirect_to messages_path 
+      redirect_to messages_path, :notice => "Message was successfully created." 
     else
-      flash[:error] = "Cound not send message"
-      redirect_to :back
+      redirect_to :back, :alert => "Cound not send message"
     end  
   end
   

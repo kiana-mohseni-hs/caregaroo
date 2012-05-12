@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   has_many :messages, :through => :recipients
   has_one :profile
   has_one :notification
+  accepts_nested_attributes_for :notification, :allow_destroy => true
   
   def get_related_messages(folder_id)
       @messages = Message.where("folder_id = ?", folder_id).order("created_at")
