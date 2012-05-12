@@ -1,0 +1,11 @@
+<div id="register_success_box" style="height:100px; width:550px; padding:60px 20px; text-align:center;">
+	<h3 class="page_title">Your email has been unsubscribed!</h3>
+	<br/>
+	<div id="reset_success_btn">
+		<% if current_user %>
+		<%= link_to "Back to Home", news_path, :class=>"orange_button_link" %>
+		<% else %>
+		<%= link_to "Back to Home", root_path, :class=>"orange_button_link" %>
+		<% end %>
+	</div>
+</div>

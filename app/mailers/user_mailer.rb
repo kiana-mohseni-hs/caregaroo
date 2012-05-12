@@ -22,13 +22,22 @@ class UserMailer < ActionMailer::Base
   
   def welcome_initator(user_id)
     @user = User.find(user_id)
-    mail :to => @user.email, :subject => "Welcome to Caregaroo"
+    @token = generate_token(@user.email)
+    @recipient_email = @user.email
+    mail :to => @recipient_email, :subject => "Welcome to Caregaroo"
   end
   
   def news_activity(post, member, network_for_who)
     @network_for_who = network_for_who
     @post = post
-    mail(:to => member.email, :subject => "Recent activity on #{network_for_who}'s network")
+    @token = generate_token(member.email)
+    @recipient_email = member.email
+    mail(:to => @recipient_email, :subject => "Recent activity on #{network_for_who}'s network")
+  end
+  
+  private 
+  def generate_token(email)
+    Digest::SHA256.hexdigest(email.downcase + UNSUBSCRIBED_SECRET_KEY)
   end
   
 end
