@@ -17,6 +17,18 @@
 		<div class="left_text">Email:</div><div class="right_text"><%= @user.email %></div><br/>
 		<div class="left_text">Relationship:</div><div class="right_text"><%= @user.network_relationship %></div><br/>
 	</div>
+	<% if @user.id == @current_user.id && !@user.notification.nil? %>
+	<p class="sub_header">SEND ME A NOTIFICATION:</p>
+  	<div class="profile_content">
+  	<div class="row_space"><div class="left_text">When Caregaroo Team has an announcement about the site</div>
+  		<div><%= check_box_tag 'announcement', true, (@user.notification.announcement ? true : false), :disabled => true, :style => "float:right" %></div></div>
+  	<div class="row_space"><div class="left_text">When someone posts an update</div>
+  		<div><%= check_box_tag 'post_update', true, (@user.notification.post_update ? true : false), :disabled => true, :style => "float:right" %></div></div>
+  	<div class="row_space"><div class="left_text">When there is a response to my posting</div>
+  		<div><%= check_box_tag 'response_post', true, (@user.notification.response_post ? true : false), :disabled => true, :style => "float:right" %></div></div>
+  	</div>
+  	<% end %>
+  
 <% else %>
 	<p>There's no profile.</p>
 <% end %>

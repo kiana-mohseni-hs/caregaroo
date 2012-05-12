@@ -14,38 +14,8 @@ class ProfileController < ApplicationController
     if @user.notification.nil?
       @user.notification = Notification.new
     end
-=begin    
-    @profile = @current_user.profile
-    if @profile.nil?      
-      @profile = Profile.new
-    end
-=end
-    render "basic"
+    render "edit"
   end
-
-=begin  
-  def update_info
-    logger.debug "(update_profile) #{params}"
-    
-    @profile = @current_user.profile
-    
-    if @profile.nil?
-      @profile = Profile.new(params[:profile])
-      @profile.user_id = @current_user.id   
-      if @profile.save
-        redirect_to info_profile_path, :notice => 'Profile was successfully created.'
-      else
-        render :edit
-      end
-    else  
-      if @profile.update_attributes(params[:profile])
-        redirect_to info_profile_path, :notice => 'Profile was successfully updated.'
-      else
-        render :edit
-      end
-    end
-  end
-=end  
 
   def update_info
     old_password = params[:old_password]
@@ -56,7 +26,7 @@ class ProfileController < ApplicationController
     if @current_user.update_attributes(params[:user])
       redirect_to profile_path, :notice => 'Profile was successfully updated.'
     else
-      render "basic"
+      render "edit"
     end    
   end
   

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, :network_id, :role
+  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, :network_id, :role, :notification_attributes
   has_secure_password
   validates_presence_of :network_relationship
   validates :email, :presence => true, :email_format => true, :uniqueness => true
