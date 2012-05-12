@@ -26,6 +26,7 @@ class ProfileController < ApplicationController
     if @current_user.update_attributes(params[:user])
       redirect_to profile_path, :notice => 'Profile was successfully updated.'
     else
+      @user = @current_user
       render "edit"
     end    
   end
