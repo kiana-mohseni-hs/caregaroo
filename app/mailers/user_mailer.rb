@@ -35,6 +35,15 @@ class UserMailer < ActionMailer::Base
     mail(:to => @recipient_email, :subject => "Recent activity on #{network_for_who}'s network")
   end
   
+  def comments_activity(post, new_comment, receipient_email, network_for_who)
+    @post = post
+    @comment = new_comment
+    @network_for_who = network_for_who
+    @token = generate_token(receipient_email)
+    @recipient_email = receipient_email
+    mail(:to => @recipient_email, :subject => "Recent activity on #{network_for_who}'s network")
+  end
+  
   def members_activity(new_member, receipient_email, network_for_who)
     @member = new_member
     @token = generate_token(receipient_email)

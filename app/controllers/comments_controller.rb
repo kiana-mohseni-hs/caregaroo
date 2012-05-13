@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        Resque.enqueue(CommentsActivityMailer, @comment.id)
         @comments = Comment.where("post_id = ?", @comment.post_id)
         format.html { redirect_to news_path }
         format.js
