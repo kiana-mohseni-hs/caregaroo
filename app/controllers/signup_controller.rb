@@ -27,6 +27,8 @@ class SignupController < ApplicationController
     
     if @user.save
       cookies[:auth_token] = @user.auth_token
+      Resque.enqueue(WelcomeMailer, @user.id)
+      Resque.enqueue(MembersActivityMailer, @user.network_id, @user.id)
       redirect_to signup_success_path
     else  
       @network_for_who = params[:network_for_who]
