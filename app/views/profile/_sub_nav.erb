@@ -1,8 +1,3 @@
-<% if !@user.nil? %>
-	<%= image_tag "photo_place_holder.png", :alt => @user.first_name, :class=>"profile_user_pic" %>
-	<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> (<%= @user.network_relationship %>)</p><br/>
-<% end %>
-
 <div id="profile_sub_menu">
 <ul>
 <li class="selected"><%= link_to "Profile", profile_path, :class=>"orange_button_link"%></li>

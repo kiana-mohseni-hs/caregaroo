@@ -1,83 +1,85 @@
 <% if !@user.nil? %>
-<% if @user.id == @current_user.id %>
-	<%= render 'sub_nav' %>
-<% end %>
-
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-<% if !@user.nil? %>
-	<p class="sub_header">BASICS</p>
+	<%= image_tag ( !@user.avatar.nil? ? @user.avatar.url() : "photo_place_holder.png" ), :alt => @user.first_name, :class=>"profile_user_pic" %>
+	<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> (<%= @user.network_relationship %>)</p><br/>
 	<% if @user.id == @current_user.id %>
-	<div style="float:right"><%= link_to "Edit Profile", edit_info_profile_path, :class=>"orange_button_link"%></div>
+		<%= render 'sub_nav' %>
 	<% end %>
-	<div style="clear"></div>
-	<div class="profile_content">
-		<div class="left_text">Name:</div><div class="right_text"><%= @user.first_name %> <%= @user.last_name %></div><br/>
-		<div class="left_text">Email:</div><div class="right_text"><%= @user.email %></div><br/>
-		<div class="left_text">Relationship:</div><div class="right_text"><%= @user.network_relationship %></div><br/>
-	</div>
-	<% if @user.id == @current_user.id && !@user.notification.nil? %>
-	<p class="sub_header">SEND ME A NOTIFICATION:</p>
-  	<div class="profile_content">
-  	<div class="row_space"><div class="left_text">When Caregaroo Team has an announcement about the site</div>
-  		<div><%= check_box_tag 'announcement', true, (@user.notification.announcement ? true : false), :disabled => true, :style => "float:right" %></div></div>
-  	<div class="row_space"><div class="left_text">When someone posts an update</div>
-  		<div><%= check_box_tag 'post_update', true, (@user.notification.post_update ? true : false), :disabled => true, :style => "float:right" %></div></div>
-  	<div class="row_space"><div class="left_text">When there is a response to my posting</div>
-  		<div><%= check_box_tag 'response_post', true, (@user.notification.response_post ? true : false), :disabled => true, :style => "float:right" %></div></div>
-  	</div>
-  	<% end %>
-  
-<% else %>
-	<p>There's no profile.</p>
-<% end %>
-<% if !@user.profile.nil? %>
-	<p>
-	  <b>Bio:</b>
-	  <%= @user.profile.bio %>
-	</p>
 	
-	<p>
-	  <b>Location:</b>
-	  <%= @user.profile.location %>
-	</p>
-	
-	<p>
-	  <b>Significant other:</b>
-	  <%= @user.profile.significant_other %>
-	</p>
-	
-	<p>
-	  <b>Kids name:</b>
-	  <%= @user.profile.kids_name %>
-	</p>
-	
-	<p>
-	  <b>Birthdate:</b>
-	  <%= @user.profile.birthdate %>
-	</p>
-	
-	<p>
-	  <b>Expertise:</b>
-	  <%= @user.profile.expertise %>
-	</p>
-	
-	<p>
-	  <b>Can help with:</b>
-	  <%= @user.profile.can_help_with %>
-	</p>
-	
-	<p>
-	  <b>Phone work:</b>
-	  <%= @user.profile.phone_work %>
-	</p>
-	
-	<p>
-	  <b>Phone mobile:</b>
-	  <%= @user.profile.phone_mobile %>
-	</p>
-<% end %>
+	<% flash.each do |name, msg| %>
+	  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<% end %>
+	<% if !@user.nil? %>
+		<p class="sub_header">BASICS</p>
+		<% if @user.id == @current_user.id %>
+		<div style="float:right"><%= link_to "Edit Profile", edit_info_profile_path, :class=>"orange_button_link"%></div>
+		<% end %>
+		<div style="clear"></div>
+		<div class="profile_content">
+			<div class="left_text">Name:</div><div class="right_text"><%= @user.first_name %> <%= @user.last_name %></div><br/>
+			<div class="left_text">Email:</div><div class="right_text"><%= @user.email %></div><br/>
+			<div class="left_text">Relationship:</div><div class="right_text"><%= @user.network_relationship %></div><br/>
+		</div>
+		<% if @user.id == @current_user.id && !@user.notification.nil? %>
+		<p class="sub_header">SEND ME A NOTIFICATION:</p>
+	  	<div class="profile_content">
+	  	<div class="row_space"><div class="left_text">When Caregaroo Team has an announcement about the site</div>
+	  		<div><%= check_box_tag 'announcement', true, (@user.notification.announcement ? true : false), :disabled => true, :style => "float:right" %></div></div>
+	  	<div class="row_space"><div class="left_text">When someone posts an update</div>
+	  		<div><%= check_box_tag 'post_update', true, (@user.notification.post_update ? true : false), :disabled => true, :style => "float:right" %></div></div>
+	  	<div class="row_space"><div class="left_text">When there is a response to my posting</div>
+	  		<div><%= check_box_tag 'response_post', true, (@user.notification.response_post ? true : false), :disabled => true, :style => "float:right" %></div></div>
+	  	</div>
+	  	<% end %>
+	  
+	<% else %>
+		<p>There's no profile.</p>
+	<% end %>
+	<% if !@user.profile.nil? %>
+		<p>
+		  <b>Bio:</b>
+		  <%= @user.profile.bio %>
+		</p>
+		
+		<p>
+		  <b>Location:</b>
+		  <%= @user.profile.location %>
+		</p>
+		
+		<p>
+		  <b>Significant other:</b>
+		  <%= @user.profile.significant_other %>
+		</p>
+		
+		<p>
+		  <b>Kids name:</b>
+		  <%= @user.profile.kids_name %>
+		</p>
+		
+		<p>
+		  <b>Birthdate:</b>
+		  <%= @user.profile.birthdate %>
+		</p>
+		
+		<p>
+		  <b>Expertise:</b>
+		  <%= @user.profile.expertise %>
+		</p>
+		
+		<p>
+		  <b>Can help with:</b>
+		  <%= @user.profile.can_help_with %>
+		</p>
+		
+		<p>
+		  <b>Phone work:</b>
+		  <%= @user.profile.phone_work %>
+		</p>
+		
+		<p>
+		  <b>Phone mobile:</b>
+		  <%= @user.profile.phone_mobile %>
+		</p>
+	<% end %>
 <% else %>
 	<p>Profile not found.</p>
 <% end %>

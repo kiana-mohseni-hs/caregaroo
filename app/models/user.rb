@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, :network_id, :role, :notification_attributes
+  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, :network_id, :role, :avatar, :notification_attributes
   has_secure_password
   validates_presence_of :network_relationship
   validates :email, :presence => true, :email_format => true, :uniqueness => true
@@ -9,27 +9,12 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 6, :on => :create
   validates_presence_of :password_confirmation, :on => :create
   
-  ROLES = {
-    "admin" => "Admin",
-    "initiator" => "Initiator",
-    "coordinator" => "Coordinator" 
-  }
-  def is_admin?
-    self.role == ROLES["admin"]
-  end
-  def is_initiator?
-    self.role == ROLES["initiator"]
-  end
-  def is_coordinator?
-    self.role == ROLES["coordinator"]
-  end
-  def is_initiator_or_coordinator?
-    self.role == ROLES["initiator"] || self.role == ROLES["coordinator"]
-  end
-  
-  before_create { 
-    generate_token(:auth_token) 
-  }
+  belongs_to :network, :class_name => "Network", :foreign_key => "network_id"
+  has_many :invitations
+  has_many :recipients
+  has_many :messages, :through => :recipients
+  has_one :profile
+  has_one :notification
   has_many :posts, :class_name => "Post", :finder_sql => Proc.new {
       %Q{
         SELECT DISTINCT *
@@ -45,21 +30,21 @@ class User < ActiveRecord::Base
         WHERE r.user_id = #{id}) GROUP BY folder_id ORDER BY created_at desc;
       }
   }
-
-  belongs_to :network, :class_name => "Network", :foreign_key => "network_id"
-  has_many :invitations
-  has_many :recipients
-  has_many :messages, :through => :recipients
-  has_one :profile
-  has_one :notification
+  
   accepts_nested_attributes_for :notification, :allow_destroy => true
+  has_attached_file :avatar, #:styles => { :medium => "300x300>", :thumb => "50x50>" }
+                             :default_url => "/assets/:style/photo_place_holder.png",
+                             :url => "/assets/avatars/:id/:style/:basename.:extension",
+                             :path => ":rails_root/public/assets/avatars/:id/:style/:basename.:extension"
+  validates_attachment_size :avatar, :less_than => 1.megabytes
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
+  
+  before_create { 
+    generate_token(:auth_token) 
+  }
   
   def get_related_messages(folder_id)
       @messages = Message.where("folder_id = ?", folder_id).order("created_at")
-            
-      # if !@messages.reipients.find_by_user_id(id)
-      #   @messages = nil
-      # end
   end
   
   def send_password_reset
@@ -79,6 +64,25 @@ class User < ActiveRecord::Base
     User.where("network_id = ?", network_id).order("first_name")
   end
   
+  ROLES = {
+    "admin" => "Admin",
+    "initiator" => "Initiator",
+    "coordinator" => "Coordinator" 
+  }
+  def is_admin?
+    self.role == ROLES["admin"]
+  end
+  def is_initiator?
+    self.role == ROLES["initiator"]
+  end
+  def is_coordinator?
+    self.role == ROLES["coordinator"]
+  end
+  def is_initiator_or_coordinator?
+    self.role == ROLES["initiator"] || self.role == ROLES["coordinator"]
+  end
+  
+=begin  
   attr_writer :current_step
   
   def current_step
@@ -104,5 +108,5 @@ class User < ActiveRecord::Base
   def last_step?
     current_step == steps.last
   end
-  
+=end  
 end
