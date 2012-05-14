@@ -6,7 +6,7 @@ class NewsActivityMailer
     members = User.joins(:notification).where("users.network_id = ? and notifications.post_update = ?", post.network_id, true)
     # emails = members.collect(&:email).join(";")
     members.each do |m|
-      UserMailer.news_activity(post, m.email, network.network_for_who).deliver
+      UserMailer.news_activity(post, m, network.network_for_who).deliver
     end
   end
 end
