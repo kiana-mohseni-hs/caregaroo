@@ -22,7 +22,7 @@ class SignupController < ApplicationController
   def create
     @user = User.new(params[:user])
     if (params[:notification])
-      @user.notification = Notification.new(:announcement => true)
+      @user.notification = Notification.new(:announcement => true, :post_update => true)
     end
     
     if @user.save

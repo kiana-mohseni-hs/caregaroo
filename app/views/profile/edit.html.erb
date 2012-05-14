@@ -31,8 +31,7 @@
   <div class="profile_content">
   	<%= f.fields_for :notification do |n|%>
   	<div class="row_space"><div class="left_text">When Caregaroo Team has an announcement about the site</div><div><%= n.check_box :announcement, :style => "float:right" %></div></div>
-  	<div class="row_space"><div class="left_text">When someone posts an update</div><div><%= n.check_box :post_update, :style => "float:right" %></div></div>
-  	<div class="row_space"><div class="left_text">When there is a response to my posting</div><div><%= n.check_box :response_post, :style => "float:right" %></div></div>
+  	<div class="row_space"><div class="left_text">When someone posts an update or comment</div><div><%= n.check_box :post_update, :style => "float:right" %></div></div>
   	<% end %>
   </div>
   <div class="actions">

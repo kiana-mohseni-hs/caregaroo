@@ -25,7 +25,7 @@ class RegisterController < ApplicationController
     @network = Network.new(params[:network])
     @network.users.first.role = User::ROLES["initiator"]
     if (params[:notification])
-      @network.users.first.notification = Notification.new(:announcement => true)
+      @network.users.first.notification = Notification.new(:announcement => true, :post_update => true)
     end
     
     if @network.save
