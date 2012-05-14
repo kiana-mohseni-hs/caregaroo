@@ -2,6 +2,6 @@ $("#comments_count_<%= @comment.post_id %>").html("<%= pluralize(@comments.count
 $("#comments_<%= @comment.post_id %>").html("<%= escape_javascript(render(:partial => "comment", :collection => @comments)) %>");
 $("#comment_<%= @comment.id %>").effect("highlight", {}, 3000);
 equalHeight($("div#user_nav, div#container, div#shortcuts"));
-$("#new_comment")[0].reset();
-$('#textarea_<%= @comment.post_id %>').css({'height':'15px', 'max-height':'15px', 'min-height':'15px' });
-$('#textarea_<%= @comment.post_id %>').focus();
+$('#comment_area_<%= @comment.post_id %>').val('');
+$('#comment_area_<%= @comment.post_id %>').css({'height':'15px', 'max-height':'15px', 'min-height':'15px' });
+$('#comment_area_<%= @comment.post_id %>').focus();

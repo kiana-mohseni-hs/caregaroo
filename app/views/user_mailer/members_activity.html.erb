@@ -2,6 +2,5 @@
 
 <h2>New members:</h2>
 <p><strong><%=h link_to "#{@member.first_name} #{@member.last_name}", user_info_profile_url(@member.id) %></strong> joined the network.</p>
-<p><%= link_to "see other new network members ...", members_url, :style => "text-decoration: none" %></p>
 
 <%= render 'footer' %>
