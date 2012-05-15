@@ -70,20 +70,12 @@
 		<ul id="member_list">	
 		<% for member in @current_user.network.users.limit(10) %>		
 			<li class="<%= (!@user.nil? && @user.id == member.id) ? 'current':'' %>">
-				<% if !@user.nil? && @user.id == member.id %>
-					<%= image_tag "photo_place_holder.png", :class => "member_pic_current" %>
-				<% else %>
-					<%= image_tag "photo_place_holder.png", :class => "member_pic" %>
-				<% end %>	
+				<%= image_tag "photo_place_holder.png", :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic") %>
 			<%= link_to member.first_name, user_info_profile_path(member) %>
 			</li>
 		<% end %>
 			<li class="<%= (@page == "members" ? 'current':'') %>">
-				<% if @page == "members" %>
-					<%= link_to "All Members", members_path, :class => "orange_text all_members_link_current" %>
-				<% else %>
-					<%= link_to "All Members", members_path, :class => "orange_text all_members_link" %>
-				<% end %>
+				<%= link_to "All Members", members_path, :class => "orange_text " + (@page == "members" ? "all_members_link_current" : "all_members_link") %>
 			</li>
 		</ul>
     </div>
