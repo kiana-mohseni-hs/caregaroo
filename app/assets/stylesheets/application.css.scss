@@ -62,6 +62,10 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 #member_list{margin:0px;}
 #member_list li{height:22px;width:241px;list-style:none;margin-left:-10px; margin-bottom:10px; padding-top:5px;}
 #member_list li.current{height:21px; background-color:#fff;border-top:solid 1px #ccc;border-bottom:solid 1px #ccc; width:240px; padding-top:4px; border-left:1px solid #ccc }
+.member_pic{height:30px; width:33px; float:left; margin:-8px 6px 0 60px;}
+.member_pic_current{height:30px; width:33px; float:left; margin:-8px 6px 0 59px;}
+.all_members_link{float:left;margin:0px 6px 0 98px}
+.all_members_link_current{float:left;margin:0px 6px 0 97px}
 #container { z-index:-2;position:relative; left:240px;float:left; width: 482px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: -11px; }
 #container_nonav {z-index:-2;position:relative; float:left; width: 800px;  padding: 0px 20px; margin-left:112px; margin-top:-11px;}
 #shortcuts { position:relative;float:right; width: 220px;	padding: 20px 20px; margin-top:-11px;}

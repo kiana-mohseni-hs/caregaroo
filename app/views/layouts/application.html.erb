@@ -55,16 +55,8 @@
     	<div id="nav_list_frame">
     	<h6 id="nav_list_header">NETWORKS</h6>
     	<ul id="nav_list">	
-    		<% if @page == 'posts' %>	
-	      		<li class="current"><div class="nav_wrapper"><div id="nav_msg_board" class="nav_list_icon_current"></div><%= link_to "News Stream", news_path %></div></li>
-	       	<% elsif %>
-	        	<li ><div class="nav_wrapper"><div id="nav_msg_board" class="nav_list_icon"></div><%= link_to "News Stream", news_path %></div></li>
-	      	<%end%>
-	      	<% if @page == 'invite' %>	
-	      		<li class="current"><div class="nav_wrapper"><div id="nav_invite" class="nav_list_icon_current"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>
-	        <% elsif %> 
-	      		<li><div class="nav_wrapper"><div id="nav_invite" class="nav_list_icon"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>     
-	        <% end %>
+	        <li class="<%= @page == "posts" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "posts" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "News Stream", news_path %></div></li>
+	      	<li class="<%= @page == "invite" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_invite" class="<%= @page == "invite" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>   
 	      <!--
 	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>
 	      <li id="nav_private_msg"><%= link_to "Private Messages", messages_path %></li>
@@ -76,21 +68,23 @@
 		</br>
 		<h6 id="member_list_header">MEMBERS</h6>
 		<ul id="member_list">	
-		<% for member in @current_user.network.users.limit(10) %>
-			<% if !@user.nil? && @user.id == member.id %>
-				<li class="current">
-				<%= image_tag "photo_place_holder.png", :height => "30", :width => "33", :style => "float:left;margin:-8px 6px 0 59px" %>
-				<%= link_to member.first_name, user_info_profile_path(member) %></li>
-			<% else %>
-				<li><%= image_tag "photo_place_holder.png", :height => "30", :width => "33", :style => "float:left;margin:-8px 6px 0 60px" %>
-				<%= link_to member.first_name, user_info_profile_path(member) %></li>
-			<% end %>
+		<% for member in @current_user.network.users.limit(10) %>		
+			<li class="<%= (!@user.nil? && @user.id == member.id) ? 'current':'' %>">
+				<% if !@user.nil? && @user.id == member.id %>
+					<%= image_tag "photo_place_holder.png", :class => "member_pic_current" %>
+				<% else %>
+					<%= image_tag "photo_place_holder.png", :class => "member_pic" %>
+				<% end %>	
+			<%= link_to member.first_name, user_info_profile_path(member) %>
+			</li>
 		<% end %>
-			<% if @page == "members" %>
-			<li class="current"><%= link_to "All Members", members_path, :class => "orange_text", :style => "float:left;margin:0px 6px 0 97px"  %></li>
-			<% else %>
-			<li><%= link_to "All Members", members_path, :class => "orange_text", :style => "float:left;margin:0px 6px 0 98px"  %></li>
-			<% end %>
+			<li class="<%= (@page == "members" ? 'current':'') %>">
+				<% if @page == "members" %>
+					<%= link_to "All Members", members_path, :class => "orange_text all_members_link_current" %>
+				<% else %>
+					<%= link_to "All Members", members_path, :class => "orange_text all_members_link" %>
+				<% end %>
+			</li>
 		</ul>
     </div>
 	<div id="container">
