@@ -16,8 +16,11 @@
 		<div style="clear"></div>
 		<div class="profile_content">
 			<div class="left_text">Name:</div><div class="right_text"><%= @user.first_name %> <%= @user.last_name %></div><br/>
-			<div class="left_text">Email:</div><div class="right_text"><%= @user.email %></div><br/>
-			<div class="left_text">Relationship:</div><div class="right_text"><%= @user.network_relationship %></div><br/>
+			<div class="left_text">Email:</div><div class="right_text"><%= @user.email %></div><br/>		
+			<% if !@user.profile.nil? %>
+			<div class="left_text">Location:</div><div class="right_text"><%= @user.profile.location %></div><br/>
+			<div class="left_text">About me:</div><div class="right_text"><%= @user.profile.bio %></div><br/>
+			<% end%>
 		</div>
 		<% if @user.id == @current_user.id && !@user.notification.nil? %>
 		<p class="sub_header">SEND ME A NOTIFICATION:</p>
@@ -35,50 +38,20 @@
 		<p>There's no profile.</p>
 	<% end %>
 	<% if !@user.profile.nil? %>
-		<p>
-		  <b>Bio:</b>
-		  <%= @user.profile.bio %>
-		</p>
-		
-		<p>
-		  <b>Location:</b>
-		  <%= @user.profile.location %>
-		</p>
-		
-		<p>
-		  <b>Significant other:</b>
-		  <%= @user.profile.significant_other %>
-		</p>
-		
-		<p>
-		  <b>Kids name:</b>
-		  <%= @user.profile.kids_name %>
-		</p>
-		
-		<p>
-		  <b>Birthdate:</b>
-		  <%= @user.profile.birthdate %>
-		</p>
-		
-		<p>
-		  <b>Expertise:</b>
-		  <%= @user.profile.expertise %>
-		</p>
-		
-		<p>
-		  <b>Can help with:</b>
-		  <%= @user.profile.can_help_with %>
-		</p>
-		
-		<p>
-		  <b>Phone work:</b>
-		  <%= @user.profile.phone_work %>
-		</p>
-		
-		<p>
-		  <b>Phone mobile:</b>
-		  <%= @user.profile.phone_mobile %>
-		</p>
+		<p class="sub_header">CONTACT</p>
+	  	<div class="profile_content">
+	  		<div class="left_text">Home Phone:</div><div class="right_text"><%= @user.profile.phone_home %></div><br/>
+			<div class="left_text">Work Phone:</div><div class="right_text"><%= @user.profile.phone_work %> ext <%= @user.profile.phone_work_ext %></div><br/>
+			<div class="left_text">Mobile Phone:</div><div class="right_text"><%= @user.profile.phone_mobile %></div><br/>
+	  	</div>
+	  	<p class="sub_header">OTHER INFO</p>
+	  	<div class="profile_content">
+	  		<div class="left_text">Significant other:</div><div class="right_text"><%= @user.profile.significant_other %></div><br/>
+			<div class="left_text">Kids name:</div><div class="right_text"><%= @user.profile.kids_name %></div><br/>
+			<div class="left_text">Birthdate:</div><div class="right_text"><%= @user.profile.birthdate %></div><br/>
+			<div class="left_text">Expertise:</div><div class="right_text"><%= @user.profile.expertise %></div><br/>
+			<div class="left_text">Can help with:</div><div class="right_text"><%= @user.profile.can_help_with %></div><br/>
+	  	</div>
 	<% end %>
 <% else %>
 	<p>Profile not found.</p>

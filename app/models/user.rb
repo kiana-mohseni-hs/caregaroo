@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, :network_id, :role, :avatar, :notification_attributes
+  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, :network_id, :role, :avatar, :notification_attributes, :profile_attributes
   has_secure_password
   validates_presence_of :network_relationship
   validates :email, :presence => true, :email_format => true, :uniqueness => true
@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   }
   
   accepts_nested_attributes_for :notification, :allow_destroy => true
+  accepts_nested_attributes_for :profile, :allow_destroy => true
   has_attached_file :avatar, #:styles => { :medium => "300x300>", :thumb => "50x50>" }
                              :default_url => "/assets/:style/photo_place_holder.png",
                              :url => "/assets/avatars/:id/:style/:basename.:extension",

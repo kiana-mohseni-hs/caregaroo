@@ -1,5 +1,12 @@
 .right_text {font-size:12px; position:absolute; margin-left:100px; float:left;}
 .right_text_2 {font-size:12px; position:absolute; margin-left:170px; float:left;}
+
+td{vertical-align:top;padding-bottom:10px;}
+td.left { width: 100px;}
+td.mid { width: 200px;}
+td.ext { width: 30px; }
+
+
 .left_text {font-size:12px; float:left;}
 .sub_header{ margin-top:15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
 #save_updates_button{float:right;}

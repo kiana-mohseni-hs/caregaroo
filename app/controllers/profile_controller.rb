@@ -14,6 +14,9 @@ class ProfileController < ApplicationController
     if @user.notification.nil?
       @user.notification = Notification.new
     end
+    if @user.profile.nil?
+      @user.profile = Profile.new
+    end
     render "edit"
   end
 
