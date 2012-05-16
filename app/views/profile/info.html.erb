@@ -27,10 +27,8 @@
 	  	<div class="profile_content">
 	  	<div class="row_space"><div class="left_text">When Caregaroo Team has an announcement about the site</div>
 	  		<div><%= check_box_tag 'announcement', true, (@user.notification.announcement ? true : false), :disabled => true, :style => "float:right" %></div></div>
-	  	<div class="row_space"><div class="left_text">When someone posts an update</div>
+	  	<div class="row_space"><div class="left_text">When someone posts an update or comment</div>
 	  		<div><%= check_box_tag 'post_update', true, (@user.notification.post_update ? true : false), :disabled => true, :style => "float:right" %></div></div>
-	  	<div class="row_space"><div class="left_text">When there is a response to my posting</div>
-	  		<div><%= check_box_tag 'response_post', true, (@user.notification.response_post ? true : false), :disabled => true, :style => "float:right" %></div></div>
 	  	</div>
 	  	<% end %>
 	  
