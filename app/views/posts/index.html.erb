@@ -8,7 +8,7 @@
 <% @posts.each do |post| %>
 	<div id="post_<%= post.id %>" data-id="<%= post.id %>">
 		<div id="news">
- 			<%= image_tag "photo_place_holder.png", :alt => !post.user.nil? ? post.user.first_name : 'Anonymous' , :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+ 			<%= image_tag !post.user.nil? ? post.user.avatar_url().to_s : "photo_place_holder.png", :alt => !post.user.nil? ? post.user.first_name : 'Anonymous' , :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
 			<div class="comment_content">
 			<span class="name_text"><%= !post.user.nil? ? link_to(post.user.first_name, user_info_profile_path(post.user)) : 'Anonymous' %> (<%= !post.user.nil? ? post.user.network_relationship : 'Removed' %>)</span>
 			<span class="time_text"><%= time_ago_in_words(post.created_at) %> ago at <%= post.created_at.strftime('%I:%M %p') %></span> 
