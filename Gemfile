@@ -22,7 +22,8 @@ gem 'event-calendar', :require => 'event_calendar'
 # background jobs and queues
 gem 'resque', :require => "resque/server"
 # image cropper
-gem 'paperclip'
+gem 'carrierwave'
+gem 'rmagick'
 
 # gem "mail", "2.1.3"
 

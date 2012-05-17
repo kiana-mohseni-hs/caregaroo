@@ -70,7 +70,7 @@
 		<ul id="member_list">	
 		<% for member in @current_user.network.users.limit(10) %>		
 			<li class="<%= (!@user.nil? && @user.id == member.id) ? 'current':'' %>">
-				<%= image_tag "photo_place_holder.png", :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic") %>
+				<%= image_tag member.avatar_url().to_s, :alt => member.first_name, :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic") %>
 			<%= link_to member.first_name, user_info_profile_path(member) %>
 			</li>
 		<% end %>

@@ -33,12 +33,7 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :notification, :allow_destroy => true
   accepts_nested_attributes_for :profile, :allow_destroy => true
-  has_attached_file :avatar, #:styles => { :medium => "300x300>", :thumb => "50x50>" }
-                             :default_url => "/assets/:style/photo_place_holder.png",
-                             :url => "/assets/avatars/:id/:style/:basename.:extension",
-                             :path => ":rails_root/public/assets/avatars/:id/:style/:basename.:extension"
-  validates_attachment_size :avatar, :less_than => 1.megabytes
-  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
+  mount_uploader :avatar, AvatarUploader
   
   before_create { 
     generate_token(:auth_token) 

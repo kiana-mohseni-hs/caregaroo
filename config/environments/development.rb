@@ -46,6 +46,4 @@ Auth::Application.configure do
   }
   ActionMailer::Base.default :from => "Caregaroo <support@caregaroo.com>"
   
-  Paperclip.options[:command_path] = "C:\Tools\ImageMagick\6.7.6-9"
-  
 end
