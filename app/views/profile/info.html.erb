@@ -1,5 +1,5 @@
 <% if !@user.nil? %>
-	<%= image_tag @user.avatar_url().to_s, :alt => @user.first_name, :class=>"profile_user_pic" %>
+	<%= image_tag @user.avatar_url(:thumb).to_s, :alt => @user.first_name, :class=>"profile_user_pic" %>
 	<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> (<%= @user.network_relationship %>)</p><br/>
 	<% if @user.id == @current_user.id %>
 		<%= render 'sub_nav' %>

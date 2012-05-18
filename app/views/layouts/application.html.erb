@@ -27,7 +27,7 @@
 	<div id="user_selector">	
 		<% if @current_user %>
 		<dl id="user_dropdown" class="dropdown">
-			<dt><a href="#"><span><%= image_tag @current_user.avatar_url().to_s, :class=>"dt_icon", :height => "30", :width => "35" %><%= @current_user.first_name %><div class="dt_arrow"><div class="dt_arrow_bg"></div></div></span></a></dt>
+			<dt><a href="#"><span><%= image_tag @current_user.avatar_url(:thumb).to_s, :class=>"dt_icon", :height => "30", :width => "35" %><%= @current_user.first_name %><div class="dt_arrow"><div class="dt_arrow_bg"></div></div></span></a></dt>
 	        <dd><ul>
 				<li><a href="/profile" style="padding-left:20px;">Settings</a></li>
 				<li><%= link_to "Log out", logout_path, :style=>"padding-left:20px;" %></li>
@@ -70,7 +70,7 @@
 		<ul id="member_list">	
 		<% for member in @current_user.network.users.limit(10) %>		
 			<li class="<%= (!@user.nil? && @user.id == member.id) ? 'current':'' %>">
-				<%= image_tag member.avatar_url().to_s, :alt => member.first_name, :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic") %>
+				<%= image_tag member.avatar_url(:thumb).to_s, :alt => member.first_name, :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic") %>
 			<%= link_to member.first_name, user_info_profile_path(member) %>
 			</li>
 		<% end %>
