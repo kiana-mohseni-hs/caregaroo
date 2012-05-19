@@ -28,8 +28,23 @@ try{
 
 
 $(function() {
-	$('textarea').autosize();
 	
+	// profile avatar full image
+	$('.large_avatar').fancybox({
+		scrolling:"no",	
+		padding:0,
+		overlayColor:"#000",
+		titlePosition:'outside',
+		overlayOpacity:0.7,
+		titleShow		: false
+	});
+	
+	// profile upload avatar
+	$('#preview').live('change', function(event){
+		$('#preview-photo').html(this.value);
+  	});
+	
+	// right panel shortcut
 	$('#invite_shortcut').click(function(event){
 		_gaq.push(['_trackEvent', 'Links', 'Invite Members', 'Invite Members']);
         document.location = '/invite';
@@ -45,20 +60,16 @@ $(function() {
        window.open('https://caregaroo.zendesk.com/anonymous_requests/new');
   	});
     
+    // input box focus on page load
 	$('#session_email').focus();
 	$('#network_network_name').focus();
 	$('#invitation_email').focus();
 	$('#signup_email').focus();
 
-	$("a.send_invite").fancybox({
-		scrolling:"no",	
-		padding:0,
-		overlayColor:"#000",
-		titlePosition:'outside',
-		overlayOpacity:0.7,
-		titleShow		: false
-	});
+	// news stream post and comments auto textarea 
+	$('textarea').autosize();
 	
+	// news stream show new comment
 	$("span.news_comment").click(function(){
 		var id = $(this).attr("post-id");
 		$("#new_comment_section_"+id).show();
@@ -68,7 +79,7 @@ $(function() {
 	$('input[title!=""]').hint();	
 	$('textarea[title!=""]').hint();	
 	
-	// dropdown
+	// top nav dropdown
 	$(".dropdown dt a").click(function() {
 	    $(".dropdown dd ul").toggle();
 	    $(".dropdown dt .dt_arrow_bg").toggle();
@@ -124,6 +135,7 @@ $(function() {
 		};
 	});
 	
+	// member set coordinator
 	$('.coordinator').click(function() {
 		$.ajax({
 	    	url: $(this).data('href'),

@@ -1,4 +1,4 @@
-<%= image_tag @user.avatar_url(:thumb).to_s, :alt => @user.first_name, :class=>"profile_user_pic" %>
+<a class="large_avatar" href="<%= @user.avatar_url(:large).to_s%>"><%= image_tag @user.avatar_url(:thumb).to_s, :alt => @user.first_name, :class=>"profile_user_pic" %></a>
 <p class="name_text"><%= @user.first_name %> <%= @user.last_name %> (<%= @user.network_relationship %>)</p><br/>
 <%= form_for @user, :url => update_info_profile_path, :method => :post, :html => { :multipart => true, :id => 'update_profile_form' } do |f| %>
 <div style="margin-top:10px">
@@ -20,7 +20,7 @@
 		<tr><td class="left"><%= p.label :location, 'Location:'%> </td><td class="right"><%= p.text_field :location, :size => "35" %></td></tr>
 		<% end %>
 		<tr><td class="left"><%= f.label :avatar, 'Photo:'%> </td><td class="right">
-			<%= image_tag(@user.avatar_url(:thumb)) if @user.avatar? %><%= f.file_field :avatar %></td></tr>
+			<%= f.file_field :avatar, :id => "preview" %> <span id="preview-photo"></span></td></tr>
 		<%= f.fields_for :profile do |p|%>
 		<tr><td class="left"><%= p.label :bio, 'About me:'%></td><td class="right"><%= p.text_area :bio, :rows => "6" %></td></tr>
 		<% end %>	
