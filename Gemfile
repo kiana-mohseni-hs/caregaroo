@@ -12,6 +12,7 @@ end
 
 group :test, :production do
   gem 'mysql2'
+  gem 'bcrypt-ruby'
 end
 
 # Asset template engines
