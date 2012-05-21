@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-#gem 'rails', '3.1.0.rc4'
 gem 'rails', '3.2.2'
 gem 'bcrypt-ruby'
 
@@ -15,16 +14,18 @@ group :test, :production do
   gem 'mysql2'
 end
 
-# Asset template engines
-#gem 'sass-rails', "~> 3.2.3"
-gem 'sass-rails'
-gem 'coffee-script'
-# jsvascript compressor
-gem 'uglifier'
-
 group :assets do
   #gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'compass-rails'
   gem 'compass_twitter_bootstrap'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer'
+
+  # jsvascript compressor
+  gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
