@@ -1,20 +1,30 @@
 source 'http://rubygems.org'
 
 #gem 'rails', '3.1.0.rc4'
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-#gem 'mysql2'
+group :development do
+  gem 'sqlite3'
+end
+
+group :test, :production do
+  gem 'mysql2'
+end
 
 # Asset template engines
-#gem 'sass-rails', "~> 3.1.0.rc"
-gem 'sass-rails', "~> 3.1.0"
+#gem 'sass-rails', "~> 3.2.3"
+gem 'sass-rails'
 gem 'coffee-script'
 # jsvascript compressor
 gem 'uglifier'
+
+group :assets do
+  #gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
+  gem 'compass_twitter_bootstrap'
+end
 
 gem 'jquery-rails'
 gem 'event-calendar', :require => 'event_calendar'
