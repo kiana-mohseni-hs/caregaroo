@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 #gem 'rails', '3.1.0.rc4'
 gem 'rails', '3.2.2'
+gem 'bcrypt-ruby'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -12,7 +13,6 @@ end
 
 group :test, :production do
   gem 'mysql2'
-  gem 'bcrypt-ruby'
 end
 
 # Asset template engines
