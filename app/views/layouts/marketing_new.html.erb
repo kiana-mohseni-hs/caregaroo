@@ -1,0 +1,19 @@
+<!DOCTYPE HTML> <html lang="en"> 
+<head>
+<meta charset="utf-8">
+<title>Caregaroo: Home Care Coordination</title> <meta name="keywords" content="" /> 
+<meta name="description" content="Caregaroo is a private online community for families to share news, coordinate care and contribute to help older parents living independantly." /> 
+<meta name="robots" content="index, follow" /> 
+<meta name="viewport" content="width=device-width; initial-scale=1.0;maximum-scale=1.0;">
+<meta http-equiv="cache-control" content="no-cache" />
+<link rel="shortcut icon" href="favicon.ico">
+<%= stylesheet_link_tag "application" %>
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tag %>
+</head>
+<body class="<%= params[:controller] %>">
+	<div>
+	    <%= yield %>
+ 	</div>
+</body>
+</html>
