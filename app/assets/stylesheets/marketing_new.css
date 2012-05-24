@@ -6,3 +6,7 @@
  *= require twitter_bootstrap
 */
 
+body {  background: url('newPattern.jpg'); }
+.mkt_body_wrapper{  background: url('careForAloveOne.jpg') no-repeat; }
+#site_logo{  background: url('MarketingPageSlices.png') no-repeat; width:200px; height:110px; margin-top:-60px;}
+#mkt_top_nav{padding-top:60px;padding-bottom:60px;}

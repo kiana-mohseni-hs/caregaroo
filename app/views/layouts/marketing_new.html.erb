@@ -7,13 +7,58 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0;maximum-scale=1.0;">
 <meta http-equiv="cache-control" content="no-cache" />
 <link rel="shortcut icon" href="favicon.ico">
-<%= stylesheet_link_tag "application" %>
-<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "marketing_new" %>
+<%= javascript_include_tag "marketing_new" %>
 <%= csrf_meta_tag %>
 </head>
 <body class="<%= params[:controller] %>">
-	<div>
-	    <%= yield %>
- 	</div>
+<div class="mkt_body_wrapper">
+	<!--<img src="../img/careForAloveOne.jpg" alt="coordinate care" style="position:absolute;top:0px;left:0px;z-index:-99;"/>-->
+	
+	<div class="container">
+		<div id="mkt_top_nav" class="row-fluid">
+			<div class ="span12"><!--twitter facebook widge-->
+			</div><!--span12-->
+			<div class ="span3" ><!--logo-->
+				<a class="brand" href="<%= url_for root_path %>"> <div id="site_logo"></div></a>
+			</div>
+			<div class="span3">
+				<h2>Caring made easy</h2>
+			</div><!--span2-->
+			<div class ="span4"><!--nav-->
+				<ul class="nav nav-pills">
+					<li><%= link_to "Home", root_path %></li>
+					<li><%= link_to "Product", product_path %></li>
+					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">Help</a></li>
+		  		</ul>
+		  	</div>
+		  	<div class ="span1">
+				<button class="btn" onclick="">Sign-In</button>
+	  		</div><!--sign in button, need to show sign in form on click-->
+		</div>
+
+		<div>
+		    <%= yield %>
+	 	</div>
+ 	 
+	 	<div class="row"><!-- footer-->
+	 		
+	 		<center>
+	 			<img class="separator" src="img/line.png" alt="separator line" />
+	 		<div class="span4 offset4">
+	 			<ul class="nav nav-pills">
+					<li><%= link_to "Home", root_path %></li>
+					<li><%= link_to "Product", product_path %></li>
+					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">Help</a></li>
+		  		</ul>
+		  	</div>
+		  	<div class="span12">
+	 		<p id="copyright" class="grid_14 clearfix"> Copyright 2011, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com"
+			target="_blank">info@caregaroo.com</a></p>
+			</div>
+			</center>
+	 	</div><!-- footer-->
+	</div><!--container-->
+</div>
 </body>
 </html>
