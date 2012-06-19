@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'thin'
 gem 'rails', '3.2.2'
 gem 'bcrypt-ruby'
 
@@ -11,7 +12,7 @@ group :development do
 end
 
 group :test, :production do
-  gem 'mysql2'
+  gem 'pg'
 end
 
 group :assets do
