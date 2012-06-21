@@ -10,6 +10,8 @@ class CalendarController < ApplicationController
 
     @event_strips = Event.event_strips_for_month(@shown_month)
     @page = 'calendar'
+    
+    @events = @current_user.network.events
   end
   
 end

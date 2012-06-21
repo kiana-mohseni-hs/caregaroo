@@ -13,9 +13,7 @@
         </div>
         <div id="calendardisplay" class="above-bottom-tabbar">
           <ul>
-            <% @current_user.network.events.each do |e| %>
-            <li><time datetime='<%= e.start_at.strftime("%Y-%m-%dT%H:%MZ") %>'><%= e.name %></time></li>
-            <% end %>
+            <%= render :partial => "event", :collection => @events %>
           </ul>
         </div>
     </div>
