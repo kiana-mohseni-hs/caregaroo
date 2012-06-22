@@ -1,7 +1,9 @@
 class HomeController < ApplicationController
+  before_filter :prepare_for_mobile
 
   def index
     @page = 'home'
+    @session = Session.new if mobile_device?
     render :layout => "marketing"
   end
 

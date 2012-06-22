@@ -1,36 +1,35 @@
 <div id="jqt">
-    <div id="journal">
-      <h1> Journal Page Stub</h1>  
+  <div id="journal">
+    <h1> Journal Page Stub</h1>  
+  </div>
+  <div id="calendar">
+    <div class='toolbar'>
+      <!-- <a href="/calendar" rel="external" class="button leftButton">Today</a> -->
+      <a href="#" id="today" class="button leftButton">Today</a>
+      <a href="#day" class="button centreButton">Day View</a>
+      <a href="#add_event" class="button add">+</a>
     </div>
-    <div id="calendar" class="current">
-        <div>
-          <ul id="gc-nav">
-            <li><a href="#journal">Journal</a></li>
-            <li><a href="#calendar">Calendar</a></li>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#members">Members</a></li>
-          </ul>
-        </div>
-        <div id="calendardisplay" class="above-bottom-tabbar">
-          <ul>
-            <%= render :partial => "event", :collection => @events %>
-          </ul>
-        </div>
+    <div id="calendardisplay" class="above-bottom-tabbar">
+      <ul>
+        <%= render :partial => "event", :collection => @events %>
+      </ul>
     </div>
-    <div id="profile">
-      <h1> Profile Page Stub</h1>  
-    </div>
-    <div id="members">
-      <h1> Members Page Stub</h1>  
-    </div>
+  </div>
+  <div id="profile">
+    <h1> Profile Page Stub</h1>  
+  </div>
+  <div id="members">
+    <h1> Members Page Stub</h1>  
+  </div>
+  
 </div>
 <div id="other">
-    <div class="tabbar">
-        <ul>
-            <li class="four"><a href="#journal">Journal</a></li>
-            <li class="four current"><a href="#calendar">Calendar</a></li>
-            <li class="four"><a href="#profile">Profile</a></li>
-            <li class="four"><a href="#members">Members</a></li>
-        </ul>
-    </div>
+  <div class="tabbar">
+    <ul>
+      <li class="four"><a href="#journal">Journal</a></li>
+      <li class="four current"><a href="#calendar">Calendar</a></li>
+      <li class="four"><a href="#profile">Profile</a></li>
+      <li class="four"><a href="#members">Members</a></li>
+    </ul>
+  </div>
 </div>

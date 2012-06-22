@@ -1,47 +1,15 @@
-/* Begin Navigation Bar Styling */
+/* @group Toolbar */
 
-#jqt ul#gc-nav {
-  width: 100%;
-  float: left;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background-color: #f2f2f2;
-  border-bottom: 1px solid #ccc;
-  border-top: 1px solid #ccc;
-  border-right-style: none;
-  border-left-style: none;
-  border-left-width: 0;
-  border-right-width: 0;
-  border-radius: 0;
+#jqt .centreButton {
+    left: 40%;
+    right: auto;
 }
 
-#jqt ul#gc-nav li {
-  float: left;
-  border-style: none !important;
-  padding-right: 0;
-}
 
-#gc-nav li a {
-  display: block;
-  padding: 8px 15px;
-  text-decoration: none;
-  font-weight: bold;
-  color: #069;
-  border-right: 1px solid #ccc;
-  border-style: none;
-}
+/* @end */
 
-#gc-nav li a:hover {
-  color: #c00;
-  background-color: #fff;
-}
+/* @group Bottom navigation */
 
-/* End navigation bar styling. */
-
-.jqt_calendar thead th span{
-	
-}
 
  .tabbar 
 {
@@ -137,3 +105,5 @@ border-top-width: 0px;
 .above-bottom-tabbar, .jqt_calendar {
   margin-bottom: 36px;
 }
+
+/* @end */

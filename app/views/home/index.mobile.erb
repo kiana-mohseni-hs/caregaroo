@@ -1,0 +1,17 @@
+<div class='current' id='home'>
+  <div class='toolbar'>
+    <h1>Caregaroo</h1>
+    <a href="#login" class="button slideup">Login</a>
+  </div>
+</div>
+<%= form_for @session, :url => sessions_path, :method => :post, :html => { :id => 'login' } do |f| %>
+  <div class="toolbar">
+    <h1>Login</h1>
+  </div>
+  <ul class="rounded">
+    <li><input name="email" value="" type="text" placeholder="Email Address"></li>
+    <li><input name="password" value="" type="password" placeholder="Password"></li>
+  </ul>
+  <a class="whiteButton submit">Login</a>
+  <a class="grayButton goback">Cancel</a>
+<% end %>
