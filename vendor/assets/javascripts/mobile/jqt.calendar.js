@@ -260,7 +260,7 @@
 						var $el = $(this);
 
 						// Days
-						$el.find('td').bind("click", function() {
+						$el.find('td').bind("touchstart", function() {
 							$el.removeSelectedCell();
 							$(this).addClass('selected');
 							var clickedDate = $el.getCellDate($(this));
@@ -281,11 +281,11 @@
 						});
 
 						// load previous Month
-						$el.find(".goto-prevmonth").bind("click", function() {
+						$el.find(".goto-prevmonth").bind("touchstart", function() {
 							$el.loadMonthDelta(-1);
 						});
 						// load next Month
-						$el.find(".goto-nextmonth").bind("click", function() {
+						$el.find(".goto-nextmonth").bind("touchstart", function() {
 							$el.loadMonthDelta(1);
 						});
 					}
