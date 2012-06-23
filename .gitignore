@@ -1,5 +1,6 @@
 .bundle
 .gems
+.powrc
 db/*.sqlite3
 log/*.log
 tmp/

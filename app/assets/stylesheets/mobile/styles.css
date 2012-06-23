@@ -107,3 +107,7 @@ border-top-width: 0px;
 }
 
 /* @end */
+
+li#dayviewdate {
+  text-align: center;
+}
