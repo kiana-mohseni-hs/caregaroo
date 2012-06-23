@@ -1,4 +1,6 @@
-$.jQTouch icon: "img/homescreen.png"
+$.jQTouch
+  icon: "/assets/mobile/homescreen.png"
+  startupScreen: "/assets/mobile/splash.png"
 $ ->
   $("#calendardisplay").getCalendar()
 
