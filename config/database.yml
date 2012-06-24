@@ -20,28 +20,17 @@ test:
     username: root
     password: root
     socket: /var/run/mysqld/mysqld.sock
-
-
-#    adapter: mysql2
-#    encoding: utf8
-#    database: blog_development
-#    pool: 5
-#    username: root
-#    password:
-#    socket: /tmp/mysql.sock
     
 production:
-#  adapter: sqlite3
-#  database: db/production.sqlite3
-#  pool: 5
-#  timeout: 5000
-    # adapter: mysql2
-    # encoding: utf8
-    # database: cg2
-    # pool: 5
-    # username: root
-    # password: root
-    # socket: /var/run/mysqld/mysqld.sock
+    adapter: mysql2
+    encoding: utf8
+    database: cg2
+    pool: 5
+    username: root
+    password: root
+    socket: /var/run/mysqld/mysqld.sock
+
+heroku:
     adapter: postgresql
     encoding: unicode
     database:

@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-gem 'thin'
 gem 'rails', '3.2.2'
 gem 'bcrypt-ruby'
 
@@ -12,8 +11,14 @@ group :development do
 end
 
 group :test, :production do
-  gem 'pg'
+  gem 'mysql2'
 end
+
+group :heroku do
+  gem 'pg'
+  gem 'thin'
+end
+
 
 group :assets do
   #gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
