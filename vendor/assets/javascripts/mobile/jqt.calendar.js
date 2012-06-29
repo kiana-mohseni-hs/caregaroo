@@ -265,7 +265,7 @@
             }
 
 						// Days
-						$el.find('td').bind(clicktouch, function() {
+						$el.find('td').bind("click", function() {
 							$el.removeSelectedCell();
 							$(this).addClass('selected');
 							var clickedDate = $el.getCellDate($(this));
