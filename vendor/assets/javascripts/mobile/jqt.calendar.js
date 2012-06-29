@@ -258,9 +258,14 @@
 //DOM events & Calendar Manipulation
 					jQuery.fn.setBindings = function() {
 						var $el = $(this);
+						
+						var clicktouch = "click";
+            if (Modernizr.touch) {
+              clicktouch = "touchstart";
+            }
 
 						// Days
-						$el.find('td').bind("touchstart", function() {
+						$el.find('td').bind(clicktouch, function() {
 							$el.removeSelectedCell();
 							$(this).addClass('selected');
 							var clickedDate = $el.getCellDate($(this));
@@ -281,11 +286,11 @@
 						});
 
 						// load previous Month
-						$el.find(".goto-prevmonth").bind("touchstart", function() {
+						$el.find(".goto-prevmonth").bind(clicktouch, function() {
 							$el.loadMonthDelta(-1);
 						});
 						// load next Month
-						$el.find(".goto-nextmonth").bind("touchstart", function() {
+						$el.find(".goto-nextmonth").bind(clicktouch, function() {
 							$el.loadMonthDelta(1);
 						});
 					}

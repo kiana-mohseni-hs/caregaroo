@@ -1,18 +1,21 @@
 $.jQTouch
   icon: "/assets/mobile/homescreen.png"
   startupScreen: "/assets/mobile/splash.png"
-$ ->
+$ ->  
   $("#calendardisplay").getCalendar()
 
   # set title in day view to today's date on load
   $("#dayviewdate").html((new Date()).toLocaleDateString())
 
+  clicktouch = "click"
+  clicktouch = "touchstart"  if Modernizr.touch
+  
   #reload calendar
-  $("a#today").bind "touchstart", ->
+  $("a#today").bind clicktouch, ->
     $("#calendardisplay").getCalendar()
   
   # set title in day view to currently selected date
-  $("a#dayview").bind "touchstart", ->
+  $("a#dayview").bind clicktouch, ->
     selectedDate = $("#calendardisplay").find('.selected').attr('datetime')
     $("#dayviewdate").html($("#calendardisplay").stringToDate(selectedDate).toLocaleDateString())
 
@@ -26,7 +29,7 @@ $ ->
     $("#dayviewevents>li").children('[datetime^="' + FormattedDate + '"]').parent().show()
 
   #reload calendar
-  $("a#today-day").bind "touchstart", ->
+  $("a#today-day").bind clicktouch, ->
     $("#calendardisplay").getCalendar()
 
     selectedDate = $("#calendardisplay").find('.selected').attr('datetime')
