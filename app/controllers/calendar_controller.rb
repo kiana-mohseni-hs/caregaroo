@@ -11,6 +11,10 @@ class CalendarController < ApplicationController
     @event_strips = Event.event_strips_for_month(@shown_month)
     @page = 'calendar'
     
+    # code above came with event-calendar gem for desktop calendar
+    # code below written for mobile calendar
+    
+    #TODO select fewer events (e.g. current, previous and next month and update calendar when needed)
     @events = @current_user.network.events
   end
   
