@@ -16,22 +16,14 @@ $ ->
   
   # set title in day view to currently selected date
   $("a#dayview").bind clicktouch, ->
-    selectedDate = $("#calendardisplay").find('.selected').attr('datetime')
-    $("#dayviewdate").html($("#calendardisplay").stringToDate(selectedDate).toLocaleDateString())
-
-    # Add leading zero to month and day where necessary
-    dateAr = selectedDate.split("-")
-    dateAr[1] = "0" + dateAr[1] if (dateAr[1].length == 1)
-    dateAr[2] = "0" + dateAr[2] if (dateAr[2].length == 1)
-    FormattedDate = dateAr.join("-")
-        
-    $("#dayviewevents>li").hide()
-    $("#dayviewevents>li").children('[datetime^="' + FormattedDate + '"]').parent().show()
+    setDayViewTitle()
 
   #reload calendar
   $("a#today-day").bind clicktouch, ->
     $("#calendardisplay").getCalendar()
+    setDayViewTitle()
 
+setDayViewTitle = ->
     selectedDate = $("#calendardisplay").find('.selected').attr('datetime')
     $("#dayviewdate").html($("#calendardisplay").stringToDate(selectedDate).toLocaleDateString())
 
@@ -40,6 +32,6 @@ $ ->
     dateAr[1] = "0" + dateAr[1] if (dateAr[1].length == 1)
     dateAr[2] = "0" + dateAr[2] if (dateAr[2].length == 1)
     FormattedDate = dateAr.join("-")
-        
+
     $("#dayviewevents>li").hide()
     $("#dayviewevents>li").children('[datetime^="' + FormattedDate + '"]').parent().show()
