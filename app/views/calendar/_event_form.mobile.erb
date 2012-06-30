@@ -5,32 +5,36 @@
       <a href="#" class="button">Save</a>
       
   </div>
+  <%= f.hidden_field :network_id %>
   <ul>
     <li class="sep">Type (select)</li>
-    <li><%= select_tag(:event_type_id, options_for_select([['Appointment', 1], ['Ride', 2], ['Meal', 3], ['Visit', 4], ['Other', 5]])) %></li>
+    <li><%= select_tag("event[event_type_id]", options_from_collection_for_select(@event_types, "id", "name")) %></li>
   </ul>
   <ul>
     <li class="sep">What</li>
-    <li><input type="text" id="name" placeholder="What..." /></li>
+    <li><%= f.text_field :name, placeholder: "What..." %></li>
   </ul>
   <ul>
     <li class="sep">When</li>
-    <li>from <input type="datetime" name="bdaytime" /></li>
-    <li>to <input type="datetime" name="bdaytime" /></li>
+    <li>from <input type="datetime-local" name="event[start_at]", value="<%= @event.start_at %>" /></li>
+    <li>to <input type="datetime-local" name="event[end_at]", value="<%= @event.end_at %>" /></li>
   </ul>
   <ul>
     <li class="sep">Where</li>
-    <li><input type="text" id="location" placeholder="Where..." /></li>
+    <li><%= f.text_field :location, placeholder: "Where..." %></li>
   </ul>
-  <ul>
+  <!-- <ul>
     <li class="sep">With</li>    
+    <%= hidden_field_tag "event[user_ids][]", nil %>
     <% User.all.each do |user| %>
-      <li><%= check_box_tag  "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %></li>
+      <li><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %></li>
     <% end %>
-  </ul>
+  </ul> -->
   <ul>
     <li class="sep">Description</li>
-    <li><textarea id="description" placeholder="Descripton"></textarea></li>
+    <li><%= f.text_area :description, placeholder: "Description" %></li>
   </ul>
+  <%= link_to "Submit", "#", :class => "whiteButton submit" %>
+  <%= f.submit %>
   <a href="#" class="whiteButton" style="margin: 10px">Save</a>
 <% end %>
