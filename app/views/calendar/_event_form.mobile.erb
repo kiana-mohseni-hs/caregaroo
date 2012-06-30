@@ -1,0 +1,36 @@
+<%= form_for @event do |f| %>
+  <div class="toolbar">
+      <h1>New Event</h1>
+      <a href="#" class="cancel">Cancel</a>
+      <a href="#" class="button">Save</a>
+      
+  </div>
+  <ul>
+    <li class="sep">Type (select)</li>
+    <li><%= select_tag(:event_type_id, options_for_select([['Appointment', 1], ['Ride', 2], ['Meal', 3], ['Visit', 4], ['Other', 5]])) %></li>
+  </ul>
+  <ul>
+    <li class="sep">What</li>
+    <li><input type="text" id="name" placeholder="What..." /></li>
+  </ul>
+  <ul>
+    <li class="sep">When</li>
+    <li>from <input type="datetime" name="bdaytime" /></li>
+    <li>to <input type="datetime" name="bdaytime" /></li>
+  </ul>
+  <ul>
+    <li class="sep">Where</li>
+    <li><input type="text" id="location" placeholder="Where..." /></li>
+  </ul>
+  <ul>
+    <li class="sep">With</li>    
+    <% User.all.each do |user| %>
+      <li><%= check_box_tag  "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %></li>
+    <% end %>
+  </ul>
+  <ul>
+    <li class="sep">Description</li>
+    <li><textarea id="description" placeholder="Descripton"></textarea></li>
+  </ul>
+  <a href="#" class="whiteButton" style="margin: 10px">Save</a>
+<% end %>

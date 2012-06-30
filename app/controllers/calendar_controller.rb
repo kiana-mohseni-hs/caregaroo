@@ -16,6 +16,7 @@ class CalendarController < ApplicationController
     
     #TODO select fewer events (e.g. current, previous and next month and update calendar when needed)
     @events = @current_user.network.events
+    @event = Event.new
   end
   
 end

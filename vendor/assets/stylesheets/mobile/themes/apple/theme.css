@@ -329,14 +329,16 @@ body {
     text-indent: -2px;
 }
 
-#jqt ul li select {
+
+/*commented out as the definitions above work better*/
+/*#jqt ul li select {
     text-indent: 0px;
     background: transparent url(img/chevron.png) no-repeat 103% 3px;
     -webkit-appearance: textfield;
     margin-left: -6px;
     width: 104%;
 }
-
+*/
 #jqt ul li input[type="checkbox"], #jqt ul li input[type="radio"] {
     margin: 0;
     color: rgb(50,79,133);
