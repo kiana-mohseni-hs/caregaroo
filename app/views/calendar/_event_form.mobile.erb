@@ -2,8 +2,7 @@
   <div class="toolbar">
       <h1>New Event</h1>
       <a href="#" class="cancel">Cancel</a>
-      <a href="#" class="button">Save</a>
-      
+      <%= link_to "Save", "#", :class => "button submit" %>
   </div>
   <%= f.hidden_field :network_id %>
   <ul>
@@ -34,7 +33,8 @@
     <li class="sep">Description</li>
     <li><%= f.text_area :description, placeholder: "Description" %></li>
   </ul>
-  <%= link_to "Submit", "#", :class => "whiteButton submit" %>
-  <%= f.submit %>
-  <a href="#" class="whiteButton" style="margin: 10px">Save</a>
+  <ul class="individual above-bottom-tabbar">
+    <li><%= link_to "Cancel", "#", :class => "goback" %></li>
+    <li><%= link_to "Save", "#", :class => "submit" %></li>
+  </ul>
 <% end %>

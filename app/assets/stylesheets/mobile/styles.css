@@ -103,8 +103,9 @@ border-top-width: 0px;
 
 
 .above-bottom-tabbar, .jqt_calendar {
-  margin-bottom: 36px;
+  margin-bottom: 40px !important;
 }
+
 
 /* @end */
 
