@@ -37,19 +37,13 @@
   <div id="members">
     <h1> Members Page Stub</h1>  
   </div>
+  <div id="event">
+    <%= render :partial => 'event_show' %>
+  </div>
   <div id="add_event" class="edit">
     <%= render :partial => 'event_form' %>
   </div>
   
   
 </div>
-<div id="other">
-  <div class="tabbar">
-    <ul>
-      <li class="four"><a href="#journal">Journal</a></li>
-      <li class="four current"><a href="#calendar">Calendar</a></li>
-      <li class="four"><a href="#profile">Profile</a></li>
-      <li class="four"><a href="#members">Members</a></li>
-    </ul>
-  </div>
-</div>
+<%= render :partial => 'bottom_tabbar' %>

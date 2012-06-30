@@ -34,4 +34,4 @@ setDayViewTitle = ->
   FormattedDate = dateAr.join("-")
 
   $("#dayviewevents>li").hide()
-  $("#dayviewevents>li").children('[datetime^="' + FormattedDate + '"]').parent().show()
+  $("#dayviewevents>li>a").children('[datetime^="' + FormattedDate + '"]').parent().parent().show()
