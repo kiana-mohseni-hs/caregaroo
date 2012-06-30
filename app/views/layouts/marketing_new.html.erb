@@ -4,35 +4,42 @@
 <title>Caregaroo: Home Care Coordination</title> <meta name="keywords" content="" /> 
 <meta name="description" content="Caregaroo is a private online community for families to share news, coordinate care and contribute to help older parents living independantly." /> 
 <meta name="robots" content="index, follow" /> 
-<meta name="viewport" content="width=device-width; initial-scale=1.0;maximum-scale=1.0;">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="cache-control" content="no-cache" />
 <link rel="shortcut icon" href="favicon.ico">
 <%= stylesheet_link_tag "marketing_new" %>
 <%= javascript_include_tag "marketing_new" %>
 <%= csrf_meta_tag %>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </head>
 <body class="<%= params[:controller] %>">
+	<div class="navbar">
+	  <div class="navbar-inner">
+	    <div class="container">
+			  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+		      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </a>
+		      <!-- Be sure to leave the brand out there if you want it shown -->
+		      <a href="<%= url_for root_path %>" class="brand"><img src="/assets/CaringMadeEasyLogo.png" alt="Kippt" width="384" height="110"></a>         
+		      <!-- Everything you want hidden at 940px or less, place within here -->
+		      <div class="nav-collapse">
+	            <ul class="nav pull-right" style="margin-top:20px;">
+	            	<li><div style="vertical-align:middle; margin:8px 10px 8px 0px"><a href="https://twitter.com/CaregarooTweet" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Tweet</a></li>
+                    <li><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FCaregaroo&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;margin-top:8px" allowTransparency="true"></iframe></li>
+					<li><%= link_to "HOME", home_new_path %></li>
+					<li><%= link_to "LEARN MORE", product_new_path %></li>
+					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">HELP</a></li>
+	                <li><%= link_to "SIGN-IN", login_path %></li>
+				</ul>
+		      </div>
+		    </div>
+	    </div>
+	  </div>
+	</div>
 	<div class="container">
-		<div id="mkt_top_nav" class="row-fluid">
-			<div class ="span12"><!--twitter facebook widge-->
-			</div><!--span12-->
-			<div class ="span3" ><!--logo-->
-				<a class="brand" href="<%= url_for root_path %>"> <div id="site_logo"></div></a>
-			</div>
-			<div class="span3">
-				<h2>Caring made easy</h2>
-			</div><!--span2-->
-			<div class ="span4"><!--nav-->
-				<ul class="nav nav-pills">
-					<li><%= link_to "Home", home_new_path %></li>
-					<li><%= link_to "Product", product_new_path %></li>
-					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">Help</a></li>
-		  		</ul>
-		  	</div>
-		  	<div class ="span1">
-				<button class="btn" onclick="">Sign-In</button>
-	  		</div><!--sign in button, need to show sign in form on click-->
-		</div>
 
 		<div>
 		    <%= yield %>
