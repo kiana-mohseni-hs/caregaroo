@@ -1,8 +1,8 @@
-<%= form_for( @event, :remote => true) do |f| %>
+<%= form_for( @event ) do |f| %>
   <div class="toolbar">
       <h1>New Event</h1>
       <a href="#" class="cancel">Cancel</a>
-      <%= link_to "Save", "#", :class => "button submit" %>
+      <%= link_to "Save", "#", :class => "button submit", :target => "_webapp" %>
   </div>
   <%= f.hidden_field :network_id %>
   <ul>
@@ -22,19 +22,19 @@
     <li class="sep">Where</li>
     <li><%= f.text_field :location, placeholder: "Where..." %></li>
   </ul>
-  <!-- <ul>
-    <li class="sep">With</li>    
-    <%= hidden_field_tag "event[user_ids][]", nil %>
-    <% User.all.each do |user| %>
-      <li><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %></li>
-    <% end %>
-  </ul> -->
+  <ul>
+      <li class="sep">With</li>    
+      <%= hidden_field_tag "event[user_ids][]", nil %>
+      <% User.all.each do |user| %>
+        <li><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %></li>
+      <% end %>
+    </ul>
   <ul>
     <li class="sep">Description</li>
     <li><%= f.text_area :description, placeholder: "Description" %></li>
   </ul>
   <ul class="individual above-bottom-tabbar">
     <li><%= link_to "Cancel", "#", :class => "goback" %></li>
-    <li><%= link_to "Save", "#", :class => "submit" %></li>
+    <li><%= link_to "Save", "#", :class => "submit", :target => "_webapp" %></li>
   </ul>
 <% end %>

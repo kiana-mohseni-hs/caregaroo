@@ -21,6 +21,10 @@ $ ->
   $("a#today-day").bind clicktouch, ->
     $("#calendardisplay").getCalendar()
     setDayViewTitle()
+    
+  $(".event_item").bind clicktouch, ->
+    event_id = $(this).attr("id").slice(6)
+    $("#event").html($(this).html())
 
 # set title in day view to currently selected date
 setDayViewTitle = ->

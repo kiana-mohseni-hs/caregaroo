@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120630061008) do
+ActiveRecord::Schema.define(:version => 20120703024233) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20120630061008) do
     t.integer  "event_type_id"
     t.string   "location"
     t.string   "description"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   create_table "events_users", :id => false, :force => true do |t|

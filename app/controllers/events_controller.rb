@@ -2,7 +2,6 @@ class EventsController < ApplicationController
   before_filter :require_user
   before_filter :prepare_for_mobile
   
-  
   def index
     @events = Event.all
 
@@ -16,6 +15,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile 
     end
   end
 
@@ -33,11 +33,14 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
+    @event.creator = @current_user
+    @event.updater = @current_user
 
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, :notice => 'Event was successfully created.' }
-        format.mobile { redirect_to controller: "calendar", action: "index", anchor: "event", rel: "external" }
+        # format.mobile { redirect_to controller: "calendar", action: "index", anchor: "event", rel: "external" }
+        format.mobile { redirect_to @event }
         format.json { render :json => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }

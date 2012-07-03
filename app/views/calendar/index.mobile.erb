@@ -9,10 +9,12 @@
       <a href="#day" id="dayview" class="button centreButton flip">Day View</a>
       <a href="#add_event" class="button add slideup">+</a>
     </div>
-    <div id="calendardisplay" class="above-bottom-tabbar">
-      <ul>
-        <%= render :partial => "event", :collection => @events %>
-      </ul>
+    <div class="scroll">
+      <div id="calendardisplay" class="above-bottom-tabbar">
+        <ul id="events">
+          <%= render :partial => "event", :collection => @events %>
+        </ul>
+      </div>
     </div>
   </div>
   <div id="day">
@@ -37,8 +39,7 @@
   <div id="members">
     <h1> Members Page Stub</h1>  
   </div>
-  <div id="event">
-    <%= render :partial => 'event_show' %>
+  <div id ="event">
   </div>
   <div id="add_event" class="edit">
     <%= render :partial => 'event_form' %>

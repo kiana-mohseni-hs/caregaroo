@@ -112,3 +112,12 @@ border-top-width: 0px;
 li#dayviewdate {
   text-align: center;
 }
+
+#dayviewevents .location {
+  float: right;
+  padding-right: 30px;
+}
+
+.eventsecondline {
+  color:#aaa;
+}
