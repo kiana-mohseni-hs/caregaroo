@@ -1,13 +1,16 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, :network_id, :role, :avatar, :notification_attributes, :profile_attributes
+  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, 
+                  :network_id, :role, :avatar, :notification_attributes, :profile_attributes, :in_first_stage
   has_secure_password
-  validates_presence_of :network_relationship
   validates :email, :presence => true, :email_format => true, :uniqueness => true
-  validates_presence_of :first_name
-  validates_presence_of :last_name
   validates_presence_of :password, :on => :create
   validates_length_of :password, :minimum => 6, :on => :create
-  validates_presence_of :password_confirmation, :on => :create
+
+  validates_presence_of :network_relationship, :unless => :in_first_stage?
+  validates_presence_of :first_name, :unless => :in_first_stage?
+  validates_presence_of :last_name, :unless => :in_first_stage?
+  validates_presence_of :password_confirmation, :on => :create, :unless => :in_first_stage?
+  attr_accessor :first_stage
   
   belongs_to :network, :class_name => "Network", :foreign_key => "network_id"
   has_many :invitations
@@ -38,6 +41,10 @@ class User < ActiveRecord::Base
   before_create { 
     generate_token(:auth_token) 
   }
+  
+  def in_first_stage?
+    first_stage
+  end
   
   def get_related_messages(folder_id)
       @messages = Message.where("folder_id = ?", folder_id).order("created_at")
