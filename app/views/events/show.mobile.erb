@@ -1,3 +1,4 @@
+<div id="jqt">
 <ul class="edgetoedge">
   <li>
   <% creator = @event.creator || @current_user %>
@@ -6,6 +7,10 @@
   <p><%= @event.start_at.strftime("%I:%M %p") %> - <%= @event.end_at.strftime("%I:%M %p") %></p>
   <p class="eventsecondline"><%= @event.location %></p></li>
   <li class="sep">Description</li>
-  <li><%= @event.name %><br/>
-    <em><%= @event.description %></em></li>
-  </ul>
+  <li>
+    <%= @event.name %><br/>
+    <em><%= @event.description %></em>
+  </li>
+</ul>
+</div>
+<%= render :partial => 'shared/bottom_tabbar' %>

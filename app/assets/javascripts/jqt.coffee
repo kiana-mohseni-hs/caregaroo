@@ -32,6 +32,15 @@ $ ->
     # $(".current").removeClass('current')
     # $('#calendar').addClass('current')
     # window.location.reload(true)
+    
+  # if $('#add_event').hasClass('current')
+  #   $('#other').hide()
+  # else
+  #   $('#other').show()
+  
+
+  # $('.add_event_button').click ->
+  #   $('#other').hide()
       
 # set title in day view to currently selected date
 setDayViewTitle = ->
@@ -46,4 +55,6 @@ setDayViewTitle = ->
 
   $("#dayviewevents>li").hide()
   $("#dayviewevents>li>a").children('[datetime^="' + FormattedDate + '"]').parent().parent().show()
-
+  
+  
+  

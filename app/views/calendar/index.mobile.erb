@@ -7,7 +7,7 @@
       <!-- <a href="/calendar" rel="external" class="button leftButton">Today</a> -->
       <a href="#" id="today" class="button leftButton">Today</a>
       <a href="#day" id="dayview" class="button centreButton flip">Day View</a>
-      <a href="#add_event" class="button add slideup">+</a>
+      <a href="#add_event" class="button add slideup add_event_button">+</a>
     </div>
     <div class="scroll">
       <div id="calendardisplay" class="above-bottom-tabbar">
@@ -22,7 +22,7 @@
       <!-- <a href="/calendar" rel="external" class="button leftButton">Today</a> -->
       <a href="#" id="today-day" class="button leftButton">Today</a>
       <a href="#calendar" class="button centreButton flip">Month View</a>
-      <a href="#add_event" class="button add slideup">+</a>
+      <a href="#add_event" class="button add slideup add_event_button">+</a>
     </div>
     <div>
       <ul class="edgetoedge">
@@ -47,4 +47,5 @@
   
   
 </div>
-<%= render :partial => 'bottom_tabbar' %>
+<%= render :partial => 'shared/bottom_tabbar' %>
+
