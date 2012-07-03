@@ -25,7 +25,14 @@ $ ->
   $(".event_item").bind clicktouch, ->
     event_id = $(this).attr("id").slice(6)
     $("#event").html($(this).html())
-
+    
+  $("#new_event").submit ->
+    @submit()
+    window.location = "/calendar#calendar"
+    # $(".current").removeClass('current')
+    # $('#calendar').addClass('current')
+    # window.location.reload(true)
+      
 # set title in day view to currently selected date
 setDayViewTitle = ->
   selectedDate = $("#calendardisplay").find('.selected').attr('datetime')
@@ -39,3 +46,4 @@ setDayViewTitle = ->
 
   $("#dayviewevents>li").hide()
   $("#dayviewevents>li>a").children('[datetime^="' + FormattedDate + '"]').parent().parent().show()
+
