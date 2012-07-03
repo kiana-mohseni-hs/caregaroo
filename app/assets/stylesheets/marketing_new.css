@@ -18,5 +18,25 @@
 #news_img{background:url('ADAPTEDMarketingPageSlices.png') no-repeat -170px -80px; width:130px; height:140px;}
 #email_img{background:url('ADAPTEDMarketingPageSlices.png') no-repeat -300px -90px; width:240px; height:140px;}
 .intro { color:#14377D; font-size:22px; line-height:110% }
-.title { color:#14377D; font-size:22px; line-height:110%; font-weight:bold; font-style:italic }
+.title { color:#14377D; font-size:22px; line-height:110%; font-weight:bold; }
 .blueFont { color:#14377D; font-weight:bold }
+.quick-links {
+    list-style: none outside none;
+    margin: 0;
+    min-height: 30px;
+    overflow: hidden;
+    padding: 5px 20px;
+    text-align: center;
+}
+.quick-links:first-child {
+    min-height: 0;
+}
+.quick-links li {
+    color: #999999;
+    display: inline;
+    margin: 0 8px;
+}
+.quick-links .github-btn, .quick-links .tweet-btn, .quick-links .follow-btn {
+    position: relative;
+    top: 5px;
+}

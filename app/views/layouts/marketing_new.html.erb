@@ -30,7 +30,7 @@
 	            	<li><div style="vertical-align:middle; margin:8px 10px 8px 0px"><a href="https://twitter.com/CaregarooTweet" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Tweet</a></li>
                     <li><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FCaregaroo&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;margin-top:8px" allowTransparency="true"></iframe></li>
 					<li><%= link_to "HOME", home_new_path %></li>
-					<li><%= link_to "LEARN MORE", product_new_path %></li>
+					<li><%= link_to "BENEFITS", product_new_path %></li>
 					<li><%= link_to "BLOG", "http://blog.caregaroo.com/" %></li>
 					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">HELP</a></li>
 	                <li><%= link_to "SIGN-IN", login_path %></li>
@@ -41,28 +41,20 @@
 	  </div>
 	</div>
 	<div class="container">
-
 		<div>
 		    <%= yield %>
 	 	</div>
- 	 
-	 	<div class="row"><!-- footer-->
-	 		
-	 		<center>
-	 			<img class="separator" src="img/line.png" alt="separator line" />
-	 		<div class="span4 offset4">
-	 			<ul class="nav nav-pills">
-					<li><%= link_to "Home", root_path %></li>
-					<li><%= link_to "Product", product_path %></li>
-					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">Help</a></li>
+	 	<div class="row">
+	 		<div class="span12" style="text-align: center; border-top: 1px solid #eee;margin-top: 20px">
+	 			<ul class="quick-links" style="margin-top: 20px">
+					<li><%= link_to "HOME", root_path %></li>
+					<li><%= link_to "BENEFITS", product_path %></li>
+					<li><%= link_to "BLOG", "http://blog.caregaroo.com/" %></li>
+					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">HELP</a></li>
 		  		</ul>
+	 			<p> Copyright 2011, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com" target="_blank">info@caregaroo.com</a></p>
 		  	</div>
-		  	<div class="span12">
-	 		<p id="copyright" class="grid_14 clearfix"> Copyright 2011, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com"
-			target="_blank">info@caregaroo.com</a></p>
-			</div>
-			</center>
-	 	</div><!-- footer-->
-	</div><!--container-->
+	 	</div>
+	</div>
 </body>
 </html>
