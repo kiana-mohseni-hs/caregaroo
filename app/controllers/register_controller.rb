@@ -28,7 +28,7 @@ class RegisterController < ApplicationController
     user = User.new(:role => User::ROLES["initiator"], 
                     :email => params[:email],
                     :password => params[:password], 
-                    :network_relationship => "Coordinator"
+                    :network_relationship => "Coordinator",
                     :first_name => "Guest")                                    
     user.first_stage = true
     user.notification = Notification.new(:announcement => true, :post_update => true)
