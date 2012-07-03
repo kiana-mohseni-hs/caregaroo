@@ -2,31 +2,31 @@ $.jQTouch
   icon: "/assets/mobile/homescreen.png"
   startupScreen: "/assets/mobile/splash.png"
 $ ->  
-  $("#calendardisplay").getCalendar()
+  $('#calendardisplay').getCalendar()
 
   # set title in day view to today's date on load
-  $("#dayviewdate").html((new Date()).toLocaleDateString())
+  $('#dayviewdate').html((new Date()).toLocaleDateString())
 
   clicktouch = "click"
   clicktouch = "touchstart"  if Modernizr.touch
   
   #reload calendar
-  $("a#today").bind clicktouch, ->
+  $('a#today').bind clicktouch, ->
     $("#calendardisplay").getCalendar()
   
-  $("a#dayview").bind clicktouch, ->
+  $('a#dayview').bind clicktouch, ->
     setDayViewTitle()
 
   #reload calendar
-  $("a#today-day").bind clicktouch, ->
+  $('a#today-day').bind clicktouch, ->
     $("#calendardisplay").getCalendar()
     setDayViewTitle()
     
-  $(".event_item").bind clicktouch, ->
+  $('.event_item').bind clicktouch, ->
     event_id = $(this).attr("id").slice(6)
     $("#event").html($(this).html())
     
-  $("#new_event").submit ->
+  $('#new_event').submit ->
     @submit()
     window.location = "/calendar#calendar"
     # $(".current").removeClass('current')
@@ -41,6 +41,19 @@ $ ->
 
   # $('.add_event_button').click ->
   #   $('#other').hide()
+  
+  # $("input[type=\"checkbox\"]").change() ->
+  #   alert "changed"
+  
+  # $('.toggle>input').click ->
+  #   unless $(this).is(':checked')
+  #   alert( "checked")
+  
+  # $(":checkbox").attr("checked").change ->
+  #     if $(this).attr("checked")
+  #       alert "hey"
+  #     else
+  #       alert "hey hey"
       
 # set title in day view to currently selected date
 setDayViewTitle = ->

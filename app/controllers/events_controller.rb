@@ -29,6 +29,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @event_types=EventType.all
   end
 
   def create

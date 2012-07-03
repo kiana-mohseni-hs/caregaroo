@@ -1,6 +1,6 @@
 <%= form_for( @event, remote: true ) do |f| %>
   <div class="toolbar">
-      <h1>New Event</h1>
+      <h1><%= @event.id.blank? ? "New Event" : "Edit Event" %></h1>
       <a href="#" class="cancel">Cancel</a>
       <%= link_to "Save", "#", class: "button submit", id: "save_event_top_button", target: "_webapp" %>
   </div>
