@@ -26,12 +26,16 @@ $ ->
     event_id = $(this).attr("id").slice(6)
     $("#event").html($(this).html())
     
+  #hack to make submit work or jqtouch hijacks it
   $('#new_event').submit ->
     @submit()
-    window.location = "/calendar#calendar"
-    # $(".current").removeClass('current')
-    # $('#calendar').addClass('current')
-    # window.location.reload(true)
+  
+  #hack to make submit work or jqtouch hijacks it
+  $('.edit_event').submit ->
+    @submit()
+  $('.delete_event_button').submit ->
+    @submit()
+   
     
   # if $('#add_event').hasClass('current')
   #   $('#other').hide()
