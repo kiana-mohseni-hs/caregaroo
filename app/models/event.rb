@@ -6,6 +6,10 @@ class Event < ActiveRecord::Base
   belongs_to :creator, :class_name => "User", :foreign_key => "created_by_id"
   belongs_to :updater, :class_name => "User", :foreign_key => "updated_by_id"
   
+  validates_presence_of :start_at
+  validates_presence_of :end_at
+  validates_presence_of :name
+    
   attr_accessible :name,
                   :start_at,
                   :end_at,
