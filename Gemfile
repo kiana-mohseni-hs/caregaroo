@@ -17,6 +17,7 @@ end
 group :heroku do
   gem 'pg'
   gem 'thin'
+  gem "fog", "~> 1.3.1"
 end
 
 
