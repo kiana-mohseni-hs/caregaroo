@@ -36,6 +36,7 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event])
     @event.creator = @current_user
     @event.updater = @current_user
+    @event.network_id ||= @current_user.network.id
 
     respond_to do |format|
       if @event.save
@@ -49,6 +50,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    @event.updater = @current_user
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
