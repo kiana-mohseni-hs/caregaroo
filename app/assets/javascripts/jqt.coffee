@@ -33,9 +33,8 @@ $ ->
   #hack to make submit work or jqtouch hijacks it
   $('.edit_event').submit ->
     @submit()
-  $('.delete_event_button').submit ->
+  $('.button_to').submit ->
     @submit()
-   
     
   # if $('#add_event').hasClass('current')
   #   $('#other').hide()

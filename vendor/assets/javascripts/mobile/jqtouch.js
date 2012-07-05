@@ -417,7 +417,7 @@
         }
         function setHash(hash) {
             // Sanitize
-            location.hash = '#' + hash.replace(/^#/, '');
+            location.hash = '#' + location.hash.replace(/^#/, '');
         }
         function showPageByHref(href, options) {
 
