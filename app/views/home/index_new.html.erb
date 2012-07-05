@@ -47,7 +47,7 @@
 <div class="row">
 	<div class="span6 offset2">
 		<div id="marketingVideo">
-			<img src="assets/VideoImage.png" />
+			<a id="video" title="Caregaroo" href="http://www.youtube.com/watch?v=zzq2e8Fbuxk&amp;feature=player_embedded#at=41"><img src="assets/VideoImage.png" /></a>
 		</div>
 	</div>
 	<div class="span3">
@@ -63,3 +63,25 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$("#video").click(function() {
+	$.fancybox({
+			'padding'		: 0,
+			'autoScale'		: false,
+			'transitionIn'	: 'none',
+			'transitionOut'	: 'none',
+			'title'			: this.title,
+			'width'			: 640,
+			'height'		: 360,
+			'href'			:  this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+			'type'			: 'swf',
+			'swf'			: {
+			   	 'wmode'		: 'transparent',
+				'allowfullscreen'	: 'true'
+			}
+		});
+
+	return false;
+});
+</script>
