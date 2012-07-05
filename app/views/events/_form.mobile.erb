@@ -15,8 +15,8 @@
   </ul>
   <ul>
     <li class="sep">When</li>
-    <li>from <input type="datetime-local" name="event[start_at]", value="<%= @event.start_at %>" /></li>
-    <li>to <input type="datetime-local" name="event[end_at]", value="<%= @event.end_at %>" /></li>
+    <li>from <input type="datetime-local" name="event[start_at]", value="<%= @event.start_at.strftime("%FT%R") %>" /></li>
+    <li>to <input type="datetime-local" name="event[end_at]", value="<%= @event.end_at.strftime("%FT%R") %>" /></li>
   </ul>
   <ul>
     <li class="sep">Where</li>
