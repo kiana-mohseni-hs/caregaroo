@@ -3,8 +3,7 @@
     <div class='toolbar'>
       <%= link_to "Back", "/calendar#calendar", rel: "external", class: "button leftButton " %>
       <%= link_to 'Edit', edit_event_url(@event), rel: "external", class: "button centreButton " %>
-      <%# TODO confirmation before destroy %>
-      <%= button_to "Delete", @event,  method: :delete, class: "button", rel: "external", form_class: "ensure_submit" %>
+      <%= button_to "Delete", @event,  method: :delete, class: "button", rel: "external", form_class: "confirm_delete" %>
     </div>
     <ul class="edgetoedge">
       <li>

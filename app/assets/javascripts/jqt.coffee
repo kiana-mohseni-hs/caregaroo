@@ -30,7 +30,13 @@ $ ->
   $('.ensure_submit').submit ->
     @submit()
     false
-          
+
+  #confirm submission and work around jqtouch
+  $('.confirm_delete').submit ->
+    confirm_result = confirm("Delete: Are you sure?")
+    @submit() if confirm_result is true
+    false
+  
 # set title in day view to currently selected date
 setDayViewTitle = ->
   selectedDate = $("#calendardisplay").find('.selected').attr('datetime')
