@@ -26,38 +26,11 @@ $ ->
     event_id = $(this).attr("id").slice(6)
     $("#event").html($(this).html())
     
-  #hack to make submit work or jqtouch hijacks it
-  $('#new_event').submit ->
+  #hack to make form submit work or jqtouch hijacks it
+  $('.ensure_submit').submit ->
     @submit()
-  
-  #hack to make submit work or jqtouch hijacks it
-  $('.edit_event').submit ->
-    @submit()
-  $('.button_to').submit ->
-    @submit()
-    
-  # if $('#add_event').hasClass('current')
-  #   $('#other').hide()
-  # else
-  #   $('#other').show()
-  
-
-  # $('.add_event_button').click ->
-  #   $('#other').hide()
-  
-  # $("input[type=\"checkbox\"]").change() ->
-  #   alert "changed"
-  
-  # $('.toggle>input').click ->
-  #   unless $(this).is(':checked')
-  #   alert( "checked")
-  
-  # $(":checkbox").attr("checked").change ->
-  #     if $(this).attr("checked")
-  #       alert "hey"
-  #     else
-  #       alert "hey hey"
-      
+    false
+          
 # set title in day view to currently selected date
 setDayViewTitle = ->
   selectedDate = $("#calendardisplay").find('.selected').attr('datetime')

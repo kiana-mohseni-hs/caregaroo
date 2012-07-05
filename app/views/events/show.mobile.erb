@@ -4,7 +4,7 @@
       <%= link_to "Back", "/calendar#calendar", rel: "external", class: "button leftButton " %>
       <%= link_to 'Edit', edit_event_url(@event), rel: "external", class: "button centreButton " %>
       <%# TODO confirmation before destroy %>
-      <%= button_to "Delete", @event,  method: :delete, class: "button delete_event_button", rel: "external" %>
+      <%= button_to "Delete", @event,  method: :delete, class: "button", rel: "external", form_class: "ensure_submit" %>
     </div>
     <ul class="edgetoedge">
       <li>
