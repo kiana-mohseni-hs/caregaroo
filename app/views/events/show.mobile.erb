@@ -14,8 +14,8 @@
         <p class="eventsecondline"><%= @event.location %></p>
       </li>
       <li>
-        <%= form_for( @event, remote: true ) do |f| %>
-          Participating?<span class="toggle"><%= check_box_tag "event[user_ids][]", @current_user.id, @event.user_ids.include?(@current_user.id), id: dom_id(@current_user) %></span>
+        <%= form_for( @event, remote: true ) do |f| %><%= hidden_field_tag "event[user_ids][]", nil %>
+          Participating?<span class="toggle"><%= check_box_tag "event[user_ids][]", @current_user.id, @event.user_ids.include?(@current_user.id), id: dom_id(@current_user) , class: 'submit_on_change'%></span>
         <%  end %>
       </li>
       <li class="sep">Description</li>

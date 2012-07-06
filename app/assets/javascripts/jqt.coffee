@@ -36,6 +36,11 @@ $ ->
     confirm_result = confirm("Delete: Are you sure?")
     @submit() if confirm_result is true
     false
+    
+  #pick up the toggle change in events/show ("participating?")
+  $(".submit_on_change").change ->
+    form = $(this).closest("form")
+    form.get(0).submit()
   
 # set title in day view to currently selected date
 setDayViewTitle = ->
