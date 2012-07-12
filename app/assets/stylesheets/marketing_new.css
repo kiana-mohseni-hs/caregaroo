@@ -5,7 +5,7 @@
  *= require_self
  *= require bootstrap
 */
-.bg2 { background: url('bg.png') no-repeat scroll center 80px white; background-size:940px 405px; }
+.bg2 { background: url('bg.png') no-repeat scroll center 0px white; background-size:940px 405px; }
 .bg1 { background-color:#EAEAEA; background-size: 1600px 200px; background-repeat:no-repeat; height:350px; }
 .bg { background-color:#EAEAEA;
 	background:-webkit-gradient(linear,left top,left bottom,from(#FCFCFC),to(#EAEAEA));
