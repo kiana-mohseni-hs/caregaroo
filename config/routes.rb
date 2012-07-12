@@ -39,11 +39,11 @@ Cg2App::Application.routes.draw do
   get "download/faq" => "download#faq", :as => "download_faq"
   get "admin" => "pilot_signups#index", :as => "admin"
   post "signup" => "register#signup", :as => "signup"
-  match "product" => "home#product"
-  match "home_new" => "home#home_new", :as => "home_new"
-  match "product_new" => "home#product_new", :as => "product_new"
+  #match "product" => "home#product"
+  #match "home_new" => "home#home_new", :as => "home_new"
+  match "product" => "home#product_new", :as => "product_new"
   
-  root :to => "home#index", :as => "root"
+  root :to => "home#home_new", :as => "root"
   
   resources :sessions
   resources :password_resets
