@@ -2,22 +2,12 @@ class HomeController < ApplicationController
   
   def index
     @page = 'home'
-    render :layout => "marketing"
+    render :layout => "marketing_new"
   end
 
   def product
     @page = 'product'
-    render :layout => "marketing"
+    render :layout => "marketing_new"
   end  
-  
-  def home_new
-    @page = 'home'
-    render 'index_new', :layout => "marketing_new"
-  end
-  
-  def product_new
-    @page = 'product'
-    render 'product_new', :layout => "marketing_new"
-  end
-  
+
 end

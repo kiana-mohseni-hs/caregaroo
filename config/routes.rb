@@ -41,9 +41,9 @@ Cg2App::Application.routes.draw do
   post "signup" => "register#signup", :as => "signup"
   #match "product" => "home#product"
   #match "home_new" => "home#home_new", :as => "home_new"
-  match "product" => "home#product_new", :as => "product_new"
+  match "product" => "home#product", :as => "product_new"
   
-  root :to => "home#home_new", :as => "root"
+  root :to => "home#index", :as => "root"
   
   resources :sessions
   resources :password_resets
