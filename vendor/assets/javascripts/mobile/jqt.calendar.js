@@ -248,8 +248,8 @@
 						
 						var returnable = '';
 
-						$.each($el.data('events')[""+year+"-"+month+"-"+day+""], function(index, value){
-							returnable += '<li><span>' + value.time + '</span>'+value.text+'</li>';
+            $.each($el.data('events')[""+year+"-"+month+"-"+day+""], function(index, value){
+              returnable += '<li><span>' + value.time + '</span>'+value.text+'</li>';
 						});
 						return returnable;
 					}

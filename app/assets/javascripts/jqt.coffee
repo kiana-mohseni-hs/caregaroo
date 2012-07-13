@@ -3,6 +3,10 @@ $.jQTouch
   startupScreen: "/assets/mobile/splash.png"
 $ ->  
   $('#calendardisplay').getCalendar()
+  setDayViewTitle()
+  
+  $('#calendardisplay').find("td").bind "click", ->
+    setDayViewTitle()
 
   # set title in day view to today's date on load
   $('#dayviewdate').html((new Date()).toLocaleDateString())
@@ -42,7 +46,7 @@ $ ->
     form = $(this).closest("form")
     form.get(0).submit()
   
-# set title in day view to currently selected date
+# update list of visible events and set title in day view to currently selected date
 setDayViewTitle = ->
   selectedDate = $("#calendardisplay").find('.selected').attr('datetime')
   $("#dayviewdate").html($("#calendardisplay").stringToDate(selectedDate).toLocaleDateString())
@@ -53,8 +57,10 @@ setDayViewTitle = ->
   dateAr[2] = "0" + dateAr[2] if (dateAr[2].length == 1)
   FormattedDate = dateAr.join("-")
 
+  visible_events = $("#dayviewevents>li>a").children('[datetime^="' + FormattedDate + '"]').parent().parent()
+
   $("#dayviewevents>li").hide()
-  $("#dayviewevents>li>a").children('[datetime^="' + FormattedDate + '"]').parent().parent().show()
+  visible_events.show()
   
-  
+  $(".events").empty().append(visible_events.parent().html())
   
