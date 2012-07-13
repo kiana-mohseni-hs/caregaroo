@@ -3,12 +3,9 @@ class HomeController < ApplicationController
 
   def index
     @page = 'home'
-<<<<<<< HEAD
+    render 'index_new', :layout => "marketing_new"
     @session = Session.new if mobile_device?
     render :layout => "marketing"
-=======
-    render 'index_new', :layout => "marketing_new"
->>>>>>> master
   end
 
   def product

@@ -1,72 +1,85 @@
 
-<div class="row">
-	 
-	<div class = "span6">
-		<img src="assets/Caring_for_a_loved_one.png" alt="coordinate care" />
-	</div>
+<div class="row bg2">
 		
-	<div class = "span5">
-		<h2>With <strong>Caregaroo</strong> you can share news and coordinate care for loved ones in a safe private space.
-		</h2>
-		<br/>
-		<div>
-			<form class="well">
-				<span class="help-block">Create your free account</span>
-				<input type="text" class="input-large" placeholder="Who are you caring for?">
-				<input type="text" class="input-large" placeholder="Your email address?">
-				<input type="password" class="input-large" placeholder="Choose your password">
-				<label class="control-label" for ="register_submit">Need more information?</label>
-					<button id="register_submit" type="submit" class="btn">Start Now</button>
+	<div class="span5 offset7">
+		<p class="intro" style="margin-top:20px; text-align:center;"><span style="font-weight:bold;font-size:28px">Care better, together</span><br/>Get the support you need<br/>from family and friends</p>
+		<div style="margin-top:30px; width:100%; padding:0 20px;">
+			<div>
+			<form class="well" action="/register_min" method="post">
+				<span class="help-block" style="font-size:20px; font-style:italic; margin:10px 10px 20px 10px;">Create your free account</span>
+				<input type="text" class="span4" name="network_for_who" placeholder="Who are you caring for?">
+				<input type="text" class="span4" name="email" placeholder="Your email address?">
+				<input type="password" class="span4" name="password" placeholder="Choose your password">
+				<div style="margin-top:20px;height:30px;">
+					<label class="control-label pull-left" for ="register_submit" style="color:#F47D29; font-style:italic">
+						<%= link_to "Need more information?", product_path %></label>
+				<div class="pull-right"><button id="register_submit pull-right" type="submit" class="btn btn-warning">Start Now</button></div>
+				</div>
 			</form>
+			</div>
 		</div>
-	</div>
-	
-	<div class="span6">
-	<h2>Are you caring for a loved one with health issues?</h2> 
-	</div>
-	<div class="span12">
-	<p>Is it a constant challenge to keep friends and
-family informed? Do you wish you could enlist more help from other members of the care circle? <font class="blueFont">Caregaroo</font>
-provides simple-to-use online tools to help you communicate and coordinate care for your loved ones.</p>
 	</div>
 </div>
 
-<div class="row">
+<section class="row" style="margin-top:20px">
 	<div class="span4">
-		<div id="calendar_img"></div>
-		<div> <h2>Coordinate Care</h2> <p>List activities and ask members of the care
-		community volunteer to get things done. Need a ride to a medical appointment or help with meal
-		preparation? With <font class="blueFont">Caregaroo</font>, it is easy to communicate the support you need and organize contributors from the community towards improving your loved one’s quality of life.</p>
+		<div>
+			<div id="calendar_img"></div>
+			<div style="padding-right:15px;"><p class="title">Coordinate Care</p><p>Are you caring for a loved one with health issues? Do you wish you could enlist more help from family and friends? <font class="blueFont">Caregaroo</font> provides simple-to-use online tools to engage the support of your care network.</p></div>
 		</div>
 	</div>
 	<div class="span4">
-		<div id="news_img">	 </div>
-		<div> <h2>Share News</h2> <p>Create an online community around your
-		loved one and invite friends, family and other members of the care community to join. Exchange news and share updates on health, upcoming needs and daily
-		activities. With <font class="blueFont">Caregaroo</font> it is now easy to keep everyone informed.</p> 
+		<div>
+			<div id="news_img"> </div>
+			<div style="padding-right:15px;"><p class="title">Share News</p><p>Is it a challenge to keep everyone informed? With <font class="blueFont">Caregaroo</font> it is easy to share news related to changes in health, upcoming events and activities needing volunteers, in a secure and private space.</p></div> 
 		</div>
 	</div>
-	<div class="span4">
-		<div id="email_img"></div>
-		<div><h2>Works with Email</h2> <p>Since it’s not
-		possible to stay logged into <font class="blueFont">Caregaroo</font> around the clock, you can choose to be notified via email when
-		something important happens in your network. You can also send updates and respond to messages directly
-		from your email. Can’t find that old email you are looking for? No problem, <font class="blueFont">Caregaroo</font> makes it easy to
-		find and track all communications.</p>
+	<div class="span4">		
+		<div>
+			<div id="email_img"></div>
+			<div style="padding-right:15px;"><p class="title">Anytime, Anywhere</p><p>Want to send an update from the doctor's office or communicate change of plans when you are on the go? No problem. With <font class="blueFont">Caregaroo</font> mobile web, you can enjoy the benefits wherever you are.</p></div>
 		 </div>
 	</div>
-</div>
+</section>
 <hr/>
 <div class="row">
-	<div class="span8">
+	<div class="span6 offset2">
 		<div id="marketingVideo">
-			<iframe id="ytvideo" class="youtube-player" width="498" height="310" 
-			src="http://www.youtube.com/embed/zzq2e8Fbuxk?html5=1&rel=0&autoplay=0&enablejsapi=1&wmode=transparent&showinfo=0" wmode="Opaque"
-			frameborder="0" allowfullscreen="true"></iframe>
+			<a id="video" title="Caregaroo" href="http://www.youtube.com/watch?v=zzq2e8Fbuxk&amp;showinfo=0&amp;feature=player_embedded#at=41"><img src="assets/VideoImage.png" /></a>
 		</div>
 	</div>
-	<div class="span3 offset1">
-		<h2>Make caring easy with Caregaroo</h2><br/>
-		<button class="btn" onclick="">Sign-In</button>
+	<div class="span3">
+		<div style="margin-top:30px; text-align:center; width:160px">
+		<p class="intro">Make caring easy with <font class="blueFont">Caregaroo</font></p><br/>
+		<form action="/product" method="get"><button class="btn btn-warning" onclick="">Learn More</button></form>
+		<div style="margin-top:20px; width:200px">
+			<ul style="list-style:none outside none;">
+			<li style="float:left; margin:8px 0"><a href="https://twitter.com/CaregarooApp" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Tweet</a></li>
+			<li style="float:left; margin-left:10px"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FCaregaroo&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;margin-top:8px" allowTransparency="true"></iframe></li>
+			</ul>
+		</div>			
+		</div>
 	</div>
 </div>
+
+<script>
+$("#video").click(function() {
+	$.fancybox({
+			'padding'		: 0,
+			'autoScale'		: false,
+			'transitionIn'	: 'none',
+			'transitionOut'	: 'none',
+			'title'			: this.title,
+			'width'			: 640,
+			'height'		: 360,
+			'href'			:  this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+			'type'			: 'swf',
+			'swf'			: {
+			   	 'wmode'		: 'transparent',
+				'allowfullscreen'	: 'true'
+			}
+		});
+
+	return false;
+});
+</script>
