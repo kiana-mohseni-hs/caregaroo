@@ -2,7 +2,7 @@ $.jQTouch
   icon: "/assets/mobile/homescreen.png"
   startupScreen: "/assets/mobile/splash.png"
 $ ->  
-  $('#calendardisplay').getCalendar()
+  $('#calendardisplay').getCalendar()  #getCalendar(date: new Date("July 9,1967"))
   setDayViewTitle()
   
   $('#calendardisplay').find("td").bind "click", ->

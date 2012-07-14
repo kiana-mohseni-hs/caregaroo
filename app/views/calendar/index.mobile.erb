@@ -10,10 +10,12 @@
       <a href="#add_event" class="button add slideup add_event_button">+</a>
     </div>
     <div class="scroll">
+      <!-- <%= content_tag "div", id: "calendardisplay", class: "above-bottom-tabbar", data: {date: @date } do %> -->
       <div id="calendardisplay" class="above-bottom-tabbar">
         <ul id="events">
-          <%= render :partial => "event", :collection => @events %>
+          <%= render :partial => "tiny_event", :collection => @events %>
         </ul>
+      <!-- <% end %> -->
       </div>
     </div>
   </div>
