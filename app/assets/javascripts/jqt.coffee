@@ -3,7 +3,7 @@ $.jQTouch
   startupScreen: "/assets/mobile/splash.png"
 $ ->  
   $('#calendardisplay').getCalendar()  #getCalendar(date: new Date("July 9,1967"))
-  # setDayViewTitle()
+  setDayViewTitle()
   
   $('#calendardisplay').find("td").bind "click", ->
     setDayViewTitle()
@@ -48,14 +48,9 @@ $ ->
   
 # update list of visible events and set title in day view to currently selected date
 setDayViewTitle = ->
-  selectedDate = $("#calendardisplay").find('.selected').attr('datetime')
-  $("#dayviewdate").html($("#calendardisplay").stringToDate(selectedDate).toLocaleDateString())
-  
-  # Add leading zero to month and day where necessary
-  dateAr = selectedDate.split("-")
-  dateAr[1] = "0" + dateAr[1] if (dateAr[1].length == 1)
-  dateAr[2] = "0" + dateAr[2] if (dateAr[2].length == 1)
-  FormattedDate = dateAr.join("-")
+  selectedDate = setCurrentDate()
+  setDayViewDate(selectedDate)
+  FormattedDate = formattedDate(selectedDate)
   
   visible_events = $("#dayviewevents>li>a").children('[datetime^="' + FormattedDate + '"]').parent().parent()
   
@@ -63,4 +58,20 @@ setDayViewTitle = ->
   visible_events.show()
   
   $(".events").empty().append(visible_events.parent().html())
+  
+setCurrentDate = ->
+  today = new Date()
+  selectedDate = $("#calendardisplay").find('.selected').attr('datetime')  || today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+  
+setDayViewDate = (date) ->
+  $("#dayviewdate").html($("#calendardisplay").stringToDate(date).toLocaleDateString())
+
+# Add leading zero to month and day where necessary
+formattedDate = (date) ->
+  dateAr = date.split("-")
+  dateAr[1] = "0" + dateAr[1] if (dateAr[1].length == 1)
+  dateAr[2] = "0" + dateAr[2] if (dateAr[2].length == 1)
+  dateAr.join("-")
+  
+  
   
