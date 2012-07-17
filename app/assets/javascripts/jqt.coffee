@@ -21,6 +21,9 @@ $ ->
   $('a#dayview').bind clicktouch, ->
     setDayViewTitle()
 
+  $('a.previousday').bind clicktouch, ->
+    setDayViewTitle()
+
   #reload calendar
   $('a#today-day').bind clicktouch, ->
     $("#calendardisplay").getCalendar()
@@ -61,10 +64,10 @@ setDayViewTitle = ->
   
 setCurrentDate = ->
   today = new Date()
-  selectedDate = $("#calendardisplay").find('.selected').attr('datetime')  || today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+  selectedDate = $("#calendardisplay").find('.selected').attr('datetime')  || shortFormatDate(today)
   
 setDayViewDate = (date) ->
-  $("#dayviewdate").html($("#calendardisplay").stringToDate(date).toLocaleDateString())
+  $("#dayviewdate").html('<a href="#day" class="previousday"> < </a>' + $("#calendardisplay").stringToDate(date).toLocaleDateString() + '<a href="#day" class="nextday"> > </a>')
 
 # Add leading zero to month and day where necessary
 formattedDate = (date) ->
@@ -73,5 +76,5 @@ formattedDate = (date) ->
   dateAr[2] = "0" + dateAr[2] if (dateAr[2].length == 1)
   dateAr.join("-")
   
-  
-  
+shortFormatDate = (date) ->
+  date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()

@@ -121,3 +121,15 @@ li#dayviewdate {
 .eventsecondline {
   color:#aaa;
 }
+
+
+#dayviewdate > a {
+  display: inline !important;
+}
+
+a.previousday {
+  float: left;
+}
+a.nextday {
+  float: right;
+}
