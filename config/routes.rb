@@ -1,3 +1,10 @@
+class AgentConstraint
+  def self.matches?(request)
+    request.user_agent =~ /Mobile/
+  end
+end
+
+
 Cg2App::Application.routes.draw do
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
@@ -42,15 +49,18 @@ Cg2App::Application.routes.draw do
   match "product" => "home#product"
   #match "home_new" => "home#home_new", :as => "home_new"
   
-  root :to => "home#index", :as => "root"
-  
-  resources :sessions
-  resources :password_resets
-  resources :messages
-  resources :posts
   resources :comments
-  resources :pilot_signups
   resources :events
+  resources :messages
+  resources :password_resets
+  resources :pilot_signups
+  resources :posts
+  resources :sessions
   
   mount Resque::Server, :at => "/resque"
+  
+  constraints(AgentConstraint) do
+   root :to => "mobile#index", :as => "root"
+  end
+  root :to => "home#index", :as => "root"
 end

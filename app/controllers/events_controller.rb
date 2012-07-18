@@ -71,7 +71,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to events_url }
-      format.mobile { redirect_to "/calendar#calendar" }    #     calendar_url(2012,06)
+      format.mobile { redirect_to "/#calendar" }    #     calendar_url(2012,06)
     end
   end
 end
