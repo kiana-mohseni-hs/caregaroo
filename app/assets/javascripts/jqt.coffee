@@ -6,7 +6,7 @@ $ ->
   setDayViewTitle()
   
   $('#calendardisplay').find("td").bind "click", ->
-    setDayViewTitle()
+    setDayViewTitle($(this).attr('datetime'))
 
   # set title in day view to today's date on load
   $('#dayviewdate').html((new Date()).toLocaleDateString())
@@ -21,8 +21,11 @@ $ ->
   $('a#dayview').bind clicktouch, ->
     setDayViewTitle()
 
-  $('a.previousday').bind clicktouch, ->
-    setDayViewTitle()
+  $('#previousday').bind clicktouch, ->
+    displayDayViewDate(shortFormatDate(getOtherDate(-1)))
+
+  $('#nextday').bind clicktouch, ->
+    displayDayViewDate(shortFormatDate(getOtherDate(1)))
 
   #reload calendar
   $('a#today-day').bind clicktouch, ->
@@ -50,8 +53,8 @@ $ ->
     form.get(0).submit()
   
 # update list of visible events and set title in day view to currently selected date
-setDayViewTitle = ->
-  selectedDate = setCurrentDate()
+setDayViewTitle = (date) ->
+  selectedDate = date || getCurrentShortDate()
   setDayViewDate(selectedDate)
   FormattedDate = formattedDate(selectedDate)
   
@@ -62,12 +65,28 @@ setDayViewTitle = ->
   
   $(".events").empty().append(visible_events.parent().html())
   
-setCurrentDate = ->
+getCurrentShortDate = ->
   today = new Date()
   selectedDate = $("#calendardisplay").find('.selected').attr('datetime')  || shortFormatDate(today)
   
+getCurrentDateObject = ->
+  new Date($("#calendardisplay").stringToDate($("#calendardisplay").find('.selected').attr('datetime'))) || new Date()
+
+getOtherDate = (differenceInDays = 1) ->
+  currentDate = getCurrentDateObject()
+  currentDate.setDate(currentDate.getDate() + differenceInDays );
+  currentDate
+
+setSelectedDate = (date) ->
+  $("#calendardisplay").find('.selected').removeClass("selected")
+  $("[datetime='#{date}']").addClass("selected")
+  
+displayDayViewDate = (newShortDate) ->
+  setSelectedDate(newShortDate)
+  setDayViewTitle(newShortDate)
+    
 setDayViewDate = (date) ->
-  $("#dayviewdate").html('<a href="#day" class="previousday"> < </a>' + $("#calendardisplay").stringToDate(date).toLocaleDateString() + '<a href="#day" class="nextday"> > </a>')
+  $("#dayviewdate").html($("#calendardisplay").stringToDate(date).toLocaleDateString())
 
 # Add leading zero to month and day where necessary
 formattedDate = (date) ->

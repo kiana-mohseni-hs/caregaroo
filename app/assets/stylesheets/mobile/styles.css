@@ -109,7 +109,7 @@ border-top-width: 0px;
 
 /* @end */
 
-li#dayviewdate {
+li#dayviewdate_li {
   text-align: center;
 }
 
@@ -127,9 +127,9 @@ li#dayviewdate {
   display: inline !important;
 }
 
-a.previousday {
+#previousday {
   float: left;
 }
-a.nextday {
+#nextday {
   float: right;
 }

@@ -26,7 +26,7 @@
     </div>
     <div>
       <ul class="edgetoedge">
-        <li id="dayviewdate" class="sep"></li>
+        <li class="sep" id="dayviewdate_li"><a href="#day" id="previousday"> < </a><span id="dayviewdate" ></span><a href="#day" id="nextday"> > </a></li>
       </ul>
       <ul id="dayviewevents" class="edgetoedge">
         <%= render :partial => "event", :collection => @events %>
