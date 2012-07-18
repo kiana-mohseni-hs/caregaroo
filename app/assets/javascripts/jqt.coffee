@@ -3,34 +3,31 @@ $.jQTouch
   startupScreen: "/assets/mobile/splash.png"
 $ ->  
   $('#calendardisplay').getCalendar()  #getCalendar(date: new Date("July 9,1967"))
-  setDayViewTitle()
+  updateDisplay()
   
   $('#calendardisplay').find("td").bind "click", ->
-    setDayViewTitle($(this).attr('datetime'))
-
-  # set title in day view to today's date on load
-  $('#dayviewdate').html((new Date()).toLocaleDateString())
+    updateDisplay($(this).attr('datetime'))
 
   clicktouch = "click"
   clicktouch = "touchstart"  if Modernizr.touch
   
-  #reload calendar
+  # go to today in month view
   $('a#today').bind clicktouch, ->
-    $("#calendardisplay").getCalendar()
+    setDate(shortFormatDate(new Date()))
   
+  # switch to day view from month view
   $('a#dayview').bind clicktouch, ->
-    setDayViewTitle()
+    updateDisplay()
 
   $('#previousday').bind clicktouch, ->
-    displayDayViewDate(shortFormatDate(getOtherDate(-1)))
+    setDate(shortFormatDate(getOtherDate(-1)))
 
   $('#nextday').bind clicktouch, ->
-    displayDayViewDate(shortFormatDate(getOtherDate(1)))
+    setDate(shortFormatDate(getOtherDate(1)))
 
-  #reload calendar
+  # go to today in day view
   $('a#today-day').bind clicktouch, ->
-    $("#calendardisplay").getCalendar()
-    setDayViewTitle()
+    setDate(shortFormatDate(new Date()))
     
   $('.event_item').bind clicktouch, ->
     event_id = $(this).attr("id").slice(6)
@@ -53,7 +50,7 @@ $ ->
     form.get(0).submit()
   
 # update list of visible events and set title in day view to currently selected date
-setDayViewTitle = (date) ->
+updateDisplay = (date) ->
   selectedDate = date || getCurrentShortDate()
   setDayViewDate(selectedDate)
   FormattedDate = formattedDate(selectedDate)
@@ -81,9 +78,9 @@ setSelectedDate = (date) ->
   $("#calendardisplay").find('.selected').removeClass("selected")
   $("[datetime='#{date}']").addClass("selected")
   
-displayDayViewDate = (newShortDate) ->
+setDate = (newShortDate) ->
   setSelectedDate(newShortDate)
-  setDayViewTitle(newShortDate)
+  updateDisplay(newShortDate)
     
 setDayViewDate = (date) ->
   $("#dayviewdate").html($("#calendardisplay").stringToDate(date).toLocaleDateString())
