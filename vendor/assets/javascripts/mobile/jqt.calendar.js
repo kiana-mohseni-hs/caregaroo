@@ -153,7 +153,7 @@
 
 
 						this_month.append(table_head);
-						this_month.append('<tfoot><tr><th colspan="7">&nbsp;</th></tr></tfoot>');
+            // this_month.append('<tfoot><tr><th colspan="7">&nbsp;</th></tr></tfoot>');
 
 						var table_body = $('<tbody/>');
 						table_row = $('<tr/>');
