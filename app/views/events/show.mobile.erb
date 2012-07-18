@@ -1,0 +1,35 @@
+<div id="jqt">
+  <div class="scroll">
+    <div class='toolbar'>
+      <%= link_to "Back", "/calendar#calendar", rel: "external", class: "button leftButton " %>
+      <%= link_to 'Edit', edit_event_url(@event), rel: "external", class: "button centreButton " %>
+      <%= button_to "Delete", @event,  method: :delete, class: "button", rel: "external", form_class: "confirm_delete" %>
+    </div>
+    <ul class="edgetoedge">
+      <li>
+        <% creator = @event.creator || @current_user %>
+        <%= image_tag creator.avatar_url(:thumb).to_s, :alt => creator.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+        <p><%= @event.start_at.strftime("%A, %-d %B %Y") %></p>
+        <p><%= @event.start_at.strftime("%I:%M %p") %> - <%= @event.end_at.strftime("%I:%M %p") %></p>
+        <p class="eventsecondline"><%= @event.location %></p>
+      </li>
+      <li>
+        <%= form_for( @event, remote: true ) do |f| %><%= hidden_field_tag "event[user_ids][]", nil %>
+          Participating?<span class="toggle"><%= check_box_tag "event[user_ids][]", @current_user.id, @event.user_ids.include?(@current_user.id), id: dom_id(@current_user) , class: 'submit_on_change'%></span>
+        <%  end %>
+      </li>
+      <li class="sep">Description</li>
+      <li>
+        <%= @event.name %><br/>
+        <em><%= @event.description %></em>
+      </li>
+      <li class="sep">Participants (<%= @event.users.count %>)</li>
+      <li>
+        <% @event.users.each do |u| %>
+        <em><%= u.first_name %> <%= u.last_name %></em>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+<%= render :partial => 'shared/bottom_tabbar' %>

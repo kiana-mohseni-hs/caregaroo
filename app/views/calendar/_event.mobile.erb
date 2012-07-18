@@ -1,0 +1,8 @@
+<li class="arrow event_item" id="event-<%= event.id %>">
+  <%= link_to event, rel: "external" do %>
+    <% creator = event.creator || @current_user %>
+    <%= image_tag creator.avatar_url(:thumb).to_s, :alt => creator.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+    <%= event.start_at.strftime("%I:%M") %><time datetime='<%= event.start_at.strftime("%Y-%m-%dT%H:%MZ") %>'> <%= event.name %></time>
+    <p class="eventsecondline"><%= event.start_at.strftime("%p") %><span class="location"><%= event.location %></span></p>
+  <% end %>
+</a></li>

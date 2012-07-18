@@ -1,0 +1,51 @@
+<div id="jqt">
+  <div id="journal">
+    <h1> Journal Page Stub</h1>  
+  </div>
+  <div id="calendar">
+    <div class='toolbar'>
+      <!-- <a href="/calendar" rel="external" class="button leftButton">Today</a> -->
+      <a href="#" id="today" class="button leftButton">Today</a>
+      <a href="#day" id="dayview" class="button centreButton flip">Day View</a>
+      <a href="#add_event" class="button add slideup add_event_button">+</a>
+    </div>
+    <div class="scroll">
+      <div id="calendardisplay" class="above-bottom-tabbar">
+        <ul id="events">
+          <%= render :partial => "tiny_event", :collection => @events %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="day">
+    <div class='toolbar'>
+      <!-- <a href="/calendar" rel="external" class="button leftButton">Today</a> -->
+      <a href="#" id="today-day" class="button leftButton">Today</a>
+      <a href="#calendar" class="button centreButton flip">Month View</a>
+      <a href="#add_event" class="button add slideup add_event_button">+</a>
+    </div>
+    <div>
+      <ul class="edgetoedge">
+        <li class="sep" id="dayviewdate_li"><a href="#day" id="previousday"> < </a><span id="dayviewdate" ></span><a href="#day" id="nextday"> > </a></li>
+      </ul>
+      <ul id="dayviewevents" class="edgetoedge">
+        <%= render :partial => "event", :collection => @events %>
+      </ul>
+    </div>
+  </div>
+  <div id="profile">
+    <h1> Profile Page Stub</h1>  
+  </div>
+  <div id="members">
+    <h1> Members Page Stub</h1>  
+  </div>
+  <div id ="event">
+  </div>
+  <div id="add_event" class="edit">
+    <%= render :partial => 'events/form' %>
+  </div>
+  
+  
+</div>
+<%= render :partial => 'shared/bottom_tabbar' %>
+

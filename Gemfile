@@ -14,6 +14,13 @@ group :test, :production do
   gem 'mysql2'
 end
 
+group :heroku do
+  gem 'pg'
+  gem 'thin'
+  gem "fog", "~> 1.3.1"
+end
+
+
 group :assets do
   #gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
   gem 'sass-rails'

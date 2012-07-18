@@ -50,4 +50,10 @@ Cg2App::Application.configure do
     :authentication       => "login",
     :enable_starttls_auto => true
   }
+  
+  CarrierWave.configure do |config|
+    config.storage = :file
+    config.enable_processing = false
+  end
+  
 end

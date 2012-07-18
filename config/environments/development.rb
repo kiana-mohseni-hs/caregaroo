@@ -54,4 +54,7 @@ Cg2App::Application.configure do
   }
   ActionMailer::Base.default :from => "Caregaroo <support@caregaroo.com>"
   
+  CarrierWave.configure do |config|
+    config.storage = :file
+  end
 end

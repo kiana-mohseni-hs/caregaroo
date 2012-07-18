@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517051755) do
+ActiveRecord::Schema.define(:version => 20120703024233) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -22,13 +22,30 @@ ActiveRecord::Schema.define(:version => 20120517051755) do
     t.integer  "user_id"
   end
 
+  create_table "event_types", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name"
     t.datetime "start_at"
     t.datetime "end_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "network_id"
+    t.integer  "event_type_id"
+    t.string   "location"
+    t.string   "description"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
+
+  create_table "events_users", :id => false, :force => true do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+  end
+
+  add_index "events_users", ["event_id", "user_id"], :name => "index_events_users_on_event_id_and_user_id"
 
   create_table "folders", :force => true do |t|
     t.integer  "parent_id"
