@@ -1,0 +1,119 @@
+<!DOCTYPE HTML> <html lang="en"> 
+<head>
+<meta charset="utf-8">
+<title>Caregaroo: Home Care Coordination</title> <meta name="keywords" content="" /> 
+<meta name="description" content="Caregaroo is a private online community for families to share news, coordinate care and contribute to help older parents living independantly." /> 
+<meta name="robots" content="index, follow" /> 
+<meta name="viewport" content="width=device-width; initial-scale=1.0;maximum-scale=1.0;">
+<link rel="shortcut icon" href="favicon.ico">
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,700italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" /> 
+<%= stylesheet_link_tag "marketing" %>
+<%= javascript_include_tag "marketing" %>
+<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script> 
+<script type="text/javascript" src="/js/jquery.hint-with-password.js"></script> 
+<script type="text/javascript" src="js/ga_dpc_youtube.js"></script>
+<%= csrf_meta_tag %>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  	_gaq.push(['_setAccount', 'UA-23336907-1']);
+  	_gaq.push(['_trackPageview']);
+
+  	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  	})();
+  	
+	try{
+        function yt_callback(category,action,label,value){
+        	_gaq.push(['_trackEvent',category,action,label,value]);
+        }
+        var ytTracker = new YoutubeTracker(false, yt_callback, true);
+	} catch(e){}
+</script>
+</head>
+<body class="clearfix <%= params[:controller] %>">
+
+<div id="siteWrapper" class="container_16">
+<div id="mkt_top_nav_frame"> 
+	<a href="<%= url_for root_path %>" id="mkt_top_nav_logo" title="Home Care Coordination"> <img src="img/CaregarooLogo.png" alt="caregaroo logo"/> </a>
+	<div id="top_nav_list">
+		<ul class="horizontal_list">
+			<li><%= link_to "Home", root_path %></li>
+			<li><%= link_to "Product", product_path %></li>
+			<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">Help</a></li>
+		</ul>
+		<% if @page == 'product' %>	
+			<div id="top_nav_ptr" class="product"></div>					
+		<% else %>
+			<div id="top_nav_ptr" class="home"></div>	
+		<% end %>
+	</div>
+	
+	
+	<div id="mkt_sign_in_box">
+		<div id="sign_in_button">
+			<%= link_to "", login_path %>
+		</div>
+	</div>
+	
+	<ul class="socialMedia"> 
+		<li id="facebook"><a href="https://www.facebook.com/pages/Caregaroo/159455324116007" target="_blank">
+			</a></li> 
+		<li id="twitter"><a href="https://twitter.com/#!/CaregarooTweet" target="_blank">
+			</a></li>	
+	</ul>
+	
+	<div id="mkt_top_nav_separator"></div>
+</div>
+	
+<div id="main_frame">
+	<div id="container">
+	    <%= yield %>
+    </div>
+</div>
+<div id="siteWrapper" class="container_16">
+<div id="footer" class="grid_14 clearfix">	
+	<div id="footer_separator"></div>
+	<!--<img class="separator" src="img/line.png" alt="separator line" />--> 
+	<div id="newsletter" class="grid_6">
+	
+	<div id="bottomSignup" class="popup"> 
+		<h2 class="footer">Want to see how<br/>Caregaroo works?<br/>Try it today, for free.</h2> 
+		<h3 class="footer">No setup. Nothing to install. <br/>No credit card required.</h3>
+		<div id="tryForFreeBtn">
+			<a href="register" onclick="_gaq.push(['_trackEvent', 'Links', 'Try it free', 'Try it free - Footer'])" title="Try Caregaroo Free"></a>
+		</div>
+	</div>
+	</div>
+	<div id="testimonial" class="grid_8">
+		<img src='../img/CaregarooFooterImage.png' alt="Footer Image"></img>
+	</div>
+	<img class="separator" src="img/line.png" alt="separator line" /> <p id="copyright" class="grid_14
+	clearfix"> Copyright 2011, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com"
+	target="_blank">info@caregaroo.com</a></p>
+</div>
+</div>
+<div style="display:none">
+	<div id="pilot" class="popup pilot">
+		<%= form_for PilotSignup.new, :url => signup_path, :class => 'popupForm', :remote => true, :html => { :id => 'pilot_form' } do |f| %>
+		  <div id="pilotError" class="error" style="display:none">* Please enter a valid email</div>
+		  <%= f.hidden_field :signup_type, :value => "pilot" %>
+		  <%= f.text_field :first_name, "value" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
+		  <%= f.text_field :last_name, "value" => "Enter your last name", :autocomplete => 'off', :class => "rounded shadowBtm signup_last_name" %>
+		  <%= f.text_field :email, "value" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
+		  <p><%= f.submit :value => "Sign-up" %></p>
+		<% end %>
+	</form>		
+	</div>
+</div>
+<div style="display:none">
+	<div id="pilotsuccess" class="popup pilot">
+		<div id="pilotsuccess_form" class="pilotPopupDialog">
+			<p class="successMsg">Thank you!<br/>for signing-up!<br/>We will contact you when Beta Program begins.</p><input type="button" id="pilotSuccessBtn" value="Okay" name="okay">
+		</div>		
+	</div>
+</div>	
+</body>
+</html>

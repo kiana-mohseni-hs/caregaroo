@@ -2960,7 +2960,7 @@ input[type="submit"].btn.btn-mini {
   position: relative;
   left: 0;
   display: block;
-  float: left;
+  float: right;
   margin: 0 10px 0 0;
 }
 .navbar .nav.pull-right {
@@ -4223,6 +4223,8 @@ button.close {
   }
 }
 @media (max-width: 480px) {
+  .body-bg { background: #FFFFFF; }
+  .responsive-bg { display: none; visibility: hidden; }
   .nav-collapse {
     -webkit-transform: translate3d(0, 0, 0);
   }
@@ -4274,6 +4276,8 @@ button.close {
     padding-left: 20px;
     padding-right: 20px;
   }
+  .body-bg { background: #FFFFFF; }
+  .responsive-bg { display: none; visibility: hidden; }
   .navbar-fixed-top,
   .navbar-fixed-bottom {
     margin-left: -20px;
@@ -4332,6 +4336,72 @@ button.close {
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {
+	
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .body-bg { background: #FFFFFF; }
+  .responsive-bg { display: none; visibility: hidden; }
+  .navbar-fixed-top,
+  .navbar-fixed-bottom {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .container-fluid {
+    padding: 0;
+  }
+  .dl-horizontal dt {
+    float: none;
+    clear: none;
+    width: auto;
+    text-align: left;
+  }
+  .dl-horizontal dd {
+    margin-left: 0;
+  }
+  .container {
+    width: auto;
+  }
+  .row-fluid {
+    width: 100%;
+  }
+  .row,
+  .thumbnails {
+    margin-left: 0;
+  }
+  [class*="span"],
+  .row-fluid [class*="span"] {
+    float: none;
+    display: block;
+    width: auto;
+    margin-left: 0;
+  }
+  .input-large,
+  .input-xlarge,
+  .input-xxlarge,
+  input[class*="span"],
+  select[class*="span"],
+  textarea[class*="span"],
+  .uneditable-input {
+    display: block;
+    width: 100%;
+    min-height: 28px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .input-prepend input,
+  .input-append input,
+  .input-prepend input[class*="span"],
+  .input-append input[class*="span"] {
+    display: inline-block;
+    width: auto;
+  }
+	/*
+  .body-bg { background: #FFFFFF; }
+  .responsive-bg { display: none; visibility: hidden; }
   .row {
     margin-left: -20px;
     *zoom: 1;
@@ -4541,7 +4611,10 @@ button.close {
   input.span1, textarea.span1, .uneditable-input.span1 {
     width: 32px;
   }
+  */
 }
+
+/*
 @media (min-width: 1200px) {
   .row {
     margin-left: -30px;
@@ -4762,6 +4835,7 @@ button.close {
     margin-left: 0;
   }
 }
+*/
 @media (max-width: 979px) {
   body {
     padding-top: 0;
