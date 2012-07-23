@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   
   def index
     @page = 'posts'
-    @posts = Post.where("network_id = ?", @current_user.network).order("created_at DESC")
+    @posts = Post.where("network_id = ?", @current_user.network).order("updated_at DESC")
     respond_to do |format|
       format.html # index.html.erb
     end 
