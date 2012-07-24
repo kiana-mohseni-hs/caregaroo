@@ -1,0 +1,96 @@
+<div id="header">
+	<div id="marketingVideo">
+		<iframe id="ytvideo" class="youtube-player" width="498" height="310" 
+			src="http://www.youtube.com/embed/zzq2e8Fbuxk?html5=1&rel=0&autoplay=0&enablejsapi=1&wmode=transparent&showinfo=0" wmode="Opaque"
+			frameborder="0" allowfullscreen="true"></iframe>
+	</div>
+	<div id="topSignup" class="quickSignup right"> 
+		<h1 id="homeCareTitle">Home Care Coordination</h1>
+		<h3 id="homeCareDesc"><font class="blueFont">Caregaroo</font><font style="font-weight:normal"> is a private secure network for families to share news, coordinate home care and assist loved ones living independently.</font></h3> 
+		<div id="tryForFreeBtn">
+			<a href="register" onclick="_gaq.push(['_trackEvent', 'Links', 'Try it free', 'Try it free - Home Page Top'])" title="Try Caregaroo Free"></a>
+		</div>
+	</div> 
+</div>
+<div id="benefits" class="grid_14 clearfix"> 
+<ul>
+<% if cookies[:ebook] == "1" %> 
+<li><a href="/download/ebook" onclick="_gaq.push(['_trackEvent', 'Links', 'Download e-Book', 'Download e-Book - Home Page']);" title="Download Caregaroo's eBook" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
+<% else %>
+<li><a href="#downloadebook" onclick="_gaq.push(['_trackEvent', 'Links', 'Download e-Book', 'Download e-Book - Home Page']);" title="Download Caregaroo's eBook" class="custom" id="ebookLink"><img src="img/downloadCaregaroosEbook.jpg"alt="time saver icon" /></a></li>
+<% end %>
+<li class="second"><a href="#demo" onclick="_gaq.push(['_trackEvent', 'Links', 'Request Demo', 'Request demo - Home Page']);" title="Request A Demo" class="custom" id="demoLink"><img src="img/requestADemo.jpg" alt="requestADemo"/></a></li>
+<li class="third"><a href="/product" onclick="_gaq.push(['_trackEvent', 'Links', 'Product Tour', 'Product Tour - Home Page']);" title="Take A Tour" id="tourLink"><img src="img/TakeATourHomecare.jpg" alt="Take A Tour" /></a></li> </ul> 
+<img class="separator" src="img/line.png" alt="separator line" />
+</div> 
+<div id="features" class="grid_14 clearfix"> <div class="tagline grid_14"> <h1>Key Benefits</h1> <p></p></div>
+<div id="feature1" class="feature grid_14">
+<div class="featureLeft grid_6">
+<img class="featureImage" src="img/feature1.jpg" alt="full deeplink support"/>
+</div>
+<div class="featureDetails"> <h2>Are you caring for a loved one with health issues?</h2> <p>Is it a constant challenge to keep friends and
+family informed? Do you wish you could enlist more help from other members of the care circle? <font class="blueFont">Caregaroo</font>
+provides simple-to-use online tools to help you communicate and coordinate care for your loved ones.</p>
+</div>
+</div> 
+<div id="feature2" class="feature grid_14">
+<div class="featureRight grid_6">
+<img class="featureImage" src="img/feature2.jpg" alt="full deeplink support" /> </div>
+<div class="featureDetails withIcon"> <h2>Share News</h2> <p>Create an online community around your
+loved one and invite friends, family and other members of the care community to join. Exchange news and share updates on health, upcoming needs and daily
+activities. With <font class="blueFont">Caregaroo</font> it is now easy to keep everyone informed.</p> </div>
+</div>
+<div id="feature3" class="feature grid_14">
+<div class="featureLeft grid_6">
+<img class="featureImage" src="img/feature3.jpg" alt="coordinate care" />
+</div>
+<div class="featureDetails"> <h2>Coordinate Care</h2> <p>List activities and ask members of the care
+community volunteer to get things done. Need a ride to a medical appointment or help with meal
+preparation? With <font class="blueFont">Caregaroo</font>, it is easy to communicate the support you need and organize contributors from the community towards improving your loved one’s quality of life.</p>
+</div>
+</div>
+<div id="feature4" class="feature grid_14">
+<div class="featureRight grid_6">
+<img class="featureImage" src="img/feature4.jpg" alt="user editable playlist" />
+</div>
+<div class="featureDetails"> <div class="featureDetails"><h2>Works with Email</h2> <p>Since it’s not
+possible to stay logged into <font class="blueFont">Caregaroo</font> around the clock, you can choose to be notified via email when
+something important happens in your network. You can also send updates and respond to messages directly
+from your email. Can’t find that old email you are looking for? No problem, <font class="blueFont">Caregaroo</font> makes it easy to
+find and track all communications.</p> </div>
+</div>
+<div id="feature3" class="feature grid_14">
+<div class="featureLeft grid_6">
+<img class="featureImage" src="img/feature5.jpg" alt="coordinate care" />
+</div>
+<div class="featureDetails"> <div id="coming_soon_icon"></div><h2>Find Professional Caregivers</h2> <p>Search and find professional care
+providers with the skills you need. View their professional profiles, area of expertise and previous
+employment history. Since all listed professionals have been members of the <font class="blueFont">Caregaroo</font> network, you can
+request first-hand references from their previous employers with a click of a button!</p>
+</div>
+</div>
+</div>
+</div>
+<div style="display:none">
+	<div id="downloadebook" class="popup">
+		<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'download_ebook_form' } do |f| %>
+		  <div id="ebookError" class="error" style="display:none">* Please enter a valid email</div>
+		  <%= f.hidden_field :signup_type, :value => "ebook" %>
+		  <%= f.text_field :first_name, "title" => "Enter your first name", :autocomplete => 'off', :class => "rounded shadowBtm signup_first_name" %>
+		  <%= f.text_field :last_name, "title" => "Enter your last name", :autocomplete => 'off', :class => "rounded shadowBtm signup_last_name" %>
+		  <%= f.text_field :email, "title" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
+		  <p><%= f.submit :value => "Download" %></p>
+		<% end %>
+	</div>
+</div>
+<div style="display:none">
+	<div id="demo" class="popup">
+		<%= form_for PilotSignup.new, :url => signup_path, :remote => true, :html => { :id => 'demo_form' } do |f| %>
+		  <div id="demoError" class="error" style="display:none">* Please enter a valid email</div>
+		  <%= f.hidden_field :signup_type, :value => "demo" %>
+		  <%= f.text_field :email, "title" => "Enter your email address", :autocomplete => 'off', :class => "rounded shadowBtm signup_email" %>
+		  <p><%= f.submit :value => "Request" %></p>
+		<% end %>
+	</div>
+</div>
+</div>
