@@ -50,7 +50,9 @@ Cg2App::Application.routes.draw do
   #match "home_new" => "home#home_new", :as => "home_new"
   
   resources :comments
-  resources :events
+  resources :events do
+    delete 'cancel', on: :member
+  end
   resources :messages
   resources :password_resets
   resources :pilot_signups

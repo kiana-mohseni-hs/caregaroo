@@ -24,7 +24,14 @@ class Event < ActiveRecord::Base
                   :post_id,
                   :user_ids,
                   :created_by_id,
-                  :updated_by_id
+                  :updated_by_id,
+                  :canceled
+  
+  scope :visible, where(canceled: false)
+  
+  def cancel
+    update_attributes(canceled: true)
+  end
   
   def datetimestring
     start_at.strftime("%a, %e %b %Y, %l:%M%P - ") << end_at.strftime("%l:%M%P")
@@ -43,12 +50,13 @@ class Event < ActiveRecord::Base
   end
     
   def update_post
-    new_content = "Updated Event: #{name} (#{event_type.name})<br/> " << 
+    change = canceled ? "Canceled" : "Updated"
+    new_content = "#{change} Event: #{name} (#{event_type.name})<br/> " << 
                   datetimestring <<
                   "<br/>#{location}"
     new_content << "<br/>updated by #{updater.first_name}" unless updater == creator
     post.update_attributes(
-      name: "Updated Event: #{name}", 
+      name: "#{change} Event: #{name}", 
       content: new_content
       ) unless post.nil?
   end

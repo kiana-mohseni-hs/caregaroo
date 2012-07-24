@@ -40,7 +40,7 @@ $ ->
 
   #confirm submission and work around jqtouch
   $('.confirm_delete').submit ->
-    confirm_result = confirm("Delete: Are you sure?")
+    confirm_result = confirm("Delete Event: Are you sure?")
     @submit() if confirm_result is true
     false
     
