@@ -56,7 +56,6 @@ class EventsController < ApplicationController
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
         format.mobile { redirect_to @event }
-        
       else
         format.html { render :action => "edit" }
       end
@@ -66,7 +65,7 @@ class EventsController < ApplicationController
   def cancel
     @event = Event.find(params[:id])
     if !@event.canceled?
-      @event.cancel
+      @event.cancel(@current_user.id)
     end
 
     respond_to do |format|

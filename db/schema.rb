@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723232036) do
+ActiveRecord::Schema.define(:version => 20120724002753) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -39,7 +39,8 @@ ActiveRecord::Schema.define(:version => 20120723232036) do
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "post_id"
-    t.boolean  "canceled",      :default => false
+    t.boolean  "canceled",       :default => false
+    t.integer  "canceled_by_id"
   end
 
   create_table "events_users", :id => false, :force => true do |t|
