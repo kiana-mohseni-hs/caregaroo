@@ -61,4 +61,4 @@ group :test do
 end
 
 gem 'backbone-on-rails'
-
+gem 'jbuilder'
