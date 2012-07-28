@@ -1,0 +1,7 @@
+<h1>Toooo Cooool</h1>
+
+<ul>
+<% for entry in @posts.models: %>
+  <li><%= entry.get('content') %></li>
+<% end %>
+</ul>
