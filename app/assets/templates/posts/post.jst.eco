@@ -1,0 +1,6 @@
+<img alt="<%= @post.attributes.user.first_name %>" height="44" src="<%= @post.attributes.user.avatar.thumb.url %>" width="50">
+<%= @post.attributes.user.first_name %><br/>
+
+<p><%= @post.get('updated_at') %></p>
+
+<p><%= @post.get('content') %></p>

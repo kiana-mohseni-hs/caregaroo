@@ -1,7 +1,7 @@
 class Cg2App.Routers.Posts extends Backbone.Router
   routes:
-    '': 'index'
-    'posts/:id': 'show'
+    "*actions": 'index'
+    # 'posts/:id': 'show'
     
   initialize: ->
     @collection = new Cg2App.Collections.Posts()
@@ -11,5 +11,5 @@ class Cg2App.Routers.Posts extends Backbone.Router
     view = new Cg2App.Views.PostsIndex(collection: @collection)
     $('#journal').html(view.render().el)
   
-  show: (id) ->
-    alert "Post #{id}"
+  # show: (id) ->
+  #   alert "Post #{id}"

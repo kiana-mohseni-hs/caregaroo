@@ -3,10 +3,10 @@ class PostsController < ApplicationController
   
   def index
     @page = 'posts'
-    @posts = @current_user.network.posts.order("updated_at DESC")
+    @posts = @current_user.network.posts.includes(:user).order("updated_at DESC")
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @posts }
+      format.json { render json: @posts.as_json( include: [:user]) }
     end 
   end
 
