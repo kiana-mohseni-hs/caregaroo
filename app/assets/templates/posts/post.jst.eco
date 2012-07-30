@@ -1,6 +1,5 @@
 <img alt="<%= @post.attributes.user.first_name %>" height="44" src="<%= @post.attributes.user.thumb_url %>" width="50">
 <%= @post.attributes.user.first_name %><br/>
-
-<p><%= @post.get('date') %></p>
-
-<p><%= @post.get('content') %></p>
+<p  class="date"><%= @post.get('date') || "just now" %></p>
+<p class="content"><%= @post.get('content') %></p>
+<p>Comments (<%= @post.get('commentscount') %>)</p>

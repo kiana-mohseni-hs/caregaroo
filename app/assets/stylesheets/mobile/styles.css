@@ -134,7 +134,24 @@ li#dayviewdate_li {
   float: right;
 }
 
+/* @group Posts */
+
 #posts > li > img {
   float:left;
   padding-right:5px;
 }
+
+#posts p.date {
+  color: grey;
+  font-size: small;
+  font-weight: normal;
+}
+
+#posts p.content {
+  clear: both;
+  padding-top: 5px;
+  font-weight: normal;
+  color: black;
+}
+
+/* @end */

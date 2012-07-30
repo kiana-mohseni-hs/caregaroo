@@ -7,7 +7,13 @@
         <%= stylesheet_link_tag "mobile/jqtouch", "mobile/themes/apple/theme", "mobile/jqt.calendar" %>
     		<%= javascript_include_tag "mobile" %>
         <%= stylesheet_link_tag "mobile/styles" %>
-       
+        <script type="text/javascript">
+            window.currentUser = {
+                id : "<%=current_user.id%>",
+                first_name : "<%=current_user.first_name%>",
+                thumb_url : "<%=current_user.avatar.thumb.url%>"
+            }
+        </script>
     </head>
     <body>
       <%= yield %>

@@ -59,6 +59,8 @@ Cg2App::Application.routes.draw do
   resources :posts
   resources :sessions
   
+  get "users/current"
+  
   mount Resque::Server, :at => "/resque"
   
   constraints(AgentConstraint) do

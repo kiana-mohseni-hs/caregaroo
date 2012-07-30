@@ -3,7 +3,7 @@
 //= require mobile/jqtouch-jquery
 //= require mobile/jqtouch
 //= require mobile/jqt.calendar
-//= require jqt
+//= require mobile/caregaroo
 //
 //
 //= require underscore

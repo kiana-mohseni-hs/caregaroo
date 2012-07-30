@@ -9,7 +9,6 @@ class Post < ActiveRecord::Base
   end
   
   def is_event?
-    # !not_an_event?
     self.event.present?
   end
   
