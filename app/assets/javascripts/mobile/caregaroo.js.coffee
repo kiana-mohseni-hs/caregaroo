@@ -48,6 +48,10 @@ $ ->
   $(".submit_on_change").change ->
     form = $(this).closest("form")
     form.get(0).submit()
+    
+  $('.tabbar>ul>li>a').bind clicktouch, ->
+    $(this).parent('li').siblings().removeClass('current');
+    $(this).parent('li').addClass('current');
   
 # update list of visible events and set title in day view to currently selected date
 updateDisplay = (date) ->
