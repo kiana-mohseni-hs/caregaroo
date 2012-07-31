@@ -154,4 +154,23 @@ li#dayviewdate_li {
   color: black;
 }
 
+#posts li p a {
+  display: inline;
+}
+
+#new_post_content {
+  font-size: 16px;
+  font-variant: normal;
+  font-weight: bold;
+  height: 18px;
+  width: 70%;
+  color: #5e5e5e;
+  margin: 2px 8px;
+  border-color: #929292;
+  padding: 1px 4px;
+}
+
+#new_post input[type="submit"] {
+  display: inline;
+}
 /* @end */
