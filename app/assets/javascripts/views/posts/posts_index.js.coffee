@@ -4,6 +4,7 @@ class Cg2App.Views.PostsIndex extends Backbone.View
   
   events:
     'submit #new_post': 'createPost'
+    
   
   initialize: ->
     @collection.on('reset', @render, this)
@@ -24,7 +25,14 @@ class Cg2App.Views.PostsIndex extends Backbone.View
   
   createPost: (event) ->
     event.preventDefault()
-    attributes = { content: $('#new_post_content').val(), user: {first_name: window.currentUser.first_name, thumb_url: window.currentUser.thumb_url}} 
+    attributes = 
+      content: $('#new_post_content').val()
+      author: true
+      commentscount: 0
+      user: 
+        id: window.currentUser.id
+        first_name: window.currentUser.first_name
+        thumb_url: window.currentUser.thumb_url 
     @collection.create attributes,
       wait: true
       success: -> $('#new_post')[0].reset()
@@ -35,4 +43,3 @@ class Cg2App.Views.PostsIndex extends Backbone.View
       errors = $.parseJSON(response.responseText).errors
       for attribute, messages of errors
         alert "#{attribute} #{message}" for message in messages
-  

@@ -1,5 +1,8 @@
 <img alt="<%= @post.attributes.user.first_name %>" height="44" src="<%= @post.attributes.user.thumb_url %>" width="50">
 <%= @post.attributes.user.first_name %><br/>
 <p  class="date"><%= @post.get('date') || "just now" %></p>
-<p class="content"><%= @post.get('content') %></p>
+<p class="content"><%- @post.get('content') %></p>
 <p>Comments (<%= @post.get('commentscount') %>)</p>
+<% if @post.get('author') : %>
+  <p><a href ="#" class="delete_post" data-id="<%= @post.get('id') %>">Delete</a> </p>
+<% end %>

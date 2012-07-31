@@ -24,13 +24,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.where("id = ? and user_id = ?", params[:post_id], @current_user.id).first
-    if !@post.nil?
-      @post.destroy
-    end
+    # desktop version uses params[:post_id] -- following line adjusts for that
+    params[:post_id] =  params[:id] if mobile_device?
+    @post = current_user.posts.find(params[:post_id])
+    @post.destroy unless @post.blank?
 
     respond_to do |format|
       format.html { redirect_to news_path }
+      format.js
     end
   end
   
