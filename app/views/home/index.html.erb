@@ -1,6 +1,6 @@
 
 <div class="row">
-	<div class="span6"><img src="assets/ladies.png" class="responsive-bg"></div>	
+	<div class="span6"><img src="assets/ladies.jpg" class="responsive-bg"></div>	
 	<div class="span5 offset1">
 		<p class="intro" style="margin-top:20px; text-align:center;"><span style="font-weight:bold;font-size:28px">Care better, together</span><br/>Get the support you need<br/>from family and friends</p>
 		<div style="margin-top:30px; width:100%; padding:0 10px;">
@@ -44,11 +44,15 @@
 <hr/>
 <div class="row">
 	<div class="span offset1">
-		<div id="marketingVideo">
-			<div onclick="thevid=document.getElementById('thevideo'); thevid.style.display='block'; this.style.display='none'">
-				<img src="assets/VideoImage.png" style="cursor:pointer;"/></div>
-			<div id="thevideo" style="display:none">
-				<iframe width="640" height="360" src="http://www.youtube.com/embed/zzq2e8Fbuxk?autoplay=1&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe> 
+		<div id="marketingVideo" class="video-wrapper ">
+			<div id="thevideo" class="video-container">
+				<object width="640" height="360">
+					<param name="movie" value="http://www.youtube.com/v/zzq2e8Fbuxk?version=3&showinfo=0&hl=en&fs=1"></param>
+					<param name="allowFullScreen" value="true"></param>
+					<param name="allowscriptaccess" value="always"></param>
+					<param name="wmode" value="transparent"></param>
+					<embed wmode="transparent"  src="http://www.youtube.com/v/zzq2e8Fbuxk?version=3&showinfo=0&hl=en&fs=1" type="application/x-shockwave-flash" width="640" height="360" allowscriptaccess="always" allowfullscreen="true"></embed>
+		</object> 
 			</div>
 		</div>
 	</div>
