@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     # desktop version uses params[:post_id] -- following line adjusts for that
     params[:post_id] =  params[:id] if mobile_device?
     @post = current_user.posts.find(params[:post_id])
-    @post.destroy unless @post.blank?
+    @post.destroy unless @post.nil?
 
     respond_to do |format|
       format.html { redirect_to news_path }

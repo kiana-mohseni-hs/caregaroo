@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
         WHERE r.user_id = #{id}) GROUP BY folder_id ORDER BY created_at desc;
       }
   }
+  has_many :comments
   has_and_belongs_to_many :events
   
   accepts_nested_attributes_for :notification, :allow_destroy => true
