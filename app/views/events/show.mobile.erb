@@ -1,9 +1,9 @@
 <div id="jqt">
   <div class="scroll">
     <div class='toolbar'>
-      <%= link_to "Back", "/calendar#calendar", rel: "external", class: "button leftButton " %>
+      <%= link_to "Back", "/#calendar", rel: "external", class: "button leftButton " %>
       <%= link_to 'Edit', edit_event_url(@event), rel: "external", class: "button centreButton " %>
-      <%= button_to "Delete", @event,  method: :delete, class: "button", rel: "external", form_class: "confirm_delete" %>
+      <%= button_to "Delete", cancel_event_url(@event),  method: :delete, class: "button", rel: "external", form_class: "confirm_delete" %>
     </div>
     <ul class="edgetoedge">
       <li>

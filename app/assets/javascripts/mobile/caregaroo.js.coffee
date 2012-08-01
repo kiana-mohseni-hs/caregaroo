@@ -40,7 +40,7 @@ $ ->
 
   #confirm submission and work around jqtouch
   $('.confirm_delete').submit ->
-    confirm_result = confirm("Delete: Are you sure?")
+    confirm_result = confirm("Delete Event: Are you sure?")
     @submit() if confirm_result is true
     false
     
@@ -48,6 +48,10 @@ $ ->
   $(".submit_on_change").change ->
     form = $(this).closest("form")
     form.get(0).submit()
+    
+  $('.tabbar>ul>li>a').bind clicktouch, ->
+    $(this).parent('li').siblings().removeClass('current');
+    $(this).parent('li').addClass('current');
   
 # update list of visible events and set title in day view to currently selected date
 updateDisplay = (date) ->
@@ -67,7 +71,7 @@ getCurrentShortDate = ->
   selectedDate = $("#calendardisplay").find('.selected').attr('datetime')  || shortFormatDate(today)
   
 getCurrentDateObject = ->
-  new Date($("#calendardisplay").stringToDate($("#calendardisplay").find('.selected').attr('datetime'))) || new Date()
+  new Date(dateObject($("#calendardisplay").find('.selected').attr('datetime'))) || new Date()
 
 getOtherDate = (differenceInDays = 1) ->
   currentDate = getCurrentDateObject()
@@ -76,6 +80,7 @@ getOtherDate = (differenceInDays = 1) ->
 
 setSelectedDate = (date) ->
   $("#calendardisplay").find('.selected').removeClass("selected")
+  $('#calendardisplay').getCalendar(date: new Date(dateObject(date))) if $("[datetime='#{date}']").length is 0
   $("[datetime='#{date}']").addClass("selected")
   
 setDate = (newShortDate) ->
@@ -83,7 +88,7 @@ setDate = (newShortDate) ->
   updateDisplay(newShortDate)
     
 setDayViewDate = (date) ->
-  $("#dayviewdate").html($("#calendardisplay").stringToDate(date).toLocaleDateString())
+  $("#dayviewdate").html(dateObject(date).toLocaleDateString())
 
 # Add leading zero to month and day where necessary
 formattedDate = (date) ->
@@ -94,3 +99,6 @@ formattedDate = (date) ->
   
 shortFormatDate = (date) ->
   date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+
+dateObject = (shortDate) ->
+  $("#calendardisplay").stringToDate(shortDate)

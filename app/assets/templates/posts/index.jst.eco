@@ -1,0 +1,6 @@
+<form id="new_post">
+  <input type="text" name="content" id="new_post_content" placeholder="Share an update">
+  <input type="submit" value="Post">
+</form>
+
+<ul id="posts" class="edgetoedge"></ul>

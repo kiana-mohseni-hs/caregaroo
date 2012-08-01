@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_filter :prepare_for_mobile, except: [:create]
   
   def index
-    @events = Event.all
+    @events = Event.visible
 
     respond_to do |format|
       format.html # index.html.erb
@@ -56,12 +56,24 @@ class EventsController < ApplicationController
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
         format.mobile { redirect_to @event }
-        
       else
         format.html { render :action => "edit" }
       end
     end
   end
+
+  def cancel
+    @event = Event.find(params[:id])
+    if !@event.canceled?
+      @event.cancel(@current_user.id)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to events_url }
+      format.mobile { redirect_to "/#calendar" }    #     calendar_url(2012,06)
+    end
+  end
+
 
   def destroy
     @event = Event.find(params[:id])
@@ -71,7 +83,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to events_url }
-      format.mobile { redirect_to "/calendar#calendar" }    #     calendar_url(2012,06)
+      format.mobile { redirect_to "/#calendar" }    #     calendar_url(2012,06)
     end
   end
 end

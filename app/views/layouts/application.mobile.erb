@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-
-        <title>Caregaroo</title>
-        <%= stylesheet_link_tag "mobile/jqtouch", "mobile/themes/apple/theme", "mobile/jqt.calendar" %>
-    		<%= javascript_include_tag "mobile" %>
-        <%= stylesheet_link_tag "mobile/styles" %>
-       
+  <head>
+    <meta charset="UTF-8" />
+    <%= csrf_meta_tag %>  
+    <title>Caregaroo</title>
+    <%= stylesheet_link_tag "mobile/jqtouch", "mobile/themes/apple/theme", "mobile/jqt.calendar" %>
+    <%= javascript_include_tag "mobile" %>
+    <%= stylesheet_link_tag "mobile/styles" %>
+    <script type="text/javascript">
+        window.currentUser = {
+            id : "<%=current_user.id%>",
+            first_name : "<%=current_user.first_name%>",
+            thumb_url : "<%=current_user.avatar.thumb.url%>"
+        }
+    </script>
     </head>
     <body>
       <%= yield %>

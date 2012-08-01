@@ -133,3 +133,51 @@ li#dayviewdate_li {
 #nextday {
   float: right;
 }
+
+/* @group Posts */
+
+#posts > li > img {
+  float:left;
+  padding-right:5px;
+}
+
+#posts p.date {
+  color: grey;
+  font-size: small;
+  font-weight: normal;
+}
+
+#posts p.content {
+  clear: both;
+  padding-top: 5px;
+  font-weight: normal;
+  color: black;
+}
+
+#posts li p a, a.delete_post {
+  display: inline !important;
+}
+
+#new_post_content {
+  font-size: 16px;
+  font-variant: normal;
+  font-weight: bold;
+  height: 22px;
+  width: 75%;
+  color: #5e5e5e;
+  margin: 2px 8px;
+  border-color: #929292;
+  padding: 1px 4px;
+}
+
+#new_post input[type="submit"] {
+  display: inline;
+  height: 26px;
+  margin-top: 2px;
+  padding: 1px 5px;
+}
+
+#post li {
+  list-style-type: none;
+}
+/* @end */
