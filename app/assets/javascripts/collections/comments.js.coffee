@@ -1,2 +1,3 @@
 class Cg2App.Collections.Comments extends Backbone.Collection
-  model: Cg2App.Models.Comments
+  url: '/comments'
+  model: Cg2App.Models.Comment

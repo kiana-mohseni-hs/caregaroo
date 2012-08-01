@@ -21,9 +21,7 @@ class Cg2App.Views.Post extends Backbone.View
       @remove()
 
   comments: ->
-    # event.preventDefault()    # prevents url from being logged
-    # $('#post_comments').html(@model.get('id'))
-    view = new Cg2App.Views.PostComments(collection: @model.get('comments'))
-    $('#post_comments').html(view.render().el)
-    # $('#post_comments').html(@model.get('comments').length)
-    
+    comments = new Cg2App.Collections.Comments
+    comments.reset(@model.get('comments'))   # or @model.get('comments').to_json
+    view = new Cg2App.Views.PostComments(collection: comments)
+    $('#post').html(view.render().el)

@@ -1,0 +1,7 @@
+<img alt="<%= @comment.attributes.user.first_name %>" height="44" src="<%= @comment.attributes.user.thumb_url %>" width="50">
+<%= @comment.attributes.user.first_name %><br/>
+<p class="content"><%= @comment.get('content') %></p>
+<p><%= @comment.get('date') %> ago &nbsp; . &nbsp; 
+<% if @comment.get('author') : %>
+  <a href ="#" class="delete_comment" data-id="<%= @comment.get('id') %>">Delete</a>
+<% end %></p>
