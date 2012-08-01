@@ -154,8 +154,8 @@ li#dayviewdate_li {
   color: black;
 }
 
-#posts li p a {
-  display: inline;
+#posts li p a, a.delete_post {
+  display: inline !important;
 }
 
 #new_post_content {
