@@ -28,7 +28,7 @@ class Cg2App.Views.PostsIndex extends Backbone.View
     attributes = 
       content: $('#new_post_content').val()
       author: true
-      commentscount: 0
+      comments: []
       user: 
         id: window.currentUser.id
         first_name: window.currentUser.first_name
