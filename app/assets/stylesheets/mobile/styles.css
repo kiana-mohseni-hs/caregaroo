@@ -176,4 +176,8 @@ li#dayviewdate_li {
   margin-top: 2px;
   padding: 1px 5px;
 }
+
+#post li {
+  list-style-type: none;
+}
 /* @end */

@@ -1,0 +1,11 @@
+<% for comment in @comments: %>
+<li>
+  <img alt="<%= comment.user.first_name %>" height="44" src="<%= comment.user.thumb_url %>" width="50">
+  <%= comment.user.first_name %><br/>
+  <p class="content"><%= comment.content %></p>
+  <p><%= comment.date %> ago &nbsp; . &nbsp; 
+  <% if comment.author : %>
+    <a href ="#" class="delete_comment" data-id="<%= comment.id %>">Delete</a>
+  <% end %></p>
+</li>
+<% end %>

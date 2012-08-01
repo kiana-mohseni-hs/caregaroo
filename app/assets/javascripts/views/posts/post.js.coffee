@@ -4,6 +4,7 @@ class Cg2App.Views.Post extends Backbone.View
   
   events:
     'click .delete_post': 'destroy'
+    'click .show_comments': 'comments'
   
   initialize: ->
     @model.on('change', @render, this)
@@ -18,3 +19,11 @@ class Cg2App.Views.Post extends Backbone.View
     if confirm_result is true
       @model.destroy()
       @remove()
+
+  comments: ->
+    # event.preventDefault()    # prevents url from being logged
+    # $('#post_comments').html(@model.get('id'))
+    view = new Cg2App.Views.PostComments(collection: @model.get('comments'))
+    $('#post_comments').html(view.render().el)
+    # $('#post_comments').html(@model.get('comments').length)
+    

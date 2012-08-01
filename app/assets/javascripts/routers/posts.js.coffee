@@ -4,13 +4,11 @@ class Cg2App.Routers.Posts extends Backbone.Router
     # 'posts/:id': 'show'
     
   initialize: ->
-    @collection = new Cg2App.Collections.Posts()
-    @collection.fetch()
-    # @current_user = new Cg2App.Models.CurrentUser()
-    # @current_user.fetch()
+    @posts = new Cg2App.Collections.Posts()
+    @posts.fetch()
     
   index: ->
-    view = new Cg2App.Views.PostsIndex(collection: @collection)
+    view = new Cg2App.Views.PostsIndex(collection: @posts)
     $('#journal').html(view.render().el)
 
   # show: (id) ->

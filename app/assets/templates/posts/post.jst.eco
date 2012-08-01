@@ -2,7 +2,7 @@
 <%= @post.attributes.user.first_name %><br/>
 <p  class="date"><%= @post.get('date') || "just now" %></p>
 <p class="content"><%- @post.get('content') %></p>
-<p>Comments (<%= @post.get('commentscount') %>) &nbsp; . &nbsp; 
+<p><a href="/#post" class="show_comments">Comments</a> (<%= @post.get('comments').length %>) &nbsp; . &nbsp; 
 <% if @post.get('author') : %>
   <a href ="#" class="delete_post" data-id="<%= @post.get('id') %>">Delete</a>
 <% end %></p>

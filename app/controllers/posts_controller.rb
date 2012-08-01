@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   
   def index
     @page = 'posts'
-    @posts = @current_user.network.posts.includes(:user).order("updated_at DESC")
+    @posts = @current_user.network.posts.includes(:user).includes(:comments).order("updated_at DESC")
   end
 
   def edit
