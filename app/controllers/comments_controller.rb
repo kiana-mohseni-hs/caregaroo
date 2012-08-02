@@ -20,6 +20,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    # desktop version uses params[:comment_id] -- following line adjusts for that
+    params[:comment_id] =  params[:id] if mobile_device?
     @comment = @current_user.comments.find(params[:comment_id])
     @comments = @comment.post.comments
     
@@ -27,7 +29,11 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to news_url }
-      format.js
+      format.js { if mobile_device?
+                    render :destroy_mobile
+                  else
+                    render :destroy 
+                  end }
     end
   end
   
