@@ -21,7 +21,5 @@ class Cg2App.Views.Post extends Backbone.View
       @remove()
 
   comments: ->
-    comments = new Cg2App.Collections.Comments
-    comments.reset(@model.get('comments'))   # or @model.get('comments').to_json
-    view = new Cg2App.Views.PostComments(collection: comments)
+    view = new Cg2App.Views.PostComments(collection: @model.comments)
     $('#post').html(view.render().el)
