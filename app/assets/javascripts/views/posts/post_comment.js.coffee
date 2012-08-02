@@ -16,5 +16,3 @@ class Cg2App.Views.PostComment extends Backbone.View
       @model.destroy()
       @remove()
 
-  
-

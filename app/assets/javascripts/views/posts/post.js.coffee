@@ -8,6 +8,7 @@ class Cg2App.Views.Post extends Backbone.View
   
   initialize: ->
     @model.on('change', @render, this)
+    @model.comments.on('remove', @decreaseCount, this)
     
   render: ->
     $(@el).html(@template(post: @model))
@@ -23,3 +24,6 @@ class Cg2App.Views.Post extends Backbone.View
   comments: ->
     view = new Cg2App.Views.PostComments(collection: @model.comments)
     $('#post').html(view.render().el)
+
+  decreaseCount: ->
+    $("\#post_comments_count_#{@model.id}").html(@model.comments.length)
