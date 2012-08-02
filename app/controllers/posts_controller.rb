@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to news_path }
-      format.js
+      format.js   { render nothing:true }
     end
   end
   

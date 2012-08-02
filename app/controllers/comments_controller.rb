@@ -29,11 +29,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to news_url }
-      format.js { if mobile_device?
-                    render :destroy_mobile
-                  else
-                    render :destroy 
-                  end }
+      format.js   { render nothing: true if mobile_device? }
     end
   end
   
