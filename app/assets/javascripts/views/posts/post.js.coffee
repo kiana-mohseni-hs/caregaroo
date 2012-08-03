@@ -4,7 +4,7 @@ class Cg2App.Views.Post extends Backbone.View
   
   events:
     'click .delete_post': 'destroy'
-    'click .show_comments': 'comments'
+    'tap .show_comments': 'comments'
   
   initialize: ->
     @model.on('change', @render, this)
