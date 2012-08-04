@@ -49,9 +49,16 @@ $ ->
     form = $(this).closest("form")
     form.get(0).submit()
     
+  #highlight section of bottom tabbar
   $('.tabbar>ul>li>a').bind clicktouch, ->
     $(this).parent('li').siblings().removeClass('current');
     $(this).parent('li').addClass('current');
+  
+  #hide the tabbar in event add form
+  $('.add_event_button').bind clicktouch, ->
+    $('#other').hide()
+  $('.cancel').bind clicktouch, ->
+    $('#other').show()
   
 # update list of visible events and set title in day view to currently selected date
 updateDisplay = (date) ->
