@@ -6,11 +6,11 @@ class Cg2App.Views.PostComments extends Backbone.View
     'submit #new_post_comment': 'createComment'
   
   initialize: ->
-    @collection.on('add', @prependComment, this)
+    @model.comments.on('add', @prependComment, this)
 
   render: ->
     $(@el).html(@template())
-    @collection.each(@appendComment)
+    @model.comments.each(@appendComment)
     this
   
   prependComment: (comment) =>
@@ -25,14 +25,12 @@ class Cg2App.Views.PostComments extends Backbone.View
     event.preventDefault()
     attributes = 
       content: $('#new_post_comment_content').val()
-      post_id: @options.post_id
+      post_id: @model.id
       author: true
       user: 
         id: window.currentUser.id
         first_name: window.currentUser.first_name
         thumb_url: window.currentUser.thumb_url 
-    comment = @collection.create attributes
-    # post = Posts.get(@options.post_id)
-    # @options.post.comments.add(comment)
+    @model.comments.create(attributes, at: 0)
     $('#new_post_comment')[0].reset()                                             # clear the form input field
-    $("\#post_comments_count_#{@options.post_id}").html(@collection.length)       # update the number of comments for the post
+    $("\#post_comments_count_#{@model.id}").html(@model.comments.length)       # update the number of comments for the post
