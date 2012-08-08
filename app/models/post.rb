@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   attr_accessible :name, :content, :network_id, :user_id
-  has_many :comments, :dependent => :destroy
+  has_many :comments, dependent: :destroy, order: "updated_at DESC"
   belongs_to :user
   has_one :event
   
