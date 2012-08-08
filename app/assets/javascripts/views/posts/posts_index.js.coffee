@@ -4,7 +4,6 @@ class Cg2App.Views.PostsIndex extends Backbone.View
   
   events:
     'submit #new_post': 'createPost'
-    
   
   initialize: ->
     @collection.on('reset', @render, this)
