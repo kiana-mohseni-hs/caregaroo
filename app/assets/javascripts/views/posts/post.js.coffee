@@ -22,7 +22,7 @@ class Cg2App.Views.Post extends Backbone.View
       @remove()
 
   comments: ->
-    view = new Cg2App.Views.PostComments(model: @model)
+    view = new Cg2App.Views.CommentsIndex(model: @model)
     $('#post').html(view.render().el)
 
   decreaseCount: ->

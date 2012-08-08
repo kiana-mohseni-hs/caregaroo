@@ -1,6 +1,6 @@
-class Cg2App.Views.PostComments extends Backbone.View
+class Cg2App.Views.CommentsIndex extends Backbone.View
 
-  template: JST['posts/comments']
+  template: JST['comments/index']
   
   events:
     'submit #new_post_comment': 'createComment'
@@ -14,11 +14,11 @@ class Cg2App.Views.PostComments extends Backbone.View
     this
   
   prependComment: (comment) =>
-    view = new Cg2App.Views.PostComment(model: comment)
+    view = new Cg2App.Views.Comment(model: comment)
     @$('#post_comments').prepend(view.render().el)
 
   appendComment: (comment) =>
-    view = new Cg2App.Views.PostComment(model: comment)
+    view = new Cg2App.Views.Comment(model: comment)
     @$('#post_comments').append(view.render().el)
     
   createComment: (event) ->
