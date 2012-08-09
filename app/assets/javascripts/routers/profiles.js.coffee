@@ -4,4 +4,4 @@ class Cg2App.Routers.Profiles extends Backbone.Router
     
   index: ->
     view = new Cg2App.Views.ProfilesIndex()
-    $('#profile').html("Profile page")
+    $('#profile').html(view.render().el)
