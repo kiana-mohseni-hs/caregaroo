@@ -44,8 +44,8 @@ $ ->
     @submit() if confirm_result is true
     false
     
-  #confirm comment delete
-  $('.delete-comment').click ->
+  #confirm event comment delete
+  $('.delete_event_comment').click ->
     confirm("Delete Comment: Are you sure?") ? true : false
  
   #pick up the toggle change in events/show ("participating?")

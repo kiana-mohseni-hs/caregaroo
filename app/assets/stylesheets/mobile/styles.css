@@ -154,7 +154,7 @@ li#dayviewdate_li {
   color: black;
 }
 
-#posts li p a, a.delete_post, a.delete_comment {
+#posts li p a, a.delete_post, a.delete_comment, a.delete_event_comment {
   display: inline !important;
 }
 
