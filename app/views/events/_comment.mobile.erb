@@ -1,0 +1,12 @@
+<li>
+  <img alt="<%= comment.user.first_name %>" height="44" src="<%= comment.user.avatar.thumb.url %>" width="50">
+  <%= comment.user.first_name %><br/>
+  <p class="content"><%= comment.content %></p>
+  
+  <p class="date"><%= comment.updated_at.strftime("%A, %-d %B %Y at %I:%M %P") || "just now" %> &nbsp; . &nbsp; 
+  <% if comment.user.id == current_user.id %>
+    <a href ="#" class="delete_comment" data-id="<%= comment.id %>">Delete</a>
+    <%= link_to 'X', remove_comment_url(comment), :remote => true, :method => :delete, :class => 'delete-comment' %>
+      
+  <% end %></p>
+</li>

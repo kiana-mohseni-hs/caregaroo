@@ -29,8 +29,7 @@
         <% end %>
       </li>
       <li class="sep">Comments (<%= @event.comments.count %>)</li>
-      <li>
-      </li>
+      <%= render partial: "comment", collection: @event.comments %>
     </ul>
   </div>
 </div>
