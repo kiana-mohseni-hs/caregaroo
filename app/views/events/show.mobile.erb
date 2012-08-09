@@ -28,7 +28,7 @@
         <em><%= u.first_name %> <%= u.last_name %></em>
         <% end %>
       </li>
-      <li class="sep">Comments (<%= @event.comments.count %>)</li>
+      <li class="sep">Comments (<span id="event_comments_count"><%= @event.comments.count %></span>)</li>
       <%= render partial: "comment", collection: @event.comments %>
     </ul>
   </div>

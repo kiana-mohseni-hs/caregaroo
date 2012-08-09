@@ -44,6 +44,10 @@ $ ->
     @submit() if confirm_result is true
     false
     
+  #confirm comment delete
+  $('.delete-comment').click ->
+    confirm("Delete Comment: Are you sure?") ? true : false
+ 
   #pick up the toggle change in events/show ("participating?")
   $(".submit_on_change").change ->
     form = $(this).closest("form")

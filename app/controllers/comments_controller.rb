@@ -33,6 +33,18 @@ class CommentsController < ApplicationController
     end
   end
   
+  # because standard restful route for destroy has been overwritten and is crowded
+  # this is used by the remote call in the event details page
+  def remove
+    @comment = @current_user.comments.find(params[:id])
+    if @comment.present?
+      @post = @comment.post
+      @comment.destroy
+    else
+      render nothing: true
+    end
+  end
+  
   def full_comment
     @comment = Comment.where("id = ?", params[:comment_id]).first
     
