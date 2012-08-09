@@ -11,8 +11,9 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-
+    @event = Event.includes(:users, {:comments => :user}).find(params[:id])
+    @creator = @event.creator || @current_user
+    
     respond_to do |format|
       format.html # show.html.erb
       format.mobile 

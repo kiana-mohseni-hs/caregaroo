@@ -1,5 +1,5 @@
-class Cg2App.Views.PostComment extends Backbone.View
-  template: JST['posts/comment']
+class Cg2App.Views.Comment extends Backbone.View
+  template: JST['comments/comment']
   tagName: 'li'
   
   events:

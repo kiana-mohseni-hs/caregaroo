@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
   belongs_to :updater, :class_name => "User", :foreign_key => "updated_by_id"
   belongs_to :canceler, :class_name => "User", :foreign_key => "canceled_by_id"
   belongs_to :post
+  has_many :comments, through: :post
   
   validates_presence_of :start_at
   validates_presence_of :end_at

@@ -7,8 +7,7 @@
     </div>
     <ul class="edgetoedge">
       <li>
-        <% creator = @event.creator || @current_user %>
-        <%= image_tag creator.avatar_url(:thumb).to_s, :alt => creator.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+        <%= image_tag @creator.avatar_url(:thumb).to_s, :alt => @creator.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
         <p><%= @event.start_at.strftime("%A, %-d %B %Y") %></p>
         <p><%= @event.start_at.strftime("%I:%M %p") %> - <%= @event.end_at.strftime("%I:%M %p") %></p>
         <p class="eventsecondline"><%= @event.location %></p>
@@ -29,6 +28,8 @@
         <em><%= u.first_name %> <%= u.last_name %></em>
         <% end %>
       </li>
+      <li class="sep">Comments (<%= @event.comments.count %>)</li>
+      <%= render partial: "comment", collection: @event.comments %>
     </ul>
   </div>
 </div>
