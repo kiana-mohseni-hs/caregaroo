@@ -5,6 +5,7 @@ window.Cg2App =
   Routers: {}
   init: -> 
     new Cg2App.Routers.Posts
+    new Cg2App.Routers.Profile
     Backbone.history.start()
     
 $(document).ready ->
