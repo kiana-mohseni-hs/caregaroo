@@ -3,7 +3,7 @@
   <%= comment.user.first_name %><br/>
   <p class="content"><%= comment.content %></p>
   
-  <p class="date"><%= comment.updated_at.strftime("%A, %-d %B %Y at %I:%M %P") || "just now" %> &nbsp; . &nbsp; 
+  <p class="date"><%= time_ago_in_words(comment.updated_at) || "just a moment" %> ago &nbsp; . &nbsp; 
   <% if comment.user.id == current_user.id %>
     <%= link_to 'Delete', destroy_comment_path(comment), remote: :true, method: :delete, class: 'delete_event_comment' %>
   <% end %></p>
