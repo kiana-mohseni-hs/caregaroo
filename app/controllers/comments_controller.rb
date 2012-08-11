@@ -8,13 +8,20 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user_id = @current_user.id
+    @post = Post.find(@comment.post_id)
 
     respond_to do |format|
-      if @comment.save
+      if @post.user_id == @current_user.id && @comment.save
         Resque.enqueue(CommentsActivityMailer, @comment.id)
-        @comments = Comment.where("post_id = ?", @comment.post_id)
+        @comments = @post.comments
         format.html { redirect_to news_path }
-        format.js   { render nothing: true if mobile_device? }
+        format.js   do
+          if params[:within_event]
+            render "create_in_event"
+          else
+            render nothing: true if mobile_device?
+          end
+        end
       end
     end
   end

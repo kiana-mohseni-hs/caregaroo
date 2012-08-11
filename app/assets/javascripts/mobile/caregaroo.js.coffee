@@ -46,7 +46,7 @@ $ ->
     
   #confirm event comment delete
   $('.delete_event_comment').click ->
-    confirm("Delete Comment: Are you sure?") ? true : false
+    confirm("Delete Comment: Are you sure?")
  
   #pick up the toggle change in events/show ("participating?")
   $(".submit_on_change").change ->

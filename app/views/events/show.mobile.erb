@@ -28,9 +28,15 @@
         <em><%= u.first_name %> <%= u.last_name %></em>
         <% end %>
       </li>
-      <li class="sep">Comments (<span id="event_comments_count"><%= @event.comments.count %></span>)</li>
+      <li class="sep commentstitle">Comments (<span id="event_comments_count"><%= @event.comments.count %></span>)</li>
       <%= render partial: "comment", collection: @event.comments %>
     </ul>
+    <%= form_for( @comment, remote: true, format: 'js', html: {id: "new_post_comment"}) do |f| %>
+      <input name="within_event" type="hidden" value="true" />
+      <%= f.hidden_field :post_id, value: @event.post_id %>
+      <%= f.text_field :content, placeholder: "Share a comment" %>
+      <%= f.submit value: "Comment" %>
+    <% end %>
   </div>
 </div>
 <%= render :partial => 'shared/bottom_tabbar' %>
