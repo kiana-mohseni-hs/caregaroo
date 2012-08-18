@@ -1,6 +1,6 @@
 class Invitation < ActiveRecord::Base
   
-  attr_accessible :email, :first_name, :last_name, :generate_token
+  attr_accessible :email, :first_name, :last_name, :generate_token, :network_id
   
   validates :email, :presence => true, :email_format => true 
   validates_presence_of :first_name

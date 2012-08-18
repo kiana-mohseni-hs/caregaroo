@@ -9,6 +9,7 @@ class InvitationsController < ApplicationController
   def create    
     @invitation = Invitation.new(params[:invitation])
     @invitation.send_id = @current_user.id
+    @invitation.network_id = @current_user.network.id
     if @invitation.save
       Resque.enqueue(InvitationMailer, @invitation.id, @current_user.id)
       redirect_to success_invitation_path
