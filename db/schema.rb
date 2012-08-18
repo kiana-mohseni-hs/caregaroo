@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517051755) do
+ActiveRecord::Schema.define(:version => 20120817065604) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20120517051755) do
     t.integer  "host_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
   end
 
   create_table "notifications", :force => true do |t|

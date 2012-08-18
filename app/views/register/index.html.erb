@@ -28,8 +28,6 @@
 		    <%= u.label :password, :class=>"right_text_with_icon label_space" %>
 		    <%= u.password_field :password, :size=>35, :class=>"right_text_with_icon" %>
 		    <p class="right_text_with_icon note_text">Password must contain at least 6 characters.</p>
-		    <%= u.label :password_confirmation, :class=>"right_text_with_icon label_space" %>
-		    <%= u.password_field :password_confirmation, :size=>35, :class=>"right_text_with_icon field_space" %>
 		    <%= u.label :network_relationship, 'Relationship to the person at the centre of network', :class=>"right_text_with_icon label_space" %>
 		    <%= u.text_field :network_relationship, :size=>35, :class=>"right_text_with_icon field_space" %>
 		   </div>
@@ -39,14 +37,15 @@
 			<br/>
 			
 			<div class="right_text_with_icon">
-		    <%= check_box_tag :notification, 1, true %> Email me Caregaroo news and announcements.
 			</div>
 		    <div class="right_text_with_icon">
-			    <%= check_box_tag :tos %> I have read and agree to the <a class="tos" href="https://caregaroo.zendesk.com/entries/21360183-terms-of-services" target="_blank">Terms of Services</a>.
+		    	<%= hidden_field_tag :notification, 1 %>
+			    <%= hidden_field_tag :tos, 1 %>
+				By signing up, I have read and agree to the <a class="tos" href="https://caregaroo.zendesk.com/entries/21360183-terms-of-services" target="_blank">Terms of Services</a>.
 			</div>
 			
 			<br style="clear:both"/>
-		 	<%= f.submit "Create Network", :disabled=>"disabled", :class=>"form_button_disabled", :id=>"create_btn"%> 
+		 	<%= f.submit "Create Network", :class=>"form_button", :id=>"create_btn"%> 
 	 	</div>
 
 	<% end %>

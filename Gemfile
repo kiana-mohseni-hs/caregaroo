@@ -20,6 +20,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'compass-rails'
   gem 'compass_twitter_bootstrap'
+  gem 'fancy-buttons'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'

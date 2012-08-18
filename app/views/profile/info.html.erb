@@ -13,15 +13,17 @@
 		<% if @user.id == @current_user.id %>
 		<div style="float:right"><%= link_to "Edit Profile", edit_info_profile_path, :class=>"orange_button_link"%></div>
 		<% end %>
-		<div style="clear"></div>
+		<div class="clear"></div>
 		<div class="profile_content">
 			<div class="left_text">Name:</div><div class="right_text"><%= @user.first_name %> <%= @user.last_name %></div><br/>
 			<div class="left_text">Email:</div><div class="right_text"><%= @user.email %></div><br/>		
 			<% if !@user.profile.nil? %>
 			<div class="left_text">Location:</div><div class="right_text"><%= @user.profile.location %></div><br/>
-			<div class="left_text">About me:</div><div class="right_text"><%= @user.profile.bio %></div><br/>
+			<div class="left_text">About me:</div><div style="font-size:12px;margin-left:100px"><%= @user.profile.bio %></div><br/>
+			<div class="clear"></div>
 			<% end%>
 		</div>
+
 		<% if @user.id == @current_user.id && !@user.notification.nil? %>
 		<p class="sub_header">SEND ME A NOTIFICATION:</p>
 	  	<div class="profile_content">

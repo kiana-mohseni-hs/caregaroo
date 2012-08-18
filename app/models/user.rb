@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_presence_of :network_relationship, :unless => :in_first_stage?
   validates_presence_of :first_name, :unless => :in_first_stage?
   validates_presence_of :last_name, :unless => :in_first_stage?
-  validates_presence_of :password_confirmation, :on => :create, :unless => :in_first_stage?
+  # validates_presence_of :password_confirmation, :on => :create, :unless => :in_first_stage?
   attr_accessor :first_stage
   
   belongs_to :network, :class_name => "Network", :foreign_key => "network_id"
