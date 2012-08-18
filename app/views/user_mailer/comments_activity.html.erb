@@ -1,5 +1,5 @@
-<h1>Recent activities on <%= @network_for_who %>'s network:</h1>
-<h2>News updates and comments:</h2>
+<h2>Recent activities on <%= @network_for_who %>'s network:</h2>
+<h3>News updates and comments:</h3>
 <p><strong><%=h !@post.user.nil? ? "#{@post.user.first_name} #{@post.user.last_name}" : "Anonymous" %></strong> posted:<br/>
 	<%=h @post.content %></p>
 <p><strong><%=h !@comment.user.nil? ? "#{@comment.user.first_name} #{@comment.user.last_name}" : "Anonymous" %></strong> commented:<br/>
