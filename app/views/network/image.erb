@@ -1,9 +1,9 @@
 <h3 class="page_title">Upload Network Image</h3>
 
-<div style="width:250px">
+<div style="width:300px">
 <%= form_for @network, :url => network_upload_path, :method => :post, :html => { :multipart => true, :id => 'network_upload_form' } do |f| %>
-<p style="padding:10px"><%= f.file_field :avatar, :id => "preview" %> <span id="preview-photo"></span></p>
+<p style="padding:10px 0"><%= f.file_field :avatar, :id => "preview" %> <span id="preview-photo"></span></p>
 <p>You can upload jpg, gif and png format file.</p>
-<p style="padding:10px"><%= f.submit "Save", :class =>"form_button", :id=>"save_updates_button"%></p>
+<p style="padding:30px 0"><%= f.submit "Save", :class =>"form_button" %></p>
 </div>
 <% end %>
