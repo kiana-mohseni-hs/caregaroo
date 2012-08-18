@@ -45,7 +45,7 @@
 <div id="main_frame">
     <div id="user_nav">
     	<div id="CoC_frame">
-	<%= image_tag !@current_user.network.nil? ? current_user.network.avatar_url(:thumb).to_s : "photo_place_holder.png", :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
+	<%= image_tag !@current_user.network.nil? ? current_user.network.avatar_url(:thumb).to_s : "photo_place_holder.png", :height => "50", :width => "50", :style => "float:left;padding-right:5px" %>
     		<div id="CoC_right">
     		<p id="CoC_name"><%= @current_user.network.network_name %></p>
     		</div>
@@ -58,7 +58,7 @@
 	        <li class="<%= @page == "posts" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "posts" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "News Stream", news_path %></div></li>
 	      	<li class="<%= @page == "invite" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_invite" class="<%= @page == "invite" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>   
 			<% if @current_user.is_initiator_or_coordinator? %>
-			<li class="<%= @page == "upload_image" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "upload_image" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Upload Network Image", network_image_path %></div></li>
+			<li class="<%= @page == "upload_image" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "upload_image" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Edit Network Image", network_image_path %></div></li>
 			<% end %>
 	      <!--
 	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>
@@ -72,7 +72,7 @@
 		<ul id="member_list">	
 		<% for member in @current_user.network.users.limit(10) %>		
 			<li class="<%= (!@user.nil? && @user.id == member.id) ? 'current':'' %>">
-				<%= image_tag member.avatar_url(:thumb).to_s, :alt => member.first_name, :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic") %>
+				<%= image_tag member.avatar_url(:thumb).to_s, :alt => member.first_name, :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic"), :height => "40", :width => "40" %>
 			<%= link_to member.first_name, user_info_profile_path(member) %>
 			</li>
 		<% end %>
