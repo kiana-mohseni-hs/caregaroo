@@ -27,7 +27,7 @@
 	<div id="user_selector">	
 		<% if @current_user %>
 		<dl id="user_dropdown" class="dropdown">
-			<dt><a href="#"><span style="font-size:16px"><%= image_tag @current_user.avatar_url(:thumb).to_s, :class=>"dt_icon", :height => "30", :width => "30" %><%= @current_user.first_name %><div class="dt_arrow"><div class="dt_arrow_bg"></div></div></span></a></dt>
+			<dt><a href="#"><span style="font-size:14px"><%= image_tag @current_user.avatar_url(:thumb).to_s, :class=>"dt_icon", :height => "30", :width => "30" %><%= @current_user.first_name %><div class="dt_arrow"><div class="dt_arrow_bg"></div></div></span></a></dt>
 	        <dd><ul>
 				<li><a href="/profile" style="padding-left:20px;">Settings</a></li>
 				<li><%= link_to "Log out", logout_path, :style=>"padding-left:20px;" %></li>
@@ -58,7 +58,7 @@
 	        <li class="<%= @page == "posts" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "posts" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "News Stream", news_path %></div></li>
 	      	<li class="<%= @page == "invite" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_invite" class="<%= @page == "invite" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>   
 			<% if @current_user.is_initiator_or_coordinator? %>
-			<li class="<%= @page == "upload_image" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "upload_image" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Edit Network Image", network_image_path %></div></li>
+			<li class="<%= @page == "upload_image" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "upload_image" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Edit Network Info", network_edit_path %></div></li>
 			<% end %>
 	      <!--
 	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>

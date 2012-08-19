@@ -28,8 +28,8 @@ Cg2App::Application.routes.draw do
   post "invite/send" => "invitations#create", :as => "send_invitation"
   post "messages/reply" => "messages#reply", :as => "reply_message"
   get "unsubscribe" => "notifications#unsubscribe", :as => "unsubscribe"
-  get "network/image" => "network#image", :as => "network_image"
-  post "network/upload" => "network#upload", :as => "network_upload"
+  get "network/edit" => "network#edit", :as => "network_edit"
+  post "network/save" => "network#save", :as => "network_save"
 
   post "signup/create" => "signup#create", :as => "signup_create"
   get "signup/success" => "signup#success", :as => "signup_success"
