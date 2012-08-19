@@ -58,7 +58,7 @@
 	        <li class="<%= @page == "posts" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "posts" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "News Stream", news_path %></div></li>
 	      	<li class="<%= @page == "invite" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_invite" class="<%= @page == "invite" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>   
 			<% if @current_user.is_initiator_or_coordinator? %>
-			<li class="<%= @page == "upload_image" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "upload_image" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Edit Network Info", network_edit_path %></div></li>
+			<li class="<%= @page == "network_info" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_network_info" class="<%= @page == "upload_image" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Edit Network Info", network_edit_path %></div></li>
 			<% end %>
 	      <!--
 	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>

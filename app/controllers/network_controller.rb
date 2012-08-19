@@ -2,6 +2,7 @@ class NetworkController < ApplicationController
   before_filter :require_user
   
   def edit
+    @page = 'network_info'
     if @current_user.is_initiator_or_coordinator?
       @network = @current_user.network
     else
