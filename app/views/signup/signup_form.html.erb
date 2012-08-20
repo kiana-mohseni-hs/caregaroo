@@ -22,19 +22,17 @@
 		    <%= f.label :password %>
 		    <%= f.password_field :password, :size=>35 %><br/>
 		    <span class="note_text">Password must contain at least 6 characters.</span><br/><br/>
-		    <%= f.label :password_confirmation %>
-		    <%= f.password_field :password_confirmation, :size=>35 %><br/><br/>
 		    <% if @network_name %>
 			<label for="user_network_relationship">Relationship to <%=h @network_name %></label>
 			<% elsif %>
 		    <%= f.label :network_relationship, 'Relationship to the person at the centre of network' %>
 		    <% end %>
 			<%= f.text_field :network_relationship, :size=>35 %><br/><br/>
-			<%= check_box_tag :notification, 1, true %> Email me Caregaroo news and announcements.<br/>
-			<%= check_box_tag :tos %> I have read and agree to the <a class="tos" href="https://caregaroo.zendesk.com/entries/21360183-terms-of-services" target="_blank">Terms of Services</a>.		
+	    	<%= hidden_field_tag :notification, 1 %>
+		    <%= hidden_field_tag :tos, 1 %>
 	  	</div>
 	  	<br/>		
-	  	<p><%= f.submit "Next", :disabled=>"disabled", :class=>"form_button_disabled", :id=>"signup_next_btn" %> </p>
+	  	<p><%= f.submit "Next", :class=>"form_button", :id=>"signup_next_btn" %> </p>
 	<% end %>
 	</div>
 </div>
