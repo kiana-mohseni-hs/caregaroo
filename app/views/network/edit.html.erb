@@ -1,0 +1,15 @@
+<h3 class="page_title">Edit Network Info</h3>
+<%= render "shared/error_messages", :target => @network %>
+<% flash.each do |name, msg| %>
+	<%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+<div style="width:450px">
+<%= form_for @network, :url => network_save_path, :method => :post, :html => { :multipart => true, :id => 'network_upload_form' } do |f| %>
+<p class="sub_header">EDIT NETWORK NAME</p>
+<p style="padding:10px 0"><%= f.text_field :network_name, :size=>35 %></p>
+<p class="sub_header">UPLOAD NETWORK IMAGE</p>
+<p style="padding:10px 0"><%= f.file_field :avatar, :id => "preview" %> <span id="preview-photo"></span></p>
+<p>You can upload a jpg, gif and png format file.</p>
+<p style="padding:30px 0"><%= f.submit "Save", :class =>"form_button" %></p>
+</div>
+<% end %>

@@ -27,12 +27,12 @@ class UserMailer < ActionMailer::Base
     mail :to => "#{@user.first_name} #{@user.last_name} <#{@recipient_email}>", :subject => "Welcome to Caregaroo"
   end
   
-  def news_activity(new_post, receipient, network_for_who)
+  def news_activity(new_post, email, first_name, last_name, network_for_who)
     @post = new_post
     @network_for_who = network_for_who
-    @token = generate_token(receipient.email)
-    @recipient_email = receipient.email
-    mail(:to => "#{receipient.first_name} #{receipient.last_name} <#{receipient.email}>", :subject => "Recent activity on #{network_for_who}'s network")
+    @token = generate_token(email)
+    @recipient_email = email
+    mail(:to => "#{first_name} #{last_name} <#{email}>", :subject => "Recent activity on #{network_for_who}'s network")
   end
   
   def comments_activity(post, new_comment, receipient, network_for_who)
