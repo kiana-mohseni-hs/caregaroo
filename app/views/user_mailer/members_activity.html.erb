@@ -1,6 +1,6 @@
-<h1>Recent activities on <%= @network_for_who %>'s network:</h1>
+<h2>Recent activities on <%= @network_for_who %>'s network:</h2>
 
-<h2>New members:</h2>
+<h3>New members:</h3>
 <p><strong><%=h link_to "#{@member.first_name} #{@member.last_name}", user_info_profile_url(@member.id) %></strong> joined the network.</p>
 
 <%= render 'footer' %>
