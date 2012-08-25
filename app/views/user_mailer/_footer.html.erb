@@ -1,8 +1,13 @@
 <p>The Caregaroo Team</p>
 
-<p style="background-color:#F47D29;padding:10px;text-align:center;width:100%;font-size:16px"><%= link_to "Visit your network on Caregaroo", news_url, :style => "text-decoration: none" %></p>
+<p style="background-color:#F47D29;padding:10px;text-align:center;width:100%;font-size:16px">
+<% if @signup_token.nil? %>
+<%= link_to "Visit your network on Caregaroo", news_url, :style => "text-decoration:none;color:white;" %></p>
+<% else %>
+<%= link_to "Visit your network on Caregaroo", signup_with_token_url(@signup_token), :style => "text-decoration:none; color:white" %></p>
+<% end %>
 
 <p>You were sent this email because you registered on <%= link_to "www.caregaroo.com", root_url, :style => "text-decoration: none" %>. If you don’t want to receive these emails from Caregaroo in the future please click
 <%= link_to "unsubscribe", unsubscribe_url(:e => @recipient_email, :token => @token), :style => "text-decoration: none" %>.</p>
-<p style="text-align:center; width:100%">© 2012 Azra Ventures Inc.</p>
-<p style="text-align:center; width:100%"><%= link_to "Learn more about Caregaroo", root_url, :style => "text-decoration: none" %></p>
+<p style="text-align:center; width:100%">© 2012 Azra Ventures Inc.<br/>
+<%= link_to "Learn more about Caregaroo", root_url, :style => "text-decoration: none" %></p>

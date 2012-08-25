@@ -27,11 +27,12 @@ class UserMailer < ActionMailer::Base
     mail :to => "#{@user.first_name} #{@user.last_name} <#{@recipient_email}>", :subject => "Welcome to Caregaroo"
   end
   
-  def news_activity(new_post, email, first_name, last_name, network_for_who)
+  def news_activity(new_post, email, first_name, last_name, network_for_who, signup_token)
     @post = new_post
     @network_for_who = network_for_who
     @token = generate_token(email)
     @recipient_email = email
+    @signup_token = signup_token
     mail(:to => "#{first_name} #{last_name} <#{email}>", :subject => "Recent activity on #{network_for_who}'s network")
   end
   
