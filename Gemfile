@@ -3,9 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.2'
 gem 'bcrypt-ruby'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
 group :development do
   gem 'sqlite3'
 end
@@ -29,9 +26,6 @@ group :assets do
   gem 'compass_twitter_bootstrap'
   gem 'fancy-buttons'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
   # jsvascript compressor
   gem 'uglifier', '>= 1.0.3'
 end
@@ -45,17 +39,6 @@ gem 'resque', :require => "resque/server"
 gem 'carrierwave'
 gem 'rmagick'
 
-# gem "mail", "2.1.3"
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
@@ -63,3 +46,4 @@ end
 
 gem 'backbone-on-rails'
 gem 'jbuilder'
+gem 'will_paginate', '> 3.0'

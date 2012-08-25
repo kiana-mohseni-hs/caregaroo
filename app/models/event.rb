@@ -58,7 +58,8 @@ class Event < ActiveRecord::Base
     
   def update_post
     change = canceled ? "Canceled" : "Updated"
-    new_content = "#{change} Event: #{name} (#{event_type.name})<br/> " << 
+    eventtype = event_type.nil? ? "" : event_type.name
+    new_content = "#{change} Event: #{name} (#{eventtype})<br/> " << 
                   datetimestring <<
                   locationstring
     if canceled

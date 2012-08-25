@@ -56,8 +56,12 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
-        format.mobile { redirect_to @event }
+        if params[:next] == "index"
+          format.html { redirect_to calendar_url }
+        else
+          format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
+          format.mobile { redirect_to @event }
+        end
       else
         format.html { render :action => "edit" }
       end
