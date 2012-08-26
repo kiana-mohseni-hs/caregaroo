@@ -36,8 +36,16 @@ class Event < ActiveRecord::Base
     update_attributes(canceled_by_id: canceler_id, canceled: true)
   end
   
+  def datestring
+    start_at.strftime("%a, %e %b %Y")
+  end
+
+  def timestring
+    start_at.strftime("%l:%M%P - ") << end_at.strftime("%l:%M%P")
+  end
+
   def datetimestring
-    start_at.strftime("%a, %e %b %Y, %l:%M%P - ") << end_at.strftime("%l:%M%P")
+    datestring << ", " << timestring
   end
   
   def locationstring

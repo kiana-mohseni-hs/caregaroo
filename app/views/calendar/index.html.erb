@@ -20,11 +20,11 @@
     <td>&nbsp;-&nbsp;</td>
     <td><%= event.end_at.strftime("%l:%M %P") %></td>
     <td>&nbsp;&nbsp;<%= link_to event.name, event %>&nbsp;&nbsp;</td>
-    <td class="signed_up"><%= form_for( event, remote: true ) do |f| %>
-      <%= hidden_field_tag "event[user_ids][]", nil %>
-      <%= hidden_field_tag "next", "index" %>
-      <%= check_box_tag "event[user_ids][]", @current_user.id, event.user_ids.include?(@current_user.id), id: dom_id(@current_user) , class: 'submit_on_change'%>
-    <% end %></td>
+    <td class="signed_up">
+      <%= check_box_tag nil, nil, event.user_ids.include?(@current_user.id), { 
+        class: 'event_sign_up', 
+        'data-href' => update_user_event_url(event.id) } %>
+    </td>
   </tr>
   <% previous_event_start_date = Time.at(event.start_at).to_date %>
 <% end %>

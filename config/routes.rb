@@ -57,6 +57,7 @@ Cg2App::Application.routes.draw do
   end
   resources :events do
     delete 'cancel', on: :member
+    put 'update_user', on: :member
   end
   resources :messages
   resources :password_resets

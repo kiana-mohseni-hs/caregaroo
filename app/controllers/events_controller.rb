@@ -56,18 +56,27 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        if params[:next] == "index"
-          format.html { redirect_to calendar_url }
-        else
           format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
           format.mobile { redirect_to @event }
-        end
       else
         format.html { render :action => "edit" }
       end
     end
   end
 
+  def update_user
+    @message = "Failed to update"
+    @event = Event.find(params[:id])
+
+    if params[:checked] == "true"
+      @current_user.events << @event
+      @message = "Signed up"
+    else
+      @current_user.events.delete(@event)
+      @message = "Signed off"
+    end
+  end
+  
   def cancel
     @event = Event.find(params[:id])
     if !@event.canceled?
