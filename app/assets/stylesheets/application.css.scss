@@ -181,10 +181,36 @@ form .field, form .actions { margin: 12px 0;}
 .create_new_button {
   margin: 0 0 22px 0;
 }
-
-td.signed_up {
-  text-align: center;
-  padding: 4px;
+tr.events_list_row {
+  line-height: 14px;
+  vertical-align: text-top;
 }
+
+td.event_list_date {
+  font-weight: bold;
+  border-top: 1px solid #9aafe5;
+}
+td.event_name {
+  font-weight: bold;
+}
+
+//not needed if bootstrap.css is included
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+.icon-remove {
+  background-position: -312px 0;
+}
+
 /* @end */
 

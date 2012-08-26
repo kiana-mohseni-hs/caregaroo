@@ -1,0 +1,10 @@
+<tr id="<%= dom_id(event) %>" class="events_list_row">
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= event.start_at.strftime("%l:%M%P") %></td>
+  <td>&nbsp;-&nbsp;</td>
+  <td><%= event.end_at.strftime("%l:%M%P") %></td>
+  <td class="event_name">&nbsp;&nbsp;<%= link_to event.name, event %>&nbsp;&nbsp;</td>
+  <td><%= check_box_tag nil, nil, event.user_ids.include?(@current_user.id), { 
+            class: 'event_sign_up', 
+            'data-href' => update_user_event_url(event.id) } %> signed up</td>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "", event, method: :delete, remote: true, confirm: "Delete event: are you sure?", class: "icon-remove", title: "delete" %></td>
+</tr>

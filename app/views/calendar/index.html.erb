@@ -1,31 +1,18 @@
-<!-- Probably move the stylesheet to you layout. Also make sure you include the javascript. -->
 <%= stylesheet_link_tag "event_calendar" %>
 
-<!--h3 class="page_title">Events</h3-->
 <%= link_to "Create New Event", new_event_path, class: "orange_button_link create_new_button" %>
 
 <%# raw(event_calendar) %>
 
 <% previous_event_start_date = Time.at(0).to_date  %>
 <table>
-<tr><td colspan=4></td><td class="signed_up">signed<br/>up</td></tr>
 <% for event in @events %>
   <% unless previous_event_start_date === Time.at(event.start_at).to_date %>
     <tr>
-      <th colspan=4><%= event.start_at.strftime("%A, %e %B %Y") %></td><td class="signed_up"></td>
+      <td colspan=4 class="event_list_date"><%= event.start_at.strftime("%A, %e %B %Y") %></td><td></td>
     </tr>
   <% end %>
-  <tr>
-    <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= event.start_at.strftime("%l:%M %P") %></td>
-    <td>&nbsp;-&nbsp;</td>
-    <td><%= event.end_at.strftime("%l:%M %P") %></td>
-    <td>&nbsp;&nbsp;<%= link_to event.name, event %>&nbsp;&nbsp;</td>
-    <td class="signed_up">
-      <%= check_box_tag nil, nil, event.user_ids.include?(@current_user.id), { 
-        class: 'event_sign_up', 
-        'data-href' => update_user_event_url(event.id) } %>
-    </td>
-  </tr>
+  <%= render partial: "event", object: event  %>
   <% previous_event_start_date = Time.at(event.start_at).to_date %>
 <% end %>
 </table>
