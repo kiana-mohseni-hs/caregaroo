@@ -9,10 +9,28 @@ class CalendarController < ApplicationController
 
     @event_strips = Event.event_strips_for_month(@shown_month)
     @page = 'calendar'
+    # up to here was code from the event_calendar gem
     
-    @events = Event.visible.order("start_at").page(params[:page]).per_page(10)
+    #pagination code
+    visible_events = @current_user.network.events.visible.order("start_at")
+    events_count = visible_events.count
+    future_events = visible_events.future
+    per_page = 10
+    @current_page = params[:page] || 0
+    offset = events_count - future_events.count + @current_page.to_i * per_page
+    if offset > 0
+      @events = visible_events.limit(per_page).offset(offset)
+      @prev_available = true
+    else
+      @events = visible_events.limit(per_page+ offset)
+      @prev_available = false
+    end
+    
+    @next_available = events_count > (offset+ per_page)
+    @prev_link = "?page=" << (@current_page.to_i- 1).to_s
+    @next_link = "?page=" << (@current_page.to_i+ 1).to_s
+    
+    
   end
   
 end
-
-# .where(['start_at > ?', Time.now.beginning_of_day])

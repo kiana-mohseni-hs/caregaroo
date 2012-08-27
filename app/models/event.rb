@@ -31,6 +31,7 @@ class Event < ActiveRecord::Base
                   :canceled
   
   scope :visible, where(canceled: false)
+  scope :future, where(['start_at >= ?', Time.now.beginning_of_day])
   
   def cancel(canceler_id)
     update_attributes(canceled_by_id: canceler_id, canceled: true)
@@ -80,4 +81,5 @@ class Event < ActiveRecord::Base
       content: new_content
       ) unless post.nil?
   end
+  
 end

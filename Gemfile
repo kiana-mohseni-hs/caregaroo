@@ -46,4 +46,3 @@ end
 
 gem 'backbone-on-rails'
 gem 'jbuilder'
-gem 'will_paginate', '> 3.0'

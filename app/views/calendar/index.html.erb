@@ -1,9 +1,10 @@
 <%= stylesheet_link_tag "event_calendar" %>
 
 <%= link_to "Create New Event", new_event_path, class: "orange_button_link create_new_button" %>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @prev_available ? link_to( "<< prev", @prev_link) : "<< prev" %>
+&nbsp;&nbsp;<%= @current_page == 0 ? "today" : link_to( "today", "?") %>
+&nbsp;&nbsp;<%= @next_available ? link_to( "next >>", @next_link) : "next >>" %>
 <%# raw(event_calendar) %>
-
 <% previous_event_start_date = Time.at(0).to_date  %>
 <table>
 <% for event in @events %>
@@ -16,4 +17,3 @@
   <% previous_event_start_date = Time.at(event.start_at).to_date %>
 <% end %>
 </table>
-<%= will_paginate @events %>
