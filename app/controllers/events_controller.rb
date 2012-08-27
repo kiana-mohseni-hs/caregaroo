@@ -84,6 +84,7 @@ class EventsController < ApplicationController
     end
 
     respond_to do |format|
+      format.js {}
       format.html { redirect_to events_url }
       format.mobile { redirect_to "/#calendar" }    #     calendar_url(2012,06)
     end
@@ -97,7 +98,6 @@ class EventsController < ApplicationController
     end
 
     respond_to do |format|
-      format.js {}
       format.html { redirect_to events_url }
       format.mobile { redirect_to "/#calendar" }    #     calendar_url(2012,06)
     end
