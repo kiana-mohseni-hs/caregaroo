@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     visible_events = @current_user.network.events.visible.order("start_at")
     events_count = visible_events.count
     future_events = visible_events.future
-    per_page = 10
+    per_page = 12
     @current_page = params[:page] || 0
     offset = events_count - future_events.count + @current_page.to_i * per_page
     if offset > 0
@@ -24,6 +24,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.includes( :users, :post, { comments: :user } ).find( params[:id] )
+    @event_type = @event.event_type.present? ? "(" << @event.event_type.name << ")" : ""
     @creator = @event.creator || @current_user
     @comment = Comment.new
     

@@ -10,19 +10,36 @@
       </ul>
     </div>
   <% end %>
+  <%= f.hidden_field :network_id %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :start_at %><br />
-    <%= f.date_select :start_at %>
-  </div>
-  <div class="field">
-    <%= f.label :end_at %><br />
-    <%= f.date_select :end_at %>
-  </div>
+  <ul>
+    <li class="sep">Type (select)</li>
+    <li><%= select_tag("event[event_type_id]", options_from_collection_for_select(@event_types, "id", "name")) %></li>
+  </ul>
+  <ul>
+    <li class="sep">What</li>
+    <li><%= f.text_field :name, placeholder: "What..." %></li>
+  </ul>
+  <ul>
+    <li class="sep">When</li>
+    <li>from <input type="datetime-local" name="event[start_at]", value="<%= @event.start_at.strftime("%FT%R") %>" /></li>
+    <li>to <input type="datetime-local" name="event[end_at]", value="<%= @event.end_at.strftime("%FT%R") %>" /></li>
+  </ul>
+  <ul>
+    <li class="sep">Where</li>
+    <li><%= f.text_field :location, placeholder: "Where..." %></li>
+  </ul>
+  <ul>
+      <li class="sep">With</li>    
+      <%= hidden_field_tag "event[user_ids][]", nil %>
+      <% User.all.each do |user| %>
+        <li><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %></li>
+      <% end %>
+    </ul>
+  <ul>
+    <li class="sep">Description</li>
+    <li><%= f.text_area :description, placeholder: "Description" %></li>
+  </ul>
   <div class="actions">
     <%= f.submit %>
   </div>

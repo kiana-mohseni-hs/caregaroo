@@ -130,7 +130,7 @@ form .field, form .actions { margin: 12px 0;}
 .notice-body p    {margin: 5px 0 0 60px; font-size: 0.8em; line-height: 1.4em;}
 .notice-bottom { height: 22px; background: url(/purr/purrBottom.png) no-repeat left top; }
 
-/* @group Calendar */
+/* @group Events */
 
 .create_new_button {
   margin: 0 0 22px 0;
@@ -166,5 +166,13 @@ td.event_name {
   background-position: -312px 0;
 }
 
+.event_top_bar {
+  float:right;
+}
+
+ul#event_comments {
+  margin-left: 25px;
+  list-style-type: none;
+}
 /* @end */
 

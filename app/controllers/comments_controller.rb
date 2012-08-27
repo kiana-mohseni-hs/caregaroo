@@ -14,10 +14,15 @@ class CommentsController < ApplicationController
       if @post.user_id == @current_user.id && @comment.save
         Resque.enqueue(CommentsActivityMailer, @comment.id)
         @comments = @post.comments
+        @new_comment=@comments.order('updated_at').first
         format.html { redirect_to news_path }
         format.js   do
           if params[:within_event]
-            render "create_in_event"
+            if params[:from_mobile]
+              render "create_in_event_mobile"
+            else
+              render "create_in_event"
+            end
           else
             render nothing: true if mobile_device?
           end
