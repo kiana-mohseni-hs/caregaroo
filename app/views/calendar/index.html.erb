@@ -1,23 +1,3 @@
 <%= stylesheet_link_tag "event_calendar" %>
 
-<%= link_to "Create New Event", new_event_path, class: "orange_button_link create_new_button" %>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @prev_available ? link_to( "<< prev", @prev_link) : "<< prev" %>
-&nbsp;&nbsp;<%= @current_page == 0 ? "today" : link_to( "today", "?") %>
-&nbsp;&nbsp;<%= @next_available ? link_to( "next >>", @next_link) : "next >>" %>
-<%# raw(event_calendar) %>
-
-<% if @events.empty? %><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No events</h3>
-<% else %>
-<% previous_event_start_date = Time.at(0).to_date  %>
-<table>
-<% for event in @events %>
-  <% unless previous_event_start_date === Time.at(event.start_at).to_date %>
-    <tr class="events_list_date_row">
-      <td colspan=4 class="event_list_date"><%= event.start_at.strftime("%A, %e %B %Y") %></td><td></td>
-    </tr>
-  <% end %>
-  <%= render partial: "event", object: event  %>
-  <% previous_event_start_date = Time.at(event.start_at).to_date %>
-<% end %>
-</table>
-<% end %>
+<%= raw(event_calendar) %>
