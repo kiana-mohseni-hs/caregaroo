@@ -12,7 +12,7 @@
 <table>
 <% for event in @events %>
   <% unless previous_event_start_date === Time.at(event.start_at).to_date %>
-    <tr>
+    <tr class="events_list_date_row">
       <td colspan=4 class="event_list_date"><%= event.start_at.strftime("%A, %e %B %Y") %></td><td></td>
     </tr>
   <% end %>
