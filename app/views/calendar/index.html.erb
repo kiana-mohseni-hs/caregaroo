@@ -5,6 +5,9 @@
 &nbsp;&nbsp;<%= @current_page == 0 ? "today" : link_to( "today", "?") %>
 &nbsp;&nbsp;<%= @next_available ? link_to( "next >>", @next_link) : "next >>" %>
 <%# raw(event_calendar) %>
+
+<% if @events.empty? %><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No events</h3>
+<% else %>
 <% previous_event_start_date = Time.at(0).to_date  %>
 <table>
 <% for event in @events %>
@@ -17,3 +20,4 @@
   <% previous_event_start_date = Time.at(event.start_at).to_date %>
 <% end %>
 </table>
+<% end %>
