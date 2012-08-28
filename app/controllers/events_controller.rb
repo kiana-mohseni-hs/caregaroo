@@ -35,7 +35,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = Event.new(network_id: @current_user.network.id)
     @event_types=EventType.all
 
     respond_to do |format|
