@@ -31,6 +31,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery_datepicker'
 gem 'event-calendar', :require => 'event_calendar'
 
 # background jobs and queues

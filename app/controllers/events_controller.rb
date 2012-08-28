@@ -36,6 +36,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event_types=EventType.all
 
     respond_to do |format|
       format.html # new.html.erb

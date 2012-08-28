@@ -12,35 +12,42 @@
   <% end %>
   <%= f.hidden_field :network_id %>
 
-  <ul>
-    <li class="sep">Type (select)</li>
-    <li><%= select_tag("event[event_type_id]", options_from_collection_for_select(@event_types, "id", "name")) %></li>
-  </ul>
-  <ul>
-    <li class="sep">What</li>
-    <li><%= f.text_field :name, placeholder: "What..." %></li>
-  </ul>
-  <ul>
-    <li class="sep">When</li>
-    <li>from <input type="datetime-local" name="event[start_at]", value="<%= @event.start_at.strftime("%FT%R") %>" /></li>
-    <li>to <input type="datetime-local" name="event[end_at]", value="<%= @event.end_at.strftime("%FT%R") %>" /></li>
-  </ul>
-  <ul>
-    <li class="sep">Where</li>
-    <li><%= f.text_field :location, placeholder: "Where..." %></li>
-  </ul>
-  <ul>
-      <li class="sep">With</li>    
-      <%= hidden_field_tag "event[user_ids][]", nil %>
-      <% User.all.each do |user| %>
-        <li><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %></li>
-      <% end %>
-    </ul>
-  <ul>
-    <li class="sep">Description</li>
-    <li><%= f.text_area :description, placeholder: "Description" %></li>
-  </ul>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <table id="event_form">
+    <tr>
+      <th>Type: </th>
+      <td><%= select_tag("event[event_type_id]", options_from_collection_for_select(@event_types, "id", "name")) %></td>
+    </tr>
+    <tr>
+      <th>What: </th>
+      <td><%= f.text_field :name, placeholder: "Event name..." %></td>
+    </tr>
+    <tr>
+      <th rowspan="2">When: </th>
+      <td><%= f.datetime_picker 'start_at', :dateFormat => "yy-mm-dd" %> to</td>
+    </tr>
+    <tr>
+      <td><%= f.datetime_picker :end_at, :dateFormat => "yy-mm-dd" %></td>
+    </tr>
+    <tr>
+      <th>Description: </th>
+      <td><%= f.text_area :description, placeholder: "Details..." %></td>
+    </tr>
+    <tr>
+      <th>With: </th>
+      <td><%= hidden_field_tag "event[user_ids][]", nil %>
+        <% User.all.each do |user| %>
+          <p><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %><%= user.first_name %></p>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><div class="actions">
+            <%= f.submit %>
+          </div>
+      </td>
+    </tr>
+  </table>
+  
+
 <% end %>

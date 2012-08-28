@@ -10,6 +10,7 @@
 @import "app/register";
 @import "app/scaffolds";
 @import "app/signup";
+@import "jquery.ui.datepicker";
 
 /* GENERAL TEXT STYLES */
 body{font:18px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;  color: #414042;}a:focus{outline:1px dotted}hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}h1{font-size:48px}h2{font-size:23px}h3{font-size:21px}h4{font-size:19px}h5{font-size:17px}h6{font-size:15px}ol{list-style:decimal}ul{list-style:disc}li{margin:0px}p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin:0px; padding:0px}
@@ -174,5 +175,13 @@ ul#event_comments {
   margin-left: 25px;
   list-style-type: none;
 }
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 /* @end */
 

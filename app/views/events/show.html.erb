@@ -18,8 +18,9 @@
 
 <p>
   <b>Participants:</b>
-  <% @event.users.each do |u| %>
-  <em><%= u.first_name %> <%= u.last_name %></em>, 
+  <% userslastindex = @event.users.size - 1 %>
+  <% @event.users.each_with_index do |u, index| %>
+  <em><%= u.first_name %> <%= u.last_name %></em><%= ", " unless index == userslastindex %>
   <% end %>
 </p>
 
