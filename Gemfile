@@ -25,14 +25,14 @@ group :assets do
   gem 'compass-rails'
   gem 'compass_twitter_bootstrap'
   gem 'fancy-buttons'
-  gem 'jquery_datepicker'
-  
+  gem 'jquery-ui-rails'
 
   # jsvascript compressor
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
+gem 'jquery_datepicker'
 gem 'event-calendar', :require => 'event_calendar'
 
 # background jobs and queues
