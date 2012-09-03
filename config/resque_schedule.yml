@@ -1,0 +1,5 @@
+do_daily_activity_emails:
+  every: 5m
+  class: DailyActivityEmails
+  args:
+  description: Runs the perform method in MyJob

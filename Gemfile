@@ -34,6 +34,7 @@ gem 'event-calendar', :require => 'event_calendar'
 
 # background jobs and queues
 gem 'resque', :require => "resque/server"
+gem 'resque-scheduler', :require => 'resque_scheduler'
 # image cropper
 gem 'carrierwave'
 gem 'rmagick'

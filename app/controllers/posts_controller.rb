@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        Resque.enqueue(NewsActivityMailer, @post.id)
+        # Resque.enqueue(NewsActivityMailer, @post.id)
         format.html { redirect_to news_path }
       end
     end
