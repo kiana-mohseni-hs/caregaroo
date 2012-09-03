@@ -1,0 +1,12 @@
+default:
+    host: localhost
+    post: 6379
+development:    
+    db: 0
+    # namespace: caregaroo_dev
+test:    
+    db: 1
+    # namespace: caregaroo_test
+production:    
+    db: 2
+    # namespace: caregaroo_prod
