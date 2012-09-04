@@ -1,5 +1,13 @@
 do_daily_activity_emails:
-  every: 5m
+  # every: 20s
+  cron: "0 17 * * *"
+  # cron: "* * * * *"
   class: DailyActivityEmails
   args:
   description: Runs the perform method in MyJob
+
+# do_nightly_activity_emails:
+#   cron: "* 17 * * *"
+#   class: DailyActivityEmails
+#   args:
+#   description: Runs the perform method in MyJob
