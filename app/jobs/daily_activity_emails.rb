@@ -4,17 +4,17 @@ module DailyActivityEmails
   def self.perform()
     networks = Network.all
     now = Date.today
-    if Rails.env.test? || Rails.env.development?
-      end_time = DateTime.current
-      start_time = end_time.advance(:minutes => -10)      
-    else
+    if Rails.env.production?
       end_time = DateTime.new(now.year, now.month, now.day, 24, 0, 0, 0) # utc time
       start_time = end_time.advance(:hours => -24)
+    else
+      end_time = DateTime.current
+      start_time = end_time.advance(:minutes => -10)      
     end
     
     networks.each do |n|
       posts = Post.where(:network_id => n.id, :created_at => start_time..end_time)      
-
+      posts = posts.select {|p| !p.content.empty?} # filter out empty content
       if posts.length > 0
         user_list = {}
         members = User.joins(:notification).where("users.network_id = ? and notifications.post_update = ?", n.id, true)
