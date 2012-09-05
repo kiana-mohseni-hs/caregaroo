@@ -12,11 +12,10 @@ class NewsActivityMailer
     end
     invitations = Invitation.where("network_id = ?", post.network_id)
     invitations.each do |m|
-        user_list[m.email] = {:first_name => m.first_name, :last_name => m.last_name}
+        user_list[m.email] = {:first_name => m.first_name, :last_name => m.last_name, :token => m.token}
     end
     user_list.each do |email, u|
-      UserMailer.news_activity(post, email, u[:first_name], u[:last_name], network.network_for_who).deliver
-      # UserMailer.news_activity(post, email, 'Snoopy', 'Charlie', network.network_for_who).deliver
+      UserMailer.news_activity(post, email, u[:first_name], u[:last_name], network.network_for_who, u[:token]).deliver
     end
   end
 end

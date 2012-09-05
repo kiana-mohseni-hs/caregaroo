@@ -8,10 +8,11 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user_id = @current_user.id
+    @comment.network_id = @current_user.network_id
 
     respond_to do |format|
       if @comment.save
-        Resque.enqueue(CommentsActivityMailer, @comment.id)
+        # Resque.enqueue(CommentsActivityMailer, @comment.id)
         @comments = Comment.where("post_id = ?", @comment.post_id)
         format.html { redirect_to news_path }
         format.js
@@ -20,7 +21,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.where("id = ? and user_id = ?", params[:comment_id], @current_user.id).first
+    @comment = Comment.where("id = ? and user_id = ? and network_id = ?", params[:comment_id], @current_user.id, @current_user.network_id).first
     @comments = Comment.where("post_id = ?", @comment.post_id)
     
     if !@comment.nil?
@@ -41,21 +42,5 @@ class CommentsController < ApplicationController
       format.js
     end
   end
-=begin
-  # PUT /comments/1
-  # PUT /comments/1.json
-  def update
-    @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, :notice => 'Comment was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @comment.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-=end  
+ 
 end
