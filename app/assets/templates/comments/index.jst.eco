@@ -1,0 +1,9 @@
+<div class="toolbar">
+    <h1>comments</h1>
+    <a class="back" href="#journal">Back</a>
+</div>
+<form id="new_post_comment">
+  <input type="text" name="content" id="new_post_comment_content" placeholder="Share a comment">
+  <input type="submit" value="Comment">
+</form>
+<ul id="post_comments" class="edgetoedge"></ul>

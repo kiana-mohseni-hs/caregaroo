@@ -8,118 +8,114 @@
 <meta http-equiv="cache-control" content="no-cache" />
 <link rel="shortcut icon" href="favicon.ico">
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,700italic' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" /> 
-<%= stylesheet_link_tag "application" %>
+<%= stylesheet_link_tag "jquery.fancybox-1.3.4","application" %>
 <%= javascript_include_tag "application" %>
-<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js"></script> 
-<script type="text/javascript" src="/purr/jquery.purr.js"></script> 
-<script type="text/javascript" src="/js/jquery.hint-with-password.js"></script> 
-<script type="text/javascript" src="/js/jquery.autosize-min.js"></script> 
 <%= csrf_meta_tag %>
 </head>
 <body class="<%= params[:controller] %>">
 <div id="header_frame"> 
-	<a href="<%= url_for news_path %>" id="top_nav_logo" style="outline:0;" title="Home Care Coordination"><%= image_tag "logo_app.png", :border => "0", :alt => "caregaroo logo" %></a>
-	
-	<!-- disable the msg icon for now since private message page is not ready-->
-	<!--<div id="top_nav_msg_icon"></div>-->
-	
-	<div id="user_selector">	
-		<% if @current_user %>
-		<dl id="user_dropdown" class="dropdown">
-			<dt><a href="#"><span style="font-size:14px"><%= image_tag @current_user.avatar_url(:thumb).to_s, :class=>"dt_icon", :height => "30", :width => "30" %><%= @current_user.first_name %><div class="dt_arrow"><div class="dt_arrow_bg"></div></div></span></a></dt>
-	        <dd><ul>
-				<li><a href="/profile" style="padding-left:20px;">Settings</a></li>
-				<li><%= link_to "Log out", logout_path, :style=>"padding-left:20px;" %></li>
-			</ul></dd>
-		</dl>
-     	<% else %>
-        	<%= link_to "Create Community", register_path %> or
-        	<%= link_to "Member Sign-In", login_path %>
-      	<% end %>
-  	</div>
+  <a href="<%= url_for news_path %>" id="top_nav_logo" style="outline:0;" title="Home Care Coordination"><%= image_tag "logo_app.png", :border => "0", :alt => "caregaroo logo" %></a>
+  
+  <!-- disable the msg icon for now since private message page is not ready-->
+  <!--<div id="top_nav_msg_icon"></div>-->
+  
+  <div id="user_selector">  
+    <% if @current_user %>
+    <dl id="user_dropdown" class="dropdown">
+      <dt><a href="#"><span style="font-size:14px"><%= image_tag @current_user.avatar_url(:thumb).to_s, :class=>"dt_icon", :height => "30", :width => "30" %><%= @current_user.first_name %><div class="dt_arrow"><div class="dt_arrow_bg"></div></div></span></a></dt>
+          <dd><ul>
+        <li><a href="/profile" style="padding-left:20px;">Settings</a></li>
+        <li><%= link_to "Log out", logout_path, :style=>"padding-left:20px;" %></li>
+      </ul></dd>
+    </dl>
+       <% else %>
+          <%= link_to "Create Community", register_path %> or
+          <%= link_to "Member Sign-In", login_path %>
+        <% end %>
+    </div>
 
-  	<div id="top_nav_separator"></div>
+    <div id="top_nav_separator"></div>
 </div><!--header_frame-->
 
 <div id="main_frame">
     <div id="user_nav">
-    	<div id="CoC_frame">
-	<%= image_tag !@current_user.network.nil? ? current_user.network.avatar_url(:thumb).to_s : "photo_place_holder.png", :height => "50", :width => "50", :style => "float:left;padding-right:5px" %>
-    		<div id="CoC_right">
-    		<p id="CoC_name"><%= @current_user.network.network_name %></p>
-    		</div>
-    		<div class="clear"></div>
-    	</div>
-    	
-    	<div id="nav_list_frame">
-    	<h6 id="nav_list_header">NETWORK</h6>
-    	<ul id="nav_list">	
-	        <li class="<%= @page == "posts" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "posts" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "News Stream", news_path %></div></li>
-	      	<li class="<%= @page == "invite" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_invite" class="<%= @page == "invite" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>   
-			<% if @current_user.is_initiator_or_coordinator? %>
-			<li class="<%= @page == "network_info" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_network_info" class="<%= @page == "upload_image" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Edit Network Info", network_edit_path %></div></li>
-			<% end %>
-	      <!--
-	      <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>
-	      <li id="nav_private_msg"><%= link_to "Private Messages", messages_path %></li>
-	      <li id="nav_my_profile"><%= link_to "My Profile", profile_path %></li>
-	      -->
-  		</ul>
-		</div>
-		</br>
-		<h6 id="member_list_header">MEMBERS</h6>
-		<ul id="member_list">	
-		<% for member in @current_user.network.users.limit(10) %>		
-			<li class="<%= (!@user.nil? && @user.id == member.id) ? 'current':'' %>">
-				<%= link_to image_tag(member.avatar_url(:thumb).to_s, :alt => member.first_name, :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic"), :height => "40", :width => "40"), user_info_profile_path(member) %>
-			<%= link_to member.first_name, user_info_profile_path(member) %>
-			</li>
-		<% end %>
-			<li class="<%= (@page == "members" ? 'current':'') %>">
-				<%= link_to "All Members", members_path, :class => "orange_text " + (@page == "members" ? "all_members_link_current" : "all_members_link") %>
-			</li>
-		</ul>
+      <div id="CoC_frame">
+  <%= image_tag !@current_user.network.nil? ? current_user.network.avatar_url(:thumb).to_s : "photo_place_holder.png", :height => "50", :width => "50", :style => "float:left;padding-right:5px" %>
+        <div id="CoC_right">
+        <p id="CoC_name"><%= @current_user.network.network_name %></p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      
+      <div id="nav_list_frame">
+      <h6 id="nav_list_header">NETWORK</h6>
+      <ul id="nav_list">  
+          <li class="<%= @page == "posts" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_msg_board" class="<%= @page == "posts" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "News Stream", news_path %></div></li>
+          <li class="<%= @page == "calendar" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_calendar" class="<%= @page == "calendar" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Events", events_path %></div></li>
+          <li class="<%= @page == "invite" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_invite" class="<%= @page == "invite" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><a href="/invite" id="invite" onclick="_gaq.push(['_trackEvent', 'Links', 'Send Invite', 'Send Invite']);" title="Send Invite">Invite</a></div></li>   
+      <% if @current_user.is_initiator_or_coordinator? %>
+      <li class="<%= @page == "network_info" ? 'current':'' %>"><div class="nav_wrapper"><div id="nav_network_info" class="<%= @page == "upload_image" ? 'nav_list_icon_current':'nav_list_icon' %>"></div><%= link_to "Edit Network Info", network_edit_path %></div></li>
+      <% end %>
+        <!--
+        <li id="nav_calendar"><%= link_to "Calendar", calendar_path %></li>
+        <li id="nav_private_msg"><%= link_to "Private Messages", messages_path %></li>
+        <li id="nav_my_profile"><%= link_to "My Profile", profile_path %></li>
+        -->
+      </ul>
     </div>
-	<div id="container">
-	    <%= yield %>
- 	</div>
+    </br>
+    <h6 id="member_list_header">MEMBERS</h6>
+    <ul id="member_list">  
+    <% for member in @current_user.network.users.limit(10) %>    
+      <li class="<%= (!@user.nil? && @user.id == member.id) ? 'current':'' %>">
+        <%= link_to image_tag(member.avatar_url(:thumb).to_s, :alt => member.first_name, :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic"), :height => "40", :width => "40"), user_info_profile_path(member) %>
+      <%= link_to member.first_name, user_info_profile_path(member) %>
+      </li>
+    <% end %>
+      <li class="<%= (@page == "members" ? 'current':'') %>">
+        <%= link_to "All Members", members_path, :class => "orange_text " + (@page == "members" ? "all_members_link_current" : "all_members_link") %>
+      </li>
+    </ul>
+    </div>
+  <div id="container">
+      <%= yield %>
+   </div>
     <div id="shortcuts">
-    	<div id="invite_shortcut">
-			<%= image_tag "panel_invite_friends.png", :id => "invite_shortcut_icon", :alt => "Invite Friends" %>
-			<p>	Invite friends and family to join someone's community.</p>
-			<div style="padding:20px 0; font-size:14px">
-				<div class="shortcut_icon"></div>
-				Invite Members
-			</div>
-		</div>
-		<!--
-		<hr/>
-		<div id="contact_shortcut">
-			<%= image_tag "panel_contact_details.png", :id => "contatct_shortcut_icon", :alt => "Update Contact Details" %>
-			<p>Make sure your contact information is up to date.</p>
-			<input type="button" value="Update Now!" style="float:left;"/><br/>
-		</div>
-		-->
-		<hr/>
-		<div id="help_shortcut">
-			<h2 style="color:#F47D29; padding:10px 0; font-size:16px;">Need Help?</h2>
-			<p>For more information on how Caregaroo works, please check out our Help Center</p>
-			<div style="padding:20px 0; font-size:14px">
-				<div class="shortcut_icon"></div>
-				Visit Help Center
-			</div>
-		</div>
-		<hr/>
-		<div id="questions_shortcut">
-			<%= image_tag "panel_questions_for_caregaroo.png", :id => "questions_shortcut_icon", :alt => "Questions" %>
-			<p>Need someone to guide you through our website? Got feedback?</p>
-			<div style="padding:20px 0; font-size:14px">
-				<div class="shortcut_icon"></div>
-				Submit a Request
-			</div>
-		</div>
-		<hr/>
+      <div id="invite_shortcut">
+      <%= image_tag "panel_invite_friends.png", :id => "invite_shortcut_icon", :alt => "Invite Friends" %>
+      <p>  Invite friends and family to join someone's community.</p>
+      <div style="padding:20px 0; font-size:14px">
+        <div class="shortcut_icon"></div>
+        Invite Members
+      </div>
+    </div>
+    <!--
+    <hr/>
+    <div id="contact_shortcut">
+      <%= image_tag "panel_contact_details.png", :id => "contatct_shortcut_icon", :alt => "Update Contact Details" %>
+      <p>Make sure your contact information is up to date.</p>
+      <input type="button" value="Update Now!" style="float:left;"/><br/>
+    </div>
+    -->
+    <hr/>
+    <div id="help_shortcut">
+      <h2 style="color:#F47D29; padding:10px 0; font-size:16px;">Need Help?</h2>
+      <p>For more information on how Caregaroo works, please check out our Help Center</p>
+      <div style="padding:20px 0; font-size:14px">
+        <div class="shortcut_icon"></div>
+        Visit Help Center
+      </div>
+    </div>
+    <hr/>
+    <div id="questions_shortcut">
+      <%= image_tag "panel_questions_for_caregaroo.png", :id => "questions_shortcut_icon", :alt => "Questions" %>
+      <p>Need someone to guide you through our website? Got feedback?</p>
+      <div style="padding:20px 0; font-size:14px">
+        <div class="shortcut_icon"></div>
+        Submit a Request
+      </div>
+    </div>
+    <hr/>
     </div>
 </div><!--mainframe-->
 </body>

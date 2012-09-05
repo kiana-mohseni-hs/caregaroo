@@ -3,16 +3,31 @@ class EventsController < ApplicationController
   before_filter :prepare_for_mobile, except: [:create]
   
   def index
-    @events = Event.visible
-
-    respond_to do |format|
-      format.html # index.html.erb
+    visible_events = @current_user.network.events.visible.order("start_at")
+    events_count = visible_events.count
+    future_events = visible_events.future
+    per_page = 12
+    @current_page = params[:page] || 0
+    offset = events_count - future_events.count + @current_page.to_i * per_page
+    if offset > 0
+      @events = visible_events.limit(per_page).offset(offset)
+      @prev_available = true
+    else
+      @events = visible_events.limit(per_page+ offset)
+      @prev_available = false
     end
+    
+    @next_available = events_count > (offset+ per_page)
+    @prev_link = "?page=" << (@current_page.to_i- 1).to_s
+    @next_link = "?page=" << (@current_page.to_i+ 1).to_s
   end
 
   def show
-    @event = Event.find(params[:id])
-
+    @event = Event.includes( :users, :post, { comments: :user } ).find( params[:id] )
+    @event_type = @event.event_type.present? ? "(" << @event.event_type.name << ")" : ""
+    @creator = @event.creator || @current_user
+    @comment = Comment.new
+    
     respond_to do |format|
       format.html # show.html.erb
       format.mobile 
@@ -20,7 +35,8 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = Event.new(network_id: @current_user.network.id)
+    @event_types=EventType.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -54,14 +70,27 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
-        format.mobile { redirect_to @event }
+          format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
+          format.mobile { redirect_to @event }
       else
         format.html { render :action => "edit" }
       end
     end
   end
 
+  def update_user
+    @message = "Failed to update"
+    @event = Event.find(params[:id])
+
+    if params[:checked] == "true"
+      @current_user.events << @event
+      @message = "Signed up"
+    else
+      @current_user.events.delete(@event)
+      @message = "Signed off"
+    end
+  end
+  
   def cancel
     @event = Event.find(params[:id])
     if !@event.canceled?
@@ -69,6 +98,7 @@ class EventsController < ApplicationController
     end
 
     respond_to do |format|
+      format.js {}
       format.html { redirect_to events_url }
       format.mobile { redirect_to "/#calendar" }    #     calendar_url(2012,06)
     end

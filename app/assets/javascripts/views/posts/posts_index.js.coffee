@@ -4,7 +4,6 @@ class Cg2App.Views.PostsIndex extends Backbone.View
   
   events:
     'submit #new_post': 'createPost'
-    
   
   initialize: ->
     @collection.on('reset', @render, this)
@@ -35,7 +34,8 @@ class Cg2App.Views.PostsIndex extends Backbone.View
         thumb_url: window.currentUser.thumb_url 
     @collection.create attributes,
       wait: true
-      success: -> $('#new_post')[0].reset()
+      success: -> 
+        $('#new_post')[0].reset()
       error: @handleError
   
   handleError: (post, response) ->

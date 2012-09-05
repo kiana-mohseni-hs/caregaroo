@@ -10,6 +10,7 @@
 @import "app/register";
 @import "app/scaffolds";
 @import "app/signup";
+@import "jquery.ui.all";
 
 /* GENERAL TEXT STYLES */
 body{font:18px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;  color: #414042;}a:focus{outline:1px dotted}hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}h1{font-size:48px}h2{font-size:23px}h3{font-size:21px}h4{font-size:19px}h5{font-size:17px}h6{font-size:15px}ol{list-style:decimal}ul{list-style:disc}li{margin:0px}p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin:0px; padding:0px}
@@ -57,7 +58,8 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 .nav_wrapper:hover #nav_network_info{background:url('icons2.png') no-repeat -28px -46px;}
 #nav_invite{background:url('inviteIcon.png') no-repeat -4px -1px;}
 .nav_wrapper:hover #nav_invite{background:url('inviteIcon.png') no-repeat -4px -20px;}
-#nav_calendar{background:url('icons.png') no-repeat -49px 1px;}
+#nav_calendar{background:url('icons2.png') no-repeat -32px -1px;}
+.nav_wrapper:hover #nav_calendar{background:url('icons2.png') no-repeat -32px -21px;}
 /*#nav_calendar{background:url('icons.png') no-repeat -1px -18px;}
 #nav_private_msg{background:url('icons.png') no-repeat -162px -1px;}
 #nav_my_profile{background:url('icons.png') no-repeat 4px 3px;}
@@ -128,3 +130,58 @@ form .field, form .actions { margin: 12px 0;}
 .notice-body h3 { margin: 0; font-size: 1.1em; }
 .notice-body p    {margin: 5px 0 0 60px; font-size: 0.8em; line-height: 1.4em;}
 .notice-bottom { height: 22px; background: url(/purr/purrBottom.png) no-repeat left top; }
+
+/* @group Events */
+
+.create_new_button {
+  margin: 0 0 22px 0;
+}
+tr.events_list_row {
+  line-height: 14px;
+  vertical-align: text-top;
+}
+
+td.event_list_date {
+  font-weight: bold;
+  border-top: 1px solid #9aafe5;
+}
+td.event_name {
+  font-weight: bold;
+}
+
+//not needed if bootstrap.css is included
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+.icon-remove {
+  background-position: -312px 0;
+}
+
+.event_top_bar {
+  float:right;
+}
+
+ul#event_comments {
+  margin-left: 25px;
+  list-style-type: none;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+/* @end */
+

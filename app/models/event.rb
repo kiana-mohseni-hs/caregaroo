@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
   belongs_to :updater, :class_name => "User", :foreign_key => "updated_by_id"
   belongs_to :canceler, :class_name => "User", :foreign_key => "canceled_by_id"
   belongs_to :post
+  has_many :comments, through: :post
   
   validates_presence_of :start_at
   validates_presence_of :end_at
@@ -30,13 +31,22 @@ class Event < ActiveRecord::Base
                   :canceled
   
   scope :visible, where(canceled: false)
+  scope :future, where(['start_at >= ?', Time.now.beginning_of_day])
   
   def cancel(canceler_id)
     update_attributes(canceled_by_id: canceler_id, canceled: true)
   end
   
+  def datestring
+    start_at.strftime("%a, %e %b %Y")
+  end
+
+  def timestring
+    start_at.strftime("%l:%M%P - ") << end_at.strftime("%l:%M%P")
+  end
+
   def datetimestring
-    start_at.strftime("%a, %e %b %Y, %l:%M%P - ") << end_at.strftime("%l:%M%P")
+    datestring << ", " << timestring
   end
   
   def locationstring
@@ -57,7 +67,8 @@ class Event < ActiveRecord::Base
     
   def update_post
     change = canceled ? "Canceled" : "Updated"
-    new_content = "#{change} Event: #{name} (#{event_type.name})<br/> " << 
+    eventtype = event_type.nil? ? "" : event_type.name
+    new_content = "#{change} Event: #{name} (#{eventtype})<br/> " << 
                   datetimestring <<
                   locationstring
     if canceled
@@ -70,4 +81,5 @@ class Event < ActiveRecord::Base
       content: new_content
       ) unless post.nil?
   end
+  
 end

@@ -9,28 +9,52 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.user_id = @current_user.id
     @comment.network_id = @current_user.network_id
+    @post = Post.find(@comment.post_id)
 
     respond_to do |format|
-      if @comment.save
-        # Resque.enqueue(CommentsActivityMailer, @comment.id)
-        @comments = Comment.where("post_id = ?", @comment.post_id)
+      if @post.user_id == @current_user.id && @comment.save
+        Resque.enqueue(CommentsActivityMailer, @comment.id)
+        @comments = @post.comments
+        @new_comment=@comments.order('updated_at').first
         format.html { redirect_to news_path }
-        format.js
+        format.js   do
+          if params[:within_event]
+            if params[:from_mobile]
+              render "create_in_event_mobile"
+            else
+              render "create_in_event"
+            end
+          else
+            render nothing: true if mobile_device?
+          end
+        end
       end
     end
   end
 
+
   def destroy
+    params[:comment_id] =  params[:id] if mobile_device?
     @comment = Comment.where("id = ? and user_id = ? and network_id = ?", params[:comment_id], @current_user.id, @current_user.network_id).first
     @comments = Comment.where("post_id = ?", @comment.post_id)
-    
-    if !@comment.nil?
-      @comment.destroy
-    end
+
+    @comment.destroy unless @comment.nil?
 
     respond_to do |format|
       format.html { redirect_to news_url }
-      format.js
+      format.js   { render nothing: true if mobile_device? }
+    end
+  end
+  
+  # because standard restful route for destroy has been overwritten and is crowded
+  # this is used by the remote call in the event details page
+  def remove
+    @comment = @current_user.comments.find(params[:id])
+    if @comment.present?
+      @post = @comment.post
+      @comment.destroy
+    else
+      render nothing: true
     end
   end
   

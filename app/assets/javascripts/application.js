@@ -6,7 +6,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.ui.all
+//= require jquery-ui-timepicker.js
+//= require jquery.fancybox-1.3.4.pack.js
+//= require jquery.purr.js
+//= require jquery.hint-with-password.js
+//= require jquery.autosize-min.js
 //= require_tree ./app
 
 var _gaq = _gaq || [];

@@ -51,9 +51,13 @@ Cg2App::Application.routes.draw do
   match "product" => "home#product"
   #match "home_new" => "home#home_new", :as => "home_new"
   
-  resources :comments
+  resources :comments do
+    # the call in app/views/events/_comment.mobile.erb has method: :delete set but it still comes in as get 
+    get 'remove', on: :member, as: :destroy
+  end
   resources :events do
     delete 'cancel', on: :member
+    put 'update_user', on: :member
   end
   resources :messages
   resources :password_resets

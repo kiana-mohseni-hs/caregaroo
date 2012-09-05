@@ -102,8 +102,8 @@ border-top-width: 0px;
 .tabbar li.four      {width: 24.5%;}
 
 
-.above-bottom-tabbar, .jqt_calendar {
-  margin-bottom: 40px !important;
+.above-bottom-tabbar, .jqt_calendar, #new_event_comment {
+  margin-bottom: 50px !important;
 }
 
 
@@ -154,11 +154,11 @@ li#dayviewdate_li {
   color: black;
 }
 
-#posts li p a, a.delete_post {
+#posts li p a, a.delete_post, a.delete_comment, a.delete_event_comment {
   display: inline !important;
 }
 
-#new_post_content {
+#new_post_content, #comment_content, #new_post_comment_content, #new_event_comment {
   font-size: 16px;
   font-variant: normal;
   font-weight: bold;
@@ -170,7 +170,11 @@ li#dayviewdate_li {
   padding: 1px 4px;
 }
 
-#new_post input[type="submit"] {
+#comment_content, #new_event_comment {
+  width: 63%;
+}
+
+#new_post input[type="submit"], #new_post_comment input[type="submit"], #new_event_comment input[type="submit"] {
   display: inline;
   height: 26px;
   margin-top: 2px;

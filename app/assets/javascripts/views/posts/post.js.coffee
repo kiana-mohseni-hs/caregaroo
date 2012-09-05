@@ -4,10 +4,11 @@ class Cg2App.Views.Post extends Backbone.View
   
   events:
     'click .delete_post': 'destroy'
-    'click .show_comments': 'comments'
+    'tap .show_comments': 'comments'
   
   initialize: ->
     @model.on('change', @render, this)
+    @model.comments.on('remove', @decreaseCount, this)
     
   render: ->
     $(@el).html(@template(post: @model))
@@ -21,9 +22,8 @@ class Cg2App.Views.Post extends Backbone.View
       @remove()
 
   comments: ->
-    # event.preventDefault()    # prevents url from being logged
-    # $('#post_comments').html(@model.get('id'))
-    view = new Cg2App.Views.PostComments(collection: @model.get('comments'))
-    $('#post_comments').html(view.render().el)
-    # $('#post_comments').html(@model.get('comments').length)
-    
+    view = new Cg2App.Views.CommentsIndex(model: @model)
+    $('#post').html(view.render().el)
+
+  decreaseCount: ->
+    $("\#post_comments_count_#{@model.id}").html(@model.comments.length)

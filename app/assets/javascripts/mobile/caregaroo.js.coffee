@@ -44,14 +44,25 @@ $ ->
     @submit() if confirm_result is true
     false
     
+  #confirm event comment delete
+  $('.delete_event_comment').click ->
+    confirm("Delete Comment: Are you sure?")
+ 
   #pick up the toggle change in events/show ("participating?")
   $(".submit_on_change").change ->
     form = $(this).closest("form")
     form.get(0).submit()
     
+  #highlight section of bottom tabbar
   $('.tabbar>ul>li>a').bind clicktouch, ->
     $(this).parent('li').siblings().removeClass('current');
     $(this).parent('li').addClass('current');
+  
+  #hide the tabbar in event add form
+  $('.add_event_button').bind clicktouch, ->
+    $('#other').hide()
+  $('.cancel').bind clicktouch, ->
+    $('#other').show()
   
 # update list of visible events and set title in day view to currently selected date
 updateDisplay = (date) ->
