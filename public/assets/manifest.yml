@@ -30,9 +30,11 @@ panel_invite_friends.png: panel_invite_friends-54791332ba7b46b47afa7b9219ee82f6.
 panel_questions_for_caregaroo.png: panel_questions_for_caregaroo-85218482f1300e6399623895ef986bf4.png
 photo_place_holder.png: photo_place_holder-b6d9d776a4b515b5a90cbdd0b6fe1aff.png
 application.js: application-3be8d14f5d90c67bd94222110d8fadd3.js
+marketing.js: marketing-b32258ef89a2943df43379efa0541363.js
 application.css: application-a5406f7ea7add29d5acec4f36ceb95dd.css
 bootstrap.css: bootstrap-389458e6359e29bfe1287025521e0a6b.css
 marketing.css: marketing-f5982fd35e30824b5ac0712275b9d90d.css
+jquery.fancybox-1.3.4.pack.js: jquery.fancybox-1.3.4.pack-7c80b753e3e8695dbf6fabbb498c6261.js
 jquery.fancybox-1.3.4.css: jquery.fancybox-1.3.4-7185f12e2889ab73157e3b5cada3e624.css
 mobile/images/bottom_bar.png: mobile/images/bottom_bar-7a15c8f416ec8b8616766b1ad0d594f5.png
 mobile/images/calpad.jpg: mobile/images/calpad-2fd9d2dfbf0a7c351db31d7b6e436400.jpg
