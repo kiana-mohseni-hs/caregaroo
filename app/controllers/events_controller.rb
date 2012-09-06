@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :require_user
+  before_filter :set_page
   before_filter :prepare_for_mobile, except: [:create]
   
   def index
@@ -20,7 +21,6 @@ class EventsController < ApplicationController
     @next_available = events_count > (offset+ per_page)
     @prev_link = "?page=" << (@current_page.to_i- 1).to_s
     @next_link = "?page=" << (@current_page.to_i+ 1).to_s
-    @page = 'events'
   end
 
   def show
@@ -116,5 +116,9 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url }
       format.mobile { redirect_to "/#calendar" }    #     calendar_url(2012,06)
     end
+  end
+  
+  def set_page
+    @page = 'events'
   end
 end
