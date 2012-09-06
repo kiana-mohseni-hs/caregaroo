@@ -20,6 +20,7 @@ class EventsController < ApplicationController
     @next_available = events_count > (offset+ per_page)
     @prev_link = "?page=" << (@current_page.to_i- 1).to_s
     @next_link = "?page=" << (@current_page.to_i+ 1).to_s
+    @page = 'events'
   end
 
   def show
