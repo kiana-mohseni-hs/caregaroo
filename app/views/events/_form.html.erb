@@ -11,7 +11,8 @@
     </div>
   <% end %>
   <%= f.hidden_field :network_id %>
-
+  
+  <div class="event_top_bar"><%= f.submit %> <%= link_to 'Cancel', cancel_path, class: "orange_button_link" %></div>
   <table id="event_form">
     <tr>
       <th>Type: </th>
@@ -43,7 +44,7 @@
     <tr>
       <th></th>
       <td><div class="actions">
-            <%= f.submit %>
+            <%= f.submit %><%= link_to 'Cancel', cancel_path, class: "orange_button_link" %>
           </div>
       </td>
     </tr>
