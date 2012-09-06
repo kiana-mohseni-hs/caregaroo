@@ -136,6 +136,12 @@ form .field, form .actions { margin: 12px 0;}
 .create_new_button {
   margin: 0 0 22px 0;
 }
+.prev_button {
+  margin: 0 0 22px 25px;
+}
+.next_button, .today_button {
+  margin: 0 0 22px 6px;
+}
 tr.events_list_row {
   line-height: 14px;
   vertical-align: text-top;
@@ -143,11 +149,23 @@ tr.events_list_row {
 
 td.event_list_date {
   font-weight: bold;
-  border-top: 1px solid #9aafe5;
+}
+
+tr.events_list_date_row {
+  border-top: 1px solid #CCCCCC;  
 }
 td.event_name {
   font-weight: bold;
 }
+
+#event_form td,#event_form th {
+  text-align: left;
+  font-weight: bold;
+  vertical-align: top;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
 
 //not needed if bootstrap.css is included
 [class^="icon-"],
@@ -176,6 +194,12 @@ ul#event_comments {
   list-style-type: none;
 }
 
+h4.event_view_name {
+  color: #14377D;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
@@ -183,5 +207,10 @@ ul#event_comments {
 .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
 .ui-timepicker-div td { font-size: 90%; }
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-widget {
+  font-family: Verdana,Arial,sans-serif;
+  font-size: 0.6em;
+}
 /* @end */
 
