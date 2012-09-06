@@ -74,7 +74,7 @@ class EventsController < ApplicationController
           format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
           format.mobile { redirect_to @event }
       else
-        format.html { render :action => "edit" }
+        format.html { @event_types=EventType.all; render :action => "edit" }
       end
     end
   end
