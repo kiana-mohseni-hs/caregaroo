@@ -3,6 +3,7 @@
 <div class="event_top_bar"><%= link_to 'Back', events_path, class: "orange_button_link" %>
 <%= link_to 'Edit', edit_event_path(@event), class: "orange_button_link" %>
 <%= link_to "Delete", cancel_event_url(@event), method: :delete, confirm: "Delete event: are you sure?", title: "delete", class: "orange_button_link" %></div>
+<div id="event_show">
 <%= image_tag @creator.avatar_url(:thumb).to_s, :alt => @creator.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
 
 <p><%= @event.start_at.strftime("%A, %-d %B %Y") %></p>
@@ -34,3 +35,4 @@
     <%= f.submit value: "Comment", class: "orange_button_link" %>
   <% end %>
 </ul>
+</div>
