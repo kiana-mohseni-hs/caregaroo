@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20120907214027) do
     t.integer  "network_id"
     t.integer  "event_type_id",                  :default => 1
     t.string   "location"
-    t.text     "description",    :limit => 1275
+    t.text     "description"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "post_id"

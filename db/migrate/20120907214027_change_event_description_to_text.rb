@@ -1,6 +1,6 @@
 class ChangeEventDescriptionToText < ActiveRecord::Migration
   def up
-      change_column :events, :description, :text, limit: 1275
+      change_column :events, :description, :text
   end
   def down
       # This might cause trouble if you have strings longer
