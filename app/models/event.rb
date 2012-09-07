@@ -10,9 +10,12 @@ class Event < ActiveRecord::Base
   has_many :comments, through: :post
   
   validates_presence_of :name
-  validates_datetime :end_at
   validates_datetime :start_at, :on_or_before => :end_at,
-                                :on_or_before_message => 'date/time cannot be later than End at date/time'
+                                :on_or_before_message => 'date/time cannot be later than End at date/time',
+                                :on_or_after => :now,
+                                :on_or_after_message => 'date/time cannot be in the past'
+  validates_datetime :end_at,   :on_or_after => :now,
+                                :on_or_after_message => 'date/time cannot be in the past'
   
   after_create :post_new_event
   after_update :update_post
