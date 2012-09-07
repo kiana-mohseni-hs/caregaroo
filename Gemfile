@@ -48,3 +48,4 @@ end
 
 gem 'backbone-on-rails'
 gem 'jbuilder'
+gem 'validates_timeliness', '~> 3.0'
