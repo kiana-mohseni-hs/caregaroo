@@ -16,6 +16,7 @@ class Event < ActiveRecord::Base
                                 :on_or_after_message => 'date/time cannot be in the past'
   validates_datetime :end_at,   :on_or_after => :now,
                                 :on_or_after_message => 'date/time cannot be in the past'
+  validates :description, length: { :maximum => 1275 }
   
   after_create :post_new_event
   after_update :update_post
