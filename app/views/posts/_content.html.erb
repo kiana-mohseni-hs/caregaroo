@@ -1,0 +1,25 @@
+<div id="post_content_<%= post.id %>" class="post_content_area">
+  <% if post.is_event? 
+    eventtype = post.event.event_type.nil? ? "" : post.event.event_type.name
+    linktext = post.content << " (#{eventtype})"%>
+    <% if post.event.is_new? %>
+      New Event:
+    <% else %>
+      <% if post.event.canceled? %>
+        Canceled Event:
+      <% else %>
+        Updated Event:
+      <% end %>
+    <% end %>
+    <%= link_to( linktext, event_path(post.event.id), class: "post_event_name" ) %><br>
+    <%= post.event.datetimestring %>
+    <%= post.event.locationstring %>
+  <% else %>
+    <%= raw truncate(post.content, length: 320,
+                                   omission: link_to(' ... (Read More)', post_path(post.id),
+                                                      method: :get,
+                                                      remote: true,
+                                                      class: "orange_text")) %>
+    
+  <% end %>
+</div>

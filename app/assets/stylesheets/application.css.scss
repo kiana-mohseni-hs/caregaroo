@@ -33,15 +33,15 @@ textarea.blur { color: #999; }
 textarea { resize: none; }
 .clear { clear: both; height: 0; overflow: hidden; }
 input {background:#ebebeb; border:solid 1px #ccc;}
-#header_frame {	width:1024px; display:block; color:#414042; margin:auto; }
-#top_nav_logo { float:left; height: 88px; width: 200px; margin-left:40px;	}
+#header_frame {  width:1024px; display:block; color:#414042; margin:auto; }
+#top_nav_logo { float:left; height: 88px; width: 200px; margin-left:40px;  }
 #top_nav_msg_icon{float:left;margin:40px 0 0 0; width:20px;height:20px; background:url('icons.png') no-repeat -166px -1px;}
 #user_selector { margin: 47px 0 0 0; float:right; display:inline; }
 #user_icon { float:left; background:url('photo_place_holder.png') no-repeat; background-size: 34px 30px; margin: -6px 6px 0 0; height:30px; width:34px; }
-#top_nav_separator { position:absolute;  margin:77px 0 0 0; width:1024px;	border: 1px solid #CCCCCC; z-index:-1; }
+#top_nav_separator { position:absolute;  margin:77px 0 0 0; width:1024px;  border: 1px solid #CCCCCC; z-index:-1; }
 #main_frame { width:1024px; margin:auto; clear:both; }
-#user_nav{	float:left;	width: 220px;	padding: 10px 10px;	margin-top: -11px;	position:absolute;}
-#CoC_frame{	width:170px;	margin: 16px 0 10px 50px;	padding: 0px;}
+#user_nav{  float:left;  width: 220px;  padding: 10px 10px;  margin-top: -11px;  position:absolute;}
+#CoC_frame{  width:170px;  margin: 16px 0 10px 50px;  padding: 0px;}
 #CoC_pic{float:left;}
 #CoC_right{width:110px;float:right;}
 #CoC_name{padding:0 4px; float:left; margin-bottom:10px;}
@@ -74,7 +74,7 @@ input {background:#ebebeb; border:solid 1px #ccc;}
 .all_members_link_current{float:left;margin:0px 6px 0 97px}
 #container { z-index:-2;position:relative; left:240px;float:left; width: 482px; background-color: #FFF; padding: 20px 20px; border-left: solid 1px #CCCCCC; border-right: solid 1px #CCCCCC;  margin-top: -11px; }
 #container_nonav {z-index:-2;position:relative; float:left; width: 800px;  padding: 0px 20px; margin-left:112px; margin-top:-11px;}
-#shortcuts { position:relative;float:right; width: 220px;	padding: 20px 20px; margin-top:-11px;}
+#shortcuts { position:relative;float:right; width: 220px;  padding: 20px 20px; margin-top:-11px;}
 .shortcut_icon {float:left;width:20px; height:20px; margin:0 4px 0 0; background:url('icons.png') no-repeat -48px -18px;}
 #invite_shortcut, #help_shortcut, #questions_shortcut { cursor: pointer; }
 #invite_shortcut_icon{height:96px; width:129px; display:block; padding:10px 0 5px;}
@@ -202,6 +202,11 @@ h4.event_view_name {
 
 #event_show {
   margin-top: 40px;
+}
+
+.post_event_name {
+  font-weight: bold;
+  color: #14377D;
 }
 
 /* css for timepicker */
