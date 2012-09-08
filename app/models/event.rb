@@ -43,7 +43,7 @@ class Event < ActiveRecord::Base
   end
   
   def datestring
-    start_at.strftime("%a, %e %b %Y")
+    start_at.strftime("%a %e %b %Y")
   end
 
   def timestring
