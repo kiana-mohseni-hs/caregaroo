@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120907214027) do
     t.datetime "updated_at"
     t.integer  "post_id"
     t.integer  "user_id"
+    t.integer  "network_id"
   end
 
   create_table "event_types", :force => true do |t|

@@ -1,0 +1,21 @@
+<h2>Recent activity on <%= @network_for_who %>'s network:</h2>
+
+<h3>News updates:</h3>
+<% @posts.each do |post| %>
+<p><strong><%=h !post.user.nil? ? "#{post.user.first_name} #{post.user.last_name}" : "Anonymous" %></strong> posted:<br/>
+	<%= raw(truncate(post.content, :length => 50, :omission => ' ...')) %>
+	<% if @signup_token.nil? %>	
+		<%= link_to(' ... Read More', news_url, :method => :get, :remote => true, :style => "text-decoration: none") %>
+	<% else %> 
+		<%= link_to(' ... Read More', signup_with_token_url(@signup_token), :method => :get, :remote => true, :style => "text-decoration: none") %>
+	<% end %>
+</p>
+<% end %>
+<p>
+<% if @signup_token.nil? %>
+	<%= link_to "see more news updates ...", news_url, :style => "text-decoration: none" %>
+<% else %>
+	<%= link_to "see more news updates ...", signup_with_token_url(@signup_token), :style => "text-decoration: none" %>
+<% end %>
+</p>
+<%= render 'footer' %>

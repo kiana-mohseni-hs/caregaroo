@@ -34,7 +34,7 @@
 			<%= form_for Comment.new, :remote => true do |f| %>
 			  <%= f.hidden_field :post_id, :value => "#{post.id}" %>
 			  <div class="text_background">
-			  <%= f.text_area :content, :id => "comment_area_#{post.id}", :title => "Share your comment", :class => "comment_textarea"  %>
+			  <%= f.text_area :content, :id => "comment_area_#{post.id}", :placeholder => "Share your comment", :class => "comment_textarea", :required => "required"  %>
 			  </div>
 			  <%= f.submit "Reply", :class =>"form_button", :id=>"reply_button"%>
 			<% end %>

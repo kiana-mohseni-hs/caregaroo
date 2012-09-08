@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user_id = @current_user.id
+    @comment.network_id = @current_user.network_id
     @post = Post.find(@comment.post_id)
 
     respond_to do |format|
@@ -31,12 +32,12 @@ class CommentsController < ApplicationController
     end
   end
 
+
   def destroy
-    # desktop version uses params[:comment_id] -- following line adjusts for that
     params[:comment_id] =  params[:id] if mobile_device?
-    @comment = @current_user.comments.find(params[:comment_id])
-    @comments = @comment.post.comments
-    
+    @comment = Comment.where("id = ? and user_id = ? and network_id = ?", params[:comment_id], @current_user.id, @current_user.network_id).first
+    @comments = Comment.where("post_id = ?", @comment.post_id)
+
     @comment.destroy unless @comment.nil?
 
     respond_to do |format|
@@ -65,21 +66,5 @@ class CommentsController < ApplicationController
       format.js
     end
   end
-=begin
-  # PUT /comments/1
-  # PUT /comments/1.json
-  def update
-    @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, :notice => 'Comment was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @comment.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-=end  
+ 
 end
