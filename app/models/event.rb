@@ -59,7 +59,11 @@ class Event < ActiveRecord::Base
   end
 
   def datetimestring
-    datestring << ", " << timestring
+    is_one_day? ? datestring << ", " << timestring : multidaydatetimestring
+  end
+  
+  def multidaydatetimestring
+    datestring << " " << start_at.strftime("%l:%M%P to ") << end_at.strftime("%a %e %b %Y") << " " << end_at.strftime("%l:%M%P")
   end
   
   def locationstring
