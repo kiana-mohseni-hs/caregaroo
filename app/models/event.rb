@@ -42,6 +42,10 @@ class Event < ActiveRecord::Base
     self.updated_at === self.created_at
   end
   
+  def is_one_day?
+    self.start_at.to_date === self.end_at.to_date
+  end
+  
   def cancel(canceler_id)
     update_attributes(canceled_by_id: canceler_id, canceled: true)
   end

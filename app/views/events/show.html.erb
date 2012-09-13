@@ -6,11 +6,8 @@
 <div id="event_show">
 <%= image_tag @creator.avatar_url(:thumb).to_s, :alt => @creator.first_name, :height => "44", :width => "50", :style => "float:left;padding-right:5px" %>
 
-<p><%= @event.start_at.strftime("%A, %-d %B %Y") %></p>
-<p><%= @event.start_at.strftime("%I:%M %p") %> - <%= @event.end_at.strftime("%I:%M %p") %></p>
-<p><%= @event.location %></p>
-
 <h4 class="event_view_name"><%= @event.name %> <%= @event_type %></h4>
+<%= render :partial => 'dateandtime' %>
 
 <p>
   <b>Description:</b>

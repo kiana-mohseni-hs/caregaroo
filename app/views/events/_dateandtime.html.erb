@@ -1,0 +1,8 @@
+<% if @event.is_one_day? %>
+<p><%= @event.start_at.strftime("%A %-d %B %Y") %></p>
+<p><%= @event.start_at.strftime("%I:%M %p") %> - <%= @event.end_at.strftime("%I:%M %p") %></p>
+<% else %>
+<p><%= @event.start_at.strftime("%A %-d %B %Y") %> at <%= @event.start_at.strftime("%I:%M %p") %></p>
+<p>to <%= @event.end_at.strftime("%A %-d %B %Y") %> at <%= @event.end_at.strftime("%I:%M %p") %></p>
+<% end %>
+<p><%= @event.location %></p>
