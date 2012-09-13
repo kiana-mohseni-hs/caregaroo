@@ -1,7 +1,26 @@
 <tr id="<%= dom_id(event) %>" class="events_list_row">
+
+
+  <% if event.is_one_day? %>
   <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= event.start_at.strftime("%l:%M%P") %></td>
   <td>&nbsp;-&nbsp;</td>
   <td><%= event.end_at.strftime("%l:%M%P") %></td>
+  <% else %>
+    <% if currentdate == Time.at(event.start_at).to_date %>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= event.start_at.strftime("%l:%M%P") %></td>
+    <td>&raquo;</td>
+    <td></td>
+    <% else %>
+      <% if currentdate == Time.at(event.end_at).to_date %>
+      <td></td>
+      <td>&raquo;</td>
+      <td><%= event.end_at.strftime("%l:%M%P") %></td>
+      <% else %>
+      <td colspan="3">&nbsp;&nbsp;[ all day ]</td>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <td class="event_name">&nbsp;&nbsp;<%= link_to truncate(event.name), event %>&nbsp;&nbsp;</td>
   <td><%= check_box_tag nil, nil, event.user_ids.include?(@current_user.id), { 
             class: 'event_sign_up', 
