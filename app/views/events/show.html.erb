@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div class="event_top_bar"><%= link_to 'Back', events_path, class: "orange_button_link" %>
+<div class="event_top_bar"><%= link_to 'Show Events', events_path, class: "orange_button_link" %>
 <%= link_to 'Edit', edit_event_path(@event), class: "orange_button_link" %>
 <%= link_to "Delete", cancel_event_url(@event), method: :delete, confirm: "Delete event: are you sure?", title: "delete", class: "orange_button_link" %></div>
 <div id="event_show">
