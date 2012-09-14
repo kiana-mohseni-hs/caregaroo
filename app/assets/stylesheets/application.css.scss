@@ -137,10 +137,13 @@ form .field, form .actions { margin: 12px 0;}
   margin: 0 0 22px 0;
 }
 .prev_button {
-  margin: 0 0 22px 25px;
+  margin: 0 0 22px 30px;
 }
-.next_button, .today_button {
-  margin: 0 0 22px 6px;
+.next_button {
+  margin: 0 0 22px 0;
+}
+.today_button {
+  margin: 0 0 22px 45px;
 }
 tr.events_list_row {
   line-height: 14px;

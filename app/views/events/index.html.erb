@@ -1,7 +1,7 @@
 <%= link_to "Create New Event", new_event_path, class: "orange_button_link create_new_button" %>
 <%= @prev_available ? link_to( "&laquo; prev".html_safe, @prev_link, class: "orange_button_link prev_button") : "<span class='grey_button_link prev_button'>&laquo; prev</span>".html_safe %>
-<%= @current_page.to_i == 0 ? "<span class='grey_button_link today_button'>today</span>".html_safe : link_to( "today", "?", class: "orange_button_link today_button") %>
 <%= @next_available ? link_to( "next &raquo;".html_safe, @next_link, class: "orange_button_link next_button") : "<span class='grey_button_link next_button'>next &raquo;</span>".html_safe %>
+<%= @current_page.to_i == 0 ? "<span class='grey_button_link today_button'>today</span>".html_safe : link_to( "today", "?", class: "orange_button_link today_button") %>
 
 <% if @events.empty? %><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No events</h3>
 <% else %>
