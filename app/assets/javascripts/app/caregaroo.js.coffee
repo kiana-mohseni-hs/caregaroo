@@ -19,19 +19,20 @@ $ ->
     amNames: ['AM', 'A', 'am', 'a']
     pmNames: ['PM', 'P', 'pm', 'p']
     timeFormat: 'h:mm tt'
+    stepMinute: 5
     # showTimezone: true
     # timezone: 'PT',
     # timezoneList: [ { value: 'ET', label: 'Eastern'}, { value: 'CT', label: 'Central' }, { value: 'MT', label: 'Mountain' }, { value: 'PT', label: 'Pacific' } ]
     onClose: (dateText, inst) ->
-      unless endDateTextBox.val() is ""
+      if endDateTextBox.val() is ""
+        endDateTextBox.val dateText
+      else
         testStartDate = startDateTextBox.datetimepicker("getDate")
         testEndDate = endDateTextBox.datetimepicker("getDate")
         endDateTextBox.datetimepicker "setDate", testStartDate  if testStartDate > testEndDate
-      else
-        endDateTextBox.val dateText
 
     onSelect: (selectedDateTime) ->
-      endDateTextBox.datetimepicker "option", "minDate", startDateTextBox.datetimepicker("getDate")
+      endDateTextBox.datetimepicker "option", "minDate", startDateTextBox.datetimepicker("getDate")      
 
   endDateTextBox.datetimepicker
     dateFormat: 'yy-mm-dd'
@@ -39,13 +40,14 @@ $ ->
     amNames: ['AM', 'A', 'am', 'a']
     pmNames: ['PM', 'P', 'pm', 'p']
     timeFormat: 'h:mm tt'
+    stepMinute: 5
     onClose: (dateText, inst) ->
-      unless startDateTextBox.val() is ""
+      if startDateTextBox.val() is ""
+        startDateTextBox.val dateText
+      else
         testStartDate = startDateTextBox.datetimepicker("getDate")
         testEndDate = endDateTextBox.datetimepicker("getDate")
         startDateTextBox.datetimepicker "setDate", testEndDate  if testStartDate > testEndDate
-      else
-        startDateTextBox.val dateText
 
     onSelect: (selectedDateTime) ->
       startDateTextBox.datetimepicker "option", "maxDate", endDateTextBox.datetimepicker("getDate")
