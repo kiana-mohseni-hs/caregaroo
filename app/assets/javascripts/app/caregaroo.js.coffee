@@ -19,6 +19,9 @@ $ ->
     amNames: ['am', 'a']
     pmNames: ['pm', 'p']
     timeFormat: 'h:mm tt'
+    # showTimezone: true
+    # timezone: 'PT',
+    # timezoneList: [ { value: 'ET', label: 'Eastern'}, { value: 'CT', label: 'Central' }, { value: 'MT', label: 'Mountain' }, { value: 'PT', label: 'Pacific' } ]
     onClose: (dateText, inst) ->
       unless endDateTextBox.val() is ""
         testStartDate = startDateTextBox.datetimepicker("getDate")
