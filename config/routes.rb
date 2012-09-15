@@ -1,6 +1,6 @@
 class AgentConstraint
   def self.matches?(request)
-    request.user_agent =~ /Mobile/
+    Rails.env.development? && request.user_agent =~ /Mobile/
   end
 end
 
