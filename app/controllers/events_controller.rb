@@ -19,10 +19,12 @@ class EventsController < ApplicationController
     end
     
     @dateswithevents = []
-    (@events.first.start_at.to_date..@events.max_by(&:end_at).end_at.to_date).each do |d| 
-      @events.each { |e| @dateswithevents << d if e.is_on?(d) }
+    unless @events.empty?
+      (@events.first.start_at.to_date..@events.max_by(&:end_at).end_at.to_date).each do |d| 
+        @events.each { |e| @dateswithevents << d if e.is_on?(d) }
+      end
+      @dateswithevents.uniq!
     end
-    @dateswithevents.uniq!
     
     
     @next_available = events_count > (offset+ per_page)
