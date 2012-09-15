@@ -14,6 +14,11 @@ $ ->
   startDateTextBox = $("#event_start_at")
   endDateTextBox = $("#event_end_at")
   startDateTextBox.datetimepicker
+    dateFormat: 'yy-mm-dd'
+    ampm: true
+    amNames: ['am', 'a']
+    pmNames: ['pm', 'p']
+    timeFormat: 'h:mm tt'
     onClose: (dateText, inst) ->
       unless endDateTextBox.val() is ""
         testStartDate = startDateTextBox.datetimepicker("getDate")
@@ -26,6 +31,11 @@ $ ->
       endDateTextBox.datetimepicker "option", "minDate", startDateTextBox.datetimepicker("getDate")
 
   endDateTextBox.datetimepicker
+    dateFormat: 'yy-mm-dd'
+    ampm: true
+    amNames: ['am', 'a']
+    pmNames: ['pm', 'p']
+    timeFormat: 'h:mm tt'
     onClose: (dateText, inst) ->
       unless startDateTextBox.val() is ""
         testStartDate = startDateTextBox.datetimepicker("getDate")
