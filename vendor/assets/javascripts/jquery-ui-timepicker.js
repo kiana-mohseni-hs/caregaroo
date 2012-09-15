@@ -34,16 +34,22 @@ $.extend($.ui, { timepicker: { version: "1.0.2" } });
    Use the singleton instance of this class, $.timepicker, to interact with the time picker.
    Settings for (groups of) time pickers are maintained in an instance object,
    allowing multiple different settings on the same page. */
-
+/* I was not able to use any parameter in the js call apart from dateFormat
+   So the default values are modified below */
+   
 function Timepicker() {
 	this.regional = []; // Available regional settings, indexed by language code
 	this.regional[''] = { // Default regional settings
 		currentText: 'Now',
 		closeText: 'Done',
-		ampm: false,
-		amNames: ['AM', 'A'],
-		pmNames: ['PM', 'P'],
-		timeFormat: 'hh:mm tt',
+    // ampm: false,
+		ampm: true,
+    // amNames: ['AM', 'A'],
+		amNames: ['am', 'a'],
+    // pmNames: ['PM', 'P'],
+		pmNames: ['pm', 'p'],
+    // timeFormat: 'hh:mm tt',
+		timeFormat: 'h:mm tt',
 		timeSuffix: '',
 		timeOnlyTitle: 'Choose Time',
 		timeText: 'Time',

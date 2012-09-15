@@ -1,3 +1,4 @@
+
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -24,10 +25,10 @@
     </tr>
     <tr>
       <th rowspan="2">When: </th>
-      <td><%= f.datetime_picker 'start_at', :dateFormat => "yy-mm-dd" %> to</td>
+      <td><%= f.text_field :start_at %> to</td>
     </tr>
     <tr>
-      <td><%= f.datetime_picker :end_at, :dateFormat => "yy-mm-dd" %></td>
+      <td><%= f.text_field :end_at %></td>
     </tr>
     <tr>
       <th>Description: </th>
