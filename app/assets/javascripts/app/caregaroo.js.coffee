@@ -16,8 +16,8 @@ $ ->
   startDateTextBox.datetimepicker
     dateFormat: 'yy-mm-dd'
     ampm: true
-    amNames: ['am', 'a']
-    pmNames: ['pm', 'p']
+    amNames: ['AM', 'A', 'am', 'a']
+    pmNames: ['PM', 'P', 'pm', 'p']
     timeFormat: 'h:mm tt'
     # showTimezone: true
     # timezone: 'PT',
@@ -36,8 +36,8 @@ $ ->
   endDateTextBox.datetimepicker
     dateFormat: 'yy-mm-dd'
     ampm: true
-    amNames: ['am', 'a']
-    pmNames: ['pm', 'p']
+    amNames: ['AM', 'A', 'am', 'a']
+    pmNames: ['PM', 'P', 'pm', 'p']
     timeFormat: 'h:mm tt'
     onClose: (dateText, inst) ->
       unless startDateTextBox.val() is ""
