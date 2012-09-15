@@ -18,7 +18,7 @@ $ ->
     ampm: true
     amNames: ['AM', 'A', 'am', 'a']
     pmNames: ['PM', 'P', 'pm', 'p']
-    timeFormat: 'h:mm tt'
+    timeFormat: 'hh:mmTT'
     stepMinute: 5
     # showTimezone: true
     # timezone: 'PT',
@@ -39,7 +39,7 @@ $ ->
     ampm: true
     amNames: ['AM', 'A', 'am', 'a']
     pmNames: ['PM', 'P', 'pm', 'p']
-    timeFormat: 'h:mm tt'
+    timeFormat: 'hh:mmTT'
     stepMinute: 5
     onClose: (dateText, inst) ->
       if startDateTextBox.val() is ""
