@@ -46,6 +46,18 @@ class Event < ActiveRecord::Base
     self.start_at.to_date === self.end_at.to_date
   end
   
+  def is_on?(date)
+    (self.start_at.to_date..self.end_at.to_date).cover?(date)
+  end
+  
+  def begins_on?(date)
+    self.start_at.to_date === date
+  end
+  
+  def ends_on?(date)
+    self.end_at.to_date === date
+  end
+  
   def cancel(canceler_id)
     update_attributes(canceled_by_id: canceler_id, canceled: true)
   end

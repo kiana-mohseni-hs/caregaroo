@@ -5,17 +5,30 @@
 
 <% if @events.empty? %><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No events</h3>
 <% else %>
-<% previous_event_start_date = Time.at(0).to_date  %>
+
+
 <table>
-<% for event in @events %>
-  <% unless previous_event_start_date === Time.at(event.start_at).to_date %>
-    <tr class="events_list_date_row">
-      <td colspan=4 class="event_list_date"><%= event.start_at.strftime("%A, %e %B %Y") %></td><td></td><td></td>
-      <% currentdate = Time.at(event.start_at).to_date %>
-    </tr>
+
+<% @dateswithevents.each do |d| %>
+  <tr class="events_list_date_row">
+    <td colspan=4 class="event_list_date"><%= d.strftime("%A, %e %B %Y") %></td><td></td><td></td>
+  </tr>
+  <% @events.each do |e|  %>
+    <% if e.is_on?(d) %>
+      <% if e.is_one_day? %>
+        <%= render partial: "onedayevent", object: e  %>
+      <% elsif e.begins_on?(d)  %>
+        <%= render partial: "firstdayevent", object: e  %>
+      <% elsif e.ends_on?(d)  %>
+        <%= render partial: "lastdayevent", object: e  %>
+      <% else %>
+        <%= render partial: "event", object: e, locals: {currentdate: d}  %>
+      <% end %>
+    <% end %>
   <% end %>
-  <%= render partial: "event", object: event, locals: {currentdate: currentdate}  %>
-  <% previous_event_start_date = Time.at(event.start_at).to_date %>
+  
 <% end %>
 </table>
+
+
 <% end %>

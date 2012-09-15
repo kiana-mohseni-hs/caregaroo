@@ -18,6 +18,13 @@ class EventsController < ApplicationController
       @prev_available = false
     end
     
+    @dateswithevents = []
+    (@events.first.start_at.to_date..@events.max_by(&:end_at).end_at.to_date).each do |d| 
+      @events.each { |e| @dateswithevents << d if e.is_on?(d) }
+    end
+    @dateswithevents.uniq!
+    
+    
     @next_available = events_count > (offset+ per_page)
     @prev_link = "?page=" << (@current_page.to_i- 1).to_s
     @next_link = "?page=" << (@current_page.to_i+ 1).to_s
