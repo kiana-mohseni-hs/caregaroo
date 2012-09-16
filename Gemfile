@@ -34,6 +34,7 @@ end
 gem 'jquery-rails'
 gem 'jquery_datepicker'
 gem 'event-calendar', :require => 'event_calendar'
+gem 'fancybox-rails'
 
 # background jobs and queues
 gem 'resque', :require => "resque/server"
