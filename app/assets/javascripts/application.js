@@ -12,6 +12,7 @@
 //= require jquery.purr.js
 //= require jquery.hint-with-password.js
 //= require jquery.autosize-min.js
+//= require fancybox
 //= require_tree ./app
 
 var _gaq = _gaq || [];
