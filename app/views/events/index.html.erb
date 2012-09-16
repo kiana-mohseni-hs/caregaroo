@@ -8,7 +8,15 @@
 
 
 <table>
-
+<% if @display_empty_today_banner %>
+  <tr class="events_list_date_row">
+    <td colspan=4 class="event_list_date"><%= @today.strftime("%A, %e %B %Y") %></td><td></td><td></td>
+  </tr>
+  <tr class="events_list_row">
+    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;No events</td>
+    <td colspan="3"></td>
+  </tr>
+<% end %>
 <% @dateswithevents.each do |d| %>
   <tr class="events_list_date_row">
     <td colspan=4 class="event_list_date"><%= d.strftime("%A, %e %B %Y") %></td><td></td><td></td>
