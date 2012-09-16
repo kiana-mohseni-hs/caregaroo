@@ -157,9 +157,6 @@ td.event_list_date {
 tr.events_list_date_row {
   border-top: 1px solid #CCCCCC;  
 }
-td.event_name {
-  font-weight: bold;
-}
 
 #event_form td,#event_form th {
   text-align: left;
@@ -207,7 +204,7 @@ h4.event_view_name {
   margin-top: 40px;
 }
 
-.post_event_name {
+.post_event_name, td.event_name a {
   font-weight: bold;
   color: #14377D;
 }
