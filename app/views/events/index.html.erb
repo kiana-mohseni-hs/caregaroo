@@ -23,6 +23,7 @@
   </tr>
   <% @events.each do |e|  %>
     <% if e.is_on?(d) %>
+      <tr id="<%= dom_id(e) %>" class="events_list_row">
       <% if e.is_one_day? %>
         <%= render partial: "onedayevent", object: e  %>
       <% elsif e.begins_on?(d)  %>
