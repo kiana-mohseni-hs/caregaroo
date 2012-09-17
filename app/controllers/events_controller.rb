@@ -19,23 +19,22 @@ class EventsController < ApplicationController
     end
     
     @today = Date.today
-    #add to @events past multi day events that finish in the time frame displayed in current page
-    
-    #TODO FIX 
-    
     @dateswithevents = []
-    unless @events.empty?
-      first_day = @events.first.start_at.to_date
+    
+    first_day = if (@current_page.to_i == 0) then @today
+                elsif @events.empty?         then nil
+                else                              @events.first.start_at.to_date
+                end
+    
+    unless first_day.nil?
       previous_multi_day = visible_events.end_after_date(first_day).start_before_date(first_day)
       @events = previous_multi_day + @events
-      first_day = @today if (@current_page.to_i == 0)
       (first_day..@events.max_by(&:end_at).end_at.to_date).each do |d| 
         @events.each { |e| @dateswithevents << d if e.is_on?(d) }
       end
       @dateswithevents.uniq!
     end
-    
-    
+        
     @display_empty_today_banner = ((@current_page.to_i == 0) and (!@dateswithevents.include?(@today)))
     
     @next_available = events_count > (offset+ per_page)

@@ -3,7 +3,7 @@
 <%= @next_available ? link_to( "next &raquo;".html_safe, @next_link, class: "orange_button_link next_button") : "<span class='grey_button_link next_button'>next &raquo;</span>".html_safe %>
 <%= @current_page.to_i == 0 ? "<span class='grey_button_link today_button'>today</span>".html_safe : link_to( "today", "?", class: "orange_button_link today_button") %>
 
-<% if @events.empty? %><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No events</h3>
+<% if @dateswithevents.empty? %><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No events</h3>
 <% else %>
 
 
@@ -13,7 +13,7 @@
     <td colspan=4 class="event_list_date"><%= @today.strftime("%A, %e %B %Y") %></td><td></td><td></td>
   </tr>
   <tr class="events_list_row">
-    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;No events</td>
+    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;No events today</td>
     <td colspan="3"></td>
   </tr>
 <% end %>
