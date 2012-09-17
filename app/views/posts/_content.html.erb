@@ -4,14 +4,16 @@
     linktext = post.content << " (#{eventtype})"%>
     <% if post.event.is_new? %>
       New Event:
-    <% else %>
-      <% if post.event.canceled? %>
+    <% elsif post.event.canceled? %>
         Canceled Event:
-      <% else %>
+    <% else %>
         Updated Event:
-      <% end %>
     <% end %>
-    <%= link_to( linktext, event_path(post.event.id), class: "post_event_name" ) %><br>
+    <% if post.event.canceled? %>
+      <span class="post_event_name"><%= linktext %></span>
+    <% else %>
+      <%= link_to( linktext, event_path(post.event.id), class: "post_event_name" ) %>
+    <% end %><br>
     <%= post.event.datetimestring %>
     <%= post.event.locationstring %>
   <% else %>
