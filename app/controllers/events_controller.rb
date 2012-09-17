@@ -29,8 +29,10 @@ class EventsController < ApplicationController
     unless first_day.nil?
       previous_multi_day = visible_events.end_after_date(first_day).start_before_date(first_day)
       @events = previous_multi_day + @events
-      (first_day..@events.max_by(&:end_at).end_at.to_date).each do |d| 
-        @events.each { |e| @dateswithevents << d if e.is_on?(d) }
+      unless @events.empty?
+        (first_day..@events.max_by(&:end_at).end_at.to_date).each do |d| 
+          @events.each { |e| @dateswithevents << d if e.is_on?(d) }
+        end
       end
       @dateswithevents.uniq!
     end

@@ -62,7 +62,9 @@ class Event < ActiveRecord::Base
   end
   
   def cancel(canceler_id)
-    update_attributes(canceled_by_id: canceler_id, canceled: true)
+    self.canceled_by_id = canceler_id
+    self.canceled = true
+    self.save(validate: false)
   end
   
   def datestring
