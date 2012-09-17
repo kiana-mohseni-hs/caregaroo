@@ -1,9 +1,3 @@
   <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= firstdayevent.start_at.strftime("%l:%M%P") %></td>
   <td>&raquo;</td>
   <td></td>
-  <td class="event_name">&nbsp;&nbsp;<%= link_to truncate(firstdayevent.name), firstdayevent %>&nbsp;&nbsp;</td>
-  <td><%= check_box_tag nil, nil, firstdayevent.user_ids.include?(@current_user.id), { 
-            class: 'event_sign_up', 
-            'data-href' => update_user_event_url(firstdayevent.id) } %> signed up</td>
-  <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "", cancel_event_url(firstdayevent), method: :delete, remote: true, confirm: "Delete event: are you sure?", class: "icon-remove", title: "delete" %></td>
-</tr>
