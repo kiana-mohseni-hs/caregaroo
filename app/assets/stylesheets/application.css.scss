@@ -206,7 +206,15 @@ h4.event_view_name {
 
 .post_event_name, td.event_name a {
   font-weight: bold;
-  color: #14377D;
+}
+
+.post_content_area, td.event_name {
+  a {
+    color: #14377D;
+  }
+  a:hover {
+    color: #379ADB;
+  }
 }
 
 /* css for timepicker */
