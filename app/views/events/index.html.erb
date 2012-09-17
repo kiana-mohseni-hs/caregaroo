@@ -31,13 +31,9 @@
       <% elsif e.ends_on?(d)  %>
         <%= render partial: "lastdayevent", object: e  %>
       <% else %>
-        <%= render partial: "event", object: e, locals: {currentdate: d}  %>
+        <td colspan="3">&nbsp;&nbsp;[ all day ]</td>
       <% end %>
-        <td class="event_name">&nbsp;&nbsp;<%= link_to truncate(e.name), e %>&nbsp;&nbsp;</td>
-        <td><%= check_box_tag nil, nil, e.user_ids.include?(@current_user.id), { 
-                  class: 'event_sign_up', 
-                  'data-href' => update_user_event_url(e.id) } %> signed up</td>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "", cancel_event_url(e), method: :delete, remote: true, confirm: "Delete event: are you sure?", class: "icon-remove", title: "delete" %></td>
+        <%= render :partial => 'event', object: e  %>
       </tr>
     <% end %>
   <% end %>
