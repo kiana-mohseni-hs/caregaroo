@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @post.user_id == @current_user.id && @comment.save
-        Resque.enqueue(CommentsActivityMailer, @comment.id)
+        # Resque.enqueue(CommentsActivityMailer, @comment.id)
         @comments = @post.comments
         @new_comment=@comments.order('updated_at').first
         format.html { redirect_to news_path }
