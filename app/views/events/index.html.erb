@@ -21,7 +21,7 @@
         <% elsif e.ends_on?(d)  %>
           <%= render partial: "lastdayevent", object: e  %>
         <% else %>
-          <td colspan="3">&nbsp;&nbsp;[ all day ]</td>
+          <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;All day</td>
         <% end %>
           <%= render :partial => 'event', object: e  %>
         </tr>
