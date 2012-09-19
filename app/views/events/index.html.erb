@@ -3,43 +3,33 @@
 <%= @next_available ? link_to( "next &raquo;".html_safe, @next_link, class: "orange_button_link next_button") : "<span class='grey_button_link next_button'>next &raquo;</span>".html_safe %>
 <%= @current_page.to_i == 0 ? "<span class='grey_button_link today_button'>today</span>".html_safe : link_to( "today", "?", class: "orange_button_link today_button") %>
 
-<% if @dateswithevents.empty? %><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No events</h3>
-<% else %>
-
-
 <table>
-<% if @display_empty_today_banner %>
-  <tr class="events_list_date_row">
-    <td colspan=4 class="event_list_date"><%= @today.strftime("%A, %e %B %Y") %></td><td></td><td></td>
-  </tr>
-  <tr class="events_list_row">
-    <td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;No events today</td>
-    <td colspan="3"></td>
-  </tr>
-<% end %>
-<% @dateswithevents.each do |d| %>
-  <tr class="events_list_date_row">
-    <td colspan=4 class="event_list_date"><%= d.strftime("%A, %e %B %Y") %></td><td></td><td></td>
-  </tr>
-  <% @events.each do |e|  %>
-    <% if e.is_on?(d) %>
-      <tr class="events_list_row <%= dom_id(e) %>">
-      <% if e.is_one_day? %>
-        <%= render partial: "onedayevent", object: e  %>
-      <% elsif e.begins_on?(d)  %>
-        <%= render partial: "firstdayevent", object: e  %>
-      <% elsif e.ends_on?(d)  %>
-        <%= render partial: "lastdayevent", object: e  %>
-      <% else %>
-        <td colspan="3">&nbsp;&nbsp;[ all day ]</td>
+<% if @dateswithevents.empty? %><%= render :partial => 'no_events_today' %>
+<% else %>
+  <% if @display_empty_today_banner %><%= render :partial => 'no_events_today' %><% end %>
+  <% @dateswithevents.each do |d| %>
+    <tr class="events_list_date_row">
+      <td colspan=4 class="event_list_date"><%= d.strftime("%A, %e %B %Y") %></td><td></td><td></td>
+    </tr>
+    <% @events.each do |e|  %>
+      <% if e.is_on?(d) %>
+        <tr class="events_list_row <%= dom_id(e) %>">
+        <% if e.is_one_day? %>
+          <%= render partial: "onedayevent", object: e  %>
+        <% elsif e.begins_on?(d)  %>
+          <%= render partial: "firstdayevent", object: e  %>
+        <% elsif e.ends_on?(d)  %>
+          <%= render partial: "lastdayevent", object: e  %>
+        <% else %>
+          <td colspan="3">&nbsp;&nbsp;[ all day ]</td>
+        <% end %>
+          <%= render :partial => 'event', object: e  %>
+        </tr>
       <% end %>
-        <%= render :partial => 'event', object: e  %>
-      </tr>
     <% end %>
-  <% end %>
   
+  <% end %>
+
 <% end %>
+
 </table>
-
-
-<% end %>
