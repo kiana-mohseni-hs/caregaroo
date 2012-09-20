@@ -38,7 +38,7 @@
       <th>With: </th>
       <td><%= hidden_field_tag "event[user_ids][]", nil %>
         <% @event.network.users.each do |user| %>
-          <p><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.first_name << ' ' << user.last_name %><%= user.first_name %></p>
+          <p><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.name %><%= user.name %></p>
         <% end %>
       </td>
     </tr>

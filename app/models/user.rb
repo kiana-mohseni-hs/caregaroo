@@ -87,6 +87,10 @@ class User < ActiveRecord::Base
     self.role == ROLES["initiator"] || self.role == ROLES["coordinator"]
   end
   
+  def name
+    (first_name || "") + ' ' + (last_name || "")
+  end
+  
 =begin  
   attr_writer :current_step
   
