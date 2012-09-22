@@ -9,6 +9,9 @@ class NotificationsController < ApplicationController
         user = User.find_by_email(email)
         if !user.nil?
           user.notification.update_attributes( :post_update => 0 )
+        else
+          invitation = Invitation.find_by_email(email)
+          invitation.destroy unless invitation.nil?
         end
       end
     end
