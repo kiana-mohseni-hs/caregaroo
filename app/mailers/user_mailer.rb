@@ -14,6 +14,8 @@ class UserMailer < ActionMailer::Base
   def member_invitation(invitation_id, sender_id)
     @invitation = Invitation.find(invitation_id)
     @sender = User.find(sender_id)
+    @token = generate_token(@invitation.email)
+    @recipient_email = @invitation.email
       
     #attachments["rails.png"] = File.read("#{Rails.root}/public/images/rails.png")
     #attachments.inline['image.jpg'] = File.read('/path/to/image.jpg')
