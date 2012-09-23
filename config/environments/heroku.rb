@@ -94,7 +94,7 @@ Cg2App::Application.configure do
       # :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'
     }
 
-    config.fog_directory  = 'dazl'                     # required
+    config.fog_directory  = 'cg2prod'                     # required
 
     # config.fog_host       = 'https://assets.example.com'            # optional, defaults to nil
     # config.fog_public     = false                                   # optional, defaults to true
