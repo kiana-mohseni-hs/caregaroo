@@ -149,6 +149,8 @@ form .field, form .actions { margin: 12px 0;}
 tr.events_list_row {
   line-height: 14px;
   vertical-align: text-top;
+  td {white-space:nowrap;
+    }
 }
 
 td.event_list_date {
