@@ -10,9 +10,8 @@ class CommentsController < ApplicationController
     @comment.user_id = @current_user.id
     @comment.network_id = @current_user.network_id
     @post = Post.find(@comment.post_id)
-
     respond_to do |format|
-      if @post.user_id == @current_user.id && @comment.save
+      if @post.network_id == @current_user.network_id && @comment.save
         # Resque.enqueue(CommentsActivityMailer, @comment.id)
         @comments = @post.comments
         @new_comment=@comments.order('updated_at').first
