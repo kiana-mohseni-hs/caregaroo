@@ -38,7 +38,11 @@
       <th>With: </th>
       <td><%= hidden_field_tag "event[user_ids][]", nil %>
         <% @event.network.users.each do |user| %>
+<<<<<<< HEAD
           <p><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title: user.name %><%= user.name %></p>
+=======
+          <p><%= check_box_tag "event[user_ids][]", user.id, @event.user_ids.include?(user.id), id: dom_id(user), title:  !user.first_name.nil? ? "#{user.first_name} #{user.last_name}" : 'Anonymous'  %><%= !user.first_name.nil? ? "#{user.first_name} #{user.last_name}" : 'Anonymous' %></p>
+>>>>>>> fixed when first_name and last_name is empty in events/new
         <% end %>
       </td>
     </tr>
