@@ -10,3 +10,7 @@ test:
 production:    
     db: 2
     # namespace: caregaroo_prod
+heroku:
+    host:herring.redistogo.com
+    port:9294 
+    password:686749979ff3d80018c958ef2204cdc8
