@@ -73,17 +73,34 @@ Cg2App::Application.configure do
   config.action_mailer.delivery_method = :smtp
   
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => "587",
-    :domain               => "caregaroo.com",
-    :user_name            => "support@caregaroo.com",
-    :password             => "L3tm31n!",
-    :authentication       => "login",
+    :user_name => "Caregaroo",
+    :password => "L3tm31n!",
+    :domain => "caregaroo.com",
+    :address => "smtp.sendgrid.net",
+    :port => 587,
+    :authentication => :plain,
     :enable_starttls_auto => true
   }
   
   CarrierWave.configure do |config|
-    config.storage = :file
-  end
+    config.cache_dir = "#{Rails.root}/tmp/uploads"
+    
+    config.storage = :fog
+    config.fog_credentials = {
+      :provider               => 'AWS',       # required
+      :aws_access_key_id      => ENV['CAREGAROO_S3_KEY'],       # required
+      :aws_secret_access_key  => ENV['CAREGAROO_S3_SECRET'],       # required
+      # :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'
+    }
+
+    config.fog_directory  = 'cg2prod'                     # required
+
+    # config.fog_host       = 'https://assets.example.com'            # optional, defaults to nil
+    # config.fog_public     = false                                   # optional, defaults to true
+    # config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
+  end  
+  
+  # redisToGo
+  ENV["REDISTOGO_URL"] = 'redis://mwu:686749979ff3d80018c958ef2204cdc8@herring.redistogo.com:9294'
   
 end

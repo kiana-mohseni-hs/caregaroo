@@ -57,4 +57,7 @@ Cg2App::Application.configure do
   CarrierWave.configure do |config|
     config.storage = :file
   end
+  
+  ENV["REDISTOGO_URL"] = 'redis://localhost:6379'
+  
 end
