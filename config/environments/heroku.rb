@@ -74,12 +74,12 @@ Cg2App::Application.configure do
   config.action_mailer.delivery_method = :smtp
   
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => "587",
-    :domain               => "caregaroo.com",
-    :user_name            => "support@caregaroo.com",
-    :password             => "L3tm31n!",
-    :authentication       => "login",
+    :user_name => "Caregaroo",
+    :password => "L3tm31n!",
+    :domain => "caregaroo.com",
+    :address => "smtp.sendgrid.net",
+    :port => 587,
+    :authentication => :plain,
     :enable_starttls_auto => true
   }
   
@@ -89,8 +89,8 @@ Cg2App::Application.configure do
     config.storage = :fog
     config.fog_credentials = {
       :provider               => 'AWS',       # required
-      :aws_access_key_id      => ENV['CAREGAROO_DAZL_S3_KEY'],       # required
-      :aws_secret_access_key  => ENV['CAREGAROO_DAZL_S3_SECRET'],       # required
+      :aws_access_key_id      => ENV['CAREGAROO_S3_KEY'],       # required
+      :aws_secret_access_key  => ENV['CAREGAROO_S3_SECRET'],       # required
       # :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'
     }
 
