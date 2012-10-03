@@ -22,11 +22,11 @@
 				<div data-user-id="8">trigtrig trig triggg</div>
 			</div>
 		</div>
+		<div class="actions">
+          <%= f.submit "Update", :class =>"form_button", :id=>"news_update_button" %>
+        </div>
     </div>
     <div class="clear"></div>
-  </div>
-  <div class="actions">
-    <%= f.submit "Update", :class =>"form_button", :style => "margin-left:380px;", :id=>"news_update_button" %>
   </div>
   <hr color="#cccccc"/>
 <% end %>
@@ -80,5 +80,11 @@ $(document).ready(function(){
 	});
 
 	listToToken.init();
+
+	// XXX
+	$('#news_update_button').click(function(ev){
+		ev.preventDefault()
+		listToToken.init()
+	})
 })
 </script>
