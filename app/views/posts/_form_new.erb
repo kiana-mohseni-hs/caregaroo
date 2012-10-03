@@ -1,9 +1,84 @@
 <%= form_for Post.new do |f| %>
-  <div class="field">
-    <%= f.text_area :content, :placeholder => "Share news about #{current_user.network.network_name}", :class => "post_textarea", :required => "required"  %>
+  <div id="new_news_wrapper" class="field">
+  	<div class="col_a">
+  		<%= image_tag (current_user.avatar_url(:thumb).to_s or "photo_place_holder.png"), :alt => current_user.try(:first_name), :height => "50", :width => "50" %>
+ 	</div>
+    <div class="col_b">
+		
+			<%= f.text_area :content, :placeholder => "Share news about #{current_user.network.network_name}", :class => "post_textarea", :required => "required", :cols => "", :style => ""  %>
+		
+		<div class="recipients_box">
+			<div class="current_recipients">
+				<div class="time_text">Add Recipient +</div>
+			</div>
+			<div class="all_recipients">
+				<div data-user-id="0" data-default="1">Everyone  </div>
+				<div data-user-id="2">aisdjsaijd asid i jasdijadsj  </div>
+				<div data-user-id="3">toreoitreot et  </div>
+				<div data-user-id="4">lfkhfglkhlfgkh flkgh  </div>
+				<div data-user-id="5">pgopdfgopdfgpo  </div>
+				<div data-user-id="6">dfjhg dfgl dfg  </div>
+				<div data-user-id="7">nianimainainiamiania ssssllslslsls</div>
+				<div data-user-id="8">trigtrig trig triggg</div>
+			</div>
+		</div>
+    </div>
+    <div class="clear"></div>
   </div>
   <div class="actions">
     <%= f.submit "Update", :class =>"form_button", :style => "margin-left:380px;", :id=>"news_update_button" %>
   </div>
   <hr color="#cccccc"/>
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var listToToken = $.listToToken({
+		from: {
+			selector: "#new_news_wrapper .all_recipients div",
+			onClick: function(jElem, jTo, ev){
+				jTo.children('.time_text:visible').hide()
+				jElem.slideUp();
+				var newLing = $( "<div/>",{
+					"class": "tokenizer",
+					'data-user-id': jElem.data('userId'),
+					'style': 'display:none',
+					html: jElem.html(),
+				})
+				jTo.append(newLing)
+				newLing.slideDown('slow')
+			},
+		},
+		to: {
+			wrapSelector: "#new_news_wrapper .current_recipients",
+			tokenSelector: "#new_news_wrapper .current_recipients .tokenizer",
+			onClick: function(jToken, jFrom, ev, jTo){
+				var uid = jToken.data('userId')
+				jToken.slideUp(function(){
+					$(this).remove()
+				})
+				jFrom.each(function(){
+					if( $(this).data('userId') == uid ){
+						$(this).slideDown();
+					}
+				})
+				setTimeout(function(){
+					if( jTo.children('.tokenizer:visible').size() < 1 ){
+						jTo.find('.time_text').fadeIn()
+					}
+				},550)
+			},
+		},
+		init: function(jFrom,jTo){
+			jTo.find('.tokenizer').remove()
+			jFrom.each(function(){
+				if( $(this).data('default') ){
+					$(this).click()
+				}
+			})
+		}
+	});
+
+	listToToken.init();
+})
+</script>

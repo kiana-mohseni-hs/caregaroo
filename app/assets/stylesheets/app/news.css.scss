@@ -11,5 +11,50 @@
 #reply_button { margin-left:324px; }
 #news_update_button { margin-left:380px; }
 .comment_textarea { padding: 5px; width: 358px; height:15px; }
-.post_textarea { padding: 5px; width: 430px; height:15px; }
+.post_textarea { padding: 5px; width: 100%; height:15px; }
 .post_content_area { width: 380px; }
+
+#new_news_wrapper {
+	box-sizing: border-box;
+	textarea{ width: 368px; }
+	.col_a {
+		float:left;
+		width: 55px;
+	}
+	.col_b {
+		float:left;
+		width: 380px;
+		background-color: #EEE;
+		border: 1px #999 solid;
+		padding: 10px 5px;
+		.recipients_box{
+			border-top: 1px #999 solid;
+			padding: 10px 5px 5px 5px;
+			> div {
+				background: white;
+				padding: 3px;
+			}
+			.current_recipients {
+				border-bottom: 1px #999 solid;
+				padding: 5px;
+				min-height: 75px;
+				.tokenizer {
+					display: inline-block;
+					background-color: #6AF;
+					padding: 2px;
+					margin: 2px 5px;
+				}
+				div{
+					display:none;
+				}
+			}
+			.all_recipients{
+				color: 999;
+				height: 200px;
+				> div{
+					margin: 2px 5px;
+				}
+			}
+		}
+	}
+}
