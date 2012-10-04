@@ -32,59 +32,5 @@
 <% end %>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	var listToToken = $.listToToken({
-		from: {
-			selector: "#new_news_wrapper .all_recipients div",
-			onClick: function(jElem, jTo, ev){
-				jTo.children('.time_text:visible').hide()
-				jElem.slideUp();
-				var newLing = $( "<div/>",{
-					"class": "tokenizer",
-					'data-user-id': jElem.data('userId'),
-					'style': 'display:none',
-					html: jElem.html(),
-				})
-				jTo.append(newLing)
-				newLing.slideDown('slow')
-			},
-		},
-		to: {
-			wrapSelector: "#new_news_wrapper .current_recipients",
-			tokenSelector: "#new_news_wrapper .current_recipients .tokenizer",
-			onClick: function(jToken, jFrom, ev, jTo){
-				var uid = jToken.data('userId')
-				jToken.slideUp(function(){
-					$(this).remove()
-				})
-				jFrom.each(function(){
-					if( $(this).data('userId') == uid ){
-						$(this).slideDown();
-					}
-				})
-				setTimeout(function(){
-					if( jTo.children('.tokenizer:visible').size() < 1 ){
-						jTo.find('.time_text').fadeIn()
-					}
-				},550)
-			},
-		},
-		init: function(jFrom,jTo){
-			jTo.find('.tokenizer').remove()
-			jFrom.each(function(){
-				if( $(this).data('default') ){
-					$(this).click()
-				}
-			})
-		}
-	});
 
-	listToToken.init();
-
-	// XXX
-	$('#news_update_button').click(function(ev){
-		ev.preventDefault()
-		listToToken.init()
-	})
-})
 </script>
