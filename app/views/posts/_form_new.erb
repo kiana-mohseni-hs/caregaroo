@@ -8,19 +8,17 @@
 			<%= f.text_area :content, :placeholder => "Share news about #{current_user.network.network_name}", :class => "post_textarea", :required => "required", :cols => "", :style => ""  %>
 		
 		<div class="recipients_box">
-			<div class="current_recipients">
-				<div class="time_text">Add Recipient +</div>
-			</div>
-			<div class="all_recipients">
-				<div data-user-id="0" data-default="1">Everyone  </div>
-				<div data-user-id="2">aisdjsaijd asid i jasdijadsj  </div>
-				<div data-user-id="3">toreoitreot et  </div>
-				<div data-user-id="4">lfkhfglkhlfgkh flkgh  </div>
-				<div data-user-id="5">pgopdfgopdfgpo  </div>
-				<div data-user-id="6">dfjhg dfgl dfg  </div>
-				<div data-user-id="7">nianimainainiamiania ssssllslslsls</div>
-				<div data-user-id="8">trigtrig trig triggg</div>
-			</div>
+			<select class="all_recipients" name="recipient_list" data-placeholder="Add Recipient +" style="width:365px;" multiple="" tabindex="3">
+				<option value="0" selected="1">EVERYONE</option>
+				<option value="2">aisdjsaijd asid </option>
+				<option value="3">toreoitreot et  </option>
+				<option value="4">lfkhfglkhlfgkh fl</option>
+				<option value="5">pgopdfgopdfgpo  </option>
+				<option value="6">dfjhg dfgl dfg  </option>
+				<option value="7">nianimainainiamia</option>
+				<option value="8">trigtrig trig tri</option>
+			</select>
+			<a style="color:red; text-decoration:line-through;" href="http://www.youtube.com/watch?v=MrTsuvykUZk" title="hehehe" target="_blank">Who is everyone?</a>
 		</div>
 		<div class="actions">
           <%= f.submit "Update", :class =>"form_button", :id=>"news_update_button" %>
@@ -32,5 +30,16 @@
 <% end %>
 
 <script type="text/javascript">
-
+var jAllRecipients
+$(document).ready(function(){
+	jAllRecipients = $('select.all_recipients')
+	jAllRecipients.chosen({no_results_text: "Nobody with this name"})
+})
+// XXX
+$('#news_update_button').click(function(ev){
+	if( !jAllRecipients.val() || !jAllRecipients.val().length ){
+		alert("choose at least one recipient")
+		ev.preventDefault()
+	}
+})
 </script>
