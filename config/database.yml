@@ -38,7 +38,7 @@ test:
 #   username: dz
 #   password:
 
-caregaroo_dazl:
+caregaroodazl:
   adapter: postgresql
   encoding: utf8
   database:
