@@ -224,3 +224,19 @@ h4.event_view_name {
 form#new_event_comment.new_comment {
   display: none;
 }
+
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-widget {
+  font-family: Verdana,Arial,sans-serif;
+  font-size: 0.6em;
+}
+/* @end */
+
