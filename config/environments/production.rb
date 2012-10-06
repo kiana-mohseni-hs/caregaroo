@@ -15,7 +15,7 @@ Cg2App::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -46,9 +46,9 @@ Cg2App::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
-  # config.assets.precompile += %w( marketing.css bootstrap.css marketing.js)
-
+  config.assets.precompile += %w( jquery.fancybox-1.3.4.css marketing.css bootstrap.css )
+  config.assets.precompile += %w( jquery.fancybox-1.3.4.pack.js marketing.js )
+  
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
@@ -73,8 +73,8 @@ Cg2App::Application.configure do
   config.action_mailer.delivery_method = :smtp
   
   config.action_mailer.smtp_settings = {
-    :user_name => "Caregaroo",
-    :password => "L3tm31n!",
+    :user_name            => ENV['CAREGAROO_SMTP_U'],
+    :password             => ENV['CAREGAROO_SMTP_PW'],
     :domain => "caregaroo.com",
     :address => "smtp.sendgrid.net",
     :port => 587,
@@ -99,8 +99,5 @@ Cg2App::Application.configure do
     # config.fog_public     = false                                   # optional, defaults to true
     # config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
   end  
-  
-  # redisToGo
-  ENV["REDISTOGO_URL"] = 'redis://mwu:686749979ff3d80018c958ef2204cdc8@herring.redistogo.com:9294'
   
 end
