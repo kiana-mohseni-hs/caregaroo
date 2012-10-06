@@ -145,9 +145,9 @@ class EventsController < ApplicationController
   end
   
   def combine_datetime
-    params[:event][:start_at] = Timeliness.parse(params[:event][:start_at_date] << ' ' << params[:event][:start_at], :datetime, zone: :local)
+    params[:event][:start_at] = Timeliness.parse(params[:event][:start_at_date] << ' ' << params[:event][:start_at], :datetime, zone: :current)
     params[:event].delete(:start_at_date)
-    params[:event][:end_at] = Timeliness.parse(params[:event][:end_at_date] << ' ' << params[:event][:end_at], :datetime, zone: :local)
+    params[:event][:end_at] = Timeliness.parse(params[:event][:end_at_date] << ' ' << params[:event][:end_at], :datetime, zone: :current)
     params[:event].delete(:end_at_date)
   end
 end
