@@ -4,9 +4,9 @@ $(function() {
     var $this = $(this);
     $this.datepicker({ 'dateFormat': 'yy-mm-dd' });
 
-    if ($this.hasClass('start') || $this.hasClass('end')) {
-      $this.on('changeDate change', doDatepair);
-    }
+    // if ($this.hasClass('start') || $this.hasClass('end')) {
+    //   $this.on('changeDate change', doDatepair);
+    // }
 
   });
 
@@ -14,14 +14,14 @@ $(function() {
     var $this = $(this);
     var opts = { 'showDuration': true, 'timeFormat': 'g:ia', 'scrollDefaultNow': true };
 
-    if ($this.hasClass('start') || $this.hasClass('end')) {
-      opts.onSelect = doDatepair;
-    }
+    // if ($this.hasClass('start') || $this.hasClass('end')) {
+    //   opts.onSelect = doDatepair;
+    // }
 
     $this.timepicker(opts);
   });
 
-  $('.datepair').each(initDatepair);
+  // $('.datepair').each(initDatepair);
 
   function initDatepair()
   {
