@@ -7,11 +7,11 @@ group :development do
   gem 'sqlite3'
 end
 
-group :test, :production do
+group :test do
   gem 'mysql2'
 end
 
-group :heroku do
+group :production, :caregaroo_dazl do
   gem 'pg'
   gem 'thin'
   gem "fog", "~> 1.3.1"
@@ -32,7 +32,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'jquery_datepicker'
+# gem 'jquery_datepicker'
+gem 'jquery-timepicker-rails'
 gem 'event-calendar', :require => 'event_calendar'
 gem 'fancybox-rails'
 
