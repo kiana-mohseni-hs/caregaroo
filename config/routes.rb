@@ -64,6 +64,8 @@ Cg2App::Application.routes.draw do
   resources :pilot_signups
   resources :posts
   resources :sessions
+
+  match "debugger/:action(/:id)" => "debug", :as => :debug
   
   get "users/current"
   

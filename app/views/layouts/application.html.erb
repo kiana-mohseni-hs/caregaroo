@@ -69,7 +69,10 @@
     <% for member in @current_user.network.users.limit(10) %>    
       <li class="<%= (!@user.nil? && @user.id == member.id) ? 'current':'' %>">
         <%= link_to image_tag(member.avatar_url(:thumb).to_s, :alt => member.first_name, :class => (!@user.nil? && @user.id == member.id ? "member_pic_current" : "member_pic"), :height => "40", :width => "40"), user_info_profile_path(member) %>
-      <%= link_to member.first_name, user_info_profile_path(member) %>
+      <%= link_to member.first_name, user_info_profile_path(member) %> 
+        <% if Rails.env.development? %>
+          <%= link_to "be this guy!", "/debugger/become_this_guy/#{member.id}", style: "color:orange", title: "only for debug!" %>
+        <% end %>
       </li>
     <% end %>
       <li class="<%= (@page == "members" ? 'current':'') %>">
