@@ -1,4 +1,6 @@
 require 'resque_scheduler'
+# require 'resque'
+# Resque.after_fork = Proc.new { ActiveRecord::Base.establish_connection }
 
 # If you want to be able to dynamically change the schedule,
 # uncomment this line.  A dynamic schedule can be updated via the
@@ -21,8 +23,12 @@ Resque.schedule = YAML.load_file(Rails.root.join('config', 'resque_schedule.yml'
 # cnfg = dflt.merge(REDIS_CONFIG[Rails.env.to_sym].symbolize_keys) if REDIS_CONFIG[Rails.env.to_sym]
 # $redis = Redis.new(cnfg)
 
+# uri = URI.parse(ENV["REDISTOGO_URL"])
+# REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+# REDIS = Redis.new(:host => 'herring.redistogo.com', :port => '9294', :password => '686749979ff3d80018c958ef2204cdc8')
 uri = URI.parse(ENV["REDISTOGO_URL"])
 REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+Resque.redis = REDIS
 
 # To clear out the db before each test
 # $redis.flushdb if Rails.env = "test"
