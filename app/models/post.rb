@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy, order: "updated_at DESC"
   belongs_to :user
   has_one :event
+  has_many :post_recipients, :dependent => :destroy
   default_scope order("created_at desc")
   
   def not_an_event?

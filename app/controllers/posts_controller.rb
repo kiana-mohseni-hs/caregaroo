@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   
   def index
     @page = 'posts'
-    @posts = @current_user.network.posts.includes(:user).includes(:comments).order("updated_at DESC")
+    #@posts = @current_user.network.posts.includes(:user).includes(:comments).order("updated_at DESC")
+    @posts = @current_user.posts_visible_to_me.includes(:user).includes(:comments)
   end
 
   def edit
@@ -14,11 +15,23 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.network_id = @current_user.network_id
     @post.user_id = @current_user.id
+    @recipients = params[:recipient_list_condensed].split(',').map{|x| x.to_i}
 
     respond_to do |format|
-      if @post.save
-        # Resque.enqueue(NewsActivityMailer, @post.id)
-        format.html { redirect_to news_path }
+      Post.transaction do
+        if @recipients && @recipients.size > 0 && @post.save
+          # is rated E for Everyone?
+          if @recipients.include? 0
+            PostRecipient.create!(post_id: @post.id, user_id: 0)
+          else
+            @recipients.each do |user_id|
+              PostRecipient.create!(post_id: @post.id, user_id: user_id)
+            end
+            PostRecipient.create!(post_id: @post.id, user_id: @current_user.id)
+          end
+          # Resque.enqueue(NewsActivityMailer, @post.id)
+          format.html { redirect_to news_path }
+        end
       end
     end
   end
