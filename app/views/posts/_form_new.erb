@@ -30,10 +30,24 @@
 <% end %>
 
 <script type="text/javascript">
-var jAllRecipients
+var jAllRecipients, jAllRecipientsWas = [];
 $(document).ready(function(){
 	jAllRecipients = $('select.all_recipients')
-	jAllRecipients.chosen({no_results_text: "Nobody with this name"})
+	jAllRecipients.chosen({no_results_text: "Nobody with this name"}).change(function(ev,change){
+		var vals = jAllRecipients.val()
+		// Everyone must be removed if other was added.
+		if( vals && vals.length > 0 && vals[0] == "0" ){
+			jAllRecipients.children('[value="0"]').removeAttr('selected');
+			jAllRecipients.trigger("liszt:updated")
+		}
+		// if Everyone was select purge others.
+		if(change.selected == "0"){
+			jAllRecipients.val(["0"])
+			jAllRecipients.trigger("liszt:updated")
+			return 
+		}
+	})
+	jAllRecipientsWas = jAllRecipients.val()
 })
 // XXX
 $('#news_update_button').click(function(ev){
