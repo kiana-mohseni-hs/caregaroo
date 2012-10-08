@@ -10,7 +10,7 @@
 		<div class="recipients_box">
 			<!-- weird hack aroung  -->
 			<input type="hidden" name="recipient_list_condensed" id="recipient_list_condensed" value=""/>
-			<select class="all_recipients" name="recipient_list" data-placeholder="Add Recipient +" style="width:365px;" multiple="multiple">
+			<select class="all_recipients" name="recipient_list" data-placeholder=" " style="width:365px;" multiple="multiple">
 				<option value="0" selected="1">Everyone</option>
 				<% @current_user.network.users.each do |u| %>
 					<% if u.id != @current_user.id %>
@@ -30,24 +30,26 @@
 <% end %>
 
 <script type="text/javascript">
-var jAllRecipients, jAllRecipientsWas = [];
+var jAllRecipients;
 $(document).ready(function(){
 	jAllRecipients = $('select.all_recipients')
 	jAllRecipients.chosen({no_results_text: "Nobody with this name"}).change(function(ev,change){
-		var vals = jAllRecipients.val()
-		// Everyone must be removed if other was added.
-		if( vals && vals.length > 0 && vals[0] == "0" ){
-			jAllRecipients.children('[value="0"]').removeAttr('selected');
-			jAllRecipients.trigger("liszt:updated")
-		}
 		// if Everyone was select purge others.
 		if(change.selected == "0"){
 			jAllRecipients.val(["0"])
 			jAllRecipients.trigger("liszt:updated")
 			return 
 		}
+
+		var vals = jAllRecipients.val()
+		// Everyone must be removed if other was added.
+		if( vals && vals.length > 1 && vals[0] == "0" ){
+			jAllRecipients.children('[value="0"]').removeAttr('selected');
+			jAllRecipients.trigger("liszt:updated")
+			return
+		}
 	})
-	jAllRecipientsWas = jAllRecipients.val()
+	$('ul.chzn-choices').append('<li class="time_text" style="margin: 5px 0 0 -28px;">Add Recipients +</li>')
 })
 // XXX
 $('#news_update_button').click(function(ev){
