@@ -72,7 +72,4 @@ Cg2App::Application.configure do
     # config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
   end  
   
-  # redisToGo
-  ENV["REDISTOGO_URL"] = 'redis://mwu_staging:7cdd4369e4a3fd3f2eda729631a0cb5a@cod.redistogo.com:10260/'
-  
 end
