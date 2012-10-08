@@ -7,7 +7,7 @@ class DebugController < ApplicationController
   end
 
   def only_development
-  	unless Rails.env.development?
+  	unless ENV['DEV_MODE']
   		redirect_to "/"
   		return false
   	end
