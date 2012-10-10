@@ -11,12 +11,9 @@ group :test do
   gem 'mysql2'
 end
 
-group :production, :caregaroo_dazl do
-  gem 'pg'
-  gem 'thin'
-  gem "fog", "~> 1.3.1"
-end
-
+gem 'pg'
+gem 'thin'
+gem "fog", "~> 1.3.1"
 
 group :assets do
   #gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
