@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', "~> 3.2.8"
 gem 'bcrypt-ruby'
 
 group :development do
