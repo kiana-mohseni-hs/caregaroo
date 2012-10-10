@@ -45,3 +45,6 @@ end
 gem 'backbone-on-rails'
 gem 'jbuilder'
 gem 'validates_timeliness', '~> 3.0'
+
+# speed up asset precompile
+gem 'turbo-sprockets-rails3'
