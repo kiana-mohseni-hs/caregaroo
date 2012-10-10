@@ -7,10 +7,6 @@ group :development do
   gem 'sqlite3'
 end
 
-group :test do
-  gem 'mysql2'
-end
-
 gem 'pg'
 gem 'thin'
 gem "fog", "~> 1.3.1"
