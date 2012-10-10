@@ -46,5 +46,5 @@ gem 'backbone-on-rails'
 gem 'jbuilder'
 gem 'validates_timeliness', '~> 3.0'
 
-# speed up asset precompile
-gem 'turbo-sprockets-rails3'
+# TODO speed up asset precompile -- need to install rake task and test it
+# gem 'turbo-sprockets-rails3'
