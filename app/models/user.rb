@@ -93,6 +93,15 @@ class User < ActiveRecord::Base
     (first_name || "") + ' ' + (last_name || "")
   end
   
+  def role
+    affiliations.find_by_network_id(network_id).role
+  end
+
+  def network_relationship
+    affiliations.find_by_network_id(network_id).relationship
+  end
+
+  
 =begin  
   attr_writer :current_step
   
