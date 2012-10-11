@@ -99,6 +99,5 @@ Cg2App::Application.configure do
     # config.fog_public     = false                                   # optional, defaults to true
     # config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
   end  
-  
-  ENV['REDISTOGO_URL']='redis://mwu:686749979ff3d80018c958ef2204cdc8@herring.redistogo.com:9294'  
+    
 end
