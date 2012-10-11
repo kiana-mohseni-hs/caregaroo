@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_one :event
   has_many :post_recipients, :dependent => :destroy
+  has_many :recipients, :through => :post_recipients, :source => :user
   default_scope order("created_at desc")
   
   def not_an_event?
