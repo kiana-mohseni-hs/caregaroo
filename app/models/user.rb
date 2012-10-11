@@ -93,12 +93,16 @@ class User < ActiveRecord::Base
     (first_name || "") + ' ' + (last_name || "")
   end
   
+  def current_affiliation
+    affiliations.find_by_network_id(network_id)
+  end
+  
   def role
-    affiliations.find_by_network_id(network_id).role
+    current_affiliation.role
   end
 
   def network_relationship
-    affiliations.find_by_network_id(network_id).relationship
+    current_affiliation.relationship
   end
 
   
