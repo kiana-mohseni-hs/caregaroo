@@ -20,14 +20,15 @@ class User < ActiveRecord::Base
   has_many :messages, through: :recipients
   has_one  :profile
   has_one  :notification
-  has_many :posts, class_name: "Post", finder_sql: Proc.new {
-      %Q{
-        SELECT DISTINCT *
-        FROM posts p
-        WHERE p.network_id = #{network_id}
-        ORDER BY p.created_at DESC 
-      }
-  }
+  # has_many :posts, class_name: "Post", finder_sql: Proc.new {
+  #     %Q{
+  #       SELECT DISTINCT *
+  #       FROM posts p
+  #       WHERE p.network_id = #{network_id}
+  #       ORDER BY p.created_at DESC 
+  #     }
+  # }
+  has_many :posts, uniq: true, order: 'created_at DESC'
   has_many :latest_messages, :class_name => "Message", :finder_sql => Proc.new {
       %Q{
         SELECT MAX(id), * FROM messages WHERE folder_id in 
