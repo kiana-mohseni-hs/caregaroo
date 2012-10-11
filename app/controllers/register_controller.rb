@@ -23,7 +23,7 @@ class RegisterController < ApplicationController
   # create community network from marketing page
   def create_min
     @network = Network.new(:network_for_who => params[:network_for_who], 
-                           :network_name => params[:network_for_who] + '\'s Network')
+                           :name => params[:network_for_who] + '\'s Network')
     @network.users.build
     user = User.new(:role => User::ROLES["initiator"], 
                     :email => params[:email],

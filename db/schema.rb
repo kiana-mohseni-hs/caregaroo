@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011010648) do
+ActiveRecord::Schema.define(:version => 20121011232258) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "relationship"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20121011010648) do
   end
 
   create_table "networks", :force => true do |t|
-    t.string   "network_name"
+    t.string   "name"
     t.string   "network_for_who"
     t.integer  "host_user_id"
     t.datetime "created_at"

@@ -42,7 +42,7 @@
       <div id="CoC_frame">
   <%= image_tag !@current_user.network.nil? ? current_user.network.avatar_url(:thumb).to_s : "photo_place_holder.png", :height => "50", :width => "50", :style => "float:left;padding-right:5px" %>
         <div id="CoC_right">
-        <p id="CoC_name"><%= @current_user.network.network_name %></p>
+        <p id="CoC_name"><%= @current_user.network.name %></p>
         </div>
         <div class="clear"></div>
       </div>

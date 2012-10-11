@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, 
-                  :network_id, :role, :avatar, :notification_attributes, :profile_attributes, :in_first_stage
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, 
+                  :network_id, :avatar, :notification_attributes, :profile_attributes, :in_first_stage
   has_secure_password
   validates :email, :presence => true, :email_format => true, :uniqueness => true
   validates_presence_of :password, :on => :create
   validates_length_of :password, :minimum => 6, :on => :create
 
-  validates_presence_of :network_relationship, :unless => :in_first_stage?
+  # validates_presence_of :network_relationship, :unless => :in_first_stage?
   validates_presence_of :first_name, :unless => :in_first_stage?
   validates_presence_of :last_name, :unless => :in_first_stage?
   # validates_presence_of :password_confirmation, :on => :create, :unless => :in_first_stage?
@@ -20,14 +20,6 @@ class User < ActiveRecord::Base
   has_many :messages, through: :recipients
   has_one  :profile
   has_one  :notification
-  # has_many :posts, class_name: "Post", finder_sql: Proc.new {
-  #     %Q{
-  #       SELECT DISTINCT *
-  #       FROM posts p
-  #       WHERE p.network_id = #{network_id}
-  #       ORDER BY p.created_at DESC 
-  #     }
-  # }
   has_many :posts, uniq: true, order: 'created_at DESC'
   has_many :latest_messages, :class_name => "Message", :finder_sql => Proc.new {
       %Q{

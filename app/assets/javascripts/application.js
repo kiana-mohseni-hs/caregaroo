@@ -69,7 +69,7 @@ $(function() {
     
     // input box focus on page load
 	$('#session_email').focus();
-	$('#network_network_name').focus();
+	$('#network_name').focus();
 	$('#invitation_email').focus();
 	$('#signup_email').focus();
 
