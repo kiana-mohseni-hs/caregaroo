@@ -12,13 +12,15 @@ class User < ActiveRecord::Base
   # validates_presence_of :password_confirmation, :on => :create, :unless => :in_first_stage?
   attr_accessor :first_stage
   
-  belongs_to :network, :class_name => "Network", :foreign_key => "network_id"
+  has_many :affiliations
+  has_many :networks, through: :affiliations
+  belongs_to :network
   has_many :invitations
   has_many :recipients
-  has_many :messages, :through => :recipients
-  has_one :profile
-  has_one :notification
-  has_many :posts, :class_name => "Post", :finder_sql => Proc.new {
+  has_many :messages, through: :recipients
+  has_one  :profile
+  has_one  :notification
+  has_many :posts, class_name: "Post", finder_sql: Proc.new {
       %Q{
         SELECT DISTINCT *
         FROM posts p
