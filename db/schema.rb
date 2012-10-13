@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005192624) do
+ActiveRecord::Schema.define(:version => 20121011232258) do
+
+  create_table "affiliations", :force => true do |t|
+    t.string   "relationship"
+    t.integer  "network_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "role"
+  end
+
+  add_index "affiliations", ["network_id"], :name => "index_affiliations_on_network_id"
+  add_index "affiliations", ["user_id"], :name => "index_affiliations_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -80,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20121005192624) do
   end
 
   create_table "networks", :force => true do |t|
-    t.string   "network_name"
+    t.string   "name"
     t.string   "network_for_who"
     t.integer  "host_user_id"
     t.datetime "created_at"
@@ -160,11 +172,9 @@ ActiveRecord::Schema.define(:version => 20121005192624) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.string   "network_relationship"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "network_id"
-    t.string   "role"
     t.string   "avatar"
   end
 
