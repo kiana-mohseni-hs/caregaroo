@@ -18,7 +18,6 @@
 					<% end %>
 				<% end %>
 			</select>
-			<a style="color:red; text-decoration:line-through;" href="http://www.youtube.com/watch?v=MrTsuvykUZk" title="hehehe" target="_blank">Who is everyone?</a>
 		</div>
 		<div class="actions">
           <%= f.submit "Update", :class =>"form_button", :id=>"news_update_button" %>
@@ -49,7 +48,7 @@ $(document).ready(function(){
 			return
 		}
 	})
-	$('ul.chzn-choices').append('<li class="time_text" style="margin: 5px 0 0 -28px;">Add Recipients +</li>')
+	$('ul.chzn-choices').append('<li class="add_hint" style="margin: 5px 0 0 -28px;">+ Add Recipients</li>')
 })
 // XXX
 $('#news_update_button').click(function(ev){
