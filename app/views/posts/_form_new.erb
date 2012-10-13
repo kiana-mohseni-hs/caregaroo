@@ -1,9 +1,62 @@
 <%= form_for Post.new do |f| %>
-  <div class="field">
-    <%= f.text_area :content, :placeholder => "Share news about #{current_user.network.network_name}", :class => "post_textarea", :required => "required"  %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Update", :class =>"form_button", :style => "margin-left:380px;", :id=>"news_update_button" %>
+  <div id="new_news_wrapper" class="field">
+  	<div class="col_a">
+  		<%= image_tag (current_user.avatar_url(:thumb).to_s or "photo_place_holder.png"), :alt => current_user.try(:first_name), :height => "50", :width => "50" %>
+ 	</div>
+    <div class="col_b">
+		
+			<%= f.text_area :content, :placeholder => "Share news about #{current_user.network.network_name}", :class => "post_textarea", :required => "required", :cols => "", :style => ""  %>
+		
+		<div class="recipients_box">
+			<!-- weird hack aroung  -->
+			<input type="hidden" name="recipient_list_condensed" id="recipient_list_condensed" value=""/>
+			<select class="all_recipients" name="recipient_list" data-placeholder=" " style="width:365px;" multiple="multiple">
+				<option value="0" selected="1">Everyone</option>
+				<% @current_user.network.users.each do |u| %>
+					<% if u.id != @current_user.id %>
+						<option value="<%= u.id %>"><%= u.name %></option>
+					<% end %>
+				<% end %>
+			</select>
+		</div>
+		<div class="actions">
+          <%= f.submit "Update", :class =>"form_button", :id=>"news_update_button" %>
+        </div>
+    </div>
+    <div class="clear"></div>
   </div>
   <hr color="#cccccc"/>
 <% end %>
+
+<script type="text/javascript">
+var jAllRecipients;
+$(document).ready(function(){
+	jAllRecipients = $('select.all_recipients')
+	jAllRecipients.chosen({no_results_text: "Nobody with this name"}).change(function(ev,change){
+		// if Everyone was select purge others.
+		if(change.selected == "0"){
+			jAllRecipients.val(["0"])
+			jAllRecipients.trigger("liszt:updated")
+			return 
+		}
+
+		var vals = jAllRecipients.val()
+		// Everyone must be removed if other was added.
+		if( vals && vals.length > 1 && vals[0] == "0" ){
+			jAllRecipients.children('[value="0"]').removeAttr('selected');
+			jAllRecipients.trigger("liszt:updated")
+			return
+		}
+	})
+	$('ul.chzn-choices').append('<li class="add_hint" style="margin: 5px 0 0 -28px;">+ Add Recipients</li>')
+})
+// XXX
+$('#news_update_button').click(function(ev){
+	if( !jAllRecipients.val() || !jAllRecipients.val().length ){
+		alert("choose at least one recipient")
+		ev.preventDefault()
+	} else {
+		$('#recipient_list_condensed').val( jAllRecipients.val().join(',') )
+	}
+})
+</script>
