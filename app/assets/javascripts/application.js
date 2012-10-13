@@ -7,7 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require jquery-ui-timepicker.js
+//= require jquery.timepicker.js
 //= require jquery.fancybox-1.3.4.pack.js
 //= require jquery.purr.js
 //= require jquery.hint-with-password.js
@@ -18,6 +18,7 @@
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-23336907-1']);
+_gaq.push(['_setDomainName', 'caregaroo.com']);
 _gaq.push(['_trackPageview']);
 
 (function() {

@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_filter :require_user
   before_filter :set_page
   before_filter :prepare_for_mobile, except: [:create]
+  before_filter :combine_datetime, only: [:create, :update]
   
   def index
     visible_events = @current_user.network.events.visible.order("start_at")
@@ -88,8 +89,8 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.updater = @current_user
-
+    params[:event][:updated_by_id] = @current_user.id
+    
     respond_to do |format|
       if @event.update_attributes(params[:event])
           format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
@@ -141,5 +142,12 @@ class EventsController < ApplicationController
   
   def set_page
     @page = 'events'
+  end
+  
+  def combine_datetime
+    params[:event][:start_at] = Timeliness.parse(params[:event][:start_at_date] << ' ' << params[:event][:start_at], :datetime, zone: :current)
+    params[:event].delete(:start_at_date)
+    params[:event][:end_at] = Timeliness.parse(params[:event][:end_at_date] << ' ' << params[:event][:end_at], :datetime, zone: :current)
+    params[:event].delete(:end_at_date)
   end
 end

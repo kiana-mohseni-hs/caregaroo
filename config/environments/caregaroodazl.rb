@@ -46,6 +46,7 @@ Cg2App::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  # config.assets.precompile += %w( search.js )
   config.assets.precompile += %w( jquery.fancybox-1.3.4.css marketing.css bootstrap.css )
   config.assets.precompile += %w( jquery.fancybox-1.3.4.pack.js marketing.js )
   
@@ -67,18 +68,18 @@ Cg2App::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   # custom
-  config.action_mailer.default_url_options = { :host => "www.caregaroo.com" }
+  config.action_mailer.default_url_options = { :host => "caregaroo-dazl.herokuapp.com" }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   
   config.action_mailer.smtp_settings = {
-    :user_name            => ENV['CAREGAROO_SMTP_U'],
-    :password             => ENV['CAREGAROO_SMTP_PW'],
-    :domain => "caregaroo.com",
-    :address => "smtp.sendgrid.net",
-    :port => 587,
-    :authentication => :plain,
+    :address              => "smtp.gmail.com",
+    :port                 => "587",
+    :domain               => "caregaroo.com",
+    :user_name            => ENV['CAREGAROO_DAZL_SMTP_U'],
+    :password             => ENV['CAREGAROO_DAZL_SMTP_PW'],
+    :authentication       => "login",
     :enable_starttls_auto => true
   }
   
@@ -88,17 +89,17 @@ Cg2App::Application.configure do
     config.storage = :fog
     config.fog_credentials = {
       :provider               => 'AWS',       # required
-      :aws_access_key_id      => ENV['CAREGAROO_S3_KEY'],       # required
-      :aws_secret_access_key  => ENV['CAREGAROO_S3_SECRET'],       # required
+      :aws_access_key_id      => ENV['CAREGAROO_DAZL_S3_KEY'],       # required
+      :aws_secret_access_key  => ENV['CAREGAROO_DAZL_S3_SECRET'],       # required
       # :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'
     }
 
-    config.fog_directory  = 'cg2prod'                     # required
+    config.fog_directory  = 'dazl'                     # required
 
     # config.fog_host       = 'https://assets.example.com'            # optional, defaults to nil
     # config.fog_public     = false                                   # optional, defaults to true
     # config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
-  end  
+  end
   
   Resque.inline = true
 end

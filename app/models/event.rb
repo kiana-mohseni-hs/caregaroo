@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
                   :canceled
   
   scope :visible, where(canceled: false)
-  scope :future, where(['start_at >= ?', Time.now.beginning_of_day])
+  scope :future, where(['start_at >= ?', Time.zone.now.beginning_of_day])
   
   scope :start_before_date, lambda { |date|  where(['start_at <= ?', date.beginning_of_day])  }
   scope :end_after_date, lambda { |date|  where(['end_at > ?', date.beginning_of_day])  }

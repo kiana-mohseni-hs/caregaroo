@@ -21,18 +21,33 @@ test:
     password: root
     socket: /var/run/mysqld/mysqld.sock
     
-production:
-    adapter: mysql2
-    encoding: utf8
-    database: cg2
-    pool: 5
-    username: root
-    password: root
-    socket: /var/run/mysqld/mysqld.sock
 
-heroku:
-    adapter: postgresql
-    encoding: unicode
-    database:
-    username:
-    password:
+# EVERYTHING ON pg
+
+# development:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: cg2_development
+#   username: dz
+#   password: 
+
+# test:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: cg2_test
+#   username: dz
+#   password:
+
+caregaroodazl:
+  adapter: postgresql
+  encoding: utf8
+  database:
+  username:
+  password:
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database:
+  username:
+  password:
