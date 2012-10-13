@@ -17,6 +17,7 @@ class RegisterController < ApplicationController
   def index
     @network = Network.new
     @network.users.build
+    @network.affiliations.build
     render :action => "index", :layout => "app_no_nav"
   end
   
@@ -47,12 +48,13 @@ class RegisterController < ApplicationController
   # create community network
   def create
     @network = Network.new(params[:network])
-    @network.users.first.role = User::ROLES["initiator"]
     if (params[:notification])
       @network.users.first.notification = Notification.new(:announcement => true, :post_update => true)
     end
     
     if @network.save
+      @network.users.first.update_attribute( :network_id, @network.id)
+      @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: @network.users.first.id })
       cookies[:auth_token] = @network.users.first.auth_token
       Resque.enqueue(WelcomeMailer, @network.users.first.id)
       redirect_to register_success_path

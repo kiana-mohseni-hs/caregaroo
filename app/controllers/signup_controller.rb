@@ -14,6 +14,7 @@ class SignupController < ApplicationController
       @user.last_name = @invitations.last_name 
       render "signup_form", :layout => "app_no_nav"
     else
+      logger.debug "#{params[:invitation_token]} will not do, that gives #{@invitations.send_id}"
       redirect_to :root
     end
     
