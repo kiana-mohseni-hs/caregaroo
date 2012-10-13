@@ -96,4 +96,5 @@ Cg2App::Application.configure do
     config.fog_directory  = 'cg2staging'                     # required
   end  
   
+  Resque.inline = true
 end

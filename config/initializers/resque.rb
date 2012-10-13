@@ -23,9 +23,6 @@ Resque.schedule = YAML.load_file(Rails.root.join('config', 'resque_schedule.yml'
 # cnfg = dflt.merge(REDIS_CONFIG[Rails.env.to_sym].symbolize_keys) if REDIS_CONFIG[Rails.env.to_sym]
 # $redis = Redis.new(cnfg)
 
-# uri = URI.parse(ENV["REDISTOGO_URL"])
-# REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
-# REDIS = Redis.new(:host => 'herring.redistogo.com', :port => '9294', :password => '686749979ff3d80018c958ef2204cdc8')
 uri = URI.parse(ENV["REDISTOGO_URL"])
 REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 Resque.redis = REDIS
