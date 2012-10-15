@@ -45,10 +45,6 @@ class User < ActiveRecord::Base
   before_create { 
     generate_token(:auth_token) 
   }
-
-  def posts_visible_to_me
-    Post.joins(:post_recipients).where("post_recipients.user_id = 0 OR post_recipients.user_id = #{self.id}")
-  end
   
   def in_first_stage?
     first_stage
