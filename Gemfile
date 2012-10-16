@@ -1,22 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', "~> 3.2.8"
 gem 'bcrypt-ruby'
 
 group :development do
   gem 'sqlite3'
 end
 
-group :test do
-  gem 'mysql2'
-end
-
-group :production, :caregaroo_dazl do
-  gem 'pg'
-  gem 'thin'
-  gem "fog", "~> 1.3.1"
-end
-
+gem 'pg'
+gem 'thin'
+gem "fog", "~> 1.3.1"
 
 group :assets do
   #gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
@@ -52,3 +45,6 @@ end
 gem 'backbone-on-rails'
 gem 'jbuilder'
 gem 'validates_timeliness', '~> 3.0'
+
+# TODO speed up asset precompile -- need to install rake task and test it
+# gem 'turbo-sprockets-rails3'
