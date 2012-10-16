@@ -70,6 +70,7 @@
 	width: 100%;
 	height: 100%;
 	background: #fff;
+	border: 1px #DDD solid;
 }
 
 #fancybox-content {
@@ -194,7 +195,7 @@
 	height: 20px;
 	z-index: 1001;
 }
-
+/* From Kiana's mockups no shadow should be applied 
 #fancybox-bg-n {
 	top: -20px;
 	left: 0;
@@ -252,6 +253,7 @@
 	background-image: url('fancybox.png');
 	background-position: -40px -122px;
 }
+*/
 
 #fancybox-title {
 	font-family: Helvetica;

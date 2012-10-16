@@ -32,6 +32,7 @@
 					<li><%= link_to "BLOG", "http://blog.caregaroo.com/" %></li>
 					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">HELP</a></li>
 	                <li><form action="/login" method="get"><button class="btn btn-warning" type="submit" id="register_submit pull-right">Sign in</button></form></li>
+	                <li><a href="#join-popup" class="frustration-popup-link"><button class="btn btn-warning" type="button">Join a Network</button></a></li>
 				</ul>
 		      </div>
 		    </div>
@@ -54,5 +55,26 @@
 		  	</div>
 	 	</div>
 	</div>
+
+	<div style="display:none;">
+		<div id="join-popup">
+			<h1>Want to join someone's network?</h1>
+			<center>
+				<p>Caregaroo networks are private, if you want to join someone's network ask them to send you an invite.</p>
+				<p><a target="_blank" href="https://caregaroo.zendesk.com/entries/22133826-how-do-i-find-and-join-someone-s-network">Learn more...</a></p>
+					<br>
+					<a href="javascript:$.fancybox.close()" ><button class="btn btn-warning" type="button">OK</button></a>
+			</center>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$('.frustration-popup-link').fancybox({
+		autoDimensions: false,
+		width: 400,
+		height: 200,
+		overlayColor: "#FFF",
+		opacity: 0.8,
+	});
+	</script>
 </body>
 </html>
