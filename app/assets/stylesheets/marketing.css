@@ -62,3 +62,27 @@
     position: relative;
     top: 5px;
 }
+
+.navbar .nav > li > a.frustration-popup-link{
+	padding-top: 0;
+}
+
+#fancybox-content{
+	padding: 10px !important;
+}
+
+#fancybox-content h1{
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 27px;
+}
+
+#fancybox-content p{
+	padding: 0;
+	margin-bottom: 5px;
+	width: 90%;
+	text-align: left;
+}
+
+
+
