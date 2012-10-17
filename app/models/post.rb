@@ -18,5 +18,9 @@ class Post < ActiveRecord::Base
   def self.visible_to user
     joins(:post_recipients).where("post_recipients.user_id = 0 OR post_recipients.user_id = #{user.id}")
   end
+
+  def self.open_
+    joins(:post_recipients).where("post_recipients.user_id = 0")
+  end
   
 end
