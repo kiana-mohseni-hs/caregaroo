@@ -46,5 +46,7 @@ gem 'backbone-on-rails'
 gem 'jbuilder'
 gem 'validates_timeliness', '~> 3.0'
 
+gem 'detect_timezone_rails'
+
 # TODO speed up asset precompile -- need to install rake task and test it
 # gem 'turbo-sprockets-rails3'

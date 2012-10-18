@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014003548) do
+ActiveRecord::Schema.define(:version => 20121018205336) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(:version => 20121014003548) do
     t.integer  "network_id"
     t.string   "role"
     t.string   "avatar"
+    t.string   "time_zone",              :limit => 32, :default => "Pacific Time (US & Canada)"
   end
 
 end

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, 
-                  :network_id, :role, :avatar, :notification_attributes, :profile_attributes, :in_first_stage
+                  :network_id, :role, :avatar, :notification_attributes, :profile_attributes, :in_first_stage,
+                  :time_zone
   has_secure_password
   validates :email, :presence => true, :email_format => true, :uniqueness => true
   validates_presence_of :password, :on => :create

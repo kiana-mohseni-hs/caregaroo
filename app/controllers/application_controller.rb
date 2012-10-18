@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
       return false
     end
+
+    Time.zone = @current_user.time_zone if @current_user.time_zone
   end
   
   def require_user_admin
