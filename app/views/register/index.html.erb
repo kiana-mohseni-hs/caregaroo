@@ -17,6 +17,13 @@
 	  	</div>
 	  	<br/><br/>
 		<%= f.fields_for :users do |u| %>
+			<!-- hidden timezone pick -->
+		  	<div style="display:none;">
+		  		<%= u.time_zone_select( 'time_zone', [], :default => 10) %>
+		  		<script type="text/javascript">
+		  			CG2.TimeZone.setSelect('#network_users_attributes_0_time_zone')
+		  		</script>
+		  	</div>
 			<div class="clear_format">
 			<%= image_tag "num2.jpg", :alt => "Step 2", :class=>"num_icon" %>  		
 		    <%= u.label :email, "Your email", :class=>"right_text_with_icon label_space" %>

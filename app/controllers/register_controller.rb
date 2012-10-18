@@ -20,27 +20,31 @@ class RegisterController < ApplicationController
     render :action => "index", :layout => "app_no_nav"
   end
   
-  # create community network from marketing page
+  # redirect from home, present final step to build network
   def create_min
+    network_name = params[:network_for_who] 
+    network_name += "'s Network" unless params[:network_for_who].blank?
     @network = Network.new(:network_for_who => params[:network_for_who], 
-                           :network_name => params[:network_for_who] + '\'s Network')
+                           :network_name => network_name)
     @network.users.build
     user = User.new(:role => User::ROLES["initiator"], 
                     :email => params[:email],
                     :password => params[:password], 
                     :network_relationship => "Coordinator",
-                    :first_name => "Guest")                                    
+                    :first_name => "")                                    
     user.first_stage = true
     user.notification = Notification.new(:announcement => true, :post_update => true)
+    user.time_zone = "Hawaii"
     @network.users[0] = user
             
-    if @network.save
-      cookies[:auth_token] = @network.users.first.auth_token
-      Resque.enqueue(WelcomeMailer, @network.users.first.id)
-      redirect_to register_success_path
-    else
+    # let's not create from here anymore so we can detect the timezone
+    #if @network.save
+    #  cookies[:auth_token] = @network.users.first.auth_token
+    #  Resque.enqueue(WelcomeMailer, @network.users.first.id)
+    #  redirect_to register_success_path
+    #else
       render :action => "index", :layout => "app_no_nav"
-    end
+    #end
 
   end
   
