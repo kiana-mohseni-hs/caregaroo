@@ -23,12 +23,12 @@ class MembersController < ApplicationController
       if !@user.nil?
         @name = @user.first_name
         if params[:checked] == 'true'
-          @user.role = User::ROLES["coordinator"] 
-          if @user.save
+          @user.current_affiliation.role = User::ROLES["coordinator"] 
+          if @user.current_affiliation.save
             @message = "has become a coordinator."
           end
         else
-          @user.role = ''
+          @user.current_affiliation.role = ''
           if @user.save
             @message = "is no longer a coordinator."
           end

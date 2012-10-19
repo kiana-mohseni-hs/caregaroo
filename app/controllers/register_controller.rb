@@ -28,12 +28,11 @@ class RegisterController < ApplicationController
     @network = Network.new(:network_for_who => params[:network_for_who], 
                            :name => network_name)
     @network.users.build
-    user = User.new(:role => User::ROLES["initiator"], 
-                    :email => params[:email],
+    @network.affiliations.build( role: User::ROLES["initiator"],
+                                 relationship: "Coordinator" )
+    user = User.new(:email => params[:email],
                     :password => params[:password], 
-                    :network_relationship => "Coordinator",
-                    :first_name => "")                                    
-    user.first_stage = true
+                    :first_name => "")
     user.notification = Notification.new(:announcement => true, :post_update => true)
     user.time_zone = "Hawaii"
     @network.users[0] = user
