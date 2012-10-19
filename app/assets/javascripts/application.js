@@ -14,6 +14,7 @@
 //= require jquery.autosize-min.js
 //= require fancybox
 //= require chosen.jquery.min.js
+//= require detect_timezone
 //= require_tree ./app
 
 var _gaq = _gaq || [];

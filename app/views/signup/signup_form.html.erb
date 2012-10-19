@@ -12,6 +12,13 @@
 		<p style="padding-bottom:10px">Caregaroo is a secure private network to share news, coordinate activities and say thanks to those who help care for loved ones.</p>
 	  	<p>Create your account:</p><br/>
 	  	
+	  	<!-- hidden timezone pick -->
+	  	<div style="display:none;">
+	  		<%= time_zone_select( "user", 'time_zone', [], :default => "Pacific Time (US & Canada)") %>
+	  		<script type="text/javascript">
+	  		CG2.TimeZone.setSelect()
+	  		</script>
+	  	</div>
 	  	<div style="font-size:12px">
 		    <%= f.label :email %>
 		    <%= f.text_field :email, :size => 35, :id => 'signup_email', :autocomplete => 'off' %><br/><br/>

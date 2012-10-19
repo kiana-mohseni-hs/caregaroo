@@ -57,6 +57,8 @@ GEM
     compass_twitter_bootstrap (2.0.3)
       compass
     daemons (1.1.9)
+    detect_timezone_rails (0.0.3)
+      railties (~> 3.1)
     eco (1.0.0)
       coffee-script
       eco-source
@@ -199,6 +201,7 @@ DEPENDENCIES
   coffee-rails
   compass-rails
   compass_twitter_bootstrap
+  detect_timezone_rails
   event-calendar
   fancy-buttons
   fancybox-rails
