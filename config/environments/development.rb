@@ -58,6 +58,4 @@ Cg2App::Application.configure do
     config.storage = :file
   end
   
-  ENV["REDISTOGO_URL"] = 'redis://localhost:6379'
-  
 end

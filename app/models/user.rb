@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :networks, through: :affiliations
   belongs_to :network
   has_many :invitations
+  has_many :post_recipients
+  #has_many :posts_visible, :through => :post_recipients, :source => :post
   has_many :recipients
   has_many :messages, through: :recipients
   has_one  :profile

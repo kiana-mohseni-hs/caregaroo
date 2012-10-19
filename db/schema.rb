@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011232258) do
+ActiveRecord::Schema.define(:version => 20121014003548) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "relationship"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20121011232258) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
-    t.string   "content"
+    t.text     "content",    :limit => 3000
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "post_id"
@@ -122,9 +122,16 @@ ActiveRecord::Schema.define(:version => 20121011232258) do
     t.datetime "updated_at"
   end
 
+  create_table "post_recipients", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "posts", :force => true do |t|
     t.string   "name"
-    t.string   "content",    :limit => 1000
+    t.text     "content",    :limit => 3000
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "network_id"

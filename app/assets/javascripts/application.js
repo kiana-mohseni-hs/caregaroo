@@ -13,6 +13,7 @@
 //= require jquery.hint-with-password.js
 //= require jquery.autosize-min.js
 //= require fancybox
+//= require chosen.jquery.min.js
 //= require_tree ./app
 
 var _gaq = _gaq || [];

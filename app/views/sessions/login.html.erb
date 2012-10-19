@@ -17,7 +17,7 @@
 		    <%= f.label :password %>
 		    <%= f.password_field :password, :size=>35, :autocomplete => 'off' %>
 		</div>
-		<a href="password_resets" style="TEXT-DECORATION: NONE"><span class="orange_text" >Forgotten password?</span></a>
+		<a href="password_resets" style="TEXT-DECORATION: NONE"><span class="orange_text" >Forgot password?</span></a>
 		<div class="field">
 		    <%= f.check_box :remember_me %>
 		    <%= label_tag :remember_me, nil, :class=>"follow cb_label" %>
@@ -29,12 +29,21 @@
 	     </div>
 	<% end %>
 	</div>
+	<div id="login_box_middle">
+		<div>
+			<h3>Create a new network</h3>
+			<p>Create a private network for a loved one and the members of their care circle. Share news, coordinate activities and get the support you need.</p>
+			<%= form_for @session, :url => register_path, :method => :get, :html => { :id => 'register_form' } do |f| %>
+			    <div style="float:right"><%= submit_tag "Create Network", :class =>"form_button", :id=>"register_button"%></div>
+			<% end %>
+		</div>
+	</div>
 	<div id="login_box_right">
-		<h3>Don't have an account</h3>
-		<p>Sign up and create a network around your loved one to share news, feel connected and get help</p>
-		<%= form_for @session, :url => register_path, :method => :get, :html => { :id => 'register_form' } do |f| %>
-		    <div style="float:right"><%= submit_tag "Sign-up", :class =>"form_button", :id=>"register_button"%></div>
-		<% end %>
+		<div>
+			<h3>Join someone's network</h3>
+			<p>Want to join an existing network? Caregaroo networks are private, if you want to join someone's network ask them to send you an invite.</p>
+			<p style="text-align:right;"><a target="_blank" href="https://caregaroo.zendesk.com/entries/22133826-how-do-i-find-and-join-someone-s-network">Learn more...</a></p>
+		</div>
 	</div>
 
 </div>

@@ -3,7 +3,7 @@ require 'resque_scheduler/tasks'
 
 task :schedule_and_work do
   if Process.fork
-    sh "rake environment resque:work"
+    sh "rake resque:work QUEUE='*'"
   else
     sh "rake resque:scheduler"
     Process.wait

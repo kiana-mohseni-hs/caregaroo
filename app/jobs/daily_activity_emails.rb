@@ -18,17 +18,24 @@ module DailyActivityEmails
         user_list = {}
         members = User.joins(:notification).where("users.network_id = ? and notifications.post_update = ?", n.id, true)
         
+        #gather all the members
         members.each do |m|
-          user_list[m.email] = {:first_name => m.first_name, :last_name => m.last_name}
+          # filter for visible posts for this user
+          ps = m.network.posts.visible_to(m).where(:created_at => start_time..end_time).select {|p| p.content.present?}
+          user_list[m.email] = {:first_name => m.first_name, :last_name => m.last_name, :posts=> ps}
         end
         
+        #gather all the invited's
         invitations = Invitation.where(:network_id => n.id)
         invitations.each do |m|
-            user_list[m.email] = {:first_name => m.first_name, :last_name => m.last_name, :token => m.token}
+          #filter for public posts
+          ps = n.posts.open_.where(:created_at => start_time..end_time).select {|p| p.content.present?}
+          user_list[m.email] = {:first_name => m.first_name, :last_name => m.last_name, :token => m.token, :posts=> ps}
         end
 
         user_list.each do |email, u|
-          UserMailer.daily_news_activity(posts, email, u[:first_name], u[:last_name], n.network_for_who, u[:token]).deliver
+          # puts ">> Would be sending #{u[:posts].size} to #{email} #{u[:token] ? 'invite' : 'member'}"
+          UserMailer.daily_news_activity(u[:posts], email, u[:first_name], u[:last_name], n.network_for_who, u[:token]).deliver
         end
         
       end
