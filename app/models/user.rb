@@ -89,12 +89,12 @@ class User < ActiveRecord::Base
 
 # the following two methods should be commented out until the 
 # PopulateAffiliations migration has been run
-  # def role
-  #   current_affiliation.role
-  # end
-  # 
-  # def network_relationship
-  #   current_affiliation.relationship
-  # end
+  def role
+    current_affiliation.role
+  end
+
+  def network_relationship
+    current_affiliation.relationship
+  end
 
 end
