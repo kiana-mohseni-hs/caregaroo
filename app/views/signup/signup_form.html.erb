@@ -30,10 +30,8 @@
         <%= f.password_field :password, size: 35 %><br/>
         <span class="note_text">Password must contain at least 6 characters.</span><br/><br/>
 
-        <%# f.fields_for :affiliations do |a| %>
-          <%# a.label :relationship, "Relationship to #{@network_name || 'the person at the centre of network'}" %>
-          <%# a.text_field :relationship, size: 35, autocomplete: 'off' %>
-        <%# end %>
+        <%= f.label :relationship, "Relationship to #{@network_name || 'the person at the centre of network'}"%>
+        <%= text_field_tag :relationship, '', size: 35, placeholder: "Relationship to #{@network_name || 'the person at the centre of network'}" %>
 
         <%= hidden_field_tag :notification, 1 %>
         <%= hidden_field_tag :tos, 1 %>
