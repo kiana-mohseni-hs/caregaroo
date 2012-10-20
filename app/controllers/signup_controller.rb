@@ -10,14 +10,12 @@ class SignupController < ApplicationController
         @user.update_attribute( :network_id, @invitation.network_id )
         redirect_to news_url
       else
-        #TODO make the following compatible with multinetwork
-        @user = User.new()
+        @user = User.new( network_id: @invitation.network_id,
+                          email:      @invitation.email,
+                          first_name: @invitation.first_name, 
+                          last_name:  @invitation.last_name   )
         @sender = User.find(@invitation.send_id)
         @network_for_who = @invitation.network.network_for_who
-        @user.network_id = @sender.network.id
-        @user.email = @invitation.email
-        @user.first_name = @invitation.first_name 
-        @user.last_name = @invitation.last_name 
         render "signup_form", :layout => "app_no_nav"
       end
     else
