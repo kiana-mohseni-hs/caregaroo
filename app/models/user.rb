@@ -31,7 +31,6 @@ class User < ActiveRecord::Base
   has_many :comments
   has_and_belongs_to_many :events
   
-  # accepts_nested_attributes_for :affiliations, allow_destroy: true
   accepts_nested_attributes_for :notification, :allow_destroy => true
   accepts_nested_attributes_for :profile, :allow_destroy => true
   mount_uploader :avatar, AvatarUploader
