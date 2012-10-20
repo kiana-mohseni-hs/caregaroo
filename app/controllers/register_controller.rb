@@ -34,7 +34,6 @@ class RegisterController < ApplicationController
                     :password => params[:password], 
                     :first_name => "")
     user.notification = Notification.new(:announcement => true, :post_update => true)
-    user.time_zone = "Hawaii"
     @network.users[0] = user
             
     # let's not create from here anymore so we can detect the timezone
