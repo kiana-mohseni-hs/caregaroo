@@ -75,7 +75,7 @@ Cg2App::Application.configure do
   config.action_mailer.smtp_settings = {
     :user_name            => ENV['CAREGAROO_SMTP_U'],
     :password             => ENV['CAREGAROO_SMTP_PW'],
-    :domain => "caregaroo.com",
+    :domain => "cg2-staging.herokuapp.com",
     :address => "smtp.sendgrid.net",
     :port => 587,
     :authentication => :plain,
