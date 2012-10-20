@@ -50,19 +50,50 @@ class RegisterController < ApplicationController
   
   # create community network
   def create
-    @network = Network.new(params[:network])
-    if (params[:notification])
-      @network.users.first.notification = Notification.new(:announcement => true, :post_update => true)
-    end
+    #if user email already exists
+    user = User.find_by_email(params[:network][:users_attributes]["0"][:email])
     
-    if @network.save
-      @network.users.first.update_attribute( :network_id, @network.id)
-      @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: @network.users.first.id })
-      cookies[:auth_token] = @network.users.first.auth_token
-      Resque.enqueue(WelcomeMailer, @network.users.first.id)
-      redirect_to register_success_path
+    if user
+      if cookies[:auth_token] == user.auth_token || user.authenticate(params[:network][:users_attributes]["0"][:password])
+        users_attributes = params[:network].delete("users_attributes")
+        # logger.debug "network hash: #{params[:network].inspect}"
+        # logger.debug "users_attributes hash: #{users_attributes.inspect}"
+        @network = Network.new(params[:network])
+        if @network.save
+          @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: user.id })
+          user.update_attribute( :network_id, @network.id )
+          Resque.enqueue(WelcomeMailer, user.id)
+          redirect_to register_success_path
+        else
+          render :action => "index", :layout => "app_no_nav"
+        end
+      else
+        redirect_to news_path, notice: "login as #{user.email} to create a network for that user"
+      end
     else
-      render :action => "index", :layout => "app_no_nav"
+      users_attributes = params[:network].delete("users_attributes")
+      affiliations_attributes = params[:network].delete("affiliations_attributes")
+      @network = Network.new(params[:network])
+    
+      if @network.save
+        user = @network.users.create( users_attributes["0"].merge({ network_id: @network.id}))
+        @network.affiliations.create( { network_id: @network.id, 
+                                        user_id: user.id,
+                                        relationship: affiliations_attributes["0"][:relationship],
+                                        role: affiliations_attributes["0"][:role] } )
+        cookies[:auth_token] = user.auth_token
+        Resque.enqueue(WelcomeMailer, user.id)
+        if (params[:notification])
+          user.notification = Notification.new(:announcement => true, :post_update => true)
+        end
+        
+        #hack to work around creation of extra affiliation
+        Affiliation.find_all_by_network_id(@network.id).each  { |a| a.destroy if ( a.relationship.nil? and a.role.nil? ) }
+        
+        redirect_to register_success_path
+      else
+        render :action => "index", :layout => "app_no_nav"
+      end
     end
   end
     
