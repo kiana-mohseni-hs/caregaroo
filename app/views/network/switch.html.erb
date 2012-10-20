@@ -1,0 +1,17 @@
+<h3 class="page_title">Switch Network </h3>
+<%= render "shared/error_messages", :target => @current_user %>
+<% flash.each do |name, msg| %>
+	<%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+<div style="width:450px">
+<%= form_for @current_user, :url => network_switch_save_path do |f| %>
+<p class="sub_header">You belong to the following networks. Select the network you would like to switch to now:</p>
+
+<% @current_user.networks.each do |n| %>
+  <h4><%= f.radio_button :network_id, n.id, style: "display:inline;" %>
+  <%= f.label :network, "#{n.name} - #{n.network_for_who}", value: n.id, style: "display:inline;" %></h4>
+<% end %>
+
+<p style="padding:30px 0"><%= f.submit "Switch Network", :class =>"form_button" %></p>
+</div>
+<% end %>

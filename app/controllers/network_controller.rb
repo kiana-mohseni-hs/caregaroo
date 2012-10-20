@@ -20,4 +20,13 @@ class NetworkController < ApplicationController
     
   end
   
+  def switch
+    @page = 'network_info'
+  end
+  
+  def switch_save
+    @current_user.update_attribute( :network_id, params[:user][:network_id] ) if @current_user.networks.exists?(id: params[:user][:network_id])
+    redirect_to news_url
+  end
+  
 end
