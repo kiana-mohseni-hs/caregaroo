@@ -29,7 +29,7 @@ class RegisterController < ApplicationController
                            :name => network_name)
     @network.users.build
     @network.affiliations.build( role: User::ROLES["initiator"],
-                                 relationship: "Coordinator" )
+                                 relationship: "Caregiver" )
     user = User.new(:email => params[:email],
                     :password => params[:password], 
                     :first_name => "")
