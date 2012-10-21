@@ -1,19 +1,25 @@
 class SignupController < ApplicationController
   
-  def new    
-    @user = User.new
-    @invitations = Invitation.find_by_token(params[:invitation_token])
-    if @invitations && @invitations.send_id
-      logger.debug "(new) send_id=#{@invitations.send_id}"
-      
-      @sender = User.find(@invitations.send_id)
-      @network_for_who = @sender.network.network_for_who
-      @user.network_id = @sender.network.id
-      @user.email = @invitations.email
-      @user.first_name = @invitations.first_name 
-      @user.last_name = @invitations.last_name 
-      render "signup_form", :layout => "app_no_nav"
+  def new
+    @invitation = Invitation.find_by_token(params[:invitation_token])
+    if @invitation && @invitation.send_id
+      logger.debug "(new) send_id=#{@invitation.send_id}"
+      @user = User.find_by_email(@invitation.email)
+      if @user.present?
+        @affiliation = Affiliation.find_or_create_by_user_id_and_network_id(@user.id, @invitation.network_id)
+        @user.update_attribute( :network_id, @invitation.network_id )
+        redirect_to news_url
+      else
+        @user = User.new( network_id: @invitation.network_id,
+                          email:      @invitation.email,
+                          first_name: @invitation.first_name, 
+                          last_name:  @invitation.last_name   )
+        @sender = User.find(@invitation.send_id)
+        @network_for_who = @invitation.network.network_for_who
+        render "signup_form", :layout => "app_no_nav"
+      end
     else
+      logger.debug "#{params[:invitation_token]} will not do, that gives #{@invitation.send_id}"
       redirect_to :root
     end
     
@@ -26,6 +32,9 @@ class SignupController < ApplicationController
     end
     
     if @user.save
+      @affiliation = @user.affiliations.create( relationship: params[:relationship],
+                                                network_id: @user.network_id,
+                                                role: "")
       cookies[:auth_token] = @user.auth_token
       Resque.enqueue(WelcomeMailer, @user.id)
       Resque.enqueue(MembersActivityMailer, @user.network_id, @user.id)

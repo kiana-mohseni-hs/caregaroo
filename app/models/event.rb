@@ -95,6 +95,7 @@ class Event < ActiveRecord::Base
       network_id: network_id 
       )
     update_column("post_id", post.id)
+    PostRecipient.create!(post_id: post.id, user_id: 0)
   end
         
   def update_post

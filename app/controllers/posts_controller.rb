@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   
   def index
     @page = 'posts'
-    #@posts = @current_user.posts_visible_to_me.includes(:user).includes(:comments)
     @posts = @current_user.network.posts.visible_to(@current_user).includes(:user).includes(:comments)
   end
 

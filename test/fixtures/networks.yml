@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  network_name: MyString
+  name: MyString
   network_for_who: MyString
   host_user_id: 1
 
 two:
-  network_name: MyString
+  name: MyString
   network_for_who: MyString
   host_user_id: 1

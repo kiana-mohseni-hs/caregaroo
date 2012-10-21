@@ -18,6 +18,7 @@
 		<tr><td class="left"><%= f.label :network_relationship, 'Relationship:'%></td><td class="right"><%= f.text_field :network_relationship, :size => "35" %></td></tr>
 		<%= f.fields_for :profile do |p|%>
 		<tr><td class="left"><%= p.label :location, 'Location:'%> </td><td class="right"><%= p.text_field :location, :size => "35" %></td></tr>
+    <tr><td class="left"><%= p.label :time_zone, 'Time Zone:'%> </td><td class="right"><%= time_zone_select( "user", 'time_zone', [], :default => "Pacific Time (US & Canada)") %></td></tr>
 		<% end %>
 		<tr><td class="left"><%= f.label :avatar, 'Photo:'%> </td><td class="right">
 			<%= f.file_field :avatar, :id => "preview" %> <span id="preview-photo"></span></td></tr>

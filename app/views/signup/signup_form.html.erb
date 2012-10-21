@@ -1,38 +1,43 @@
 <div id="signup_box" >
-	<div>
-	<%= form_for @user, :id => "invite_form", :url => signup_create_path do |f| %>
-		<% flash.each do |name, msg| %>
-	  		<%= content_tag :div, msg, :id => "flash_#{name}" %>
-		<% end %>
-		<%= render "shared/error_messages", :target => @user %>  
-	
-		<h3>Welcome to the network for <%=h @network_for_who %></h3>
-		<%= f.hidden_field :network_id %>
-		<%= hidden_field_tag "network_for_who", @network_for_who %>
-		<p style="padding-bottom:10px">Caregaroo is a secure private network to share news, coordinate activities and say thanks to those who help care for loved ones.</p>
-	  	<p>Create your account:</p><br/>
-	  	
-	  	<div style="font-size:12px">
-		    <%= f.label :email %>
-		    <%= f.text_field :email, :size => 35, :id => 'signup_email', :autocomplete => 'off' %><br/><br/>
-		    <%= f.label :first_name %>
-		    <%= f.text_field :first_name, :size=>35, :autocomplete => 'off' %><br/><br/>
-		    <%= f.label :last_name %>
-		    <%= f.text_field :last_name, :size=>35, :autocomplete => 'off' %><br/><br/>
-		    <%= f.label :password %>
-		    <%= f.password_field :password, :size=>35 %><br/>
-		    <span class="note_text">Password must contain at least 6 characters.</span><br/><br/>
-		    <% if @network_name %>
-			<label for="user_network_relationship">Relationship to <%=h @network_name %></label>
-			<% elsif %>
-		    <%= f.label :network_relationship, 'Relationship to the person at the centre of network' %>
-		    <% end %>
-			<%= f.text_field :network_relationship, :size=>35, :autocomplete => 'off' %><br/><br/>
-	    	<%= hidden_field_tag :notification, 1 %>
-		    <%= hidden_field_tag :tos, 1 %>
-	  	</div>
-	  	<br/>		
-	  	<p><%= f.submit "Next", :class=>"form_button", :id=>"signup_next_btn" %> </p>
-	<% end %>
-	</div>
+  <div>
+  <%= form_for @user, id: "invite_form", url: signup_create_path do |f| %>
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}" %>
+    <% end %>
+    <%= render "shared/error_messages", target: @user %>  
+  
+    <h3>Welcome to the network for <%=h @network_for_who %></h3>
+    <%= f.hidden_field :network_id %>
+    <%= hidden_field_tag "network_for_who", @network_for_who %>
+    <p style="padding-bottom:10px">Caregaroo is a secure private network to share news, coordinate activities and say thanks to those who help care for loved ones.</p>
+      <p>Create your account:</p><br/>
+      
+      <!-- hidden timezone pick -->
+      <div style="display:none;">
+        <%= time_zone_select( "user", 'time_zone', [], default: "Pacific Time (US & Canada)") %>
+        <script type="text/javascript">
+        CG2.TimeZone.setSelect()
+        </script>
+      </div>
+      <div style="font-size:12px">
+        <%= f.label :email %>
+        <%= f.text_field :email, size: 35, id: 'signup_email', autocomplete: 'off' %><br/><br/>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, size: 35, autocomplete: 'off' %><br/><br/>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, size: 35, autocomplete: 'off' %><br/><br/>
+        <%= f.label :password %>
+        <%= f.password_field :password, size: 35 %><br/>
+        <span class="note_text">Password must contain at least 6 characters.</span><br/><br/>
+
+        <%= f.label :relationship, "Relationship to #{@network_name || 'the person at the centre of network'}"%>
+        <%= text_field_tag :relationship, '', size: 35, placeholder: "Relationship to #{@network_name || 'the person at the centre of network'}" %>
+
+        <%= hidden_field_tag :notification, 1 %>
+        <%= hidden_field_tag :tos, 1 %>
+      </div>
+      <br/>    
+      <p><%= f.submit "Next", class: "form_button", id: "signup_next_btn" %> </p>
+  <% end %>
+  </div>
 </div>

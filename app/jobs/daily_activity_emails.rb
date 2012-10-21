@@ -13,7 +13,7 @@ module DailyActivityEmails
     end
     
     networks.each do |n|
-    posts = Post.where(:network_id => n.id, :created_at => start_time..end_time).select {|p| p.content.present?}
+      posts = Post.where(:network_id => n.id, :created_at => start_time..end_time).select {|p| p.content.present?}      
       if posts.length > 0
         user_list = {}
         members = User.joins(:notification).where("users.network_id = ? and notifications.post_update = ?", n.id, true)

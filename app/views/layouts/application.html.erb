@@ -19,22 +19,9 @@
   <!-- disable the msg icon for now since private message page is not ready-->
   <!--<div id="top_nav_msg_icon"></div>-->
   
-  <div id="user_selector">  
-    <% if @current_user %>
-    <dl id="user_dropdown" class="dropdown">
-      <dt><a href="#"><span style="font-size:14px"><%= image_tag @current_user.avatar_url(:thumb).to_s, :class=>"dt_icon", :height => "30", :width => "30" %><%= @current_user.first_name %><div class="dt_arrow"><div class="dt_arrow_bg"></div></div></span></a></dt>
-          <dd><ul>
-        <li><a href="/profile" style="padding-left:20px;">Settings</a></li>
-        <li><%= link_to "Log out", logout_path, :style=>"padding-left:20px;" %></li>
-      </ul></dd>
-    </dl>
-       <% else %>
-          <%= link_to "Create Community", register_path %> or
-          <%= link_to "Member Sign-In", login_path %>
-        <% end %>
-    </div>
+  <%= render partial: 'shared/user_selector' %>
 
-    <div id="top_nav_separator"></div>
+  <div id="top_nav_separator"></div>
 </div><!--header_frame-->
 
 <div id="main_frame">
@@ -42,7 +29,7 @@
       <div id="CoC_frame">
   <%= image_tag !@current_user.network.nil? ? current_user.network.avatar_url(:thumb).to_s : "photo_place_holder.png", :height => "50", :width => "50", :style => "float:left;padding-right:5px" %>
         <div id="CoC_right">
-        <p id="CoC_name"><%= @current_user.network.network_name %></p>
+        <p id="CoC_name"><%= @current_user.network.name %></p>
         </div>
         <div class="clear"></div>
       </div>

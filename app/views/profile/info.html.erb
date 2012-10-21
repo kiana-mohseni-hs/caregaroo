@@ -19,6 +19,7 @@
 			<div class="left_text">Email:</div><div class="right_text"><%= @user.email %></div><br/>		
 			<% if !@user.profile.nil? %>
 			<div class="left_text">Location:</div><div class="right_text"><%= @user.profile.location %></div><br/>
+			<div class="left_text">Time Zone:</div><div class="right_text"><%= @user.time_zone %></div><br/>
 			<div class="left_text">About me:</div><div style="font-size:12px;margin-left:100px"><%= @user.profile.bio %></div><br/>
 			<div class="clear"></div>
 			<% end%>

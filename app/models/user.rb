@@ -1,33 +1,26 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :network_relationship, :first_name, :last_name, 
-                  :network_id, :role, :avatar, :notification_attributes, :profile_attributes, :in_first_stage
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, 
+                  :network_id, :avatar, :notification_attributes, :profile_attributes, :time_zone
   has_secure_password
   validates :email, :presence => true, :email_format => true, :uniqueness => true
   validates_presence_of :password, :on => :create
   validates_length_of :password, :minimum => 6, :on => :create
 
-  validates_presence_of :network_relationship, :unless => :in_first_stage?
-  validates_presence_of :first_name, :unless => :in_first_stage?
-  validates_presence_of :last_name, :unless => :in_first_stage?
-  # validates_presence_of :password_confirmation, :on => :create, :unless => :in_first_stage?
-  attr_accessor :first_stage
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  # attr_accessor :first_stage
   
-  belongs_to :network, :class_name => "Network", :foreign_key => "network_id"
+  has_many :affiliations
+  has_many :networks, through: :affiliations
+  belongs_to :network
   has_many :invitations
   has_many :post_recipients
   #has_many :posts_visible, :through => :post_recipients, :source => :post
   has_many :recipients
-  has_many :messages, :through => :recipients
-  has_one :profile
-  has_one :notification
-  has_many :posts, :class_name => "Post", :finder_sql => Proc.new {
-      %Q{
-        SELECT DISTINCT *
-        FROM posts p
-        WHERE p.network_id = #{network_id}
-        ORDER BY p.created_at DESC 
-      }
-  }
+  has_many :messages, through: :recipients
+  has_one  :profile
+  has_one  :notification
+  has_many :posts, uniq: true, order: 'created_at DESC'
   has_many :latest_messages, :class_name => "Message", :finder_sql => Proc.new {
       %Q{
         SELECT MAX(id), * FROM messages WHERE folder_id in 
@@ -45,10 +38,6 @@ class User < ActiveRecord::Base
   before_create { 
     generate_token(:auth_token) 
   }
-  
-  def in_first_stage?
-    first_stage
-  end
   
   def get_related_messages(folder_id)
       @messages = Message.where("folder_id = ?", folder_id).order("created_at")
@@ -93,31 +82,19 @@ class User < ActiveRecord::Base
     (first_name || "") + ' ' + (last_name || "")
   end
   
-=begin  
-  attr_writer :current_step
-  
-  def current_step
-    @current_step || steps.first  
+  def current_affiliation
+    affiliations.find_by_network_id(network_id)
   end
   
-  def steps
-    %w[network profile]
+
+# the following two methods should be commented out until the 
+# PopulateAffiliations migration has been run
+  def role
+    current_affiliation.role
   end
-  
-  def next_step
-    self.current_step = steps[steps.index(current_step)+1]
+
+  def network_relationship
+    current_affiliation.relationship
   end
-  
-  def previous_step
-    self.current_step = steps[steps.index(current_step)-1]
-  end
-  
-  def first_step?
-    current_step == steps.first
-  end
-  
-  def last_step?
-    current_step == steps.last
-  end
-=end  
+
 end

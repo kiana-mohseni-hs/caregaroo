@@ -36,6 +36,8 @@ Cg2App::Application.routes.draw do
   post "messages/reply" => "messages#reply", :as => "reply_message"
   get "unsubscribe" => "notifications#unsubscribe", :as => "unsubscribe"
   get "network/edit" => "network#edit", :as => "network_edit"
+  get "network/switch" => "network#switch", :as => "network_switch"
+  put "network/switch_save" => "network#switch_save", :as => "network_switch_save"
   post "network/save" => "network#save", :as => "network_save"
 
   post "signup/create" => "signup#create", :as => "signup_create"
