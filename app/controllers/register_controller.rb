@@ -62,12 +62,13 @@ class RegisterController < ApplicationController
           @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: user.id })
           user.update_attribute( :network_id, @network.id )
           Resque.enqueue(WelcomeMailer, user.id)
+          cookies[:auth_token] = user.auth_token
           redirect_to register_success_path
         else
           render :action => "index", :layout => "app_no_nav"
         end
       else
-        redirect_to news_path, notice: "login as #{user.email} to create a network for that user"
+        redirect_to login_path, notice: "login as #{user.email} to create a network for that user"
       end
     else
       users_attributes = params[:network].delete("users_attributes")
