@@ -4,43 +4,44 @@
   <p class="page_desc">You are about to create a Caregaroo network in two easy steps. The first step is to name the network and identify the person at the center of the network. The second step is to create your account</p>
   </div>
 
-  <%= form_for @network, :url => register_path do |f| %>
-    <%= render "shared/error_messages", :target => @network %>  
+  <%= form_for @network, url: register_path do |f| %>
+    <%= render "shared/error_messages", target: @network %>  
       
       <div class="clear_format">  
-      <%= image_tag "num1.jpg", :alt => "Step 1", :class=>"num_icon" %>
+      <%= image_tag "num1.jpg", alt: "Step 1", class: "num_icon" %>
       <div id="vertical_line"></div>  
-      <%= f.label :name, :class=>"right_text_with_icon label_space" %> 
-      <%= f.text_field :name, :size=>35, :class=>"right_text_with_icon field_space", :autocomplete => 'off' %>
-      <%= f.label :network_for_who, "Who is the network for?", :class=>"right_text_with_icon label_space" %> 
-      <%= f.text_field :network_for_who, :size=>35, :class=>"right_text_with_icon field_space", :autocomplete => 'off' %>    
+      <%= f.label :name, class: "right_text_with_icon label_space" %> 
+      <%= f.text_field :name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off' %>
+      <%= f.label :network_for_who, "Who is the network for?", class: "right_text_with_icon label_space" %> 
+      <%= f.text_field :network_for_who, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off' %>    
       </div>
       <br/><br/>
     
     <div class="clear_format">
-      <%= image_tag "num2.jpg", :alt => "Step 2", :class=>"num_icon" %>      
+      <%= image_tag "num2.jpg", alt: "Step 2", class: "num_icon" %>      
       <%= f.fields_for :users do |u| %>
         <!-- hidden timezone pick -->
         <div style="display:none;">
-          <%= u.time_zone_select( 'time_zone', [], :default => 10) %>
+          <%= u.time_zone_select( 'time_zone', [], default: 10) %>
           <script type="text/javascript">
             CG2.TimeZone.setSelect('#network_users_attributes_0_time_zone')
           </script>
         </div>
       
-        <%= u.label :email, "Your email", :class=>"right_text_with_icon label_space" %>
-        <%= u.text_field :email, :size=>35, :class=>"right_text_with_icon field_space", :autocomplete => 'off' %>
-        <%= u.label :first_name, "Your first name", :class=>"right_text_with_icon label_space" %>
-        <%= u.text_field :first_name, :size=>35, :class=>"right_text_with_icon field_space", :autocomplete => 'off' %>
-        <%= u.label :last_name, "Your last name", :class=>"right_text_with_icon label_space" %>
-        <%= u.text_field :last_name, :size=>35, :class=>"right_text_with_icon field_space", :autocomplete => 'off' %><br class="clear_format"/><br/>
-        <%= u.label :password, :class=>"right_text_with_icon label_space" %>
-        <%= u.password_field :password, :size=>35, :class=>"right_text_with_icon" %>
+        <%= u.label :email, "Your email", class: "right_text_with_icon label_space" %>
+        <%= u.text_field :email, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', disabled: @current_user.present? %>
+        <% if @current_user %><p class="right_text_with_icon note_text"><%= link_to "(log out)", logout_path %></p><% end %>
+        <%= u.label :first_name, "Your first name", class: "right_text_with_icon label_space" %>
+        <%= u.text_field :first_name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', disabled: @current_user.present? %>
+        <%= u.label :last_name, "Your last name", class: "right_text_with_icon label_space" %>
+        <%= u.text_field :last_name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', disabled: @current_user.present? %><br class="clear_format"/><br/>
+        <%= u.label :password, class: "right_text_with_icon label_space" %>
+        <%= u.password_field :password, size: 35, class: "right_text_with_icon" %>
         <p class="right_text_with_icon note_text">Password must contain at least 6 characters.</p>
       <% end %>
       <%= f.fields_for :affiliations do |a| %>
-        <%= a.label :relationship, 'Relationship to the person at the centre of network', :class=>"right_text_with_icon label_space" %>
-        <%= a.text_field :relationship, :size=>35, :class=>"right_text_with_icon field_space", :autocomplete => 'off' %>
+        <%= a.label :relationship, 'Relationship to the person at the centre of network', class: "right_text_with_icon label_space" %>
+        <%= a.text_field :relationship, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off' %>
         <%= a.hidden_field :role, value: User::ROLES["initiator"] %>
       <% end %>
     </div>
@@ -57,7 +58,7 @@
       </div>
       
       <br style="clear:both"/>
-       <%= f.submit "Create Network", :class=>"form_button", :id=>"create_btn"%> 
+       <%= f.submit "Create Network", class: "form_button", id: "create_btn"%> 
      </div>
 
   <% end %>

@@ -16,7 +16,15 @@ class RegisterController < ApplicationController
   # display community network form
   def index
     @network = Network.new
-    @network.users.build
+    if @current_user = current_user
+      @network.users.build( { email:      current_user.email, 
+                              last_name:  current_user.last_name,
+                              first_name: current_user.first_name } )
+      @disabled = true
+    else
+      @network.users.build
+      @disabled = false
+    end    
     @network.affiliations.build
     render :action => "index", :layout => "app_no_nav"
   end
@@ -27,23 +35,22 @@ class RegisterController < ApplicationController
     network_name += "'s Network" unless params[:network_for_who].blank?
     @network = Network.new(:network_for_who => params[:network_for_who], 
                            :name => network_name)
-    @network.users.build
+
+    if @current_user = current_user
+      @network.users.build( { email:      current_user.email, 
+                              last_name:  current_user.last_name,
+                              first_name: current_user.first_name } )
+      @disabled = true
+    else
+      @network.users.build( { email:      params[:email] } )
+      @disabled = false
+    end    
+
     @network.affiliations.build( role: User::ROLES["initiator"],
                                  relationship: "Caregiver" )
-    user = User.new(:email => params[:email],
-                    :password => params[:password], 
-                    :first_name => "")
-    user.notification = Notification.new(:announcement => true, :post_update => true)
-    @network.users[0] = user
+    @network.users[0].notification = Notification.new(:announcement => true, :post_update => true)
             
-    # let's not create from here anymore so we can detect the timezone
-    #if @network.save
-    #  cookies[:auth_token] = @network.users.first.auth_token
-    #  Resque.enqueue(WelcomeMailer, @network.users.first.id)
-    #  redirect_to register_success_path
-    #else
-      render :action => "index", :layout => "app_no_nav"
-    #end
+    render :action => "index", :layout => "app_no_nav"
 
   end
   
