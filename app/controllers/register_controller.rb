@@ -100,13 +100,13 @@ class RegisterController < ApplicationController
           cookies[:auth_token] = user.auth_token
           redirect_to register_success_path
         else
-          render action: "index", layout: "app_no_nav"
+          render action: "new", layout: "app_no_nav"
         end
       else
         @network = Network.new(params[:network])
         @current_user = current_user
         flash[:error] = "password did not match email address"
-        render action: "index", layout: "app_no_nav"
+        render action: "new", layout: "app_no_nav"
         # redirect_to login_path, notice: "login as #{user.email} to create a network for that user"
       end
     else
@@ -132,7 +132,7 @@ class RegisterController < ApplicationController
         
         redirect_to register_success_path
       else
-        render :action => "index", :layout => "app_no_nav"
+        render :action => "new", :layout => "app_no_nav"
       end
     end
   end
