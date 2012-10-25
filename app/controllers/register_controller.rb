@@ -13,49 +13,6 @@ class RegisterController < ApplicationController
      respond_with( @pilot_signup, :layout => false )
   end
   
-  # # display community network form
-  # def index
-  #   @network = Network.new
-  #   
-  #   if @current_user = current_user
-  #     @network.users.build( { email:      current_user.email, 
-  #                             last_name:  current_user.last_name,
-  #                             first_name: current_user.first_name } )
-  #     @readonly = true
-  #   else
-  #     @network.users.build
-  #     @readonly = false
-  #   end
-  #   @network.affiliations.build
-  #   render :action => "index", :layout => "app_no_nav"
-  # end
-  # 
-  # # redirect from home, present final step to build network
-  # # TODO DRY this and the index action are practically the same
-  # def create_min
-  #   network_name = params[:network_for_who] 
-  #   network_name += "'s Network" unless params[:network_for_who].blank?
-  #   @network = Network.new(:network_for_who => params[:network_for_who], 
-  #                          :name => network_name)
-  # 
-  #   if @current_user = current_user
-  #     @network.users.build( { email:      current_user.email, 
-  #                             last_name:  current_user.last_name,
-  #                             first_name: current_user.first_name } )
-  #     @readonly = true
-  #   else
-  #     @network.users.build( { email:      params[:email] } )
-  #     @readonly = false
-  #   end    
-  # 
-  #   @network.affiliations.build( role: User::ROLES["initiator"],
-  #                                relationship: "Caregiver" )
-  #   @network.users[0].notification = Notification.new(:announcement => true, :post_update => true)
-  #           
-  #   render :action => "index", :layout => "app_no_nav"
-  # 
-  # end
-
   def new
     network_name = params[:network_for_who] || ""
     network_name += "'s Network" unless params[:network_for_who].blank?
