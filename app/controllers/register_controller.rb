@@ -30,6 +30,7 @@ class RegisterController < ApplicationController
   end
   
   # redirect from home, present final step to build network
+  # TODO DRY this and the index action are practically the same
   def create_min
     network_name = params[:network_for_who] 
     network_name += "'s Network" unless params[:network_for_who].blank?
@@ -58,9 +59,10 @@ class RegisterController < ApplicationController
   def create
     #if user email already exists
     user = User.find_by_email(params[:network][:users_attributes]["0"][:email])
-    
     if user
-      if cookies[:auth_token] == user.auth_token || user.authenticate(params[:network][:users_attributes]["0"][:password])
+      # if correct password for email
+      if user.authenticate(params[:network][:users_attributes]["0"][:password])
+        cookies[:auth_token] = user.auth_token
         users_attributes = params[:network].delete("users_attributes")
         # logger.debug "network hash: #{params[:network].inspect}"
         # logger.debug "users_attributes hash: #{users_attributes.inspect}"
@@ -72,10 +74,11 @@ class RegisterController < ApplicationController
           cookies[:auth_token] = user.auth_token
           redirect_to register_success_path
         else
-          render :action => "index", :layout => "app_no_nav"
+          render action: "index", layout: "app_no_nav"
         end
       else
-        redirect_to login_path, notice: "login as #{user.email} to create a network for that user"
+        render action: "index", layout: "app_no_nav", alert: "password did not match email address"
+        # redirect_to login_path, notice: "login as #{user.email} to create a network for that user"
       end
     else
       users_attributes = params[:network].delete("users_attributes")
