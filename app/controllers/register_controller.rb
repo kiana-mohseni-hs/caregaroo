@@ -16,15 +16,16 @@ class RegisterController < ApplicationController
   # display community network form
   def index
     @network = Network.new
+    
     if @current_user = current_user
       @network.users.build( { email:      current_user.email, 
                               last_name:  current_user.last_name,
                               first_name: current_user.first_name } )
-      @disabled = true
+      @readonly = true
     else
       @network.users.build
-      @disabled = false
-    end    
+      @readonly = false
+    end
     @network.affiliations.build
     render :action => "index", :layout => "app_no_nav"
   end
@@ -41,10 +42,10 @@ class RegisterController < ApplicationController
       @network.users.build( { email:      current_user.email, 
                               last_name:  current_user.last_name,
                               first_name: current_user.first_name } )
-      @disabled = true
+      @readonly = true
     else
       @network.users.build( { email:      params[:email] } )
-      @disabled = false
+      @readonly = false
     end    
 
     @network.affiliations.build( role: User::ROLES["initiator"],
@@ -64,8 +65,7 @@ class RegisterController < ApplicationController
       if user.authenticate(params[:network][:users_attributes]["0"][:password])
         cookies[:auth_token] = user.auth_token
         users_attributes = params[:network].delete("users_attributes")
-        # logger.debug "network hash: #{params[:network].inspect}"
-        # logger.debug "users_attributes hash: #{users_attributes.inspect}"
+
         @network = Network.new(params[:network])
         if @network.save
           @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: user.id })
@@ -77,10 +77,14 @@ class RegisterController < ApplicationController
           render action: "index", layout: "app_no_nav"
         end
       else
-        render action: "index", layout: "app_no_nav", alert: "password did not match email address"
+        @network = Network.new(params[:network])
+        @current_user = current_user
+        flash[:error] = "password did not match email address"
+        render action: "index", layout: "app_no_nav"
         # redirect_to login_path, notice: "login as #{user.email} to create a network for that user"
       end
     else
+      
       users_attributes = params[:network].delete("users_attributes")
       affiliations_attributes = params[:network].delete("affiliations_attributes")
       @network = Network.new(params[:network])

@@ -5,7 +5,10 @@
   </div>
 
   <%= form_for @network, url: register_path do |f| %>
-    <%= render "shared/error_messages", target: @network %>  
+    <%= render "shared/error_messages", target: @network %>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
       
       <div class="clear_format">  
       <%= image_tag "num1.jpg", alt: "Step 1", class: "num_icon" %>
@@ -29,12 +32,12 @@
         </div>
       
         <%= u.label :email, "Your email", class: "right_text_with_icon label_space" %>
-        <%= u.text_field :email, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', disabled: @current_user.present? %>
+        <%= u.text_field :email, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', readonly: @current_user.present? %>
         <% if @current_user %><p class="right_text_with_icon note_text"><%= link_to "(log out)", logout_path %></p><% end %>
         <%= u.label :first_name, "Your first name", class: "right_text_with_icon label_space" %>
-        <%= u.text_field :first_name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', disabled: @current_user.present? %>
+        <%= u.text_field :first_name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', readonly: @current_user.present? %>
         <%= u.label :last_name, "Your last name", class: "right_text_with_icon label_space" %>
-        <%= u.text_field :last_name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', disabled: @current_user.present? %><br class="clear_format"/><br/>
+        <%= u.text_field :last_name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', readonly: @current_user.present? %><br class="clear_format"/><br/>
         <%= u.label :password, class: "right_text_with_icon label_space" %>
         <%= u.password_field :password, size: 35, class: "right_text_with_icon" %>
         <p class="right_text_with_icon note_text">Password must contain at least 6 characters.</p>
