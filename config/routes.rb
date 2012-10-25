@@ -13,9 +13,9 @@ Cg2App::Application.routes.draw do
   # app routes
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#login", :as => "login"
-  get "register" => "register#index", :as => "register"
+  get "register" => "register#new"
   post "register" => "register#create", :as => "register"
-  post "register_min" => "register#create_min", :as => "register_min"
+  post "register_min" => "register#new"
   get "register/success" => "register#success", :as => "register_success"
   get "profile" => "profile#info", :as => "profile"
   get "profile/edit" => "profile#edit_info", :as => "edit_info_profile"
