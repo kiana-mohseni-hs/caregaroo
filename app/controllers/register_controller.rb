@@ -54,7 +54,6 @@ class RegisterController < ApplicationController
           @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: user.id })
           user.update_attribute( :network_id, @network.id )
           Resque.enqueue(WelcomeMailer, user.id)
-          cookies[:auth_token] = user.auth_token
           redirect_to register_success_path
         else
           render action: "new", layout: "app_no_nav"
@@ -68,16 +67,17 @@ class RegisterController < ApplicationController
       end
     else
       
-      users_attributes = params[:network].delete("users_attributes")
-      affiliations_attributes = params[:network].delete("affiliations_attributes")
       @network = Network.new(params[:network])
     
       if @network.save
-        user = @network.users.create( users_attributes["0"].merge({ network_id: @network.id}))
-        @network.affiliations.create( { network_id: @network.id, 
-                                        user_id: user.id,
-                                        relationship: affiliations_attributes["0"][:relationship],
-                                        role: affiliations_attributes["0"][:role] } )
+        user = @network.users.first
+        user.update_attribute(:network_id, @network.id)
+        
+        @network.affiliations.first.update_attributes( { 
+          network_id: @network.id, 
+          user_id: user.id,
+          relationship: params[:network][:affiliations_attributes]["0"][:relationship],
+          role: params[:network][:affiliations_attributes]["0"][:role] } )
         cookies[:auth_token] = user.auth_token
         Resque.enqueue(WelcomeMailer, user.id)
         if (params[:notification])
