@@ -19,7 +19,7 @@ class EventsController < ApplicationController
       @prev_available = false
     end
     
-    @today = Time.zone.now #avoid this -> Date.today #http://stackoverflow.com/questions/6060436/rails-3-how-to-get-todays-date-in-specific-timezone
+    @today = Time.now.to_date # -> http://stackoverflow.com/questions/6060436/rails-3-how-to-get-todays-date-in-specific-timezone
     @dateswithevents = []
     
     first_day = if (@current_page.to_i == 0) then @today
