@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(:version => 20121019041933) do
   add_index "affiliations", ["network_id"], :name => "index_affiliations_on_network_id"
   add_index "affiliations", ["user_id"], :name => "index_affiliations_on_user_id"
 
+  create_table "affiliations", :force => true do |t|
+    t.string   "relationship"
+    t.integer  "network_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "role"
+  end
+
+  add_index "affiliations", ["network_id"], :name => "index_affiliations_on_network_id"
+  add_index "affiliations", ["user_id"], :name => "index_affiliations_on_user_id"
+
   create_table "comments", :force => true do |t|
     t.string   "name"
     t.text     "content",    :limit => 255

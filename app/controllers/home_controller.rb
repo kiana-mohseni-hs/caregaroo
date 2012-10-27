@@ -2,6 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @page = 'home'
+    @current_user = current_user
     render 'index', :layout => "marketing"
   end
 

@@ -13,51 +13,42 @@ class RegisterController < ApplicationController
      respond_with( @pilot_signup, :layout => false )
   end
   
-  # display community network form
-  def index
-    @network = Network.new
-    @network.users.build
-    @network.affiliations.build
-    render :action => "index", :layout => "app_no_nav"
-  end
-  
-  # redirect from home, present final step to build network
-  def create_min
-    network_name = params[:network_for_who] 
+  def new
+    network_name = params[:network_for_who] || ""
     network_name += "'s Network" unless params[:network_for_who].blank?
-    @network = Network.new(:network_for_who => params[:network_for_who], 
-                           :name => network_name)
-    @network.users.build
-    @network.affiliations.build( role: User::ROLES["initiator"],
-                                 relationship: "Coordinator" )
-    user = User.new(:email => params[:email],
-                    :password => params[:password], 
-                    :first_name => "")
-    user.notification = Notification.new(:announcement => true, :post_update => true)
-    user.time_zone = "Hawaii"
-    @network.users[0] = user
-            
-    # let's not create from here anymore so we can detect the timezone
-    #if @network.save
-    #  cookies[:auth_token] = @network.users.first.auth_token
-    #  Resque.enqueue(WelcomeMailer, @network.users.first.id)
-    #  redirect_to register_success_path
-    #else
-      render :action => "index", :layout => "app_no_nav"
-    #end
+    @network = Network.new( network_for_who: params[:network_for_who], 
+                            name:            network_name              )
 
+    
+    
+    if @current_user = current_user
+      @network.users.build( { email:      current_user.email, 
+                              last_name:  current_user.last_name,
+                              first_name: current_user.first_name } )
+      @readonly = true
+    else
+      @network.users.build( { email:      params[:email] || "" } )
+      @readonly = false
+    end
+    @network.affiliations.build( role:         User::ROLES["initiator"],
+                                 relationship: "Caregiver"               )
+    @network.users[0].notification = Notification.new(:announcement => true, :post_update => true)
+    
+    render :action => "new", :layout => "app_no_nav"
   end
+
+
   
   # create community network
   def create
     #if user email already exists
     user = User.find_by_email(params[:network][:users_attributes]["0"][:email])
-    
     if user
-      if cookies[:auth_token] == user.auth_token || user.authenticate(params[:network][:users_attributes]["0"][:password])
+      # if correct password for email
+      if user.authenticate(params[:network][:users_attributes]["0"][:password])
+        cookies[:auth_token] = user.auth_token
         users_attributes = params[:network].delete("users_attributes")
-        # logger.debug "network hash: #{params[:network].inspect}"
-        # logger.debug "users_attributes hash: #{users_attributes.inspect}"
+
         @network = Network.new(params[:network])
         if @network.save
           @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: user.id })
@@ -65,22 +56,28 @@ class RegisterController < ApplicationController
           Resque.enqueue(WelcomeMailer, user.id)
           redirect_to register_success_path
         else
-          render :action => "index", :layout => "app_no_nav"
+          render action: "new", layout: "app_no_nav"
         end
       else
-        redirect_to news_path, notice: "login as #{user.email} to create a network for that user"
+        @network = Network.new(params[:network])
+        @current_user = current_user
+        flash[:error] = "password did not match email address"
+        render action: "new", layout: "app_no_nav"
+        # redirect_to login_path, notice: "login as #{user.email} to create a network for that user"
       end
     else
-      users_attributes = params[:network].delete("users_attributes")
-      affiliations_attributes = params[:network].delete("affiliations_attributes")
+      
       @network = Network.new(params[:network])
     
       if @network.save
-        user = @network.users.create( users_attributes["0"].merge({ network_id: @network.id}))
-        @network.affiliations.create( { network_id: @network.id, 
-                                        user_id: user.id,
-                                        relationship: affiliations_attributes["0"][:relationship],
-                                        role: affiliations_attributes["0"][:role] } )
+        user = @network.users.first
+        user.update_attribute(:network_id, @network.id)
+        
+        @network.affiliations.first.update_attributes( { 
+          network_id: @network.id, 
+          user_id: user.id,
+          relationship: params[:network][:affiliations_attributes]["0"][:relationship],
+          role: params[:network][:affiliations_attributes]["0"][:role] } )
         cookies[:auth_token] = user.auth_token
         Resque.enqueue(WelcomeMailer, user.id)
         if (params[:notification])
@@ -92,7 +89,7 @@ class RegisterController < ApplicationController
         
         redirect_to register_success_path
       else
-        render :action => "index", :layout => "app_no_nav"
+        render :action => "new", :layout => "app_no_nav"
       end
     end
   end
