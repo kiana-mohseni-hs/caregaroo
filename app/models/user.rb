@@ -86,15 +86,12 @@ class User < ActiveRecord::Base
     affiliations.find_by_network_id(network_id)
   end
   
+  def role
+    current_affiliation.role 
+  end
 
-# the following two methods should be commented out until the 
-# PopulateAffiliations migration has been run
-#   def role
-#     current_affiliation.role 
-#   end
-# 
-#   def network_relationship
-#     current_affiliation.relationship
-#   end
-# 
+  def network_relationship
+    current_affiliation.relationship
+  end
+
 end
