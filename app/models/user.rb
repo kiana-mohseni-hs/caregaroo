@@ -97,4 +97,4 @@ class User < ActiveRecord::Base
 #     current_affiliation.relationship
 #   end
 # 
-# end
+end
