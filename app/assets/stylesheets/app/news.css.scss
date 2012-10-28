@@ -36,6 +36,15 @@
 			margin-bottom: 12px;
 			height: 45px;
 		}
+		#file_upload_container{
+			width: 100%;
+			.add_photo_toogle{
+				float: right;
+				a{
+					color: #888;
+				}
+			}
+		}
 		.recipients_box{
 			border-top: $inner_border;
 			padding: 10px 5px 5px 5px;
@@ -85,6 +94,10 @@
 			margin: 0px;
 		}
 	}
+}
+#upload_box_container{
+	padding: 0px 0 10px 10px;
+	margin-top: -10px;
 }
 
 #container .recipients_drop_down{
