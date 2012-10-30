@@ -3,7 +3,7 @@ class MembersController < ApplicationController
   
   def index
     @page = 'members'
-    @members = User.where("network_id = ?", @current_user.network_id).order("first_name")
+    @members = @current_user.network.users.order("first_name")
   end
   
   def delete
