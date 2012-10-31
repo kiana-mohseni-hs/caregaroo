@@ -63,84 +63,32 @@ class RegisterController < ApplicationController
         @current_user = current_user
         flash[:error] = "password did not match email address"
         render action: "new", layout: "app_no_nav"
-        # redirect_to login_path, notice: "login as #{user.email} to create a network for that user"
       end
     else
       
       @network = Network.new(params[:network])
-    
       if @network.save
-        
-        # hack to fix double affiliation problem
-        if @network.affiliations(true).count > 1
-          @network.affiliations.first.user_id = @network.affiliations.last.user_id unless @network.affiliations.first.user_id.present? or @network.affiliations.last.user_id.blank?
-          @network.affiliations.last.destroy
-          @network.affiliations.first.save
-        end
-        
-        # debugging begin
-        # logger.debug "network no. #{@network.id} was just saved with affiliations and users:"
-        # @network.affiliations(true).each do |a|
-        #   logger.debug "affiliation #{a.attributes.inspect}"
-        # end
-        # @network.users(true).each do |u|
-        #   logger.debug "user #{u.attributes.inspect} "
-        # end
-        # debugging end
-        
         # set the current network of the new user to the new network
         user = @network.users.first
         user.update_attribute(:network_id, @network.id)
-
-        # debugging begin
-        # logger.debug "first of the network users had its id updated and network no. #{@network.id} now has affiliations and users:"
-        # @network.affiliations(true).each do |a|
-        #   logger.debug "affiliation #{a.attributes.inspect}"
-        # end
-        # @network.users(true).each do |u|
-        #   logger.debug "user #{u.attributes.inspect} "
-        # end
-        # debugging end
         
-        # @network.affiliations.first.update_attributes( { 
-        #   network_id: @network.id, 
-        #   user_id: user.id,
-        #   relationship: params[:network][:affiliations_attributes]["0"][:relationship],
-        #   role: params[:network][:affiliations_attributes]["0"][:role] } )
+        @network.affiliations.first.update_attributes( { 
+          network_id: @network.id, 
+          user_id: user.id,
+          relationship: params[:network][:affiliations_attributes]["0"][:relationship],
+          role: params[:network][:affiliations_attributes]["0"][:role] } )
         
-        # debugging begin
-        # logger.debug "first of the network affiliations had its attrs updated and network no. #{@network.id} now has affiliations and users:"
-        # @network.affiliations(true).each do |a|
-        #   logger.debug "affiliation #{a.attributes.inspect}"
-        # end
-        # @network.users(true).each do |u|
-        #   logger.debug "user #{u.attributes.inspect} "
-        # end
-        # debugging end
-        
+        # hack to fix double affiliation problem
+        if @network.affiliations(true).count > 1
+          @network.affiliations.last.destroy
+        end
         
         cookies[:auth_token] = user.auth_token
         Resque.enqueue(WelcomeMailer, user.id)
         if (params[:notification])
           user.notification = Notification.new(:announcement => true, :post_update => true)
         end
-        
-        #hack to work around creation of extra affiliation
-        # Affiliation.find_all_by_network_id(@network.id).each  { |a| a.destroy if ( a.relationship.nil? and a.role.nil? ) }
-
-        # debugging begin
-        # logger.debug "after hack network no. #{@network.id} now has affiliations and users:"
-        # @network.affiliations(true).each do |a|
-        #   logger.debug "affiliation #{a.attributes.inspect}"
-        # end
-        # @network.users(true).each do |u|
-        #   logger.debug "user #{u.attributes.inspect} "
-        # end
-        # debugging end
-
-
-
-        
+                
         redirect_to register_success_path
       else
         render :action => "new", :layout => "app_no_nav"
