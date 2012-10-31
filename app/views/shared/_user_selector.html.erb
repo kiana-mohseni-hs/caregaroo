@@ -7,9 +7,7 @@
     </dt>
     <dd><ul>
       <li><a href="/profile" style="padding-left:20px;">Settings</a></li>
-      <% if @current_user.affiliations.count > 1 %>
-        <li><%= link_to "Switch Networks", network_switch_path, :style=>"padding-left:20px;" %></li>
-      <% end %>
+      <li><%= link_to "My Networks", network_switch_path, :style=>"padding-left:20px;" %></li>
       <li><%= link_to "Log out", logout_path, :style=>"padding-left:20px;" %></li>
     </ul></dd>
   </dl>
