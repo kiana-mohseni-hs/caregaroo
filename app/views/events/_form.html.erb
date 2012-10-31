@@ -17,7 +17,7 @@
   <table id="event_form">
     <tr>
       <th>Type: </th>
-      <td><%= select_tag("event[event_type_id]", options_from_collection_for_select(@event_types, "id", "name")) %></td>
+      <td><%= select_tag("event[event_type_id]", options_from_collection_for_select(@event_types, "id", "name", @event.event_type_id)) %></td>
     </tr>
     <tr>
       <th>What: </th>
