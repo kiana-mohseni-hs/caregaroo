@@ -7,6 +7,12 @@ end
 
 Cg2App::Application.routes.draw do
 
+  constraints(:host => "caregaroo.com") do
+    match "(*x)" => redirect { |params, request|
+      URI.parse(request.url).tap { |x| x.host = "www.caregaroo.com" }.to_s
+    }
+  end
+
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   get "calendar/show"
 
