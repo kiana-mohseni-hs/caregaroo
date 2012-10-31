@@ -12,9 +12,7 @@ gem 'thin'
 gem "fog", "~> 1.3.1"
 
 group :assets do
-  #gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
   gem 'sass-rails'
-  gem 'coffee-rails'
   gem 'compass-rails'
   gem 'compass_twitter_bootstrap'
   gem 'fancy-buttons'
@@ -25,6 +23,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'coffee-rails'
+
 # gem 'jquery_datepicker'
 gem 'jquery-timepicker-rails'
 gem 'event-calendar', :require => 'event_calendar'
