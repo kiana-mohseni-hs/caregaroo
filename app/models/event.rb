@@ -12,6 +12,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name
   validates_datetime :start_at, :on_or_before => :end_at,
                                 :on_or_before_message => 'date/time cannot be later than End at date/time'
+  validates_datetime :end_at
   validates :description, length: { :maximum => 1275 }
   
   after_create :post_new_event
