@@ -67,7 +67,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @current_user.network.events.find(params[:id])
     @event_types=EventType.all
   end
 
@@ -88,7 +88,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
+    @event = @current_user.network.events.find(params[:id])
     params[:event][:updated_by_id] = @current_user.id
     
     respond_to do |format|
@@ -103,7 +103,7 @@ class EventsController < ApplicationController
 
   def update_user
     @message = "Failed to update"
-    @event = Event.find(params[:id])
+    @event = @current_user.network.events.find(params[:id])
 
     if params[:checked] == "true"
       @current_user.events << @event
@@ -115,7 +115,7 @@ class EventsController < ApplicationController
   end
   
   def cancel
-    @event = Event.find(params[:id])
+    @event = @current_user.network.events.find(params[:id])
     if !@event.canceled?
       @event.cancel(@current_user.id)
     end
@@ -129,7 +129,7 @@ class EventsController < ApplicationController
 
 
   def destroy
-    @event = Event.find(params[:id])
+    @current_user.network.events.find(params[:id])
     if !@event.nil?
       @event.destroy
     end

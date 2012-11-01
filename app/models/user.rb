@@ -8,14 +8,12 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name
   validates_presence_of :last_name
-  # attr_accessor :first_stage
   
   has_many :affiliations
   has_many :networks, through: :affiliations
   belongs_to :network
   has_many :invitations
   has_many :post_recipients
-  #has_many :posts_visible, :through => :post_recipients, :source => :post
   has_many :recipients
   has_many :messages, through: :recipients
   has_one  :profile
@@ -65,33 +63,33 @@ class User < ActiveRecord::Base
     "initiator" => "Initiator",
     "coordinator" => "Coordinator" 
   }
-  def is_admin?
-    self.role == ROLES["admin"]
+  def is_admin?(for_network_id = network_id)
+    self.role(for_network_id) == ROLES["admin"]
   end
-  def is_initiator?
-    self.role == ROLES["initiator"]
+  def is_initiator?(for_network_id = network_id)
+    self.role(for_network_id) == ROLES["initiator"]
   end
-  def is_coordinator?
-    self.role == ROLES["coordinator"]
+  def is_coordinator?(for_network_id = network_id)
+    self.role(for_network_id) == ROLES["coordinator"]
   end
-  def is_initiator_or_coordinator?
-    self.role == ROLES["initiator"] || self.role == ROLES["coordinator"]
+  def is_initiator_or_coordinator?(for_network_id = network_id)
+    self.role(for_network_id) == ROLES["initiator"] || self.role(for_network_id) == ROLES["coordinator"]
   end
   
   def name
     (first_name || "") + ' ' + (last_name || "")
   end
   
-  def current_affiliation
-    affiliations.find_by_network_id(network_id)
+  def affiliation(for_network_id = network_id)
+    affiliations.find_by_network_id(for_network_id)
   end
   
-  def role
-    current_affiliation.role 
+  def role(for_network_id = network_id)
+    affiliation(for_network_id).role 
   end
 
-  def network_relationship
-    current_affiliation.relationship
+  def network_relationship(for_network_id = network_id)
+    affiliation(for_network_id).relationship
   end
-
+  
 end

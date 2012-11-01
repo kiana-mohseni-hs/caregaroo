@@ -5,21 +5,21 @@
 	<%= content_tag :div, msg, id: "flash_#{name}" %>
 <% end %>
 
-<h5 class="sub_header_tall">Switch Network</h5>
+<p class="sub_header_tall">SWITCH NETWORK</p>
 <div style="width:450px">
 <%= form_for @current_user, url: network_switch_save_path do |f| %>
-<p>You belong to the following networks. Select the network you would like to switch to now:</p>
+<p>You belong to the following networks. Select the network you would like to switch to now:</p><br/>
 
 <% @current_user.networks.each do |n| %>
-  <h4><%= f.radio_button :network_id, n.id, style: "display:inline;" %>
-  <%= f.label :network, "#{n.name} - #{n.network_for_who}", value: n.id, style: "display:inline;" %></h4>
+  <p><%= f.radio_button :network_id, n.id, style: "display:inline;" %>
+  <%= f.label :network, "#{n.name} - #{n.network_for_who}", value: n.id, style: "display:inline;" %></p>
 <% end %>
 
 <p style="padding:30px 0"><%= f.submit "Switch Network Now", class: "form_button" %></p>
 </div>
 <% end %>
 
-<h5 class="sub_header_tall">Create New Network</h5>
+<p class="sub_header_tall">CREATE NEW NETWORK</p>
 <div style="width:450px">
 <%= form_for @current_user, url: register_new_path, method: "post" do |f| %>
 <p>You can create a brand new network for someone else who needs care.</p>

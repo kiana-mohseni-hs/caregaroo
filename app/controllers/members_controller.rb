@@ -8,10 +8,8 @@ class MembersController < ApplicationController
   
   def delete
     if @current_user.is_initiator_or_coordinator?
-      @user = User.find(params[:user_id])
-      if !@user.nil?
-        @user.destroy 
-      end
+      affiliation = @current_user.network.affiliations.find_by_user_id(params[:user_id])
+      affiliation.destroy unless affiliation.nil?
     end
     redirect_to members_path
   end
@@ -19,17 +17,19 @@ class MembersController < ApplicationController
   def update
     @message = "Failed to update"
     if @current_user.is_initiator_or_coordinator?
-      @user = User.find(params[:user_id])
+      @user = @current_user.network.users.find(params[:user_id])
+      user_affiliation = @user.affiliation(@current_user.network.id)
+      
       if !@user.nil?
         @name = @user.first_name
         if params[:checked] == 'true'
-          @user.current_affiliation.role = User::ROLES["coordinator"] 
-          if @user.current_affiliation.save
+          user_affiliation.role = User::ROLES["coordinator"] 
+          if user_affiliation.save
             @message = "has become a coordinator."
           end
         else
-          @user.current_affiliation.role = ''
-          if @user.save
+          user_affiliation.role = ''
+          if user_affiliation.save
             @message = "is no longer a coordinator."
           end
         end

@@ -34,7 +34,7 @@ class SignupController < ApplicationController
     if @user.save
       @affiliation = @user.affiliations.create( relationship: params[:relationship],
                                                 network_id: @user.network_id,
-                                                role: "")
+                                                role: "Caregiver")
       cookies[:auth_token] = @user.auth_token
       Resque.enqueue(WelcomeMailer, @user.id)
       Resque.enqueue(MembersActivityMailer, @user.network_id, @user.id)
