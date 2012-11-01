@@ -60,8 +60,8 @@ class RegisterController < ApplicationController
         end
       else
         @network = Network.new(params[:network])
+        @network.errors.add(:password, "did not match email address" )
         @current_user = current_user
-        flash[:error] = "password did not match email address"
         render action: "new", layout: "app_no_nav"
       end
     else

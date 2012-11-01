@@ -6,14 +6,11 @@
 
   <%= form_for @network, url: register_path do |f| %>
     <%= render "shared/error_messages", target: @network %>
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
       
       <div class="clear_format">  
       <%= image_tag "num1.jpg", alt: "Step 1", class: "num_icon" %>
       <div id="vertical_line"></div>  
-      <%= f.label :name, "Network Name", class: "right_text_with_icon label_space" %> 
+      <%= f.label :name, "Network name", class: "right_text_with_icon label_space" %> 
       <%= f.text_field :name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off' %>
       <%= f.label :network_for_who, "Who is the network for?", class: "right_text_with_icon label_space" %> 
       <%= f.text_field :network_for_who, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off' %>    
