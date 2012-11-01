@@ -1,5 +1,5 @@
 <a class="large_avatar" href="<%= @user.avatar_url(:large).to_s%>"><%= image_tag @user.avatar_url(:thumb).to_s, :alt => @user.first_name, :class=>"profile_user_pic" %></a>
-<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> (<%= @user.network_relationship %>)</p><br/>
+<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> <%= relationship_in_parenthesis(@user, @user.network_id) %></p><br/>
 <%= form_for @user, :url => update_info_profile_path, :method => :post, :html => { :multipart => true, :id => 'update_profile_form' } do |f| %>
 <div style="margin-top:10px">
   <%= render "shared/error_messages", :target => @user %>
