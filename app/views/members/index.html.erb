@@ -1,31 +1,30 @@
 <h3 class="page_title">Members</h3>
-<!-- do we need to invite here?
-<div>
-  <%= label_tag "Invite others to join your network..." %><br/>
-  <%= text_field_tag "Invite_Value", "Enter email address", :size=>52 %>
-  <%= submit_tag "Send Invite", :class =>"orange_button", :id=>"invite_button"%>
-
-  <hr color="#cccccc"/>
-</div>-->
 
 <ul id="members">
-  <% for user in @members %>
-     <li class = "member">
-        <%= image_tag user.avatar_url(:thumb).to_s, :alt => user.first_name, :height => "40", :width => "40", :style => "float:left;padding-right:5px" %>
-        <div class="member_info">
-          <span class="name_text"><%= link_to "#{user.first_name} #{user.last_name}", user_info_profile_path(user)%> : <%=h user.network_relationship %>
-          </span><br/>
-          <div class="role_line">
-          <% if @current_user.is_initiator_or_coordinator? && !(user.is_initiator? || (user.is_coordinator? && user.id == @current_user.id)) %>
-        <%= link_to 'Remove', members_delete_path(user.id), :confirm => 'Are you sure?', :method => :delete, :class => "orange_text" %>
+<% for user in @members %>
+  <% user_has_privileges = @current_user.is_initiator_or_coordinator? && 
+                           !( user.is_initiator?( @current_user.network.id ) || 
+                              ( user.is_coordinator?( @current_user.network.id ) && 
+                                user.id == @current_user.id
+                              ) 
+                            ) %>
+  <li class = "member">
+    <%= image_tag user.avatar_url(:thumb).to_s, alt: user.first_name, height: "40", width: "40", style: "float:left;padding-right:5px" %>
+    <div class="member_info">
+      <span class="name_text"><%= link_to "#{user.first_name} #{user.last_name}", user_info_profile_path(user)%> : <%=h user.network_relationship( @current_user.network.id ) %>
+      </span><br/>
+      <div class="role_line">
+      <% if user_has_privileges %>
+        <%= link_to 'Remove', members_delete_path(user.id), confirm: 'Are you sure?', method: :delete, class: "orange_text" %>
       <% end %>
-          <% if @current_user.is_initiator_or_coordinator? && !(user.is_initiator? || (user.is_coordinator? && user.id == @current_user.id)) %>
-        <%= check_box_tag  "coordinator_#{user.id}", user.id, user.is_coordinator?, { :class => 'coordinator', 'data-href' => members_update_path(user.id), 'data-method' => 'put' } %> Coordinator
+      <% if user_has_privileges %>
+        <%= check_box_tag "coordinator_#{user.id}", user.id, user.is_coordinator?( @current_user.network.id ),
+                          { :class => 'coordinator', 'data-href' => members_update_path(user.id), 'data-method' => 'put' } %> Coordinator
       <% else %>            
-        <%= user.role %>
+        <%= user.role( @current_user.network.id ) %>
       <% end %>
       </div>
     </div>
   </li>
-    <% end %>  
+<% end %>  
 </ul>

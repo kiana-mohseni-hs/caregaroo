@@ -1,11 +1,14 @@
 <div id="comment_<%= comment.id %>" class="comment" data-time="<%= comment.created_at.to_i %>">
- 	<%= image_tag !comment.user.nil? ? comment.user.avatar_url(:thumb).to_s : "photo_place_holder.png", :alt => !comment.user.nil? ? comment.user.first_name : 'Anonymous' , :height => "50", :width => "50", :style => "float:left;padding-right:5px" %>
-	<div class="comment_content">
-		<span class="name_text"><%= !comment.user.nil? ? link_to(comment.user.first_name, user_info_profile_path(comment.user)) : 'Anonymous'  %> (<%= !comment.user.nil? ? comment.user.network_relationship  : 'Removed' %>)</span>
-		<span class="time_text"><%= time_ago_in_words(comment.created_at) %> ago at <%= comment.created_at.strftime('%l:%M %p') %></span> 
-		<div id="comment_content_<%= comment.id %>"><%= raw truncate(comment.content, :length => 240, :omission => link_to(' ... (Read More)', comment_path(comment.id), :method => :get, :remote => true, :class => "orange_text")) %></div>
-		<% if !comment.user.nil? && @current_user.id == comment.user.id %>
-			<span><%= link_to 'Delete', comment, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => "orange_text" %></span>
-		<% end %>
-	</div>
+  <%= image_tag !comment.user.nil? ? comment.user.avatar_url(:thumb).to_s : "photo_place_holder.png",
+                 alt: !comment.user.nil? ? comment.user.first_name : 'Anonymous', 
+                 height: "50", width: "50", style: "float:left;padding-right:5px" %>
+  <div class="comment_content">
+    <span class="name_text"><%= !comment.user.nil? ? link_to(comment.user.first_name, user_info_profile_path(comment.user)) : 'Anonymous'  %> 
+                            <%= relationship_in_parenthesis(comment.user, @current_user.network_id) %></span>
+    <span class="time_text"><%= time_ago_in_words(comment.created_at) %> ago at <%= comment.created_at.strftime('%l:%M %p') %></span> 
+    <div id="comment_content_<%= comment.id %>"><%= raw truncate(comment.content, length: 240, omission: link_to(' ... (Read More)', comment_path(comment.id), method: :get, remote: true, class: "orange_text")) %></div>
+    <% if !comment.user.nil? && @current_user.id == comment.user.id %>
+      <span><%= link_to 'Delete', comment, :confirm => 'Are you sure?', :method => :delete, :remote => true, :class => "orange_text" %></span>
+    <% end %>
+  </div>
 </div>

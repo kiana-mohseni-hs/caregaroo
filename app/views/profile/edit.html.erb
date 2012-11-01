@@ -1,5 +1,5 @@
 <a class="large_avatar" href="<%= @user.avatar_url(:large).to_s%>"><%= image_tag @user.avatar_url(:thumb).to_s, :alt => @user.first_name, :class=>"profile_user_pic" %></a>
-<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> (<%= @user.network_relationship %>)</p><br/>
+<p class="name_text"><%= @user.first_name %> <%= @user.last_name %> <%= relationship_in_parenthesis(@user, @user.network_id) %></p><br/>
 <%= form_for @user, :url => update_info_profile_path, :method => :post, :html => { :multipart => true, :id => 'update_profile_form' } do |f| %>
 <div style="margin-top:10px">
   <%= render "shared/error_messages", :target => @user %>
@@ -11,47 +11,46 @@
   <p class="sub_header">BASICS</p>
   <hr/>
 
-	<table class="profile_content">
-		<tr><td class="left"><%= f.label :first_name, 'First Name:'%></td><td class="right"><%= f.text_field :first_name, :size => "35" %></td></tr>
-		<tr><td class="left"><%= f.label :last_name, 'Last Name:'%></td><td class="right"><%= f.text_field :last_name, :size => "35" %></td></tr>
-		<tr><td class="left"><%= f.label :email, 'Email:'%></td><td class="right"><%= f.text_field :email, :size => "35" %></td></tr>
-		<tr><td class="left"><%= f.label :network_relationship, 'Relationship:'%></td><td class="right"><%= f.text_field :network_relationship, :size => "35" %></td></tr>
-		<%= f.fields_for :profile do |p|%>
-		<tr><td class="left"><%= p.label :location, 'Location:'%> </td><td class="right"><%= p.text_field :location, :size => "35" %></td></tr>
+  <table class="profile_content">
+    <tr><td class="left"><%= f.label :first_name, 'First Name:'%></td><td class="right"><%= f.text_field :first_name, :size => "35" %></td></tr>
+    <tr><td class="left"><%= f.label :last_name, 'Last Name:'%></td><td class="right"><%= f.text_field :last_name, :size => "35" %></td></tr>
+    <tr><td class="left"><%= f.label :email, 'Email:'%></td><td class="right"><%= f.text_field :email, :size => "35" %></td></tr>
+    <%= f.fields_for :profile do |p|%>
+    <tr><td class="left"><%= p.label :location, 'Location:'%> </td><td class="right"><%= p.text_field :location, :size => "35" %></td></tr>
     <tr><td class="left"><%= p.label :time_zone, 'Time Zone:'%> </td><td class="right"><%= time_zone_select( "user", 'time_zone', [], :default => "Pacific Time (US & Canada)") %></td></tr>
-		<% end %>
-		<tr><td class="left"><%= f.label :avatar, 'Photo:'%> </td><td class="right">
-			<%= f.file_field :avatar, :id => "preview" %> <span id="preview-photo"></span></td></tr>
-		<%= f.fields_for :profile do |p|%>
-		<tr><td class="left"><%= p.label :bio, 'About me:'%></td><td class="right"><%= p.text_area :bio, :rows => "6" %></td></tr>
-		<% end %>	
-	</table>
+    <% end %>
+    <tr><td class="left"><%= f.label :avatar, 'Photo:'%> </td><td class="right">
+      <%= f.file_field :avatar, :id => "preview" %> <span id="preview-photo"></span></td></tr>
+    <%= f.fields_for :profile do |p|%>
+    <tr><td class="left"><%= p.label :bio, 'About me:'%></td><td class="right"><%= p.text_area :bio, :rows => "6" %></td></tr>
+    <% end %>  
+  </table>
   
    <p class="sub_header">CONTACT</p>
    <hr/>
   <table class="profile_content">
-  	<%= f.fields_for :profile do |p|%>
-		<tr><td class="left"><%= p.label :phone_home, 'Home Phone:'%></td><td class="mid"><%= p.text_field :phone_home, :size => "25" %></td></tr>
-		<tr><td class="left"><%= p.label :phone_work, 'Work Phone:'%></td><td class="mid"><%= p.text_field :phone_work, :size => "25" %></td><td class="ext"><%= p.label :phone_work_ext, 'Ext:'%> </td><td class="right"><%= p.text_field :phone_work_ext, :size => "6" %></td></tr>
-		<tr><td class="left"><%= p.label :phone_mobile, 'Mobile Phone:'%></td><td class="right"><%= p.text_field :phone_mobile, :size => "25" %></td></tr>
-  	<% end %>	
+    <%= f.fields_for :profile do |p|%>
+    <tr><td class="left"><%= p.label :phone_home, 'Home Phone:'%></td><td class="mid"><%= p.text_field :phone_home, :size => "25" %></td></tr>
+    <tr><td class="left"><%= p.label :phone_work, 'Work Phone:'%></td><td class="mid"><%= p.text_field :phone_work, :size => "25" %></td><td class="ext"><%= p.label :phone_work_ext, 'Ext:'%> </td><td class="right"><%= p.text_field :phone_work_ext, :size => "6" %></td></tr>
+    <tr><td class="left"><%= p.label :phone_mobile, 'Mobile Phone:'%></td><td class="right"><%= p.text_field :phone_mobile, :size => "25" %></td></tr>
+    <% end %>  
   </table>
   
   <p class="sub_header">PASSWORD</p>
   <hr/>
   <div class="profile_content">
-	  <div class="row_space"><div class="left_text"><%= f.label :password, 'Old Password:'%> </div><div class="right_text_2"><%= password_field_tag :old_password, '', :size => 26 %>  
-	  	<a href="/password_resets" class="forgot_pw_link"><span class="orange_text" >Forgotten password?</span></a></div></div>
-	  <div class="row_space"><div class="left_text"><%= f.label :password, 'New Password:'%> </div><div class="right_text_2"><%= f.password_field :password, :size => "26" %>  </div></div>
-	  <div class="row_space"><div class="left_text"><%= f.label :password_confirmation, 'Confirm New Password:'%> </div><div class="right_text_2"><%= f.password_field :password_confirmation, :size => "26" %>  </div><br /></div>
+    <div class="row_space"><div class="left_text"><%= f.label :password, 'Old Password:'%> </div><div class="right_text_2"><%= password_field_tag :old_password, '', :size => 26 %>  
+      <a href="/password_resets" class="forgot_pw_link"><span class="orange_text" >Forgotten password?</span></a></div></div>
+    <div class="row_space"><div class="left_text"><%= f.label :password, 'New Password:'%> </div><div class="right_text_2"><%= f.password_field :password, :size => "26" %>  </div></div>
+    <div class="row_space"><div class="left_text"><%= f.label :password_confirmation, 'Confirm New Password:'%> </div><div class="right_text_2"><%= f.password_field :password_confirmation, :size => "26" %>  </div><br /></div>
   </div>
   <p class="sub_header">SEND ME A NOTIFICATION:</p>
   <hr/>
   <div class="profile_content">
-  	<%= f.fields_for :notification do |n|%>
-  	<div class="row_space"><div class="left_text">When Caregaroo Team has an announcement about the site</div><div><%= n.check_box :announcement, :style => "float:right" %></div></div>
-  	<div class="row_space"><div class="left_text">When someone posts an update or comment</div><div><%= n.check_box :post_update, :style => "float:right" %></div></div>
-  	<% end %>
+    <%= f.fields_for :notification do |n|%>
+    <div class="row_space"><div class="left_text">When Caregaroo Team has an announcement about the site</div><div><%= n.check_box :announcement, :style => "float:right" %></div></div>
+    <div class="row_space"><div class="left_text">When someone posts an update or comment</div><div><%= n.check_box :post_update, :style => "float:right" %></div></div>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit "Save Updates", :class =>"form_button", :id=>"save_updates_button"%>

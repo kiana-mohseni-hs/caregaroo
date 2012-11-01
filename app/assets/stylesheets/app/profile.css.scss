@@ -9,6 +9,7 @@ td.ext { width: 30px; }
 
 .left_text {font-size:12px; float:left;}
 .sub_header{ margin-top:15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+.sub_header_tall{ @extend .sub_header; margin-bottom: 20px; }
 #save_updates_button{float:right;}
 .profile_user_pic { height:44px; width:50px; float:left; padding-right:5px;}
 .row_space{height:30px;}

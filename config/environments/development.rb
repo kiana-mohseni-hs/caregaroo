@@ -57,5 +57,6 @@ Cg2App::Application.configure do
   CarrierWave.configure do |config|
     config.storage = :file
   end
+  Resque.inline = true
   
 end
