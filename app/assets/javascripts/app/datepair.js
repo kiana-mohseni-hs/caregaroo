@@ -1,12 +1,21 @@
+
+Date.prototype.addHours = function(h) {    
+   this.setTime(this.getTime() + (h*60*60*1000)); 
+   return this;
+}
+
 $(function() {
 
   $('.datepair input.date').each(function(){
     var $this = $(this);
     $this.datepicker({ 'dateFormat': 'yy-mm-dd' });
 
-    // if ($this.hasClass('start') || $this.hasClass('end')) {
-    //   $this.on('changeDate change', doDatepair);
-    // }
+    // I am really really screwing the plugin =)
+    if (this.id == 'event_start_at_date') {
+      $this.on('changeDate change', function(){
+        $('#event_end_at_date').val( this.value )
+      });
+    }
 
   });
 
@@ -14,9 +23,25 @@ $(function() {
     var $this = $(this);
     var opts = { 'showDuration': true, 'timeFormat': 'g:ia', 'scrollDefaultNow': true };
 
-    // if ($this.hasClass('start') || $this.hasClass('end')) {
-    //   opts.onSelect = doDatepair;
-    // }
+    // I am really really screwing the plugin =)
+    if (this.id == 'event_start_at') {
+      $this.on('change', function(){
+        var h = parseInt( this.value.split(":")[0], 10)
+        var m = this.value.split(":")[1].substr(0,2)
+        var is_pm = window.event_start_at.value.indexOf('pm') > -1
+        //console.log('was',h,m,is_pm);
+        if( h == 11 ){
+          is_pm = !is_pm
+        }
+        if( h == 12){
+          h = 1
+          if( is_pm )is_pm
+        } else {
+          h += 1
+        }
+        $('#event_end_at').val( h+':'+m+( is_pm ? 'pm':'am') )
+      });
+    }
 
     $this.timepicker(opts);
   });
@@ -55,8 +80,7 @@ $(function() {
     }
   }
 
-  function doDatepair()
-  {
+  function doDatepair() {
     var target = $(this);
     if (target.val() == '') {
       return;
@@ -65,10 +89,10 @@ $(function() {
     var container = target.closest('.datepair');
 
     if (target.hasClass('date')) {
-      updateDatePair(target, container);
+      //updateDatePair(target, container);
 
     } else if (target.hasClass('time')) {
-      updateTimePair(target, container);
+      //this make some visual update and constraints.. updateTimePair(target, container);
     }
   }
 
