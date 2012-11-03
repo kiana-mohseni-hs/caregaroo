@@ -1,4 +1,4 @@
-<%= form_for( Post.new, :html => {:multipart => true}) do |f| %>
+<%= form_for Post.new, :html => {:multipart => true} do |f| %>
   <div id="new_news_wrapper" class="field">
     <div class="col_a">
       <%= image_tag (current_user.avatar_url(:thumb).to_s or "photo_place_holder.png"), :alt => current_user.try(:first_name), :height => "50", :width => "50" %>
@@ -36,7 +36,7 @@
 <div style="display:none" class="hidden_viewbag">
   <div id="upload_box_container">
     Select an image file form your computer:<br/>
-    <input type="file" name="bosson_riggs" accept="image/*" />
+    <input type="file" name="post[photo]" accept="image/*" />
   </div>
 </div>
 
