@@ -67,7 +67,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @current_user.network.events.find(params[:id])
+    @event = @current_user.network.events.find(params[:id])
     @event_types=EventType.all
   end
 

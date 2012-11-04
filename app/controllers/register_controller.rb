@@ -56,6 +56,10 @@ class RegisterController < ApplicationController
           Resque.enqueue(WelcomeMailer, user.id)
           redirect_to register_success_path
         else
+          @network.users.build( { email:      user.email, 
+                                  last_name:  user.last_name,
+                                  first_name: user.first_name } )
+          @readonly = true
           render action: "new", layout: "app_no_nav"
         end
       else
