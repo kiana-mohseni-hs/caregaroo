@@ -24,7 +24,7 @@
                                                       class: "orange_text")) %>
     
   <% end %>
-  <% if post.photo %>
+  <% if post.photo.try :present? %>
     <%= image_tag post.photo_url(:small) %>
   <% end %>
 </div>
