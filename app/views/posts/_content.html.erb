@@ -24,5 +24,7 @@
                                                       class: "orange_text")) %>
     
   <% end %>
-  <%= image_tag post.photo_url(:small) %> 
+  <% if post.photo %>
+    <%= image_tag post.photo_url(:small) %>
+  <% end %>
 </div>
