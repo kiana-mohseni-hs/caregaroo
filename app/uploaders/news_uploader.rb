@@ -14,7 +14,8 @@ class NewsUploader < CarrierWave::Uploader::Base
   end
 
   def pre_limit file
-    if file && File.size(current_path) > 5.megabytes
+    #require 'debugger'; debugger
+    if file && File.size(file.path) > 5.megabytes
       raise Exception.new("too large")
     end
     true
@@ -22,7 +23,6 @@ class NewsUploader < CarrierWave::Uploader::Base
 
   def only_first_frame
     manipulate! do |img|
-      #require 'debugger'; debugger
 
       if img.mime_type.match /gif/
         if img.scene == 0
