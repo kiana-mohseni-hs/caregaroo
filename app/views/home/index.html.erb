@@ -16,7 +16,7 @@
         <!--input type="password" class="span4" name="password" placeholder="Choose your password"-->
         <div style="margin-top:20px;height:30px;">
         <% if @current_user %>
-        <%= link_to "Log out", logout_path %>
+        <%# link_to "Log out", logout_path %>
         <% else %>
         <a href="/login" rel="nofollow">Already have an account? Sign in.</a>
         <% end %>
