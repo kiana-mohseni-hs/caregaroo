@@ -17,9 +17,9 @@ class PostsController < ApplicationController
     rescue Exception => e
       if e.message == 'too large'
         redirect_to news_path(err: 'file')
-        return
+      else
+        raise e
       end
-      raise e
     end
     
     @post.network_id = @current_user.network_id
