@@ -11,11 +11,11 @@
 	<%= form_for @session, :url => sessions_path, :method => :post, :html => { :id => 'login_form' } do |f| %>
 		<div class="field">
 		    <%= f.label :email %>
-		    <%= f.text_field :email, :size=>35, :autocomplete => 'off' %>
+		    <%= f.text_field :email, :size=>35 %>
 	  	</div>
 		<div class="field">
 		    <%= f.label :password %>
-		    <%= f.password_field :password, :size=>35, :autocomplete => 'off' %>
+		    <%= f.password_field :password, :size=>35, :maxlength=>35 %>
 		</div>
 		<a href="password_resets" style="TEXT-DECORATION: NONE"><span class="orange_text" >Forgot password?</span></a>
 		<div class="field">
