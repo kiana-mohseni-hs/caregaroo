@@ -12,7 +12,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(params[:post]) rescue nil
+    
+    if !@post # assume exception raised due file
+      redirect_to news_path(err: 'file')
+      return
+    end
+
     @post.network_id = @current_user.network_id
     @post.user_id = @current_user.id
     @recipients = params[:recipient_list_condensed].split(',').map{|x| x.to_i}
