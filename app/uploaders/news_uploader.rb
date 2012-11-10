@@ -14,8 +14,8 @@ class NewsUploader < CarrierWave::Uploader::Base
   end
 
   def pre_limit file
-    #require 'debugger'; debugger
-    if file && File.size(file.path) > 5.megabytes
+    require 'debugger'; debugger
+    if file && file.size > 5.megabytes
       raise Exception.new("too large")
     end
     true
