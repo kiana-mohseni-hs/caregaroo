@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+
 class NewsUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
@@ -12,10 +13,30 @@ class NewsUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def pre_limit file
+    if file && File.size(current_path) > 5.megabytes
+      raise Exception.new("too large")
+    end
+    true
+  end
 
+  def only_first_frame
+    manipulate! do |img|
+      #require 'debugger'; debugger
 
-  version :large do
-    process :pre_limit => 5.megabytes
+      if img.mime_type.match /gif/
+        if img.scene == 0
+          img = img.cur_image #Magick::ImageList.new( img.base_filename )[0]
+        else
+          img = nil
+        end
+      end
+      img
+    end
+  end
+
+  version :large, if: :pre_limit do
+    #process :pre_limit
     process :only_first_frame
     #process :quality => 90
     process :convert => 'jpg'
@@ -23,8 +44,8 @@ class NewsUploader < CarrierWave::Uploader::Base
   end
 
   # Create different versions of your uploaded files:
-  version :small do
-    process :pre_limit => 5.megabytes
+  version :small, if: :pre_limit do
+    #process :pre_limit
     process :only_first_frame
     #process :quality => 90
     process :convert => 'jpg'

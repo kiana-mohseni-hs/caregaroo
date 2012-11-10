@@ -27,7 +27,7 @@
   <% if post.photo.try :present? %>
   <br/>
     <center style="border: 1px #CCC solid; padding: 3px 2px; width: 370px; margin: 3px 0;">
-      <%= image_tag post.photo_url(:small) %> <br> <%= image_tag post.photo_url(:large) %>
+      <%= image_tag post.photo_url(:small) %> <br> <%#image_tag post.photo_url(:large) %>
     </center>
   <% end %>
 </div>
