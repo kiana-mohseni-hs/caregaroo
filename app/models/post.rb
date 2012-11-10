@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   default_scope order("created_at desc")
 
   mount_uploader :photo, NewsUploader
+  validates :photo, :file_size => { :maximum => 4.megabytes.to_i  }
   
   def not_an_event?
     self.event.nil?

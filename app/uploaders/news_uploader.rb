@@ -12,11 +12,33 @@ class NewsUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def only_first_frame
+    manipulate! do |img|
+      #require 'debugger'; debugger
 
-  process :resize_to_limit => [1024, 1024]
+      if img.mime_type.match /gif/
+        if img.scene == 0
+          img = img.cur_image #Magick::ImageList.new( img.base_filename )[0]
+        else
+          img = nil
+        end
+      end
+      img
+    end
+  end
+
+  version :large do
+    process :only_first_frame
+    #process :quality => 90
+    process :convert => 'jpg'
+    process :resize_to_limit => [1280, 1024]
+  end
 
   # Create different versions of your uploaded files:
   version :small do
+    process :only_first_frame
+    #process :quality => 90
+    process :convert => 'jpg'
     process :resize_to_limit => [360, 360]
   end
 

@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @page = 'posts'
     @posts = @current_user.network.posts.visible_to(@current_user).includes(:user).includes(:comments)
+    @err = params[:err]
   end
 
   def edit
@@ -29,8 +30,12 @@ class PostsController < ApplicationController
             PostRecipient.create!(post_id: @post.id, user_id: @current_user.id)
           end
           # Resque.enqueue(NewsActivityMailer, @post.id)
-          format.html { redirect_to news_path }
         end
+      end
+      if @post.persisted?
+        format.html { redirect_to news_path }
+      else
+        format.html { redirect_to news_path(err: 'file') } if @post.errors[:photo].any?
       end
     end
   end
