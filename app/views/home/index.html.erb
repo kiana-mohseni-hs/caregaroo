@@ -9,9 +9,9 @@
         <span class="help-block" style="font-size:20px; font-style:italic; margin:10px 10px 20px 10px;">Create your free private network</span>
         <input type="text" class="span4" name="network_for_who" autocomplete="off"  maxlength="35" placeholder="Who are you caring for?">
         <% if @current_user %>
-        <input type="text" class="span4" name="email" autocomplete="off" maxlength="35" value="<%= @current_user.email %>", readonly="readonly">
+          <input type="text" href="#point-sign-out" class="span4" name="email" autocomplete="off" maxlength="35" value="<%= @current_user.email %>", readonly="readonly">
         <% else %>
-        <input type="text" class="span4" name="email" autocomplete="off" maxlength="35" placeholder="Your email address?">
+          <input type="text" class="span4" name="email" autocomplete="off" maxlength="35" placeholder="Your email address?">
         <% end %>
         <!--input type="password" class="span4" name="password" placeholder="Choose your password"-->
         <div style="margin-top:20px;height:30px;">
@@ -77,3 +77,25 @@
   </div>
 </div>
 
+<div style="display:none;">
+    <div id="point-sign-out">
+      <h1>Different e-mail?</h1>
+      <center>
+        <p>
+          If you'd like to create another network using a different e-mail you must first log out by clicking the Log out button above.
+        </p>
+          <br>
+          <a href="javascript:$.fancybox.close()" ><button class="btn btn-warning" type="button">OK</button></a>
+      </center>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$('input[name=email][readonly]').fancybox({
+    autoDimensions: false,
+    width: 400,
+    height: 200,
+    overlayColor: "#FFF",
+    opacity: 0.8,
+  });
+  </script>
