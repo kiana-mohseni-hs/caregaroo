@@ -21,7 +21,7 @@
       <%= raw truncate(CGI::escapeHTML(post.content), length: 320, omission: link_to(' ... (Read More)', post_path(post.id),
                                                         method: :get,
                                                         # being click bound on index.html.erb
-                                                        class: "orange_text")) %>
+                                                        class: "orange_text expand")) %>
       
     <% end %>
     <% if post.photo.try :present? %>
