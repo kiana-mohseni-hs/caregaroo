@@ -9,36 +9,35 @@
   <div id="post_<%= post.id %>" data-id="<%= post.id %>">
     <div id="news">
        <%= image_tag !post.user.nil? ? post.user.avatar_url(:thumb).to_s : "photo_place_holder.png", :alt => !post.user.nil? ? post.user.first_name : 'Anonymous' , :height => "50", :width => "50", :style => "float:left;padding-right:5px" %>
-      <div class="comment_content">
-      <span class="name_text"><%= !post.user.nil? ? link_to(post.user.first_name, user_info_profile_path(post.user)) : 'Anonymous' %>
-        <%= relationship_in_parenthesis(post.user, @current_user.network_id) %></span>
-      <span class="time_text"><%= time_ago_in_words(post.updated_at) %> ago at <%= post.updated_at.strftime('%l:%M %p') %></span> 
-      <%= render :partial => "content", :locals => { :post => post } %>
+        <div class="comment_content">
+        <span class="name_text"><%= !post.user.nil? ? link_to(post.user.first_name, user_info_profile_path(post.user)) : 'Anonymous' %>
+          <%= relationship_in_parenthesis(post.user, @current_user.network_id) %></span>
+        <span class="time_text"><%= time_ago_in_words(post.updated_at) %> ago at <%= post.updated_at.strftime('%l:%M %p') %></span> 
+        <%= render :partial => "content", :locals => { :post => post } %>
 
-      <ul>
-        <li class="comment_links"><span id="comment_<%= post.id %>" post-id="<%= post.id %>" class="orange_text news_comment" style="cursor:pointer">Comment</span></li>  
-        <% if !post.comments.empty? && post.comments.count > 3 %> 
-          <li style="float:left; width:145px;color:#F47D29"><%= link_to "View all #{pluralize(post.comments.count, " comment")}", post_commments_path(post.id), :method => :get, :remote => true, :class => "orange_text" %></li>
-        <% end %>
+        <ul>
+          <li class="comment_links"><span id="comment_<%= post.id %>" post-id="<%= post.id %>" class="orange_text news_comment" style="cursor:pointer">Comment</span></li>  
+          <% if !post.comments.empty? && post.comments.count > 3 %> 
+            <li style="float:left; width:145px;color:#F47D29"><%= link_to "View all #{pluralize(post.comments.count, " comment")}", post_commments_path(post.id), :method => :get, :remote => true, :class => "orange_text" %></li>
+          <% end %>
 
-        <li style="position: relative; float:left; width:95px; color:#F47D29;" class="recipient_list_handle">
-          <%= post.recipients.size == 0 ? @current_user.network.users.size : post.recipients.size %> Recipients
-          <div class="recipients_drop_down">
-            <% if post.recipients && post.recipients.size > 0 then; post.recipients.each do |u| %>
-              <%= u.name %> <br/>
+          <li style="position: relative; float:left; width:95px; color:#F47D29;" class="recipient_list_handle">
+            <%= post.recipients.size == 0 ? @current_user.network.users.size : post.recipients.size %> Recipients
+            <div class="recipients_drop_down">
+              <% if post.recipients && post.recipients.size > 0 then; post.recipients.each do |u| %>
+                <%= u.name %> <br/>
+                <% end %>
+              <% else %>
+                Everyone
               <% end %>
-            <% else %>
-              Everyone
-            <% end %>
-          </div>
-        </li> 
+            </div>
+          </li> 
 
-
-        <% if !post.user.nil? && @current_user.id == post.user.id %>
-          <li style="float:left; color:#F47D29"><%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :class => "orange_text" %></li> 
-        <% end %>
-      </ul>
-      <div class="clear"></div>
+          <% if !post.user.nil? && @current_user.id == post.user.id %>
+            <li style="float:left; color:#F47D29"><%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :class => "orange_text" %></li> 
+          <% end %>
+        </ul>
+        <div class="clear"></div>
       </div>
     </div>
     <div id="comments_<%= post.id %>" class="comments">
@@ -75,6 +74,11 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+  $('#container .post_content_area a.orange_text').click(function(ev){
+    ev.preventDefault();
+    $.get( $(this).attr('href')+'.js');
+    return false
+  })
   $('li.recipient_list_handle').hover(
   function(ev){ // in
     var jthis = $(ev.currentTarget)
