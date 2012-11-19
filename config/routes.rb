@@ -13,6 +13,11 @@ Cg2App::Application.routes.draw do
     }
   end
 
+  namespace :admin do
+    get '', :to => 'dashboard#index', :as => '/'
+    resources :users, :networks
+  end
+
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   get "calendar/show"
 

@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     self.role(for_network_id) == ROLES["initiator"] || self.role(for_network_id) == ROLES["coordinator"]
   end
   
+  def is_system_admin?
+    self.system_admin
+  end
+  
   def name
     (first_name || "") + ' ' + (last_name || "")
   end

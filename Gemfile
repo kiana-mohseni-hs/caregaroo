@@ -48,5 +48,7 @@ gem 'validates_timeliness', '~> 3.0'
 
 gem 'detect_timezone_rails'
 
+gem 'will_paginate'
+
 # TODO speed up asset precompile -- need to install rake task and test it
 # gem 'turbo-sprockets-rails3'

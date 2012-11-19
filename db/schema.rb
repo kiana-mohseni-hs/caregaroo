@@ -11,19 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121019041933) do
-
-  create_table "affiliations", :force => true do |t|
-    t.string   "relationship"
-    t.integer  "network_id"
-    t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "role"
-  end
-
-  add_index "affiliations", ["network_id"], :name => "index_affiliations_on_network_id"
-  add_index "affiliations", ["user_id"], :name => "index_affiliations_on_user_id"
+ActiveRecord::Schema.define(:version => 20121117143037) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "relationship"
@@ -39,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20121019041933) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
-    t.text     "content",    :limit => 255
+    t.text     "content",    :limit => 3000
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "post_id"
@@ -55,16 +43,16 @@ ActiveRecord::Schema.define(:version => 20121019041933) do
     t.string   "name"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.integer  "network_id"
-    t.integer  "event_type_id",                  :default => 1
+    t.integer  "event_type_id",                 :default => 1
     t.string   "location"
-    t.text     "description",    :limit => 1275
+    t.text     "description",    :limit => 255
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "post_id"
-    t.boolean  "canceled",                       :default => false
+    t.boolean  "canceled",                      :default => false
     t.integer  "canceled_by_id"
   end
 
@@ -121,8 +109,8 @@ ActiveRecord::Schema.define(:version => 20121019041933) do
     t.boolean  "receive_thanks"
     t.boolean  "member_receives_thanks"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "pilot_signups", :force => true do |t|
@@ -189,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20121019041933) do
     t.integer  "network_id"
     t.string   "avatar"
     t.string   "time_zone",              :limit => 32, :default => "Pacific Time (US & Canada)"
+    t.boolean  "system_admin",                         :default => false,                        :null => false
   end
 
 end

@@ -1,0 +1,22 @@
+<div class="page-header">
+	<h1><%= controller.controller_name.capitalize %></h1>
+</div>
+
+<!-- 
+<ul class="breadcrumb">
+	<li><a href="#">Dashboard</a><span class="divider">/</span></li>
+	<li><a href="#">Users</a><span class="divider">/</span></li>
+</ul>
+-->
+
+<table id="<%= "#{controller.controller_name}_list" %>" class="datatable table table-striped table-bordered table-hover" data-source="<%= admin_users_path(format: "json") %>">
+	<thead>
+		<tr>
+			<% @columns.each do |column| %>
+				<th class="<%= column[:sortable] === false ? 'no_sort' : '' %>"><%= column[:human_name] %></th>
+			<% end %>
+		</tr>
+	</thead>	
+	<tbody>
+	</tbody>	
+</table>
