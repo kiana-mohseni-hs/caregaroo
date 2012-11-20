@@ -70,4 +70,7 @@ class Admin::BaseController < ApplicationController
     end
   end
 
+  def set_columns
+  end
+
 end
