@@ -8,6 +8,33 @@ class Admin::BaseController < ApplicationController
   protected
 
   # [dataTables]
+  def conditions
+    c = []
+    a = {}
+
+    @columns.each_with_index do |column, i|
+      if params["bSearchable_#{i}"] && !params["sSearch_#{i}"].blank?
+
+        dbname  = column[:db_name]
+        dbname_ = dbname.gsub(/\W+/, '')
+        search  = params["sSearch_#{i}"].strip
+
+        case column[:type]        
+        when "string"
+          c << "#{dbname} LIKE :#{dbname_}"
+          a[("#{dbname_}").to_sym] = "%#{search}%"        
+        when "int"
+          c << "#{dbname} = :#{dbname_}"
+          a[("#{dbname_}").to_sym] = search        
+        end
+
+      end
+    end
+
+    [c.join(" AND "), a]
+  end
+
+  # [dataTables]
   def current_page
     params[:iDisplayStart].to_i / per_page + 1
   end

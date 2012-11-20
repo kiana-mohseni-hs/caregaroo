@@ -9,17 +9,26 @@ $.extend( $.fn.dataTableExt.oStdClasses, {
 });	
 
 $(function(){
-	$('.datatable').dataTable({
+
+	var oTable = $('.datatable').dataTable({
 		bProcessing:     true,
     bServerSide:     true,
     sAjaxSource:     $('.datatable').data('source'),
-    sDom:            "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sDom:            "<'row-fluid'<'span6'l>>rt<'row-fluid'<'span6'i><'span6'p>>",
   	sPaginationType: "bootstrap",
-  	oLanguage:       {sLengthMenu: "_MENU_ records per page"},
+  	oLanguage:       {
+      sLengthMenu: "Show _MENU_ records per page",
+      sSearch    : "Search all columns:"
+    },
   	aoColumns: 			 (jQuery.map($('.datatable th'), function(n, i){
-	  	// return {"bSortable": false} for THs that has the no_sort class
       return ($(n).hasClass('no_sort') ? {"bSortable": false} : {"bSortable": true});
     }))
 	});
+
+  $('.filters input').keyup( function () {
+    /* Filter on the column (the index) of this element */
+    console.log(this.value, $('.filters input').index(this));
+    oTable.fnFilter( this.value, $('.filters input').index(this) );
+  } );
 
 });

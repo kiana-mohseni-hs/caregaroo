@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   
   has_many :affiliations
   has_many :networks, through: :affiliations
-  belongs_to :network
+  belongs_to :network, :counter_cache => true
   has_many :invitations
   has_many :post_recipients
   has_many :recipients

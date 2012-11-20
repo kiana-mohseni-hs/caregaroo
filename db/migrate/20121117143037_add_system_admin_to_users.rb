@@ -6,7 +6,7 @@ class AddSystemAdminToUsers < ActiveRecord::Migration
   	
     User.create!(
   		{
-	  		:email        => 'system_admin@caregaroo.com', 
+	  		:email        => 'admin@caregaroo.com', 
 	  		:password     => 'cgadmpass', 
 	  		:first_name   => 'Caregaroo', 
 	  		:last_name    => 'Admin',

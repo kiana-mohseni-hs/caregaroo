@@ -2,14 +2,23 @@
 	<h1><%= controller.controller_name.capitalize %></h1>
 </div>
 
-<!-- 
-<ul class="breadcrumb">
-	<li><a href="#">Dashboard</a><span class="divider">/</span></li>
-	<li><a href="#">Users</a><span class="divider">/</span></li>
-</ul>
--->
+<form class="filters form-horizontal">
+	<div class="well">
+		<% @columns.each do |column| %>
+			<!-- NOTE: all @columns must be in the DOM, even those that are not used to filter.
+				that's why I'm using display:none -->
+	  	<div class="control-group" style="<%= column[:filter] ? '' : 'display:none;' %>">
+		    <label class="control-label" for="<%= column[:db_name] %>"><%= column[:human_name] %></label>
+	    	<div class="controls">
+		      <input type="text" id="<%= column[:db_name] %>" placeholder="<%= column[:human_name] %>">
+	    	</div>
+	  	</div>
+	  <% end %>
+ 	</div>
+</form>
 
-<table id="<%= "#{controller.controller_name}_list" %>" class="datatable table table-striped table-bordered table-hover" data-source="<%= admin_users_path(format: "json") %>">
+
+<table id="<%= "#{controller.controller_name}_list" %>" class="datatable table table-striped table-bordered table-hover" data-source="<%= "/admin/#{controller.controller_name}.json" %>">
 	<thead>
 		<tr>
 			<% @columns.each do |column| %>
@@ -17,6 +26,5 @@
 			<% end %>
 		</tr>
 	</thead>	
-	<tbody>
-	</tbody>	
+	<tbody></tbody>
 </table>
