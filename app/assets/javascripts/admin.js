@@ -25,10 +25,13 @@ $(function(){
     }))
 	});
 
-  $('.filters input').keyup( function () {
+  $('.filters input').keyup(function(){
     /* Filter on the column (the index) of this element */
-    console.log(this.value, $('.filters input').index(this));
-    oTable.fnFilter( this.value, $('.filters input').index(this) );
-  } );
+    oTable.fnFilter( this.value, $('.filters input, .filters select').index(this) );
+  });
+  $('.filters select').change( function () {
+    /* Filter on the column (the index) of this element */
+    oTable.fnFilter( this.value, $('.filters input, .filters select').index(this) );
+  });
 
 });
