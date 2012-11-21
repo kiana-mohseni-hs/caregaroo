@@ -54,8 +54,9 @@ class Admin::NetworksController < Admin::BaseController
             c << "networks.created_at >= :date"
             a[:date] = 1.week.ago.beginning_of_day
           when "last_month"
-            c << "networks.created_at >= :date"
-            a[:date] = 1.month.ago.beginning_of_day
+            c << "networks.created_at BETWEEN :start AND :end"
+            a[:start] = 1.month.ago.beginning_of_month
+            a[:end] = 1.month.ago.end_of_month
           end
         end
 
@@ -71,13 +72,13 @@ class Admin::NetworksController < Admin::BaseController
   # [dataTables]
   def set_columns
     @columns = [
-      {:db_name => "name",         :human_name => "Name",               :type => "string",    :filter => true},
-      {:db_name => "for",          :human_name => "Network For",        :type => "string",    :filter => false},
-      {:db_name => "users.email",  :human_name => "Email of Initiator", :type => "",          :filter => true},
-      {:db_name => "users_count",  :human_name => "# of Members",       :type => "int",       :filter => true},
-      {:db_name => "posts_count",  :human_name => "# of News",          :type => "int",       :filter => true},
-      {:db_name => "events_count", :human_name => "# of Events",        :type => "int",       :filter => true},
-      {:db_name => "created_at",   :human_name => "Created at",         :type => "select",    :filter => true,
+      {:db_name => "name",            :human_name => "Name",               :type => "string", :filter => true},
+      {:db_name => "network_for_who", :human_name => "Network For",        :type => "string", :filter => false},
+      {:db_name => "users.email",     :human_name => "Email of Initiator", :type => "",       :filter => true},
+      {:db_name => "users_count",     :human_name => "# of Members",       :type => "int",    :filter => true},
+      {:db_name => "posts_count",     :human_name => "# of News",          :type => "int",    :filter => true},
+      {:db_name => "events_count",    :human_name => "# of Events",        :type => "int",    :filter => true},
+      {:db_name => "created_at",      :human_name => "Created at",         :type => "select", :filter => true,
         :filter_name => "Date Range",
         :invisible   => true,
         :options     => [
