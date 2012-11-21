@@ -3,7 +3,7 @@ class CreateDatabase < ActiveRecord::Migration
     
     create_table "comments", :force => true do |t|
       t.string   "name"
-      t.text     "content",    :limit => 3000
+      t.text     "content"
       t.datetime "created_at"
       t.datetime "updated_at"
       t.integer  "post_id"
