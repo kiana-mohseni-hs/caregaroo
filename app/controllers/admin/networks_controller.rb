@@ -43,7 +43,7 @@ class Admin::NetworksController < Admin::BaseController
         	a[:role] = User::ROLES["initiator"]
         	a[:initiator] = "%#{search}%"
           
-        when "created_at"
+        when "networks.created_at"
           case search
           #when "all_time"
           when "yesterday"
@@ -72,13 +72,13 @@ class Admin::NetworksController < Admin::BaseController
   # [dataTables]
   def set_columns
     @columns = [
-      {:db_name => "name",            :human_name => "Name",               :type => "string", :filter => true},
-      {:db_name => "network_for_who", :human_name => "Network For",        :type => "string", :filter => false},
-      {:db_name => "users.email",     :human_name => "Email of Initiator", :type => "",       :filter => true},
-      {:db_name => "users_count",     :human_name => "# of Members",       :type => "int",    :filter => true},
-      {:db_name => "posts_count",     :human_name => "# of News",          :type => "int",    :filter => true},
-      {:db_name => "events_count",    :human_name => "# of Events",        :type => "int",    :filter => true},
-      {:db_name => "created_at",      :human_name => "Created at",         :type => "select", :filter => true,
+      {:db_name => "name",                :human_name => "Name",               :type => "string", :filter => true},
+      {:db_name => "network_for_who",     :human_name => "Network For",        :type => "string", :filter => false},
+      {:db_name => "users.email",         :human_name => "Email of Initiator", :type => "",       :filter => true},
+      {:db_name => "users_count",         :human_name => "# of Members",       :type => "int",    :filter => true},
+      {:db_name => "posts_count",         :human_name => "# of News",          :type => "int",    :filter => true},
+      {:db_name => "events_count",        :human_name => "# of Events",        :type => "int",    :filter => true},
+      {:db_name => "networks.created_at", :human_name => "Created at",         :type => "select", :filter => true,
         :filter_name => "Date Range",
         :invisible   => true,
         :options     => [
