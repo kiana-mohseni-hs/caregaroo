@@ -9,7 +9,7 @@ class Affiliation < ActiveRecord::Base
     #require 'debugger'; debugger
     aff = user.affiliations.all[0]
     if aff
-      user.update_attribute :network_id, aff.id
+      user.update_attribute :network_id, aff.network_id
     else
       user.update_attribute :network_id, nil
     end
