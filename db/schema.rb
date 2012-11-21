@@ -43,16 +43,16 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
     t.string   "name"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "network_id"
-    t.integer  "event_type_id",                 :default => 1
+    t.integer  "event_type_id",  :default => 1
     t.string   "location"
     t.text     "description"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "post_id"
-    t.boolean  "canceled",                      :default => false
+    t.boolean  "canceled",       :default => false
     t.integer  "canceled_by_id"
   end
 
