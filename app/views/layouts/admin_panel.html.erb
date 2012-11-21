@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="en"> 
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="robots" content="noindex,nofollow" /> 
+
+		<title>Caregaroo: Admin</title> 
+
+		<%= stylesheet_link_tag "admin" %>
+		<%= javascript_include_tag "admin" %>
+		<%= csrf_meta_tag %>
+	</head>
+
+	<body class="main clearfix <%= params[:controller] %>">
+
+		<header>
+			<div class="navbar navbar-inverse navbar-static-top">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+				
+						<%= link_to "Admin Panel", admin_path, class: "brand custom-brand" %>
+	
+						<ul class="nav pull-right">
+							<li><%= link_to "Visit Caregaroo.com", root_path %></li>
+							
+							<li class="divider-vertical"></li>
+							
+							<li><a href="#"><i class="icon-user icon-white"></i>&nbsp;<%= @current_user.first_name %></a></li>
+							
+							<li class="divider-vertical"></li>
+
+							<li><%= link_to raw("<i class='icon-off icon-white'></i>&nbsp;Log out"), logout_path %></li>
+						</ul>
+					
+					</div>
+				</div>
+			</div>
+		</header>
+	
+		<div class="main container-fluid">
+		
+			<div class="row-fluid">
+				<div class="span3">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<% @page = controller.controller_name %>
+    					<li class="<%= @page == "dashboard" ? 'active' : '' %>">
+    						<%= link_to "Dashboard", admin_path %>
+    					</li>
+    					<li class="<%= @page == "users" ? 'active' : '' %>">
+    						<%= link_to "Users", admin_users_path %>
+    					</li>
+    					<li class="<%= @page == "networks" ? 'active' : '' %>">
+    						<%= link_to "Networks", admin_networks_path %>
+    					</li>
+    					<!-- <li class="< %= @page == "news" ? 'active' : '' %>">
+    						< %= link_to "News", admin_news_path %>
+    					</li>
+    					<li class="< %= @page == "events" ? 'active' : '' %>">
+    						< %= link_to "Events", admin_events_path %>
+    					</li>
+    					<li class="< %= @page == "invitations" ? 'active' : '' %>">
+    						< %= link_to "Invitations", admin_invitations_path %>
+    					</li>
+    					<li class="< %= @page == "activities" ? 'active' : '' %>">
+    						< %= link_to "Activities", admin_activities_path %>
+    					</li> -->
+						</ul>
+					</div>
+				</div>
+				
+				<div class="span9">
+			    <% flash.each do |name, msg| %>
+			      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+			    <% end %>
+
+					<%= yield %>
+				</div>				
+			</div>
+			
+			<hr>
+			
+			<footer class="row-fluid">
+				<p><center>Copyright 2012, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com" target="_blank">info@caregaroo.com</a></center></p>
+			</footer>
+			
+		</div>
+
+	</body>
+
+</html>

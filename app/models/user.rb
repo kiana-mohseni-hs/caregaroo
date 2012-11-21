@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   
   has_many :affiliations
   has_many :networks, through: :affiliations
-  belongs_to :network
+  belongs_to :network, :counter_cache => true
   has_many :invitations
   has_many :post_recipients
   has_many :recipients
@@ -74,6 +74,10 @@ class User < ActiveRecord::Base
   end
   def is_initiator_or_coordinator?(for_network_id = network_id)
     self.role(for_network_id) == ROLES["initiator"] || self.role(for_network_id) == ROLES["coordinator"]
+  end
+  
+  def is_system_admin?
+    self.system_admin
   end
   
   def name
