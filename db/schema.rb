@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
-    t.text     "content",    :limit => 3000
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "post_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
     t.integer  "network_id"
     t.integer  "event_type_id",                 :default => 1
     t.string   "location"
-    t.text     "description",    :limit => 255
+    t.text     "description"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "post_id"
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
-    t.text     "content",    :limit => 1000
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "network_id"
