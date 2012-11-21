@@ -31,8 +31,20 @@
 					<li><%= link_to "BENEFITS", product_path %></li>
 					<li><%= link_to "BLOG", "http://blog.caregaroo.com/" %></li>
 					<li><a href="https://caregaroo.zendesk.com/forums" target="_blank" onclick="_gaq.push(['_trackEvent', 'Links', 'Need Help', 'Need Help'])" title="Need help?">HELP</a></li>
-	                <li><form action="/login" method="get"><button class="btn btn-warning" type="submit" id="register_submit pull-right">Sign in</button></form></li>
-	                <li><a href="#join-popup" class="frustration-popup-link"><button class="btn btn-warning" type="button">Join a Network</button></a></li>
+	                <li>
+	                	<% if @current_user %>
+	                		<%= link_to '<button class="btn btn-warning" type="button">My Network</button>'.html_safe, news_path, style: "padding:0" %>
+	                	<% else %>
+	                		<form action="/login" method="get"><button class="btn btn-warning" type="submit" id="register_submit pull-right">Sign in</button></form>
+	                	<% end %>
+	                </li>
+	                <li>
+	                	<% if @current_user %>
+	                		<%= link_to '<button class="btn btn-warning" type="button">Log out</button>'.html_safe, logout_path,style: "padding:0" %>
+	                	<% else %>
+	                		<a href="#join-popup" class="frustration-popup-link"><button class="btn btn-warning" type="button">Join a Network</button></a>
+	                	<% end %>
+	                </li>
 				</ul>
 		      </div>
 		    </div>

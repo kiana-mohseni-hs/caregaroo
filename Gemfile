@@ -5,6 +5,7 @@ gem 'bcrypt-ruby'
 
 group :development do
   gem 'sqlite3'
+  gem 'debugger'
 end
 
 gem 'pg'

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, 
                   :network_id, :avatar, :notification_attributes, :profile_attributes, :time_zone
+                  # Warning! having network_id here is a big vulnerability, whenever tests are ready we should remove it
   has_secure_password
   validates :email, :presence => true, :email_format => true, :uniqueness => true
   validates_presence_of :password, :on => :create
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
   
-  has_many :affiliations
+  has_many :affiliations, :dependent => :destroy
   has_many :networks, through: :affiliations
   belongs_to :network, :counter_cache => true
   has_many :invitations
@@ -93,7 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def network_relationship(for_network_id = network_id)
-    affiliation(for_network_id).relationship
+    affiliation(for_network_id).try(:relationship) || "off-network"
   end
   
 end

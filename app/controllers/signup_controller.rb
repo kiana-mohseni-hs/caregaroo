@@ -36,6 +36,12 @@ class SignupController < ApplicationController
                                                 network_id: @user.network_id,
                                                 role: "Caregiver")
       cookies[:auth_token] = @user.auth_token
+      
+      # delete invitation emails 
+      invitation = Invitation.find_by_email_and_network_id(@user.email, @user.network_id)
+      invitation.destroy unless invitation.nil?
+      
+      # send welcome email
       Resque.enqueue(WelcomeMailer, @user.id)
       Resque.enqueue(MembersActivityMailer, @user.network_id, @user.id)
       redirect_to signup_success_path

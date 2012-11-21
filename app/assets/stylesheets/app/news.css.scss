@@ -2,8 +2,14 @@
 .comments { display:block; font-size: 12px; width: 385px; margin-left: 55px; }
 .comment {  background-color: #ebebeb;  border-bottom: solid 1px #ccc;  margin: 5px 0; padding: 8px; }
 .comment:last-child { border-bottom: none; }
-.comment_content { padding-left:58px;}
-.comment_content p { margin:0; padding:0; }
+.comment_content {
+	padding-left:58px;
+	min-height: 50px;
+	p {
+		margin:0;
+		padding:0;
+	}
+}
 .comment_links { float: left; list-style: none; margin: 0; padding: 0; width: 80px; }
 .new_comment_section { display:block; padding-bottom:5px; margin-left:55px }
 #new_comment_section { margin-left: 55px; width: 370px;}
@@ -37,7 +43,6 @@
 			height: 45px;
 		}
 		#file_upload_container{
-			display: none !important;
 			width: 100%;
 			.add_photo_toogle{
 				float: right;

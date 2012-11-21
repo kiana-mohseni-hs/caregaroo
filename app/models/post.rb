@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :name, :content, :network_id, :user_id
+  attr_accessible :name, :content, :network_id, :user_id, :photo
   has_many :comments, dependent: :destroy, order: "updated_at DESC"
   belongs_to :user
   belongs_to :network, :counter_cache => true
@@ -7,6 +7,9 @@ class Post < ActiveRecord::Base
   has_many :post_recipients, :dependent => :destroy
   has_many :recipients, :through => :post_recipients, :source => :user
   default_scope order("created_at desc")
+
+  mount_uploader :photo, NewsUploader
+  validates :photo, :file_size => { :maximum => 4.megabytes.to_i  }
   
   def not_an_event?
     self.event.nil?

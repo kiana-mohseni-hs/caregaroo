@@ -126,6 +126,11 @@ $(function() {
 		});
      	group.height(tallest).css({cursor:"auto"});
 	}
+	
+	
+	setTimeout(function(){
+		equalHeight($("div#user_nav, div#container, div#shortcuts"));
+	},2000);
 	equalHeight($("div#user_nav, div#container, div#shortcuts"));
 
 	//enable submit button with a TOS checkbox

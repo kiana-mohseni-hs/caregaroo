@@ -1,4 +1,14 @@
-<%= form_for( Post.new, :html => {:multipart => true}) do |f| %>
+<% if @err %>
+  <div id="flash_alert" style="margin-left: 56px">
+    <% if @err == 'file' %>
+      There was a problem with the image file.<br>
+      Supported file formats: 'jpg' 'jpeg' 'gif' 'png' <br>
+      Max file size allowed: 4Mb.
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_for Post.new, :html => {:multipart => true} do |f| %>
   <div id="new_news_wrapper" class="field">
     <div class="col_a">
       <%= image_tag (current_user.avatar_url(:thumb).to_s or "photo_place_holder.png"), :alt => current_user.try(:first_name), :height => "50", :width => "50" %>
@@ -36,7 +46,7 @@
 <div style="display:none" class="hidden_viewbag">
   <div id="upload_box_container">
     Select an image file form your computer:<br/>
-    <input type="file" name="bosson_riggs" accept="image/*" />
+    <input type="file" name="post[photo]" accept="image/*" />
   </div>
 </div>
 

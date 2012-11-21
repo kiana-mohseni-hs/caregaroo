@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
     t.datetime "updated_at"
     t.integer  "network_id"
     t.integer  "user_id"
+    t.string   "photo"
   end
 
   create_table "profiles", :force => true do |t|
