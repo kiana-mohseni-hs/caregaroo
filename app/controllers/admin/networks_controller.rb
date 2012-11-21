@@ -34,15 +34,15 @@ class Admin::NetworksController < Admin::BaseController
 
         dbname  = column[:db_name]
         dbname_ = dbname.gsub(/\W+/, '')
-        search  = params["sSearch_#{i}"].strip
+        search  = params["sSearch_#{i}"].strip.downcase
 
         case dbname
 
         when "users.email"
-        	c << "affiliations.role = :role AND users.email LIKE :initiator"
+        	c << "affiliations.role = :role AND LOWER(users.email) LIKE :initiator"
         	a[:role] = User::ROLES["initiator"]
         	a[:initiator] = "%#{search}%"
-          
+
         when "networks.created_at"
           case search
           # when "all_time"
