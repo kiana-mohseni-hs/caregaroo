@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
 
   create_table "comments", :force => true do |t|
     t.string   "name"
-    t.text     "content"
+    t.text     "content",    :limit => 3000
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "post_id"
@@ -43,16 +43,16 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
     t.string   "name"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "network_id"
-    t.integer  "event_type_id",  :default => 1
+    t.integer  "event_type_id",                  :default => 1
     t.string   "location"
-    t.text     "description"
+    t.text     "description",    :limit => 1275
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "post_id"
-    t.boolean  "canceled",       :default => false
+    t.boolean  "canceled",                       :default => false
     t.integer  "canceled_by_id"
   end
 
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
     t.boolean  "receive_thanks"
     t.boolean  "member_receives_thanks"
     t.integer  "user_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pilot_signups", :force => true do |t|
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(:version => 20121120183842) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
-    t.text     "content"
+    t.text     "content",    :limit => 3000
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "network_id"
