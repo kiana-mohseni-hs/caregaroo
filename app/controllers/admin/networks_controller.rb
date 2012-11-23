@@ -52,8 +52,8 @@ class Admin::NetworksController < Admin::BaseController
             a[:end]   = 1.day.ago.end_of_day
           when "last_week"
             c << "networks.created_at BETWEEN :start AND :end"
-            a[:start] = 1.month.ago.beginning_of_week
-            a[:end]   = 1.month.ago.end_of_week
+            a[:start] = 1.week.ago.beginning_of_week
+            a[:end]   = 1.week.ago.end_of_week
           when "last_month"
             c << "networks.created_at BETWEEN :start AND :end"
             a[:start] = 1.month.ago.beginning_of_month
