@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
   add_index "affiliations", ["user_id"], :name => "index_affiliations_on_user_id"
 
   create_table "comments", :force => true do |t|
-<<<<<<< HEAD
     t.string    "name"
     t.text      "content"
     t.timestamp "created_at"
@@ -34,15 +33,6 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
     t.integer   "post_id"
     t.integer   "user_id"
     t.integer   "network_id"
-=======
-    t.string   "name"
-    t.text     "content",    :limit => 3000
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "post_id"
-    t.integer  "user_id"
-    t.integer  "network_id"
->>>>>>> 616f1144456a54e68626f5a97566735bc63d2233
   end
 
   create_table "event_types", :force => true do |t|
@@ -50,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
   end
 
   create_table "events", :force => true do |t|
-<<<<<<< HEAD
     t.string    "name"
     t.timestamp "start_at"
     t.timestamp "end_at"
@@ -65,22 +54,6 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
     t.integer   "post_id"
     t.boolean   "canceled",       :default => false
     t.integer   "canceled_by_id"
-=======
-    t.string   "name"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "network_id"
-    t.integer  "event_type_id",                  :default => 1
-    t.string   "location"
-    t.text     "description",    :limit => 1275
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.integer  "post_id"
-    t.boolean  "canceled",                       :default => false
-    t.integer  "canceled_by_id"
->>>>>>> 616f1144456a54e68626f5a97566735bc63d2233
   end
 
   create_table "events_users", :id => false, :force => true do |t|
@@ -136,7 +109,6 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
   end
 
   create_table "notifications", :force => true do |t|
-<<<<<<< HEAD
     t.boolean   "announcement"
     t.boolean   "post_update"
     t.boolean   "response_post"
@@ -147,18 +119,6 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
     t.integer   "user_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
-=======
-    t.boolean  "announcement"
-    t.boolean  "post_update"
-    t.boolean  "response_post"
-    t.boolean  "calendar_task_added"
-    t.boolean  "member_volunteer_task"
-    t.boolean  "receive_thanks"
-    t.boolean  "member_receives_thanks"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
->>>>>>> 616f1144456a54e68626f5a97566735bc63d2233
   end
 
   create_table "pilot_signups", :force => true do |t|
@@ -178,7 +138,6 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
   end
 
   create_table "posts", :force => true do |t|
-<<<<<<< HEAD
     t.string    "name"
     t.text      "content"
     t.timestamp "created_at"
@@ -186,15 +145,6 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
     t.integer   "network_id"
     t.integer   "user_id"
     t.string    "photo"
-=======
-    t.string   "name"
-    t.text     "content",    :limit => 3000
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "network_id"
-    t.integer  "user_id"
-    t.string   "photo"
->>>>>>> 616f1144456a54e68626f5a97566735bc63d2233
   end
 
   create_table "profiles", :force => true do |t|
