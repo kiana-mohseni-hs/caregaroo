@@ -1,0 +1,1 @@
+./lib/phantomjs-macosx/bin/phantomjs lib/casperjs/bin/bootstrap.js --casper-path=lib/casperjs --cli --xunit=results.xml --log-level=debug --direct=true --url=http://cg2-staging.herokuapp.com tests/caregaroorunner.js tests/suites/$1
