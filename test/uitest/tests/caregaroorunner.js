@@ -1,3 +1,34 @@
+/**
+ * Caregaroo class
+ * We can modularize this in the near future
+ */
+var Caregaroo = function Caregaroo(casper) {
+  "use strict";
+  var casper = casper;
+  this.baseurl = casper.cli.get('url'); // || "http://localhost";
+};
+
+/**
+ * Check if the user is signed in
+ *
+ * @return  bool  Returns true if user is signed in.
+ */
+Caregaroo.prototype.isSignedIn = function checkSignedIn() {
+  "use strict";
+  return casper.visible('a[href="/logout"]');
+}
+
+/**
+ * Signs out the user
+ *
+ */
+Caregaroo.prototype.signOut = function signOut() {
+  "use strict";
+  casper.then(function () {
+    casper.click('a[href="/logout"]');
+  });
+}
+
 /*global phantom*/
 
 if (!phantom.casperLoaded) {
@@ -21,6 +52,8 @@ var casper       = require('casper').create({
   }
   //exitOnError: false
 });
+var caregaroo    = new Caregaroo(casper);
+casper.caregaroo = caregaroo;
 
 // local utils
 function checkSelfTest(tests) {
@@ -59,13 +92,9 @@ function checkIncludeFile(include) {
   return absInclude;
 }
 
-// Caregaroo object initialization
-casper.caregaroo = {};
-
 // parse some options from cli
 casper.options.verbose = casper.cli.get('direct') || false;
 casper.options.logLevel = casper.cli.get('log-level') || "error";
-casper.caregaroo.baseurl = casper.cli.get('url'); // || "http://localhost";
 if (casper.cli.get('no-colors') === true) {
   var cls = 'Dummy';
   casper.options.colorizerType = cls;
@@ -108,6 +137,16 @@ this.loadIncludes.forEach(function(include){
 casper.test.on('tests.complete', function() {
   "use strict";
   this.renderResults(true, undefined, casper.cli.get('xunit') || undefined);
+});
+
+casper.on('started', function () {
+  "use strict";
+  casper.then(function () {
+    if (casper.caregaroo.isSignedIn()) {
+      casper.echo('Spec started signed in. Signing out');
+      casper.caregaroo.signOut();
+    }
+  });
 });
 
 // run all the suites
