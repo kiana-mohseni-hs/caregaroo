@@ -1,3 +1,7 @@
 <center><h3 class="page_title">Invite email has been sent successfully!</h3></center>
 <br/>
-<center><%= link_to "Okay", invite_path, :class=>"orange_button_link", :id=>"success_invite_ok_btn" %></center>
+<center><%= link_to "Okay", invite_path, :class=>"orange_button_link", :id=>"success_invite_ok_btn" %>
+	<input type="hidden" id="token" value="<%=params[:token]%>">
+</center>
+
+

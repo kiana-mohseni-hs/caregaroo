@@ -6,7 +6,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new
   end
   
-  def create    
+  def create
     @invitations = Invitation.where("network_id = ? and email = ?", @current_user.network.id, params[:invitation][:email])
     if @invitations.size == 0
       @invitation = Invitation.new(params[:invitation])
@@ -17,7 +17,7 @@ class InvitationsController < ApplicationController
     end
     if @invitation.save
       Resque.enqueue(InvitationMailer, @invitation.id, @current_user.id)
-      redirect_to success_invitation_path
+      redirect_to success_invitation_path({token: @invitation.token})
     else
       render "index"
     end

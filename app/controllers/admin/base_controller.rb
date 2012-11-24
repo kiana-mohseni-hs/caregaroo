@@ -17,11 +17,11 @@ class Admin::BaseController < ApplicationController
 
         dbname  = column[:db_name]
         dbname_ = dbname.gsub(/\W+/, '')
-        search  = params["sSearch_#{i}"].strip
+        search  = params["sSearch_#{i}"].strip.downcase
 
         case column[:type]        
         when "string"
-          c << "#{dbname} LIKE :#{dbname_}"
+          c << "LOWER(#{dbname}) LIKE :#{dbname_}"
           a[("#{dbname_}").to_sym] = "%#{search}%"        
         when "int"
           c << "#{dbname} = :#{dbname_}"

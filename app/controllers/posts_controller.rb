@@ -3,7 +3,10 @@ class PostsController < ApplicationController
   
   def index
     @page = 'posts'
-    @posts = @current_user.network.posts.visible_to(@current_user).includes(:user).includes(:comments)
+    @network = @current_user.network
+    # prevent some cases of deleted members from crashing
+    return redirect_to '/' unless @network
+    @posts = @network.posts.visible_to(@current_user).includes(:user).includes(:comments)
     @err = params[:err]
   end
 

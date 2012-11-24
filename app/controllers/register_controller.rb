@@ -43,19 +43,24 @@ class RegisterController < ApplicationController
   def create
     #if user email already exists
     user = User.find_by_email(params[:network][:users_attributes]["0"][:email])
+    logger.info ">>0 #{user.try :email}"
     if user
       # if correct password for email
       if user.authenticate(params[:network][:users_attributes]["0"][:password])
+        logger.info ">>1 #{user} authed"
         cookies[:auth_token] = user.auth_token
         users_attributes = params[:network].delete("users_attributes")
 
         @network = Network.new(params[:network])
         if @network.save
+          logger.info ">>2 @network saved!"
+          # looks very wrong \/
           @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: user.id })
           user.update_attribute( :network_id, @network.id )
           Resque.enqueue(WelcomeMailer, user.id)
           redirect_to register_success_path
         else
+          logger.info ">>3 network nonsaved"
           @network.users.build( { email:      user.email, 
                                   last_name:  user.last_name,
                                   first_name: user.first_name } )
@@ -63,6 +68,7 @@ class RegisterController < ApplicationController
           render action: "new", layout: "app_no_nav"
         end
       else
+        logger.info ">>4 #{user} non-authed"
         @network = Network.new(params[:network])
         @network.errors.add(:password, "did not match email address" )
         @current_user = current_user
@@ -70,7 +76,9 @@ class RegisterController < ApplicationController
       end
     else
       
+      # could have param "affiliations_attributes" set to null at some point to have it 
       @network = Network.new(params[:network])
+      logger.info ">>5 new user #{params[:network].inspect} "
       if @network.save
         # set the current network of the new user to the new network
         user = @network.users.first
@@ -84,8 +92,9 @@ class RegisterController < ApplicationController
         
         # hack to fix double affiliation problem
         if @network.affiliations(true).count > 1
-          @network.affiliations.last.destroy
+          @network.affiliations.last.delete # dont trigger after_destroy's
         end
+
         
         cookies[:auth_token] = user.auth_token
         Resque.enqueue(WelcomeMailer, user.id)
