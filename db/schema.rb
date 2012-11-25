@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121103072717) do
+ActiveRecord::Schema.define(:version => 20121120183842) do
 
   create_table "affiliations", :force => true do |t|
     t.string    "relationship"
@@ -98,6 +98,9 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.string    "avatar"
+    t.integer   "users_count",     :default => 0, :null => false
+    t.integer   "posts_count",     :default => 0, :null => false
+    t.integer   "events_count",    :default => 0, :null => false
   end
 
   create_table "news", :force => true do |t|
@@ -186,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
     t.integer   "network_id"
     t.string    "avatar"
     t.string    "time_zone",              :limit => 32, :default => "Pacific Time (US & Canada)"
+    t.boolean   "system_admin",                         :default => false,                        :null => false
   end
 
 end
