@@ -9,6 +9,7 @@ class Admin::BaseController < ApplicationController
 
   # [dataTables]
   def conditions
+    # c = conditions; a = arguments
     c = []
     a = {}
 
@@ -19,13 +20,32 @@ class Admin::BaseController < ApplicationController
         dbname_ = dbname.gsub(/\W+/, '')
         search  = params["sSearch_#{i}"].strip.downcase
 
-        case column[:type]        
+        case column[:type]
+        
         when "string"
           c << "LOWER(#{dbname}) LIKE :#{dbname_}"
-          a[("#{dbname_}").to_sym] = "%#{search}%"        
+          a[("#{dbname_}").to_sym] = "%#{search}%"
+        
         when "int"
           c << "#{dbname} = :#{dbname_}"
-          a[("#{dbname_}").to_sym] = search        
+          a[("#{dbname_}").to_sym] = search
+        
+        when "date_ranges"
+          case search
+          # when "all_time"
+          when "yesterday"
+            c << "#{dbname} BETWEEN :start AND :end"
+            a[:start] = 1.day.ago.beginning_of_day
+            a[:end]   = 1.day.ago.end_of_day
+          when "last_week"
+            c << "#{dbname} BETWEEN :start AND :end"
+            a[:start] = 1.week.ago.beginning_of_week
+            a[:end]   = 1.week.ago.end_of_week
+          when "last_month"
+            c << "#{dbname} BETWEEN :start AND :end"
+            a[:start] = 1.month.ago.beginning_of_month
+            a[:end]   = 1.month.ago.end_of_month
+          end
         end
 
       end
@@ -51,7 +71,7 @@ class Admin::BaseController < ApplicationController
 
   # [dataTables]
   def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
+    params[:sSortDir_0]
   end
 
   private

@@ -4,24 +4,25 @@
 
 <form class="filters form-horizontal">
 	<div class="well">
+		<!-- NOTE: all @columns must be in the DOM, even those that are not used to filter.
+			that's why I'm using display:none -->
 		<% @columns.each do |column| %>
-			<!-- NOTE: all @columns must be in the DOM, even those that are not used to filter.
-				that's why I'm using display:none -->
 	  	<div class="control-group" style="<%= column[:filter] ? '' : 'display:none;' %>">
 		    <label class="control-label" for="<%= column[:db_name] %>">
 		    	<%= column[:filter_name] || column[:human_name] %>
 		    </label>
 	    	<div class="controls">
 	    		
-	    		<% if column[:type] == "select" %>
+	    		<% if column[:type] === "date_ranges" %>
 	    			<select name="<%= column[:db_name] %>">
-	    				<option value="" selected></option>
-	    				<% column[:options].each do |o| %>
-	    					<option value="<%= o[:value] %>"><%= o[:name] %></option>
-	    				<% end %>
+	    				<option value="" selected=""></option>
+	    					<option value="all_time">All Time</option>
+	    					<option value="yesterday">Yesterday</option>
+	    					<option value="last_week">Last Week</option>
+	    					<option value="last_month">Last Month</option>
 	    			</select>
 			    
-			    <% else %>
+	    		<% else %>
 			      <input type="text" name="<%= column[:db_name] %>" placeholder="<%= column[:human_name] %>">
 			    <% end %>
 
@@ -35,7 +36,9 @@
 	<thead>
 		<tr>
 			<% @columns.each do |column| %>
-				<th class="<%= column[:sortable] === false ? 'no_sort' : '' %>"><%= column[:human_name] %></th>
+				<th class="<%= column[:sortable] === false ? 'no_sort' : '' %>">
+					<%= column[:human_name] %>
+				</th>
 			<% end %>
 		</tr>
 	</thead>	

@@ -1,6 +1,7 @@
 class Admin::UsersController < Admin::BaseController
 
   def index
+    # need to include networks because I'll use it to filter records
     @records = User.order("#{sort_column} #{sort_direction}")
                 .includes(:networks)
                 .paginate(:page => current_page, :per_page => per_page)
@@ -41,7 +42,7 @@ class Admin::UsersController < Admin::BaseController
         %(<a href="#{url_for :controller => 'networks', :action => 'show', :id => n.id}">#{n.name}</a>)
       }.join(', ') unless r.networks.nil?
 
-      [r.email, r.first_name, r.last_name, networks, ""]
+      [r.email, r.first_name, r.last_name, networks]
 
     end
   end
