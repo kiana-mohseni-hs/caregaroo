@@ -80,7 +80,7 @@ Cg2App::Application.routes.draw do
   # admin routes
   namespace :admin do
     get '', :to => 'dashboard#index', :as => '/'
-    resources :users, :networks, :news
+    resources :users, :networks, :news, :events
   end
 
   mount Resque::Server, :at => "/resque"

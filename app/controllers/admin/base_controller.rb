@@ -6,7 +6,6 @@ class Admin::BaseController < ApplicationController
   before_filter :set_columns, :only => :index
 
   protected
-
   # [dataTables]
   def conditions
     # c = conditions; a = arguments
