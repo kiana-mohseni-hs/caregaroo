@@ -1,7 +1,7 @@
 class Admin::EventsController < Admin::BaseController
 
   def index
-    # need to include user and network because I'll use them to filter records
+    # need to include creator, updater, event_type and network because I'll use them to filter records
     @records = Event.unscoped
                 .includes(:creator, :updater, :event_type, :network)
                 .paginate(:page => current_page, :per_page => per_page)
