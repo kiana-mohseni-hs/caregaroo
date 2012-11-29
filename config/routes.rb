@@ -80,7 +80,7 @@ Cg2App::Application.routes.draw do
   # backoffice routes
   namespace :backoffice do
     get '', :to => 'dashboard#index', :as => '/'
-    resources :users, :networks, :news, :events
+    resources :users, :networks, :news, :events, :invitations
   end
 
   mount Resque::Server, :at => "/resque"

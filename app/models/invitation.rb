@@ -7,6 +7,7 @@ class Invitation < ActiveRecord::Base
   validates_presence_of :last_name
   
   belongs_to :network
+  belongs_to :sender, :class_name => "User", :foreign_key => "send_id"
   
   before_create :generate_token
   
