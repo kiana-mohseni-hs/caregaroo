@@ -12,6 +12,6 @@
       </div>
   </div>
   <%= render :partial => "comments", :locals => { :post => post } %>
-  <%= render :partial => "new_comment", :locals => { :post => post } %>
+  <%= render :partial => "new_comment", :locals => { :post => post, :is_visible => false } %>
   <hr style="margin-top: 10px;"/>
 </div>
