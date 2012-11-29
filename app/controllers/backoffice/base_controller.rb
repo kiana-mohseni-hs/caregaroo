@@ -1,6 +1,6 @@
-class Admin::BaseController < ApplicationController
+class Backoffice::BaseController < ApplicationController
 
-	layout "admin_panel"
+	layout "backoffice"
 	
   before_filter :require_system_admin
   before_filter :set_columns, :only => :index

@@ -1,4 +1,4 @@
-class Admin::NewsController < Admin::BaseController
+class Backoffice::NewsController < Backoffice::BaseController
 
   def index
     # need to include user and network because I'll use them to filter records

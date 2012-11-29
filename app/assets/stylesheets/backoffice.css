@@ -2,7 +2,7 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require admin/bootstrap
+ *= require backoffice/bootstrap
  *= require dataTables/jquery.dataTables.bootstrap
  *= require_self
 */
@@ -16,6 +16,11 @@ div.main h1 {
 
 div.main .page-header {
 	margin: 0 0 20px;
+}
+
+.logged_user {
+	display: block;
+	padding: 10px 15px 10px;
 }
 
 .sidebar-nav {

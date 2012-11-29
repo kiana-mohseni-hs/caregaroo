@@ -1,4 +1,4 @@
-class Admin::EventsController < Admin::BaseController
+class Backoffice::EventsController < Backoffice::BaseController
 
   def index
     # need to include creator, updater, event_type and network because I'll use them to filter records

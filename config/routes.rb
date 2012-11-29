@@ -77,8 +77,8 @@ Cg2App::Application.routes.draw do
   
   get "users/current"
   
-  # admin routes
-  namespace :admin do
+  # backoffice routes
+  namespace :backoffice do
     get '', :to => 'dashboard#index', :as => '/'
     resources :users, :networks, :news, :events
   end
