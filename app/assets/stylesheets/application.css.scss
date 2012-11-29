@@ -228,16 +228,19 @@ h4.event_view_name {
   }  
 }
 
+.event_control_link {
+  color: #14377D;
+
+  &:hover {
+    color: #379ADB;
+  } 
+}
+
 .event_all_comments {
   float: right;
   margin: 5px 41px 0 0;
   font-size: 13px;
   line-height: 13px;
-  color: #14377D;
-
-  hover {
-    color: #379ADB;
-  }
 }
 
 #event_show {

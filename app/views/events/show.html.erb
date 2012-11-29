@@ -22,8 +22,8 @@
   <p class="event_participants">
     <strong>Participants:</strong>
     <% userslastindex = @event.users.size - 1 %>
-    <% @event.users.each_with_index do |u, index| %>
-    <em><%= u.first_name %> <%= u.last_name %></em><%= ", " unless index == userslastindex %>
+    <% @event.users.each_with_index do |user, index| %>
+      <em><%= link_to user.first_name, user_info_profile_path(user), :class => "event_control_link" %></em><%= ", " unless index == userslastindex %>
     <% end %>
   </p>
 
@@ -31,7 +31,7 @@
   <%= render :partial => 'posts/comments', :locals => { :post => @event.post } %>
   <% if !@event.post.comments.empty? && @event.post.comments.count > 3 %>
     <%= link_to "View all #{pluralize(@event.post.comments.count, " comment")}", post_commments_path(@event.post.id),
-      :method => :get, :remote => true, :class => "event_all_comments" %>
+      :method => :get, :remote => true, :class => "event_all_comments event_control_link" %>
   <% end %>
 
 </div>
