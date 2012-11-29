@@ -70,11 +70,11 @@ class Backoffice::NetworksController < Backoffice::BaseController
   def format_data(records)
     records.map do |r|
 
-      initiator = r.affiliations.select { |u| u.role == User::ROLES["initiator"] }.first.user
-      initiator = %(<a href="#{url_for :controller => 'users', :action => 'show', 
-        :id => initiator.id}">#{initiator.email}</a>) unless initiator.nil?
+      initiator_affiliation = r.affiliations.select { |u| u.role == User::ROLES["initiator"] } unless r.affiliations.blank?
+      initiator             = initiator_affiliation.first.user unless initiator_affiliation.blank?
+      initiator_email       = %(<a href="#{url_for :controller => 'users', :action => 'show', :id => initiator.id}">#{initiator.email}</a>) unless initiator.blank?
 
-      [r.name, r.network_for_who, initiator, r.users_count, r.posts_count, r.events_count, 
+      [r.name, r.network_for_who, initiator_email, r.users_count, r.posts_count, r.events_count, 
         r.created_at.to_s(:long)]
 
     end
