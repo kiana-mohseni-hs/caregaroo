@@ -1,0 +1,17 @@
+<div id="post_<%= post.id %>" data-id="<%= post.id %>">
+  <div id="news">
+     <%= image_tag !post.user.nil? ? post.user.avatar_url(:thumb).to_s : "photo_place_holder.png", :alt => !post.user.nil? ? post.user.first_name : 'Anonymous' , :height => "50", :width => "50", :style => "float:left;padding-right:5px" %>
+      <div class="comment_content">
+        <span class="name_text"><%= !post.user.nil? ? link_to(post.user.first_name, user_info_profile_path(post.user)) : 'Anonymous' %>
+          <%= relationship_in_parenthesis(post.user, @current_user.network_id) %></span>
+        <span class="time_text">
+          <%= time_ago_in_words(post.updated_at) %> ago at <%= post.updated_at.strftime('%l:%M %p') %>
+        </span> 
+        <%= render :partial => "content", :locals => { :post => post } %>
+        <%= render :partial => "post_controls", :locals => { :post => post } %>
+      </div>
+  </div>
+  <%= render :partial => "comments", :locals => { :post => post } %>
+  <%= render :partial => "new_comment", :locals => { :post => post } %>
+  <hr style="margin-top: 10px;"/>
+</div>

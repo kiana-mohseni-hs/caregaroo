@@ -1,0 +1,5 @@
+<div id="comments_<%= post.id %>" class="comments">
+  <% unless post.comments.empty? %> 
+    <%= render post.comments.first(3) %>  
+  <% end %>
+</div>
