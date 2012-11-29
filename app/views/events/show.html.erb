@@ -6,19 +6,21 @@
     title: "delete", class: "orange_button_link" %>
 </div>
 <div id="event_show">
-  <%= image_tag @creator.avatar_url(:thumb).to_s, :alt => @creator.first_name, :height => "44", :width => "50",
+  <%= image_tag @creator.avatar_url(:thumb).to_s, :alt => @creator.first_name, :height => "50", :width => "50",
     :style => "float:left;padding-right:5px" %>
 
   <h4 class="event_view_name"><%= @event.name %> <%= @event_type %></h4>
-  <%= render :partial => 'dateandtime' %>
+  <div class="event_data_time">
+    <%= render :partial => 'dateandtime' %>
+  </div>
 
-  <p>
-    <b>Description:</b>
+  <p class="event_description">
+    <strong>Description:</strong>
     <%= @event.description %>
   </p>
 
-  <p>
-    <b>Participants:</b>
+  <p class="event_participants">
+    <strong>Participants:</strong>
     <% userslastindex = @event.users.size - 1 %>
     <% @event.users.each_with_index do |u, index| %>
     <em><%= u.first_name %> <%= u.last_name %></em><%= ", " unless index == userslastindex %>

@@ -201,8 +201,31 @@ ul#event_comments {
 
 h4.event_view_name {
   color: #14377D;
+  line-height: 14px;
   font-size: 14px;
   font-weight: 700;
+}
+
+.event_data_time {
+  margin-top: 3px;
+  
+  p {
+    font-size: 12px;
+  }
+}
+
+.event_description {
+  margin: 7px 41px 7px 54px;
+}
+
+.event_participants {
+  margin: 0 41px 7px 54px;
+}
+
+.event_description, .event_participants {
+  strong {
+    font-weight: bold;
+  }  
 }
 
 #event_show {
