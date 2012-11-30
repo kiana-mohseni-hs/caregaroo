@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_filter :require_user
   
   def index
+    @current_user.mark_presence
     @page = 'posts'
     @network = @current_user.network
     # prevent some cases of deleted members from crashing
