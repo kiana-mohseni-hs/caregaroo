@@ -9,3 +9,4 @@ tmp/
 public/**
 .rvmrc
 dump.rdb
+models.svg
