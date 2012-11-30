@@ -36,7 +36,7 @@
 	<thead>
 		<tr>
 			<% @columns.each do |column| %>
-				<th class="<%= column[:sortable] === false ? 'no_sort' : '' %>">
+				<th class="<%= 'no_sort' if column[:sortable] === false %> <%= 'no_visible' if column[:invisible] === true %>">
 					<%= column[:human_name] %>
 				</th>
 			<% end %>

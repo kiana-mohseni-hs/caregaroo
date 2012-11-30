@@ -99,6 +99,7 @@ class Backoffice::BaseController < ApplicationController
   #       - Obs: Leave blank if none apply. Eg.: Networks > Email of Initiator
   #     :filter     => Boolean
   #     :sortable   => Boolean
+  #     :invisible  => Boolean
   #   }
   # ]
   def set_columns
