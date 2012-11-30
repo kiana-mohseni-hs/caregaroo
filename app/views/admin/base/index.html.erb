@@ -4,7 +4,7 @@
 
 <form class="filters form-horizontal">
 	<div class="well">
-		<% @columns.each do |column| %>
+		<% @columns.each_with_index do |column,i| %>
 			<!-- NOTE: all @columns must be in the DOM, even those that are not used to filter.
 				that's why I'm using display:none -->
 	  	<div class="control-group" style="<%= column[:filter] ? '' : 'display:none;' %>">
@@ -14,15 +14,19 @@
 	    	<div class="controls">
 	    		
 	    		<% if column[:type] == "select" %>
-	    			<select name="<%= column[:db_name] %>">
+	    			<select name="<%= column[:db_name] %>" data-index="<%= i %>">
 	    				<option value="" selected></option>
 	    				<% column[:options].each do |o| %>
 	    					<option value="<%= o[:value] %>"><%= o[:name] %></option>
 	    				<% end %>
 	    			</select>
 			    
+			    <% elsif column[:type] == "date_interval" %>
+			    	<input type="date" name="<%= column[:db_name] %>_1" data-filter-type="date_interval" data-index="<%= i %>"> between 
+			    		<input type="date" name="<%= column[:db_name] %>_2" data-filter-type="date_interval" value="<%= Time.zone.now.strftime('%Y-%m-%d') %>" >
+
 			    <% else %>
-			      <input type="text" name="<%= column[:db_name] %>" placeholder="<%= column[:human_name] %>">
+			      <input type="text" name="<%= column[:db_name] %>" placeholder="<%= column[:human_name] %>" data-index="<%= i %>">
 			    <% end %>
 
 	    	</div>

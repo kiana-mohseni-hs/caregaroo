@@ -25,13 +25,19 @@ $(function(){
     }))
 	});
 
-  $('.filters input').keyup(function(){
-    /* Filter on the column (the index) of this element */
-    oTable.fnFilter( this.value, $('.filters input, .filters select').index(this) );
-  });
-  $('.filters select').change( function () {
-    /* Filter on the column (the index) of this element */
-    oTable.fnFilter( this.value, $('.filters input, .filters select').index(this) );
-  });
+  function specialInputFilters(je){
+    // TODO filter date_interval
+    return false;
+  }
+
+  function triggerTableUpdate(){
+    //alert(this.value)
+    var jthis = $(this)
+    var value = specialInputFilters(jthis) || this.value
+     /* Filter on the column (the index) of this element */
+    oTable.fnFilter( value , jthis.data('index'), false );
+  }
+
+  $('.filters input, .filters select').bind('keyup change input', triggerTableUpdate );
 
 });

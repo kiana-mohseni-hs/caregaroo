@@ -54,6 +54,10 @@ class Admin::BaseController < ApplicationController
     params[:sSortDir_0] == "desc" ? "desc" : "asc"
   end
 
+  def is_iso_date? p
+    p.to_s.match(/^((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1[[0-9]])|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))$/) ? true : false
+  end
+
   private
   def require_system_admin
     @current_user = current_user
@@ -64,7 +68,7 @@ class Admin::BaseController < ApplicationController
       return false
     end
     
-    unless @current_user.is_system_admin?
+    unless @current_user.is_system_admin? || ENV['DEV_MODE']
       redirect_to root_path
       return false
     end
