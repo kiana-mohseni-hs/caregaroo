@@ -9,7 +9,7 @@
 		<% @columns.each do |column| %>
 	  	<div class="control-group" style="<%= column[:filter] ? '' : 'display:none;' %>">
 		    <label class="control-label" for="<%= column[:db_name] %>">
-		    	<%= column[:filter_name] || column[:human_name] %>
+		    	<%= column[:human_name] %>
 		    </label>
 	    	<div class="controls">
 	    		

@@ -31,11 +31,6 @@ class Backoffice::InvitationsController < Backoffice::BaseController
       {:db_name => "networks.name",          :human_name => "Networks",           :type => "string",      :filter => true},
       {:db_name => "invitations.created_at", :human_name => "Created date",       :type => "date_ranges", :filter => true}
     ]
-
-    # *Email of sender (filter)
-    # *Email of recipient (filter)
-    # *network name    
-    # *Created date / Date range: (all time, yesterday, last week, last month) [rolling time window]
   end
 
   # [dataTables]

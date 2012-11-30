@@ -8,6 +8,7 @@ class Backoffice::NetworksController < Backoffice::BaseController
 
     # individual column filtering
     where, arguments = conditions
+
     @records = @records.where(where, arguments) unless where.blank?
 
     respond_to do |format|
@@ -62,7 +63,7 @@ class Backoffice::NetworksController < Backoffice::BaseController
       {:db_name => "users_count",         :human_name => "# of Members",       :type => "int",         :filter => true},
       {:db_name => "posts_count",         :human_name => "# of News",          :type => "int",         :filter => true},
       {:db_name => "events_count",        :human_name => "# of Events",        :type => "int",         :filter => true},
-      {:db_name => "networks.created_at", :human_name => "Created at",         :type => "date_ranges", :filter => true, :filter_name => "Date Range"}
+      {:db_name => "networks.created_at", :human_name => "Created date",       :type => "date_ranges", :filter => true}
     ]
   end
 

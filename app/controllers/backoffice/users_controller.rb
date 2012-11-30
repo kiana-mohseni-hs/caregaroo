@@ -29,8 +29,7 @@ class Backoffice::UsersController < Backoffice::BaseController
       {:db_name => "email",         :human_name => "Email",      :type => "string", :filter => true},
       {:db_name => "first_name",    :human_name => "First Name", :type => "string", :filter => true},
       {:db_name => "last_name",     :human_name => "Last Name",  :type => "string", :filter => true},
-      {:db_name => "networks.name", :human_name => "Networks",   :type => "string", :filter => true, :sortable => false}#,
-      #{:db_name => "last_login",    :human_name => "Last Login", :type => "date",   :filter => false}
+      {:db_name => "networks.name", :human_name => "Networks",   :type => "string", :filter => true, :sortable => false}
     ]
   end
 

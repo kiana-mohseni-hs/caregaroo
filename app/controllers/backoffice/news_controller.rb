@@ -31,8 +31,8 @@ class Backoffice::NewsController < Backoffice::BaseController
       {:db_name => "content",          :human_name => "News Content", :type => "string",      :filter => true},
       {:db_name => "networks.name",    :human_name => "Network Name", :type => "string",      :filter => true},
       {:db_name => "users.email",      :human_name => "User Email",   :type => "string",      :filter => true},
-      {:db_name => "posts.created_at", :human_name => "Created date", :type => "date_ranges", :filter => true, :filter_name => "Date Range"},
-      {:db_name => "posts.updated_at", :human_name => "Updated date", :type => "date",        :filter => false}
+      {:db_name => "posts.created_at", :human_name => "Created date", :type => "date_ranges", :filter => true},
+      {:db_name => "posts.updated_at", :human_name => "Updated date", :type => "",            :filter => false}
     ]
 
   end

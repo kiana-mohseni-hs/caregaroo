@@ -6,7 +6,11 @@ class Backoffice::BaseController < ApplicationController
   before_filter :set_columns, :only => :index
 
   protected
+
   # [dataTables]
+  #
+  # Build basic conditions based on default column types (column[:type])
+  # Can be overridden in the child controller if there's any 'special' column type
   def conditions
     # c = conditions; a = arguments
     c = []
@@ -54,26 +58,52 @@ class Backoffice::BaseController < ApplicationController
   end
 
   # [dataTables]
+  # iDisplayStart contains the start point in the current data set.
   def current_page
     params[:iDisplayStart].to_i / per_page + 1
   end
 
   # [dataTables]
+  # iDisplayLength contains the number of records that the table can display in the current draw. 
+  #   It is expected that the number of records returned will be equal to this number, unless the 
+  #   server has fewer records to return.
   def per_page
     params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
   end
 
   # [dataTables]
+  # iSortCol_0 contains the number of the column being sorted on
   def sort_column
     @columns[params[:iSortCol_0].to_i][:db_name]
   end
 
   # [dataTables]
+  # sSortDir_0 contains the direction to be sorted
   def sort_direction
     params[:sSortDir_0]
   end
 
   private
+
+  # [dataTables]
+  #
+  # Must be overridden in the child controller
+  #
+  # @columns = [
+  #   {
+  #     :db_name    => String 
+  #     :human_name => String 
+  #     :type       => String
+  #       - Used to define which filter should be applied
+  #       - Options: int | string | date_ranges | ""
+  #       - Obs: Leave blank if none apply. Eg.: Networks > Email of Initiator
+  #     :filter     => Boolean
+  #     :sortable   => Boolean
+  #   }
+  # ]
+  def set_columns
+  end
+
   def require_system_admin
     @current_user = current_user
 
@@ -87,9 +117,6 @@ class Backoffice::BaseController < ApplicationController
       redirect_to root_path
       return false
     end
-  end
-
-  def set_columns
   end
 
 end
