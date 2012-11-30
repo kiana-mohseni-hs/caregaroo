@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   has_event_calendar
-  belongs_to :network
+  belongs_to :network, :counter_cache => true
   belongs_to :event_type
   has_and_belongs_to_many :users
   belongs_to :creator, :class_name => "User", :foreign_key => "created_by_id"

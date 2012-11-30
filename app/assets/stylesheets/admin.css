@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require admin/bootstrap
+ *= require dataTables/jquery.dataTables.bootstrap
+ *= require_self
+*/
+div.main {
+	padding-top: 30px;
+}
+
+div.main h1 {
+	margin: 0;
+}
+
+div.main .page-header {
+	margin: 0 0 20px;
+}
+
+.sidebar-nav {
+	padding: 10px 0;
+}
+
+.filters .well {
+	padding: 15px 19px;
+}
+
+.filters .control-group {
+	margin-bottom: 10px;
+}
+
+.filters .control-group:last-child {
+	margin-bottom: 0;
+}
+
+.filters .control-label {
+	width: auto;
+}
+
+.filters .controls {
+	margin-left: 110px;
+}

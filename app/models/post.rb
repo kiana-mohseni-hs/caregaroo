@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   attr_accessible :name, :content, :network_id, :user_id, :photo
   has_many :comments, dependent: :destroy, order: "updated_at DESC"
   belongs_to :user
+  belongs_to :network, :counter_cache => true
   has_one :event
   has_many :post_recipients, :dependent => :destroy
   has_many :recipients, :through => :post_recipients, :source => :user

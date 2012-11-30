@@ -14,25 +14,25 @@
 ActiveRecord::Schema.define(:version => 20121103072717) do
 
   create_table "affiliations", :force => true do |t|
-    t.string   "relationship"
-    t.integer  "network_id"
-    t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "role"
+    t.string    "relationship"
+    t.integer   "network_id"
+    t.integer   "user_id"
+    t.timestamp "created_at",   :null => false
+    t.timestamp "updated_at",   :null => false
+    t.string    "role"
   end
 
   add_index "affiliations", ["network_id"], :name => "index_affiliations_on_network_id"
   add_index "affiliations", ["user_id"], :name => "index_affiliations_on_user_id"
 
   create_table "comments", :force => true do |t|
-    t.string   "name"
-    t.text     "content",    :limit => 3000
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "post_id"
-    t.integer  "user_id"
-    t.integer  "network_id"
+    t.string    "name"
+    t.text      "content"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "post_id"
+    t.integer   "user_id"
+    t.integer   "network_id"
   end
 
   create_table "event_types", :force => true do |t|
@@ -40,20 +40,20 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "name"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "network_id"
-    t.integer  "event_type_id",                  :default => 1
-    t.string   "location"
-    t.text     "description",    :limit => 1275
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.integer  "post_id"
-    t.boolean  "canceled",                       :default => false
-    t.integer  "canceled_by_id"
+    t.string    "name"
+    t.timestamp "start_at"
+    t.timestamp "end_at"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "network_id"
+    t.integer   "event_type_id",  :default => 1
+    t.string    "location"
+    t.text      "description"
+    t.integer   "created_by_id"
+    t.integer   "updated_by_id"
+    t.integer   "post_id"
+    t.boolean   "canceled",       :default => false
+    t.integer   "canceled_by_id"
   end
 
   create_table "events_users", :id => false, :force => true do |t|
@@ -64,120 +64,128 @@ ActiveRecord::Schema.define(:version => 20121103072717) do
   add_index "events_users", ["event_id", "user_id"], :name => "index_events_users_on_event_id_and_user_id"
 
   create_table "folders", :force => true do |t|
-    t.integer  "parent_id"
-    t.string   "display_name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "parent_id"
+    t.string    "display_name"
+    t.string    "description"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "invitations", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "token"
-    t.datetime "sent_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "send_id"
-    t.integer  "network_id"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "email"
+    t.string    "token"
+    t.timestamp "sent_at"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "send_id"
+    t.integer   "network_id"
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "folder_id"
-    t.integer  "sender_id"
-    t.string   "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "folder_id"
+    t.integer   "sender_id"
+    t.string    "body"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "networks", :force => true do |t|
-    t.string   "name"
-    t.string   "network_for_who"
-    t.integer  "host_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "avatar"
+    t.string    "name"
+    t.string    "network_for_who"
+    t.integer   "host_user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "avatar"
+  end
+
+  create_table "news", :force => true do |t|
+    t.string    "name"
+    t.string    "content"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "notifications", :force => true do |t|
-    t.boolean  "announcement"
-    t.boolean  "post_update"
-    t.boolean  "response_post"
-    t.boolean  "calendar_task_added"
-    t.boolean  "member_volunteer_task"
-    t.boolean  "receive_thanks"
-    t.boolean  "member_receives_thanks"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean   "announcement"
+    t.boolean   "post_update"
+    t.boolean   "response_post"
+    t.boolean   "calendar_task_added"
+    t.boolean   "member_volunteer_task"
+    t.boolean   "receive_thanks"
+    t.boolean   "member_receives_thanks"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "pilot_signups", :force => true do |t|
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "signup_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "email"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "signup_type"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "post_recipients", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer   "user_id"
+    t.integer   "post_id"
+    t.timestamp "created_at", :null => false
+    t.timestamp "updated_at", :null => false
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "name"
-    t.text     "content",    :limit => 3000
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "network_id"
-    t.integer  "user_id"
-    t.string   "photo"
+    t.string    "name"
+    t.text      "content"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "network_id"
+    t.integer   "user_id"
+    t.string    "photo"
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "bio"
-    t.string   "location"
-    t.string   "significant_other"
-    t.string   "kids_name"
-    t.date     "birthdate"
-    t.string   "expertise"
-    t.string   "can_help_with"
-    t.string   "phone_work"
-    t.string   "phone_mobile"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "phone_home"
-    t.string   "phone_work_ext"
+    t.string    "bio"
+    t.string    "location"
+    t.string    "significant_other"
+    t.string    "kids_name"
+    t.date      "birthdate"
+    t.string    "expertise"
+    t.string    "can_help_with"
+    t.string    "phone_work"
+    t.string    "phone_mobile"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "phone_home"
+    t.string    "phone_work_ext"
   end
 
   create_table "recipients", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "message_id"
-    t.boolean  "is_read"
-    t.boolean  "is_deleted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.integer   "message_id"
+    t.boolean   "is_read"
+    t.boolean   "is_deleted"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "auth_token"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "network_id"
-    t.string   "avatar"
-    t.string   "time_zone",              :limit => 32, :default => "Pacific Time (US & Canada)"
+    t.string    "email"
+    t.string    "password_digest"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "auth_token"
+    t.string    "password_reset_token"
+    t.timestamp "password_reset_sent_at"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.integer   "network_id"
+    t.string    "avatar"
+    t.string    "time_zone",              :limit => 32, :default => "Pacific Time (US & Canada)"
   end
 
 end
