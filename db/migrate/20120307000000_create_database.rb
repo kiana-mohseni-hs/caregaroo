@@ -1,7 +1,7 @@
 class CreateDatabase < ActiveRecord::Migration
   def self.up
     begin
-    
+=begin    
       create_table "comments" do |t|
         t.string   "name"
         t.text     "content"
@@ -99,7 +99,8 @@ class CreateDatabase < ActiveRecord::Migration
         t.string   "last_name"
         t.integer  "network_id"
       end
-
+=end
+      1
     rescue
       puts "Skip first migration"
     end
