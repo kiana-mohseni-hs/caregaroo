@@ -1,3 +1,8 @@
+/**
+* Example spec of the usage of the createNetwork helper function.
+*
+* @see  casper.caregaroo.createNetwork
+*/
 casper.start(casper.caregaroo.baseurl);
 
 var commonPassword = 'caregaroo';

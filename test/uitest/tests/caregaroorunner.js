@@ -47,9 +47,6 @@ Caregaroo.prototype.signIn = function signIn(credentials) {
 Caregaroo.prototype.signOut = function signOut() {
   "use strict";
   casper.thenOpen(casper.caregaroo.baseurl + '/logout');
-//  casper.then(function () {
-//    casper.click('a[href="/logout"]');
-//  });
 }
 
 /**
@@ -86,13 +83,13 @@ Caregaroo.prototype.signUp = function signUp(networkInfo, networkOwner) {
 }
 
 /**
- * Create network
+ * Creates a network with the specified networkInfo and networkOwner, and then invites the guests from 
+ * the inviteUsers array
  *
- * @param   object  networkInfo
- * @param   object  networkOwner
- * @param   object  inviteeUsers  object array of users to be invited to the network
- * @return  int     networkId
-*/
+ * @param   object  networkInfo   Information about the network
+ * @param   object  networkOwner  Owner of the network to create
+ * @param   []      inviteUsers   Object array of users to be invited to the network
+ */
 Caregaroo.prototype.createNetwork = function createNetwork(networkInfo, networkOwner, inviteUsers) {
   "use strict";
 
@@ -193,10 +190,7 @@ var casper       = require('casper').create({
   },
   pageSettings: {
     userAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11'
-  },
-  clientScripts: [
-    'tests/includes/StringUtilities.js'
-  ]
+  }
   //exitOnError: false
 });
 var caregaroo    = new Caregaroo(casper);

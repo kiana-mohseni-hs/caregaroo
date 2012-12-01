@@ -1,3 +1,8 @@
+/**
+* Example spec of the usage of the signIn helper function.
+*
+* @see  casper.caregaroo.signIn
+*/
 casper.start(casper.caregaroo.baseurl);
 
 casper.then(function signIn() {
