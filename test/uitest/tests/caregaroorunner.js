@@ -15,7 +15,29 @@ var Caregaroo = function Caregaroo(casper) {
  */
 Caregaroo.prototype.isSignedIn = function checkSignedIn() {
   "use strict";
-  return casper.visible('a[href="/logout"]');
+  return casper.exists('a[href="/logout"]');
+}
+
+/**
+ * Signs in the user
+ *
+ * @param  Object  credentials  User credentials to sign in as
+ */
+Caregaroo.prototype.signIn = function signIn(credentials) {
+  "user strict";
+  
+  casper.thenOpen(casper.caregaroo.baseurl + '/login');
+  
+  casper.then(function fillForm() {
+    casper.fill('#login_form', {
+      'session[email]': credentials.email,
+      'session[password]': credentials.password
+    }, false);
+  });
+  
+  casper.then(function clickSignInButton() {
+    casper.click('#sign_in_button');
+  });
 }
 
 /**
@@ -24,8 +46,130 @@ Caregaroo.prototype.isSignedIn = function checkSignedIn() {
  */
 Caregaroo.prototype.signOut = function signOut() {
   "use strict";
+  casper.thenOpen(casper.caregaroo.baseurl + '/logout');
+//  casper.then(function () {
+//    casper.click('a[href="/logout"]');
+//  });
+}
+
+/**
+ * Signs up a user
+ *
+ * @param  object  networkInfo   Carer network information
+ * @param  object  networkOwner  Network owner
+ */
+Caregaroo.prototype.signUp = function signUp(networkInfo, networkOwner) {
+  "use strict";
+  casper.then(function navigateToRegistrationPage() {
+    casper.open(casper.caregaroo.baseurl + '/register');
+  });
+  
+  casper.then(function fillForm() {
+    casper.fill('#new_network', {
+      'network[name]': networkInfo.name,
+      'network[network_for_who]': networkInfo.forWho,
+      'network[users_attributes][0][email]': networkOwner.email,
+      'network[users_attributes][0][first_name]': networkOwner.firstName,
+      'network[users_attributes][0][last_name]': networkOwner.lastName,
+      'network[users_attributes][0][password]': networkOwner.password,
+      'network[affiliations_attributes][0][relationship]': networkOwner.relationship
+    }, false);
+  });
+  
+  casper.then(function submitForm() {
+    casper.click('#create_btn');
+  });
+  
   casper.then(function () {
-    casper.click('a[href="/logout"]');
+    casper.caregaroo.signOut();
+  });
+}
+
+/**
+ * Create network
+ *
+ * @param   object  networkInfo
+ * @param   object  networkOwner
+ * @param   object  inviteeUsers  object array of users to be invited to the network
+ * @return  int     networkId
+*/
+Caregaroo.prototype.createNetwork = function createNetwork(networkInfo, networkOwner, inviteUsers) {
+  "use strict";
+
+  // sign up networkOwner using networkInfo
+  casper.then(function () {
+    casper.caregaroo.signUp(networkInfo, networkOwner);
+  });
+
+  casper.then(function () {
+    casper.caregaroo.signIn({ email: networkOwner.email, password: networkOwner.password });
+  });
+
+  casper.then(function () {
+    // loop through inviteUsers and invite them
+    var invite = function invite(userInfo) {
+      casper.thenOpen(casper.caregaroo.baseurl + '/invite');
+
+      casper.then(function fillForm() {
+        casper.fill('.new_invitation', {
+          'invitation[email]': userInfo.email,
+          'invitation[first_name]': userInfo.firstName,
+          'invitation[last_name]': userInfo.lastName
+        }, false);
+      });
+
+      casper.then(function submitForm() {
+        casper.click('#submit_invite_btn');
+      });
+
+      casper.then(function getInviteToken() {
+        userInfo.inviteToken = casper.evaluate(function () {
+          return __utils__.findOne('#token').getAttribute('value');
+        });
+      });
+    };
+
+    inviteUsers.forEach(invite);
+  });
+
+  casper.then(function () {
+    casper.caregaroo.signOut();
+  });
+
+  casper.then(function () {
+    //loop through inviteUsers and sign up invites with the token
+    var inviteeSignup = function inviteeSignup(userInfo) {
+      casper.thenOpen(casper.caregaroo.baseurl + '/signup/' + userInfo.inviteToken);
+
+      casper.then(function detectIfUserAlreadySignedUp() {
+        if (casper.getCurrentUrl() == casper.caregaroo.baseurl + '/signup/' + userInfo.inviteToken) {
+          casper.then(function fillForm() {
+            casper.fill('form#new_user', {
+              'user[password]': userInfo.password,
+              'relationship': userInfo.relationship
+            }, false);
+          });
+
+          casper.then(function submitForm() {
+            casper.click('#signup_next_btn');
+          });
+
+          casper.then(function assertSignUpSuccessPage() {
+            casper.test.assertEquals(casper.getCurrentUrl(), casper.caregaroo.baseurl + '/signup/success', 'Verify that the sign up success page is loaded');
+          });
+        } else if (casper.getCurrentUrl() == casper.caregaroo.baseurl + '/login') {
+          // user is already signed up; don't do anything
+        } else {
+          casper.test.fail('Something bad happened while processing an invited user');
+        }
+      });
+
+      casper.then(function () {
+        casper.caregaroo.signOut();
+      });
+    };
+
+    inviteUsers.forEach(inviteeSignup);
   });
 }
 
@@ -49,7 +193,10 @@ var casper       = require('casper').create({
   },
   pageSettings: {
     userAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11'
-  }
+  },
+  clientScripts: [
+    'tests/includes/StringUtilities.js'
+  ]
   //exitOnError: false
 });
 var caregaroo    = new Caregaroo(casper);
@@ -139,8 +286,9 @@ casper.test.on('tests.complete', function() {
   this.renderResults(true, undefined, casper.cli.get('xunit') || undefined);
 });
 
+// event listener to ensure test begins with a non-logged-in session
 casper.on('started', function () {
-  "use strict";
+  //"use strict";
   casper.then(function () {
     if (casper.caregaroo.isSignedIn()) {
       casper.echo('Spec started signed in. Signing out');

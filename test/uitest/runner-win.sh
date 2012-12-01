@@ -1,6 +1,8 @@
 USAGE="Usage: '$0' [-s spec file|spec dir] [-u url]"
 URL=http://cg2-staging.herokuapp.com
 SPEC=tests/suites
+PHANTOMJS_EXECUTABLE=lib/phantomjs-win/phantomjs.exe
+CASPERJS_BOOTSTRAP=lib/casperjs/bin/bootstrap.js
 
 # Parse command line options
 while getopts hs:u: OPT; do
@@ -32,4 +34,13 @@ if [ $# -gt 0 ]; then
   exit 1
 fi
 
-./lib/phantomjs-win/phantomjs.exe lib/casperjs/bin/bootstrap.js --casper-path=lib/casperjs --cli --xunit=results.xml --log-level=debug --direct=true --url=$URL tests/caregaroorunner.js $SPEC --includes=tests/includes/StringUtilities.js
+./$PHANTOMJS_EXECUTABLE $CASPERJS_BOOTSTRAP \
+  --casper-path=lib/casperjs \
+  --cli \
+  --xunit=results.xml \
+  --log-level=debug \
+  --direct=true \
+  --url=$URL \
+  tests/caregaroorunner.js $SPEC \
+  --includes=tests/includes/StringUtilities.js \
+  --pre=tests/suites/pre/generatetestnetworks.js
