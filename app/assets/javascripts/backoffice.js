@@ -20,8 +20,13 @@ $(function(){
       sLengthMenu: "Show _MENU_ records per page",
       sSearch    : "Search all columns:"
     },
-  	aoColumns: 			 (jQuery.map($('.datatable th'), function(n, i){
-      return ($(n).hasClass('no_sort') ? {"bSortable": false} : {"bSortable": true});
+    aoColumns:       (jQuery.map($('.datatable th'), function(n, i){
+      var c  = {},
+          el = $(n);
+
+      c.bSortable = el.hasClass('no_sort') ? false : true;
+      c.bVisible  = el.hasClass('no_visible') ? false : true;
+      return c;
     }))
 	});
 
