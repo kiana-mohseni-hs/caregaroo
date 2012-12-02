@@ -63,6 +63,8 @@ Cg2App::Application.routes.draw do
   post "signup" => "register#signup", :as => "signup"
   match "product" => "home#product"
   #match "home_new" => "home#home_new", :as => "home_new"
+
+  match 'fb_tab' => "landing#fb_tab"
   
   resources :comments do
     # the call in app/views/events/_comment.mobile.erb has method: :delete set but it still comes in as get 
