@@ -5,10 +5,10 @@
 		<meta charset="utf-8">
 		<meta name="robots" content="noindex,nofollow" /> 
 
-		<title>Caregaroo: Admin</title> 
+		<title>Caregaroo: Backoffice</title> 
 
-		<%= stylesheet_link_tag "admin" %>
-		<%= javascript_include_tag "admin" %>
+		<%= stylesheet_link_tag "backoffice" %>
+		<%= javascript_include_tag "backoffice" %>
 		<%= csrf_meta_tag %>
 	</head>
 
@@ -19,14 +19,14 @@
 				<div class="navbar-inner">
 					<div class="container-fluid">
 				
-						<%= link_to "Admin Panel", admin_path, class: "brand custom-brand" %>
+						<%= link_to "Backoffice", backoffice_path, class: "brand custom-brand" %>
 	
 						<ul class="nav pull-right">
 							<li><%= link_to "Visit Caregaroo.com", root_path %></li>
 							
 							<li class="divider-vertical"></li>
 							
-							<li><a href="#"><i class="icon-user icon-white"></i>&nbsp;<%= @current_user.first_name %></a></li>
+							<li><span class="logged_user"><i class="icon-user icon-white"></i>&nbsp;<%= @current_user.first_name %></span></li>
 							
 							<li class="divider-vertical"></li>
 
@@ -46,26 +46,26 @@
 						<ul class="nav nav-list">
 							<% @page = controller.controller_name %>
     					<li class="<%= @page == "dashboard" ? 'active' : '' %>">
-    						<%= link_to "Dashboard", admin_path %>
+    						<%= link_to "Dashboard", backoffice_path %>
     					</li>
     					<li class="<%= @page == "users" ? 'active' : '' %>">
-    						<%= link_to "Users", admin_users_path %>
+    						<%= link_to "Users", backoffice_users_path %>
     					</li>
     					<li class="<%= @page == "networks" ? 'active' : '' %>">
-    						<%= link_to "Networks", admin_networks_path %>
+    						<%= link_to "Networks", backoffice_networks_path %>
     					</li>
-    					<!-- <li class="< %= @page == "news" ? 'active' : '' %>">
-    						< %= link_to "News", admin_news_path %>
+    					<li class="<%= @page == "news" ? 'active' : '' %>">
+    						<%= link_to "News", backoffice_news_index_path %>
     					</li>
-    					<li class="< %= @page == "events" ? 'active' : '' %>">
-    						< %= link_to "Events", admin_events_path %>
+    					<li class="<%= @page == "events" ? 'active' : '' %>">
+    						<%= link_to "Events", backoffice_events_path %>
     					</li>
-    					<li class="< %= @page == "invitations" ? 'active' : '' %>">
-    						< %= link_to "Invitations", admin_invitations_path %>
+    					<li class="<%= @page == "invitations" ? 'active' : '' %>">
+    						<%= link_to "Invitations", backoffice_invitations_path %>
     					</li>
-    					<li class="< %= @page == "activities" ? 'active' : '' %>">
-    						< %= link_to "Activities", admin_activities_path %>
-    					</li> -->
+    					<li class="<%= @page == "activities" ? 'active' : '' %>">
+    						<%= link_to "Activities", backoffice_activities_path %>
+    					</li>
 						</ul>
 					</div>
 				</div>
