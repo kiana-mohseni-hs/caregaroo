@@ -43,4 +43,4 @@ fi
   --url=$URL \
   tests/caregaroorunner.js $SPEC \
   --includes=tests/includes/StringUtilities.js \
-  --pre=tests/suites/pre/generatetestnetworks.js
+#  --pre=tests/suites/pre/generatetestnetworks.js
