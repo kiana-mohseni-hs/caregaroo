@@ -165,3 +165,9 @@ $(function() {
 		});
 	})
 });
+
+function set_time_zone_offset() {
+    document.cookie = "time_zone=" + new Date().getTimezoneOffset();
+}
+
+set_time_zone_offset();

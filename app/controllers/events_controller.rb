@@ -1,8 +1,16 @@
+require 'debugger'
+
 class EventsController < ApplicationController
   before_filter :require_user
   before_filter :set_page
   before_filter :prepare_for_mobile, except: [:create]
   before_filter :combine_datetime, only: [:create, :update]
+  before_filter :set_timezone 
+
+  def set_timezone  
+    min = request.cookies["time_zone"].to_i
+    Time.zone = ActiveSupport::TimeZone[-min.minutes]
+  end 
   
   def index
     visible_events = @current_user.network.events.visible.order("start_at")
@@ -19,25 +27,29 @@ class EventsController < ApplicationController
       @prev_available = false
     end
     
-    @today = Time.now.to_date # -> http://stackoverflow.com/questions/6060436/rails-3-how-to-get-todays-date-in-specific-timezone
+    @today = Time.now # -> http://stackoverflow.com/questions/6060436/rails-3-how-to-get-todays-date-in-specific-timezone
     @dateswithevents = []
     
     first_day = if (@current_page.to_i == 0) then @today
                 elsif @events.empty?         then nil
-                else                              @events.first.start_at.to_date
+                else                              @events.first.start_at
                 end
     unless first_day.nil?
       previous_multi_day = visible_events.end_after_date(first_day).start_before_date(first_day)
       @events = previous_multi_day + @events
       unless @events.empty?
-        (first_day..last_date_to_show).each do |d| 
-          @events.each { |e| @dateswithevents << d if e.is_on?(d) }
+        day = first_day
+        finish_day = last_date_to_show
+
+        while day <= finish_day
+          @events.each { |e| @dateswithevents << day.to_date if e.is_on?(day.to_date) }
+          day += 1.day 
         end
       end
       @dateswithevents.uniq!
     end
         
-    @display_empty_today_banner = ((@current_page.to_i == 0) and (!@dateswithevents.include?(@today)))
+    @display_empty_today_banner = ((@current_page.to_i == 0) and (!@dateswithevents.include?(@today.to_date)))
     
     @next_available = events_count > (offset + per_page)
     @prev_link = "?page=" << (@current_page.to_i - 1).to_s
@@ -152,7 +164,7 @@ class EventsController < ApplicationController
 
   private
   def last_date_to_show
-    max_day_of_events = @events.max_by(&:end_at).end_at.to_date
+    max_day_of_events = @events.max_by(&:end_at).end_at
     if @current_page.to_i != 0 and max_day_of_events - @today > 0
       @today - 1.day
     else
