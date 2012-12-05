@@ -7,6 +7,12 @@
 <%= @today %>
 ----
 <%= @today.to_date %>
+----
+<%= @last_date_to_show %>
+----
+<%= @dateswithevents %>
+----
+<%= @events %>
 <table>
 <% if @dateswithevents.empty? %><%= render :partial => 'no_events_today' %>
 <% else %>
