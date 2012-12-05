@@ -25,22 +25,24 @@ class EventsController < ApplicationController
       @prev_available = false
     end
     
-    @today = Time.now - @time_zone_minutes # -> http://stackoverflow.com/questions/6060436/rails-3-how-to-get-todays-date-in-specific-timezone
+    @today = Time.now - Time.now.gmt_offset - @time_zone_minutes
     @dateswithevents = []
     
-    first_day = if (@current_page.to_i == 0) then @today
+    first_event_time = @events.first.start_at - Time.now.gmt_offset - @time_zone_minutes unless @events.empty?
+
+    first_day = if (@current_page.to_i == 0) then @today.to_date
                 elsif @events.empty?         then nil
-                else                              @events.first.start_at
+                else                              first_event_time.to_date
                 end
     unless first_day.nil?
       previous_multi_day = visible_events.end_after_date(first_day).start_before_date(first_day)
       @events = previous_multi_day + @events
       unless @events.empty?
         day = first_day
-        finish_day = last_date_to_show
+        @finish_day = last_date_to_show.to_date
 
-        while day <= finish_day
-          @events.each { |e| @dateswithevents << day.to_date if e.is_on?(day.to_date) }
+        while day <= @finish_day
+          @events.each { |e| @dateswithevents << day if e.is_on?(day) }
           day += 1.day 
         end
       end
