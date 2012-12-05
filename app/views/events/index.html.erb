@@ -2,7 +2,7 @@
 <%= @prev_available ? link_to( "&laquo; prev".html_safe, @prev_link, class: "orange_button_link prev_button") : "<span class='grey_button_link prev_button'>&laquo; prev</span>".html_safe %>
 <%= @next_available ? link_to( "next &raquo;".html_safe, @next_link, class: "orange_button_link next_button") : "<span class='grey_button_link next_button'>next &raquo;</span>".html_safe %>
 <%= @current_page.to_i == 0 ? "<span class='grey_button_link today_button'>today</span>".html_safe : link_to( "today", "?", class: "orange_button_link today_button") %>
-Time => <%= Time.now.to_date %>
+
 <table>
 <% if @dateswithevents.empty? %><%= render :partial => 'no_events_today' %>
 <% else %>
