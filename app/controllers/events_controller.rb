@@ -1,5 +1,3 @@
-require 'debugger'
-
 class EventsController < ApplicationController
   before_filter :require_user
   before_filter :set_page
