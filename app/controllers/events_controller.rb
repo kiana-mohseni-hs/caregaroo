@@ -6,8 +6,8 @@ class EventsController < ApplicationController
   before_filter :set_timezone 
 
   def set_timezone  
-    min = request.cookies["time_zone"].to_i
-    Time.zone = ActiveSupport::TimeZone[-min.minutes]
+    @time_zone_minutes = request.cookies["time_zone"].to_i.minutes
+    Time.zone = ActiveSupport::TimeZone[-@time_zone_minutes]
   end 
   
   def index
@@ -25,7 +25,7 @@ class EventsController < ApplicationController
       @prev_available = false
     end
     
-    @today = Time.now # -> http://stackoverflow.com/questions/6060436/rails-3-how-to-get-todays-date-in-specific-timezone
+    @today = Time.now - @time_zone_minutes # -> http://stackoverflow.com/questions/6060436/rails-3-how-to-get-todays-date-in-specific-timezone
     @dateswithevents = []
     
     first_day = if (@current_page.to_i == 0) then @today
