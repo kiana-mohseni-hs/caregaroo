@@ -15,7 +15,7 @@ class EventsController < ApplicationController
       @events = visible_events.limit(per_page).offset(offset)
       @prev_available = true
     else
-      @events = visible_events.limit(per_page+ offset)
+      @events = visible_events.limit(per_page + offset)
       @prev_available = false
     end
     
@@ -26,12 +26,11 @@ class EventsController < ApplicationController
                 elsif @events.empty?         then nil
                 else                              @events.first.start_at.to_date
                 end
-    
     unless first_day.nil?
       previous_multi_day = visible_events.end_after_date(first_day).start_before_date(first_day)
       @events = previous_multi_day + @events
       unless @events.empty?
-        (first_day..@events.max_by(&:end_at).end_at.to_date).each do |d| 
+        (first_day..last_date_to_show).each do |d| 
           @events.each { |e| @dateswithevents << d if e.is_on?(d) }
         end
       end
@@ -40,9 +39,9 @@ class EventsController < ApplicationController
         
     @display_empty_today_banner = ((@current_page.to_i == 0) and (!@dateswithevents.include?(@today)))
     
-    @next_available = events_count > (offset+ per_page)
-    @prev_link = "?page=" << (@current_page.to_i- 1).to_s
-    @next_link = "?page=" << (@current_page.to_i+ 1).to_s
+    @next_available = events_count > (offset + per_page)
+    @prev_link = "?page=" << (@current_page.to_i - 1).to_s
+    @next_link = "?page=" << (@current_page.to_i + 1).to_s
   end
 
   def show
@@ -149,5 +148,15 @@ class EventsController < ApplicationController
     params[:event].delete(:start_at_date)
     params[:event][:end_at] = Timeliness.parse(params[:event][:end_at_date] << ' ' << params[:event][:end_at], :datetime, zone: :current)
     params[:event].delete(:end_at_date)
+  end
+
+  private
+  def last_date_to_show
+    max_day_of_events = @events.max_by(&:end_at).end_at.to_date
+    if @current_page.to_i != 0 and max_day_of_events - @today > 0
+      @today - 1.day
+    else
+      max_day_of_events
+    end    
   end
 end
