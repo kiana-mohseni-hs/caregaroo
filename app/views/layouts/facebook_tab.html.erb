@@ -3,16 +3,19 @@
 
 	<head>
 		<meta charset="utf-8">
-		<meta name="robots" content="noindex,nofollow" /> 
+		<meta name="robots" content="noindex,nofollow" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		<title>yeah</title> 
 
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700">
+		
 		<%= stylesheet_link_tag "landing" %>
 		<%= javascript_include_tag "landing" %>
 		<%= csrf_meta_tag %>
 	</head>
 
-	<body class="">
+	<body class="container">
 		<%= yield %>
 	</body>
 
