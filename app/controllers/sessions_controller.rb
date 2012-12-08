@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
    
     @user = User.find_by_email(@session.email)
     if @user && @user.authenticate(@session.password)
+      session[:landing_email] = nil
       if @session.remember_me
         cookies.permanent[:auth_token] = @user.auth_token
       else
