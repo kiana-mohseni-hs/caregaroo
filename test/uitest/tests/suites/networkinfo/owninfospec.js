@@ -34,6 +34,22 @@ casper.then(function assertName() {
   }, expectedName, 'Verify name');
 });
 
+casper.thenClick('a[href="/profile/edit"]');
+
+casper.then(function assertUserInfo() {
+  casper.test.assertEvalEquals(function getFirstName() {
+    return __utils__.findOne('input#user_first_name').value;
+  }, user.firstName, 'Verify first name');
+
+  casper.test.assertEvalEquals(function getLastName() {
+    return __utils__.findOne('input#user_last_name').value;
+  }, user.lastName, 'Verify last name');
+
+  casper.test.assertEvalEquals(function getEmail() {
+    return __utils__.findOne('input#user_email').value;
+  }, user.email, 'Verify email');
+});
+
 casper.run(function () {
   casper.test.done();
 });
