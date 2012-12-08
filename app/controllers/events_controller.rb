@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 
   def set_timezone  
     @time_zone_minutes = request.cookies["time_zone"].to_i.minutes
-    Time.zone = ActiveSupport::TimeZone[-@time_zone_minutes]
+    #Time.zone = ActiveSupport::TimeZone[-@time_zone_minutes]
   end 
   
   def index
