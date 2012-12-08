@@ -7,7 +7,7 @@ class LandingController < ApplicationController
 
 	# decide where to redirect our user from this point
 	def fb_tab_post
-		@email = params[:email].strip
+		@email = params[:email].strip.downcase
 		return redirect_to fb_tab_url if @email.blank? 
 
 		user = User.find_by_email @email

@@ -51,4 +51,13 @@ $(document).ready(function() {
 
 	}
 
+	function targetMyFormOut(ev){
+		var ja = $(this);
+		var email = ja.siblings('[name=email]').val();
+		debugger
+		ja.attr('href', ja.attr('href')+encodeURIComponent(email) )
+	}
+
+	$('.email_form a').one('click',targetMyFormOut);
+
 });
