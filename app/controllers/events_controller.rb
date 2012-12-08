@@ -28,11 +28,9 @@ class EventsController < ApplicationController
     @today = Time.now - Time.now.gmt_offset - @time_zone_minutes
     @dateswithevents = []
     
-    first_event_time = @events.first.start_at unless @events.empty?
-
     first_day = if (@current_page.to_i == 0) then @today.to_date
                 elsif @events.empty?         then nil
-                else                              first_event_time.to_date
+                else                              @events.first.start_at
                 end
     unless first_day.nil?
       previous_multi_day = visible_events.end_after_date(first_day).start_before_date(first_day)
