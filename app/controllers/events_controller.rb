@@ -28,7 +28,7 @@ class EventsController < ApplicationController
     @today = Time.now - Time.now.gmt_offset - @time_zone_minutes
     @dateswithevents = []
     
-    first_event_time = @events.first.start_at #- Time.now.gmt_offset - @time_zone_minutes unless @events.empty?
+    first_event_time = @events.first.start_at unless @events.empty?
 
     first_day = if (@current_page.to_i == 0) then @today.to_date
                 elsif @events.empty?         then nil
