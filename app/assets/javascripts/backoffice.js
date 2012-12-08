@@ -15,7 +15,8 @@ $(function(){
     bServerSide:     true,
     sAjaxSource:     $('.datatable').data('source'),
     sDom:            "<'row-fluid'<'span6'l>>rt<'row-fluid'<'span6'i><'span6'p>>",
-  	sPaginationType: "bootstrap",
+    sPaginationType: "bootstrap",
+    iDisplayLength:  100,
   	oLanguage:       {
       sLengthMenu: "Show _MENU_ records per page",
       sSearch    : "Search all columns:"
@@ -31,7 +32,16 @@ $(function(){
 	});
 
   function specialInputFilters(je){
-    // TODO filter date_interval
+    // those guys come in pairs, this may have been triggered by either the one on right or left
+    if( je.data('filterType') == 'date_interval' ){
+      var other = je.siblings('[type=date]')
+
+      var left = je.data('left') ? je : other
+      var right = ( left === je ) ? other : je
+      //console.log(left.val(), '<>', right.val())
+      //console.log('')
+      return left.val()+'..'+right.val()
+    }
     return false;
   }
 

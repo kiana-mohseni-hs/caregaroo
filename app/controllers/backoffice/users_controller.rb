@@ -48,10 +48,7 @@ class Backoffice::UsersController < Backoffice::BaseController
         case dbname
 
         when "updated_at"
-          #require 'debugger'; debugger;
-          # todo -> break, test both, query if makes sense
-          #if( is_iso_date?(search) && true )
-          logger.info("updated_at>> #{search} ?#{is_iso_date?(search)}")
+          # XXX
         end
 
       end

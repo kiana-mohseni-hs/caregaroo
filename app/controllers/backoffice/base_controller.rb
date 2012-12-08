@@ -49,8 +49,19 @@ class Backoffice::BaseController < ApplicationController
             a[:start] = 1.month.ago.beginning_of_month
             a[:end]   = 1.month.ago.end_of_month
           end
-        end
 
+        when "date_interval"
+          #require 'debugger'; debugger;
+          splitt = search.split('..')
+          from = splitt[0]
+          to = splitt[1]
+          if splitt.size == 2 && is_iso_date?(from) && is_iso_date?(to)
+            c << "#{dbname} BETWEEN :intervalFrom#{i} AND :intervalTo#{i}"
+            a["intervalFrom#{i}".to_sym] = from+' 00:00:00'
+            a["intervalTo#{i}".to_sym] = to+' 23:59:59'
+          end
+          #logger.info("date_interval #{dbname}>> #{from} #{to}")
+        end
       end
     end
 

@@ -14,8 +14,8 @@
 	    	<div class="controls">
 			    
 			    <% if column[:type] == "date_interval" %>
-			    	<input type="date" name="<%= column[:db_name] %>_1" data-filter-type="date_interval" data-index="<%= i %>"> between 
-			    		<input type="date" name="<%= column[:db_name] %>_2" data-filter-type="date_interval" value="<%= Time.zone.now.strftime('%Y-%m-%d') %>" >
+			    	<input type="date" name="<%= column[:db_name] %>_1" data-filter-type="date_interval" data-left="1" data-index="<%= i %>"> to 
+			    		<input type="date" name="<%= column[:db_name] %>_2" data-filter-type="date_interval" data-index="<%= i %>" value="<%= Time.zone.now.strftime('%Y-%m-%d') %>" >
 
 			    <% elsif column[:type] === "date_ranges" %>
 	    			<select name="<%= column[:db_name] %>" data-index="<%= i %>">

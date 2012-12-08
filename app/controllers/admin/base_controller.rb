@@ -1,4 +1,5 @@
 class Admin::BaseController < ApplicationController
+  # is this even being used at all?!
 
 	layout "admin_panel"
 	
