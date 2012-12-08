@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     
     first_day = if (@current_page.to_i == 0) then @today.to_date
                 elsif @events.empty?         then nil
-                else                              @events.first.start_at
+                else                              @events.first.start_at.to_date
                 end
     unless first_day.nil?
       previous_multi_day = visible_events.end_after_date(first_day).start_before_date(first_day)
