@@ -3,7 +3,7 @@ CASPERJS_BOOTSTRAP=lib/casperjs/bin/bootstrap.js
 
 URL=http://cg2-staging.herokuapp.com
 SPEC=tests/suites
-CAREGAROO_PRE=tests/suites/pre/generatetestnetworks.js
+PRE=tests/suites/pre/generatetestnetworks.js
 
 USAGE="Usage: $0 [options]\n\nwhere options include:\n
 \t-l\tFlag to load the networks data from disk.\n
