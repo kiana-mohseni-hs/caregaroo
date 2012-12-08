@@ -1,0 +1,23 @@
+<ul>
+  <li class="comment_links"><span id="comment_<%= post.id %>" post-id="<%= post.id %>" class="orange_text news_comment" style="cursor:pointer">Comment</span></li>  
+  <% if !post.comments.empty? && post.comments.count > 3 %> 
+    <li style="float:left; width:145px;color:#F47D29"><%= link_to "View all #{pluralize(post.comments.count, " comment")}", post_commments_path(post.id), :method => :get, :remote => true, :class => "orange_text" %></li>
+  <% end %>
+
+  <li style="position: relative; float:left; width:95px; color:#F47D29;" class="recipient_list_handle">
+    <%= post.recipients.size == 0 ? @current_user.network.users.size : post.recipients.size %> Recipients
+    <div class="recipients_drop_down">
+      <% if post.recipients && post.recipients.size > 0 then; post.recipients.each do |u| %>
+        <%= u.name %> <br/>
+        <% end %>
+      <% else %>
+        Everyone
+      <% end %>
+    </div>
+  </li> 
+
+  <% if !post.user.nil? && @current_user.id == post.user.id %>
+    <li style="float:left; color:#F47D29"><%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete, :class => "orange_text" %></li> 
+  <% end %>
+</ul>
+<div class="clear"></div>
