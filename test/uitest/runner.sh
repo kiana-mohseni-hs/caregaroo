@@ -1,15 +1,29 @@
-USAGE="Usage: '$0' [-s spec file|spec dir] [-u url]"
-URL=http://cg2-staging.herokuapp.com
-SPEC=tests/suites
 PHANTOMJS_EXECUTABLE=lib/phantomjs-macosx/bin/phantomjs
 CASPERJS_BOOTSTRAP=lib/casperjs/bin/bootstrap.js
 
+URL=http://cg2-staging.herokuapp.com
+SPEC=tests/suites
+PRE=tests/suites/pre/generatetestnetworks.js
+
+USAGE="Usage: $0 [options]\n\nwhere options include:\n
+\t-l\tFlag to load the networks data from disk.\n
+\t\tDefault: off\n
+\t-s [<directory> | <spec>]\n
+\t\tPath to a directory of specs or path to a spec file.\n
+\t\tDefault: '$SPEC'.\n
+\t-u [<url>]\n
+\t\tURL of the application to test.\n
+\t\tDefault: $URL."
+
 # Parse command line options
-while getopts hs:u: OPT; do
+while getopts hls:u: OPT; do
   case "$OPT" in
     h)
-      echo $USAGE
+      echo -e $USAGE
       exit 0
+      ;;
+    l)
+      PRE=tests/suites/pre/loadtestnetworksfromdisk.js
       ;;
     s)
       SPEC=$OPTARG
@@ -19,7 +33,7 @@ while getopts hs:u: OPT; do
       ;;
     \?)
       # handle errors
-      echo $USAGE >&2
+      echo -e $USAGE >&2
       exit 1
       ;;
   esac
@@ -43,4 +57,4 @@ fi
   --url=$URL \
   tests/caregaroorunner.js $SPEC \
   --includes=tests/includes/StringUtilities.js \
-  --pre=tests/suites/pre/generatetestnetworks.js
+  --pre=$PRE

@@ -170,6 +170,29 @@ Caregaroo.prototype.createNetwork = function createNetwork(networkInfo, networkO
   });
 }
 
+/**
+ * Switches the active network for the currently signed in user. Assumes the user
+ * is already signed in.
+ *
+ * @param   object  networkInfo   Info of the network to switch to
+ */
+Caregaroo.prototype.switchNetwork = function switchNetwork(networkInfo) {
+  casper.thenOpen(casper.caregaroo.baseurl + '/network/switch');
+
+  casper.thenEvaluate(function selectNetwork(targetnetwork) {
+    var mynetworks = __utils__.findAll('form.edit_user label');
+    for (var i = 0; i < mynetworks.length; i++) {
+      if (mynetworks[i].textContent == targetnetwork) {
+        __utils__.findAll('form.edit_user p input')[i].click();
+      }
+    }
+  }, {
+    targetnetwork: networkInfo.name + ' - ' + networkInfo.forWho
+  });
+
+  casper.thenClick('input[name="commit"]');
+}
+
 /*global phantom*/
 
 if (!phantom.casperLoaded) {
