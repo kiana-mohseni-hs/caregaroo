@@ -1,0 +1,8 @@
+
+*.psd
+doc
+log
+tmp
+test
+spec
+phonegap
