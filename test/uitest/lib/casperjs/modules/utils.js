@@ -34,26 +34,16 @@
  * Provides a better typeof operator equivalent, able to retrieve the array
  * type.
  *
- * CAVEAT: this function does not necessarilly map to classical js "type" names,
- * notably a `null` will map to "null" instead of "object".
- *
  * @param  mixed  input
  * @return String
  * @see    http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
  */
 function betterTypeOf(input) {
     "use strict";
-    switch (input) {
-        case undefined:
-            return 'undefined';
-        case null:
-            return 'null';
-        default:
-        try {
-            return Object.prototype.toString.call(input).match(/^\[object\s(.*)\]$/)[1].toLowerCase();
-        } catch (e) {
-            return typeof input;
-        }
+    try {
+        return Object.prototype.toString.call(input).match(/^\[object\s(.*)\]$/)[1].toLowerCase();
+    } catch (e) {
+        return typeof input;
     }
 }
 exports.betterTypeOf = betterTypeOf;
@@ -78,18 +68,6 @@ function cleanUrl(url) {
     return url;
 }
 exports.cleanUrl = cleanUrl;
-
-/**
- * Clones an object.
- *
- * @param  Mixed  o
- * @return Mixed
- */
-function clone(o) {
-    "use strict";
-    return JSON.parse(JSON.stringify(o));
-}
-exports.clone = clone;
 
 /**
  * Dumps a JSON representation of passed value to the console. Used for
@@ -287,18 +265,6 @@ function isClipRect(value) {
 exports.isClipRect = isClipRect;
 
 /**
- * Checks that the subject is falsy.
- *
- * @param  Mixed  subject  Test subject
- * @return Boolean
- */
-function isFalsy(subject) {
-    "use strict";
-    /*jshint eqeqeq:false*/
-    return subject == new Function('return false;')();
-}
-exports.isFalsy = isFalsy;
-/**
  * Checks if value is a javascript Function
  *
  * @param  mixed  value
@@ -382,19 +348,6 @@ function isString(value) {
     return isType(value, "string");
 }
 exports.isString = isString;
-
-/**
- * Checks that the subject is truthy.
- *
- * @param  Mixed  subject  Test subject
- * @return Boolean
- */
-function isTruthy(subject) {
-    "use strict";
-    /*jshint eqeqeq:false*/
-    return subject == new Function('return true;')();
-}
-exports.isTruthy = isTruthy;
 
 /**
  * Shorthands for checking if a value is of the given type. Can check for
@@ -503,7 +456,7 @@ exports.mergeObjects = mergeObjects;
  */
 function node(name, attributes) {
     "use strict";
-    var _node   = document.createElement(name);
+    var _node = document.createElement(name);
     for (var attrName in attributes) {
         var value = attributes[attrName];
         if (attributes.hasOwnProperty(attrName) && isString(attrName)) {
@@ -513,20 +466,6 @@ function node(name, attributes) {
     return _node;
 }
 exports.node = node;
-
-/**
- * Maps an object to an array made from its values.
- *
- * @param  Object  obj
- * @return Array
- */
-function objectValues(obj) {
-    "use strict";
-    return Object.keys(obj).map(function(arg) {
-        return obj[arg];
-    });
-}
-exports.objectValues = objectValues;
 
 /**
  * Serializes a value using JSON.
