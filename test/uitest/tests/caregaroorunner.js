@@ -177,6 +177,7 @@ Caregaroo.prototype.createNetwork = function createNetwork(networkInfo, networkO
  * @param   object  networkInfo   Info of the network to switch to
  */
 Caregaroo.prototype.switchNetwork = function switchNetwork(networkInfo) {
+  "use strict";
   casper.thenOpen(casper.caregaroo.baseurl + '/network/switch');
 
   casper.thenEvaluate(function selectNetwork(targetnetwork) {
@@ -191,6 +192,73 @@ Caregaroo.prototype.switchNetwork = function switchNetwork(networkInfo) {
   });
 
   casper.thenClick('input[name="commit"]');
+}
+
+/**
+* Posts news. Assumes that the user is already logged in.
+* If 'news.recipients' is not set, then it assumes Everyone.
+* Pass an empty array (news.recipients = []) if you want to send without recipients
+*
+* @param   object  news  News to be posted
+*/
+Caregaroo.prototype.postNews = function postNews(news) {
+  "use strict";
+  casper.then(function fillForm() {
+    casper.fill('form.new_post', {
+      "post[content]": news.message
+    }, false);
+  });
+
+  casper.thenEvaluate(function clearRecipients() {
+    var recipients = __utils__.findAll('ul.chzn-choices li a');
+    for (var i = 0; i < recipients.length; i++) {
+      recipients[i].click();
+    }
+  });
+
+  casper.then(function setRecipients() {
+    if (typeof news.recipients === 'undefined') {
+      casper.thenEvaluate(function selectEverybody() {
+        var recipientSelect = jQuery('select[name="recipient_list"]');
+        recipientSelect.val(0);
+      });
+    }
+    else {
+      casper.thenEvaluate(function selectRecipients(stringifiedrecipients) {
+        var recipientIds = [];
+        var recipientJson = JSON.parse(stringifiedrecipients);
+        var options = jQuery('select[name="recipient_list"] option');
+
+        console.log(stringifiedrecipients);
+
+        // loop through the options on the DOM
+        for (var i = 0; i < options.length; i++) {
+          var fullname = jQuery(options[i]).text();
+          console.log('fullname: ' + fullname);
+
+          recipientJson.forEach(function (element) {
+            // check if name of recipient matches value on DOM
+            var recipientname = element.firstName + ' ' + element.lastName;
+            console.log('recipientname: ' + recipientname);
+            if (fullname === recipientname) {
+              var recipientId = jQuery(options[i]).attr('value');
+              console.log('recipientId:' + recipientId);
+              recipientIds.push(recipientId);
+            }
+          });
+        }
+
+        // add the target recipients
+        var recipientSelect = jQuery('select[name="recipient_list"]');
+        console.log(recipientIds);
+        recipientSelect.val(recipientIds);
+      }, {
+        recipients: JSON.stringify(news.recipients)
+      });
+    }
+  });
+
+  casper.thenClick('input#news_update_button');
 }
 
 /*global phantom*/
