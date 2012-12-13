@@ -229,20 +229,16 @@ Caregaroo.prototype.postNews = function postNews(news) {
         var recipientJson = JSON.parse(stringifiedrecipients);
         var options = jQuery('select[name="recipient_list"] option');
 
-        console.log(stringifiedrecipients);
-
         // loop through the options on the DOM
         for (var i = 0; i < options.length; i++) {
           var fullname = jQuery(options[i]).text();
-          console.log('fullname: ' + fullname);
 
           recipientJson.forEach(function (element) {
             // check if name of recipient matches value on DOM
             var recipientname = element.firstName + ' ' + element.lastName;
-            console.log('recipientname: ' + recipientname);
+
             if (fullname === recipientname) {
               var recipientId = jQuery(options[i]).attr('value');
-              console.log('recipientId:' + recipientId);
               recipientIds.push(recipientId);
             }
           });
@@ -250,7 +246,6 @@ Caregaroo.prototype.postNews = function postNews(news) {
 
         // add the target recipients
         var recipientSelect = jQuery('select[name="recipient_list"]');
-        console.log(recipientIds);
         recipientSelect.val(recipientIds);
       }, {
         recipients: JSON.stringify(news.recipients)
@@ -259,6 +254,49 @@ Caregaroo.prototype.postNews = function postNews(news) {
   });
 
   casper.thenClick('input#news_update_button');
+}
+
+Caregaroo.prototype.getNewsId = function getNewsId(message) {
+  "use strict";
+  return casper.evaluate(function getNewsId(message) {
+    var newsList = __utils__.findAll('div.post_content_area div[id^="post_"]');
+
+    for (var i = 0; i < newsList.length; i++) {
+      var newsContent = newsList[i].textContent.trim();
+      if (newsContent == message) {
+        //<div id="post_389_inner_text">example news post</div>
+        return parseInt(newsList[i].getAttribute('id').split('_')[1], 10);
+      }
+    }
+  }, {
+    message: message
+  });
+}
+
+Caregaroo.prototype.postComment = function postComment(comment) {
+  "use strict";
+  var newsId;
+  casper.then(function getNewsId() {
+    newsId = casper.caregaroo.getNewsId(comment.news.message);
+  });
+
+  casper.then(function revealCommentArea() {
+    casper.click('span[post-id="' + newsId + '"]');
+  });
+
+  casper.then(function fillForm() {
+    casper.fill('div#new_comment_section_' + newsId + ' form#new_comment', {
+      "comment[content]": comment.message
+    });
+  });
+
+  casper.then(function submitComment() {
+    casper.click('div#new_comment_section_' + newsId + ' form input#reply_button');
+  });
+
+  casper.then(function waitForService() {
+    casper.waitForResource(casper.caregaroo.baseurl + '/comments');
+  });
 }
 
 /*global phantom*/
