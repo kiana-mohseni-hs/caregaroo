@@ -299,6 +299,15 @@ Caregaroo.prototype.postComment = function postComment(comment) {
   });
 }
 
+Caregaroo.prototype.deleteNews = function deleteComment(newsId) {
+  "use strict";
+  casper.setFilter("page.confirm", function handleDeleteConfirmationAlert(msg) {
+    return msg === "Are you sure?" ? false : true;
+});
+
+  casper.thenClick('div#post_content_' + newsId + ' a[data-method="delete"]');
+}
+
 /*global phantom*/
 
 if (!phantom.casperLoaded) {
