@@ -256,6 +256,25 @@ Caregaroo.prototype.postNews = function postNews(news) {
   casper.thenClick('input#news_update_button');
 }
 
+Caregaroo.prototype.deleteNews = function deleteComment(newsId) {
+  "use strict";
+  casper.setFilter("page.confirm", function handleDeleteConfirmationAlert(msg) {
+    return msg === "Are you sure?" ? false : true;
+  });
+
+  casper.thenClick('div#post_content_' + newsId + ' a[data-method="delete"]');
+
+  casper.setFilter("page.confirm", function removeFilter() {
+  });
+}
+
+/*global phantom*/
+
+if (!phantom.casperLoaded) {
+  console.log('This script must be invoked using the casperjs executable');
+  phantom.exit(1);
+}
+
 Caregaroo.prototype.getNewsId = function getNewsId(message) {
   "use strict";
   return casper.evaluate(function getNewsId(message) {
@@ -266,6 +285,23 @@ Caregaroo.prototype.getNewsId = function getNewsId(message) {
       if (newsContent == message) {
         //<div id="post_389_inner_text">example news post</div>
         return parseInt(newsList[i].getAttribute('id').split('_')[1], 10);
+      }
+    }
+  }, {
+    message: message
+  });
+}
+
+Caregaroo.prototype.getCommentId = function getCommentId(message) {
+  "use strict";
+  return casper.evaluate(function getNewsId(message) {
+    var commentList = __utils__.findAll('.comments .comment_content div');
+    
+    for (var i = 0; i < commentList.length; i++) {
+      var commentContent = commentList[i].textContent.trim();  
+      if (commentContent == message) {
+        //<div id="comment_content_150">example comment content</div>
+        return parseInt(commentList[i].getAttribute('id').split('_')[2], 10);
       }
     }
   }, {
@@ -299,20 +335,16 @@ Caregaroo.prototype.postComment = function postComment(comment) {
   });
 }
 
-Caregaroo.prototype.deleteNews = function deleteComment(newsId) {
+Caregaroo.prototype.deleteComment = function deleteComment(id) {
   "use strict";
   casper.setFilter("page.confirm", function handleDeleteConfirmationAlert(msg) {
     return msg === "Are you sure?" ? false : true;
-});
+  });
 
-  casper.thenClick('div#post_content_' + newsId + ' a[data-method="delete"]');
-}
+  casper.thenClick('a[href="/comment/' + id + '"]');
 
-/*global phantom*/
-
-if (!phantom.casperLoaded) {
-  console.log('This script must be invoked using the casperjs executable');
-  phantom.exit(1);
+  casper.setFilter("page.confirm", function removeFilter() {
+  });
 }
 
 var fs           = require('fs');
