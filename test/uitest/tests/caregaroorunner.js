@@ -170,6 +170,135 @@ Caregaroo.prototype.createNetwork = function createNetwork(networkInfo, networkO
   });
 }
 
+/**
+ * Switches the active network for the currently signed in user. Assumes the user
+ * is already signed in.
+ *
+ * @param   object  networkInfo   Info of the network to switch to
+ */
+Caregaroo.prototype.switchNetwork = function switchNetwork(networkInfo) {
+  "use strict";
+  casper.thenOpen(casper.caregaroo.baseurl + '/network/switch');
+
+  casper.thenEvaluate(function selectNetwork(targetnetwork) {
+    var mynetworks = __utils__.findAll('form.edit_user label');
+    for (var i = 0; i < mynetworks.length; i++) {
+      if (mynetworks[i].textContent == targetnetwork) {
+        __utils__.findAll('form.edit_user p input')[i].click();
+      }
+    }
+  }, {
+    targetnetwork: networkInfo.name + ' - ' + networkInfo.forWho
+  });
+
+  casper.thenClick('input[name="commit"]');
+}
+
+/**
+* Posts news. Assumes that the user is already logged in.
+* If 'news.recipients' is not set, then it assumes Everyone.
+* Pass an empty array (news.recipients = []) if you want to send without recipients
+*
+* @param   object  news  News to be posted
+*/
+Caregaroo.prototype.postNews = function postNews(news) {
+  "use strict";
+  casper.then(function fillForm() {
+    casper.fill('form.new_post', {
+      "post[content]": news.message
+    }, false);
+  });
+
+  casper.thenEvaluate(function clearRecipients() {
+    var recipients = __utils__.findAll('ul.chzn-choices li a');
+    for (var i = 0; i < recipients.length; i++) {
+      recipients[i].click();
+    }
+  });
+
+  casper.then(function setRecipients() {
+    if (typeof news.recipients === 'undefined') {
+      casper.thenEvaluate(function selectEverybody() {
+        var recipientSelect = jQuery('select[name="recipient_list"]');
+        recipientSelect.val(0);
+      });
+    }
+    else {
+      casper.thenEvaluate(function selectRecipients(stringifiedrecipients) {
+        var recipientIds = [];
+        var recipientJson = JSON.parse(stringifiedrecipients);
+        var options = jQuery('select[name="recipient_list"] option');
+
+        // loop through the options on the DOM
+        for (var i = 0; i < options.length; i++) {
+          var fullname = jQuery(options[i]).text();
+
+          recipientJson.forEach(function (element) {
+            // check if name of recipient matches value on DOM
+            var recipientname = element.firstName + ' ' + element.lastName;
+
+            if (fullname === recipientname) {
+              var recipientId = jQuery(options[i]).attr('value');
+              recipientIds.push(recipientId);
+            }
+          });
+        }
+
+        // add the target recipients
+        var recipientSelect = jQuery('select[name="recipient_list"]');
+        recipientSelect.val(recipientIds);
+      }, {
+        recipients: JSON.stringify(news.recipients)
+      });
+    }
+  });
+
+  casper.thenClick('input#news_update_button');
+}
+
+Caregaroo.prototype.getNewsId = function getNewsId(message) {
+  "use strict";
+  return casper.evaluate(function getNewsId(message) {
+    var newsList = __utils__.findAll('div.post_content_area div[id^="post_"]');
+
+    for (var i = 0; i < newsList.length; i++) {
+      var newsContent = newsList[i].textContent.trim();
+      if (newsContent == message) {
+        //<div id="post_389_inner_text">example news post</div>
+        return parseInt(newsList[i].getAttribute('id').split('_')[1], 10);
+      }
+    }
+  }, {
+    message: message
+  });
+}
+
+Caregaroo.prototype.postComment = function postComment(comment) {
+  "use strict";
+  var newsId;
+  casper.then(function getNewsId() {
+    newsId = casper.caregaroo.getNewsId(comment.news.message);
+  });
+
+  casper.then(function revealCommentArea() {
+    casper.click('span[post-id="' + newsId + '"]');
+  });
+
+  casper.then(function fillForm() {
+    casper.fill('div#new_comment_section_' + newsId + ' form#new_comment', {
+      "comment[content]": comment.message
+    });
+  });
+
+  casper.then(function submitComment() {
+    casper.click('div#new_comment_section_' + newsId + ' form input#reply_button');
+  });
+
+  casper.then(function waitForService() {
+    casper.waitForResource(casper.caregaroo.baseurl + '/comments');
+  });
+}
+
 /*global phantom*/
 
 if (!phantom.casperLoaded) {
