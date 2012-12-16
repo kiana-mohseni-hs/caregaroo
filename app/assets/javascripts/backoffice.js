@@ -15,7 +15,8 @@ $(function(){
     bServerSide:     true,
     sAjaxSource:     $('.datatable').data('source'),
     sDom:            "<'row-fluid'<'span6'l>>rt<'row-fluid'<'span6'i><'span6'p>>",
-  	sPaginationType: "bootstrap",
+    sPaginationType: "bootstrap",
+    iDisplayLength:  100,
   	oLanguage:       {
       sLengthMenu: "Show _MENU_ records per page",
       sSearch    : "Search all columns:"
@@ -30,13 +31,28 @@ $(function(){
     }))
 	});
 
-  $('.filters input').keyup(function(){
-    /* Filter on the column (the index) of this element */
-    oTable.fnFilter( this.value, $('.filters input, .filters select').index(this) );
-  });
-  $('.filters select').change( function () {
-    /* Filter on the column (the index) of this element */
-    oTable.fnFilter( this.value, $('.filters input, .filters select').index(this) );
-  });
+  function specialInputFilters(je){
+    // those guys come in pairs, this may have been triggered by either the one on right or left
+    if( je.data('filterType') == 'date_interval' ){
+      var other = je.siblings('[type=date]')
+
+      var left = je.data('left') ? je : other
+      var right = ( left === je ) ? other : je
+      //console.log(left.val(), '<>', right.val())
+      //console.log('')
+      return left.val()+'..'+right.val()
+    }
+    return false;
+  }
+
+  function triggerTableUpdate(){
+    //alert(this.value)
+    var jthis = $(this)
+    var value = specialInputFilters(jthis) || this.value
+     /* Filter on the column (the index) of this element */
+    oTable.fnFilter( value , jthis.data('index'), false );
+  }
+
+  $('.filters input, .filters select').bind('keyup change input', triggerTableUpdate );
 
 });

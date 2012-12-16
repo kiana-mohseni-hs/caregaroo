@@ -29,8 +29,34 @@ class Backoffice::UsersController < Backoffice::BaseController
       {:db_name => "email",         :human_name => "Email",      :type => "string", :filter => true},
       {:db_name => "first_name",    :human_name => "First Name", :type => "string", :filter => true},
       {:db_name => "last_name",     :human_name => "Last Name",  :type => "string", :filter => true},
+      {:db_name => "updated_at",    :human_name => "Last Seen",  :type => "date_interval", :filter => true},
       {:db_name => "networks.name", :human_name => "Networks",   :type => "string", :filter => true, :sortable => false}
     ]
+  end
+
+  def conditions
+    c, a = super
+    c = [c]
+
+    @columns.each_with_index do |column, i|
+      if params["bSearchable_#{i}"] && !params["sSearch_#{i}"].blank?
+
+        dbname  = column[:db_name]
+        dbname_ = dbname.gsub(/\W+/, '')
+        search  = params["sSearch_#{i}"].strip.downcase
+
+        case dbname
+
+        when "updated_at"
+          # XXX
+        end
+
+      end
+    end
+
+    c.reject!(&:empty?)
+
+    [c.join(" AND "), a]
   end
 
   # [dataTables]
@@ -41,7 +67,7 @@ class Backoffice::UsersController < Backoffice::BaseController
         %(<a href="#{url_for :controller => 'networks', :action => 'show', :id => n.id}">#{n.name}</a>)
       }.join(', ') unless r.networks.nil?
 
-      [r.email, r.first_name, r.last_name, networks]
+      [r.email, r.first_name, r.last_name, r.updated_at.strftime("%y-%m-%d"), networks]
 
     end
   end

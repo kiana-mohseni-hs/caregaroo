@@ -49,8 +49,19 @@ class Backoffice::BaseController < ApplicationController
             a[:start] = 1.month.ago.beginning_of_month
             a[:end]   = 1.month.ago.end_of_month
           end
-        end
 
+        when "date_interval"
+          #require 'debugger'; debugger;
+          splitt = search.split('..')
+          from = splitt[0]
+          to = splitt[1]
+          if splitt.size == 2 && is_iso_date?(from) && is_iso_date?(to)
+            c << "#{dbname} BETWEEN :intervalFrom#{i} AND :intervalTo#{i}"
+            a["intervalFrom#{i}".to_sym] = from+' 00:00:00'
+            a["intervalTo#{i}".to_sym] = to+' 23:59:59'
+          end
+          #logger.info("date_interval #{dbname}>> #{from} #{to}")
+        end
       end
     end
 
@@ -81,6 +92,12 @@ class Backoffice::BaseController < ApplicationController
   # sSortDir_0 contains the direction to be sorted
   def sort_direction
     params[:sSortDir_0]
+  end
+
+  # Takes a string, check if it fits the ISO standard
+  # (still have to test this regex)
+  def is_iso_date? p
+    p.to_s.match(/^((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1[[0-9]])|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))$/) ? true : false
   end
 
   private
@@ -114,7 +131,7 @@ class Backoffice::BaseController < ApplicationController
       return false
     end
     
-    unless @current_user.is_system_admin?
+    unless @current_user.is_system_admin? || ENV['DEV_MODE']
       redirect_to root_path
       return false
     end

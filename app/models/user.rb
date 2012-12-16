@@ -96,5 +96,9 @@ class User < ActiveRecord::Base
   def network_relationship(for_network_id = network_id)
     affiliation(for_network_id).try(:relationship) || "off-network"
   end
-  
+
+  def mark_presence
+    self.touch if self.updated_at < 12.hours.ago
+  end
+
 end
