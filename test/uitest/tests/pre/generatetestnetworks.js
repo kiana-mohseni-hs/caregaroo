@@ -116,8 +116,8 @@ casper.then(function verificationOfCreatedUser() {
 
 casper.then(function writeToDisk() {
   var fs = require('fs');
-  fs.write('tests/suites/pre/users.json', JSON.stringify(users), 'w');
-  fs.write('tests/suites/pre/networks.json', JSON.stringify(casper.caregaroo.fixtures.networks), 'w');
+  fs.write('tests/pre/users.json', JSON.stringify(users), 'w');
+  fs.write('tests/pre/networks.json', JSON.stringify(casper.caregaroo.fixtures.networks), 'w');
 });
 
 casper.run(function () {

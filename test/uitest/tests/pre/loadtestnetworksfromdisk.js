@@ -2,7 +2,7 @@ casper.start();
 
 casper.then(function loadTestNetworksFromDisk() {
   var fs = require('fs');
-  var pathtonetworksjson = 'tests/suites/pre/networks.json';
+  var pathtonetworksjson = 'tests/pre/networks.json';
 
   if (fs.exists(pathtonetworksjson)) {
     var json = fs.read(pathtonetworksjson);
