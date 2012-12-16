@@ -16,7 +16,12 @@ class InvitationsController < ApplicationController
       @invitation = @invitations.first
     end
     if @invitation.save
-      Resque.enqueue(InvitationMailer, @invitation.id, @current_user.id)
+      unless @invitation.email.match /^test\+.*/
+        # send invite email
+        Resque.enqueue(InvitationMailer, @invitation.id, @current_user.id)
+      else
+        logger.info ">>>> TEST: NO EMAIL WAS SENT"
+      end
       redirect_to success_invitation_path({token: @invitation.token})
     else
       render "index"

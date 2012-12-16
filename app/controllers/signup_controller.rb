@@ -41,9 +41,14 @@ class SignupController < ApplicationController
       invitation = Invitation.find_by_email_and_network_id(@user.email, @user.network_id)
       invitation.destroy unless invitation.nil?
       
-      # send welcome email
-      Resque.enqueue(WelcomeMailer, @user.id)
-      Resque.enqueue(MembersActivityMailer, @user.network_id, @user.id)
+      unless @user.email.match /^test\+.*/
+        # send welcome email
+        Resque.enqueue(WelcomeMailer, @user.id)
+        Resque.enqueue(MembersActivityMailer, @user.network_id, @user.id)
+      else
+        logger.info ">>>> TEST: NO EMAIL WAS SENT"
+      end
+
       redirect_to signup_success_path
     else  
       @network_for_who = params[:network_for_who]
