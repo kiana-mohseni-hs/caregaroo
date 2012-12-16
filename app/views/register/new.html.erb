@@ -29,7 +29,7 @@
         </div>
       
         <%= u.label :email, "Your email", class: "right_text_with_icon label_space" %>
-        <%= u.text_field :email, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', readonly: @current_user.present? %>
+        <%= u.text_field :email, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', readonly: @current_user.present?, :value => (@network.users[0].try(:email).blank? ? session[:landing_email] : @network.users[0].try(:email)) %>
         <% if @current_user %><p class="right_text_with_icon note_text"><%= link_to "(log out)", logout_path %></p><% end %>
         <%= u.label :first_name, "Your first name", class: "right_text_with_icon label_space" %>
         <%= u.text_field :first_name, size: 35, class: "right_text_with_icon field_space", autocomplete: 'off', readonly: @current_user.present? %>

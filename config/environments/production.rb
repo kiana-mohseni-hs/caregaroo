@@ -49,6 +49,7 @@ Cg2App::Application.configure do
   config.assets.precompile += %w( jquery.fancybox-1.3.4.css marketing.css bootstrap.css )
   config.assets.precompile += %w( jquery.fancybox-1.3.4.pack.js marketing.js )
   config.assets.precompile += %w( backoffice.js backoffice.css )
+  config.assets.precompile += %w( landing.js landing.css )
   
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

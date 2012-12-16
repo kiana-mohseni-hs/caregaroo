@@ -54,6 +54,7 @@ class RegisterController < ApplicationController
         @network = Network.new(params[:network])
         if @network.save
           logger.info ">>2 @network saved!"
+          session[:landing_email] = nil
           # looks very wrong \/
           @network.affiliations.first.update_attributes( {network_id: @network.id, user_id: user.id })
           user.update_attribute( :network_id, @network.id )
