@@ -1,7 +1,7 @@
 class Backoffice::BaseController < ApplicationController
 
-	layout "backoffice"
-	
+  layout "backoffice"
+
   before_filter :require_system_admin
   before_filter :set_columns, :only => :index
 
