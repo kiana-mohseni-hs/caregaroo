@@ -40,7 +40,8 @@ class Backoffice::LandpageController < Backoffice::BaseController
       email = r.user.blank? ? r.email : %(<a href="#{url_for :controller => 'users', :action => 'show', 
         :id => r.user.id}">#{r.user.email}</a>)
 
-      registered = r.user.blank? ? 'No' : 'Yes'
+      registered = r.user.blank? ? %(<span class="label label-important">No</span>) : 
+        %(<span class="label label-info">Yes</span>)
 
       [email, registered, r.campaign, r.created_at.to_s(:long)]
 
