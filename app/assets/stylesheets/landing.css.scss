@@ -50,8 +50,17 @@ p {
 	height: 357px;
 }
 
-.header .email_form {
+.header{
+  .email_form {
 	margin-top: 30px;
+	width: 350px;
+	position: relative;
+	a{
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+  }
 }
 
 .logo {
