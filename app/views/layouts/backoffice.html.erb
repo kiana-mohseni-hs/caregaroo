@@ -1,92 +1,107 @@
 <!DOCTYPE HTML>
 <html lang="en"> 
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="robots" content="noindex,nofollow" /> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex,nofollow" />
 
-		<title>Caregaroo: Backoffice</title> 
+    <title>Caregaroo: Backoffice</title>
 
-		<%= stylesheet_link_tag "backoffice" %>
-		<%= javascript_include_tag "backoffice" %>
-		<%= csrf_meta_tag %>
-	</head>
+    <%= stylesheet_link_tag "backoffice" %>
+    <%= javascript_include_tag "backoffice" %>
+    <%= csrf_meta_tag %>
+  </head>
 
-	<body class="main clearfix <%= params[:controller] %>">
+  <body class="main clearfix <%= params[:controller] %>">
 
-		<header>
-			<div class="navbar navbar-inverse navbar-static-top">
-				<div class="navbar-inner">
-					<div class="container-fluid">
-				
-						<%= link_to "Backoffice", backoffice_path, class: "brand custom-brand" %>
-	
-						<ul class="nav pull-right">
-							<li><%= link_to "Visit Caregaroo.com", root_path %></li>
-							
-							<li class="divider-vertical"></li>
-							
-							<li><span class="logged_user"><i class="icon-user icon-white"></i>&nbsp;<%= @current_user.first_name %></span></li>
-							
-							<li class="divider-vertical"></li>
+    <header>
+      <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
 
-							<li><%= link_to raw("<i class='icon-off icon-white'></i>&nbsp;Log out"), logout_path %></li>
-						</ul>
-					
-					</div>
-				</div>
-			</div>
-		</header>
-	
-		<div class="main container-fluid">
-		
-			<div class="row-fluid">
-				<div class="span3">
-					<div class="well sidebar-nav">
-						<ul class="nav nav-list">
-							<% @page = controller.controller_name %>
-    					<li class="<%= @page == "dashboard" ? 'active' : '' %>">
-    						<%= link_to "Dashboard", backoffice_path %>
-    					</li>
-    					<li class="<%= @page == "users" ? 'active' : '' %>">
-    						<%= link_to "Users", backoffice_users_path %>
-    					</li>
-    					<li class="<%= @page == "networks" ? 'active' : '' %>">
-    						<%= link_to "Networks", backoffice_networks_path %>
-    					</li>
-    					<li class="<%= @page == "news" ? 'active' : '' %>">
-    						<%= link_to "News", backoffice_news_index_path %>
-    					</li>
-    					<li class="<%= @page == "events" ? 'active' : '' %>">
-    						<%= link_to "Events", backoffice_events_path %>
-    					</li>
-    					<li class="<%= @page == "invitations" ? 'active' : '' %>">
-    						<%= link_to "Invitations", backoffice_invitations_path %>
-    					</li>
-    					<li class="<%= @page == "activities" ? 'active' : '' %>">
-    						<%= link_to "Activities", backoffice_activities_path %>
-    					</li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="span9">
-			    <% flash.each do |name, msg| %>
-			      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-			    <% end %>
+            <%= link_to "Backoffice", backoffice_path, class: "brand custom-brand" %>
 
-					<%= yield %>
-				</div>				
-			</div>
-			
-			<hr>
-			
-			<footer class="row-fluid">
-				<p><center>Copyright 2012, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com" target="_blank">info@caregaroo.com</a></center></p>
-			</footer>
-			
-		</div>
+            <ul class="nav pull-right">
+              <li><%= link_to "Visit Caregaroo.com", root_path %></li>
 
-	</body>
+              <li class="divider-vertical"></li>
+
+              <li><span class="logged_user"><i class="icon-user icon-white"></i>&nbsp;<%= @current_user.first_name %></span></li>
+
+              <li class="divider-vertical"></li>
+
+              <li><%= link_to raw("<i class='icon-off icon-white'></i>&nbsp;Log out"), logout_path %></li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main container-fluid">
+
+      <div class="row-fluid">
+
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+
+              <% @page = controller.controller_name %>
+
+              <li class="<%= @page == "dashboard" ? 'active' : '' %>">
+                <%= link_to "Dashboard", backoffice_path %>
+              </li>
+
+              <li class="<%= @page == "users" ? 'active' : '' %>">
+                <%= link_to "Users", backoffice_users_path %>
+              </li>
+
+              <li class="<%= @page == "networks" ? 'active' : '' %>">
+                <%= link_to "Networks", backoffice_networks_path %>
+              </li>
+
+              <li class="<%= @page == "news" ? 'active' : '' %>">
+                <%= link_to "News", backoffice_news_index_path %>
+              </li>
+
+              <li class="<%= @page == "events" ? 'active' : '' %>">
+                <%= link_to "Events", backoffice_events_path %>
+              </li>
+
+              <li class="<%= @page == "invitations" ? 'active' : '' %>">
+                <%= link_to "Invitations", backoffice_invitations_path %>
+              </li>
+
+              <li class="<%= @page == "activities" ? 'active' : '' %>">
+                <%= link_to "Activities", backoffice_activities_path %>
+              </li>
+
+              <li class="<%= @page == "landpage" ? 'active' : '' %>">
+                <%= link_to "Landpage Data", backoffice_landpage_index_path %>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="span9">
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+
+          <%= yield %>
+        </div>
+
+      </div>
+
+      <hr>
+
+      <footer class="row-fluid">
+        <p><center>Copyright 2012, Azra Ventures, All Rights Reserved | <a href="mailto:info@caregaroo.com" target="_blank">info@caregaroo.com</a></center></p>
+      </footer>
+
+    </div>
+
+  </body>
 
 </html>
