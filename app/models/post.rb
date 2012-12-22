@@ -26,5 +26,19 @@ class Post < ActiveRecord::Base
   def self.open_
     joins(:post_recipients).where("post_recipients.user_id = 0")
   end
-  
+
+  # returns all recipients of the post
+  def all_recipients
+    return self.recipients unless self.recipients.empty?
+
+    if self.post_recipients.length === 1 && self.post_recipients.first.user_id === 0
+      return self.network.users
+    end
+  end
+
+  # is this post visible to invited (not registered) users?
+  def is_visible_to_invited?
+    (self.post_recipients.length === 1 && self.post_recipients.first.user_id === 0)
+  end
+
 end
