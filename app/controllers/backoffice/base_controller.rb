@@ -40,6 +40,10 @@ class Backoffice::BaseController < ApplicationController
             c << "#{dbname} BETWEEN :start AND :end"
             a[:start] = 1.day.ago.beginning_of_day
             a[:end]   = 1.day.ago.end_of_day
+          when "this_week"
+            c << "#{dbname} BETWEEN :start AND :end"
+            a[:start] = Time.now.beginning_of_week
+            a[:end]   = Time.now.end_of_week
           when "last_week"
             c << "#{dbname} BETWEEN :start AND :end"
             a[:start] = 1.week.ago.beginning_of_week
