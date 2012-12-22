@@ -195,12 +195,12 @@ Caregaroo.prototype.switchNetwork = function switchNetwork(networkInfo) {
 }
 
 /**
-* Posts news. Assumes that the user is already logged in.
-* If 'news.recipients' is not set, then it assumes Everyone.
-* Pass an empty array (news.recipients = []) if you want to send without recipients
-*
-* @param   object  news  News to be posted
-*/
+ * Posts news. Assumes that the user is already logged in.
+ * If 'news.recipients' is not set, then it assumes Everyone.
+ * Pass an empty array (news.recipients = []) if you want to send without recipients
+ *
+ * @param   object  news  News to be posted
+ */
 Caregaroo.prototype.postNews = function postNews(news) {
   "use strict";
   casper.then(function fillForm() {
@@ -256,6 +256,11 @@ Caregaroo.prototype.postNews = function postNews(news) {
   casper.thenClick('input#news_update_button');
 }
 
+/**
+ * Deletes a News Post based on the newsId passed
+ *
+ * @param  newsId  int  newsId to be deleted
+ */
 Caregaroo.prototype.deleteNews = function deleteComment(newsId) {
   "use strict";
   casper.setFilter("page.confirm", function handleDeleteConfirmationAlert(msg) {
@@ -268,16 +273,15 @@ Caregaroo.prototype.deleteNews = function deleteComment(newsId) {
   });
 }
 
-/*global phantom*/
-
-if (!phantom.casperLoaded) {
-  console.log('This script must be invoked using the casperjs executable');
-  phantom.exit(1);
-}
-
+/**
+ * Returns the newsId of the first news post that matches the message
+ *
+ * @param  message  string  Message whose id we want to retrieve
+ * @return  int  newsId of the first message that matches 
+ */
 Caregaroo.prototype.getNewsId = function getNewsId(message) {
   "use strict";
-  return casper.evaluate(function getNewsId(message) {
+  var id = casper.evaluate(function getNewsId(message) {
     var newsList = __utils__.findAll('div.post_content_area div[id^="post_"]');
 
     for (var i = 0; i < newsList.length; i++) {
@@ -290,15 +294,22 @@ Caregaroo.prototype.getNewsId = function getNewsId(message) {
   }, {
     message: message
   });
+  return parseInt(id, 10);
 }
 
+/**
+ * Returns the commentId of the first comment that matches the message
+ *
+ * @param  message  string  Comment whose id we want to retrieve
+ * @return  int  commentId of the first comment that matches 
+ */
 Caregaroo.prototype.getCommentId = function getCommentId(message) {
   "use strict";
-  return casper.evaluate(function getNewsId(message) {
+  var id = casper.evaluate(function getNewsId(message) {
     var commentList = __utils__.findAll('.comments .comment_content div');
-    
+
     for (var i = 0; i < commentList.length; i++) {
-      var commentContent = commentList[i].textContent.trim();  
+      var commentContent = commentList[i].textContent.trim();
       if (commentContent == message) {
         //<div id="comment_content_150">example comment content</div>
         return parseInt(commentList[i].getAttribute('id').split('_')[2], 10);
@@ -307,8 +318,14 @@ Caregaroo.prototype.getCommentId = function getCommentId(message) {
   }, {
     message: message
   });
+  return parseInt(id, 10);
 }
 
+/**
+ * Posts a comment
+ *
+ * @param  comment  Object  Comment object to be posted
+ */
 Caregaroo.prototype.postComment = function postComment(comment) {
   "use strict";
   var newsId;
@@ -335,6 +352,11 @@ Caregaroo.prototype.postComment = function postComment(comment) {
   });
 }
 
+/**
+ * Deletes a comment based on their ID
+ *
+ * @param  int  id  ID of the comment to be deleted
+ */
 Caregaroo.prototype.deleteComment = function deleteComment(id) {
   "use strict";
   casper.setFilter("page.confirm", function handleDeleteConfirmationAlert(msg) {
@@ -345,6 +367,13 @@ Caregaroo.prototype.deleteComment = function deleteComment(id) {
 
   casper.setFilter("page.confirm", function removeFilter() {
   });
+}
+
+/*global phantom*/
+
+if (!phantom.casperLoaded) {
+  console.log('This script must be invoked using the casperjs executable');
+  phantom.exit(1);
 }
 
 var fs           = require('fs');
