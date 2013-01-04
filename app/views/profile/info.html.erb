@@ -1,7 +1,7 @@
 <% if !@user.nil? %>
   <a class="large_avatar" href="<%= @user.avatar_url(:large).to_s%>"><%= image_tag @user.avatar_url(:thumb).to_s, :alt => @user.first_name, :class=>"profile_user_pic", :height => "50", :width => "50" %></a>
   <p class="name_text"><%= @user.first_name %> <%= @user.last_name %> <%= relationship_in_parenthesis(@user, @user.network_id) %></p><br/>
-  <% if @user.id == @current_user.id %>
+  <% if @is_current_user %>
     <%= render 'sub_nav' %>
   <% end %>
   
@@ -25,15 +25,40 @@
       <% end%>
     </div>
 
-    <% if @user.id == @current_user.id && !@user.notification.nil? %>
-    <p class="sub_header">SEND ME A NOTIFICATION:</p>
+    <% if @is_current_user && !@user.notification.nil? %>
+      <p class="sub_header">SEND ME A NOTIFICATION:</p>
       <div class="profile_content">
       <div class="row_space"><div class="left_text">When Caregaroo Team has an announcement about the site</div>
         <div><%= check_box_tag 'announcement', true, (@user.notification.announcement ? true : false), :disabled => true, :style => "float:right" %></div></div>
       <div class="row_space"><div class="left_text">When someone posts an update or comment</div>
         <div><%= check_box_tag 'post_update', true, (@user.notification.post_update ? true : false), :disabled => true, :style => "float:right" %></div></div>
       </div>
-      <% end %>
+    <% end %>
+    <% if @is_current_user %>
+      <p class="sub_header">SEND ME REMINDERS:</p> 
+      <div class="row_space">
+        <div class="left_text">Send me reminders for Calendar events I am participating in.</div>
+      </div>
+      <div class="left_text">Reminders:</div>
+
+      <div id="reminders-container">
+        <div id="no-reminders" <%=  raw('style="display:none"') unless @user_reminder_settings.empty? %>>
+          No reminders set  
+        </div>
+        
+        <div id="user_reminder_settings">
+          <%= render @user_reminder_settings %>
+        </div>
+
+        <a id="add_user_reminder" href="#" <%= raw('style="display:none"') if @user_reminder_settings.size > 4  %> >
+          Add a reminder
+        </a>
+
+        <%= render partial: "user_reminder_settings/form" %>
+      </div>
+
+    <% end %>
+
     
   <% else %>
     <p>There's no profile.</p>

@@ -1,0 +1,11 @@
+<% if @user_reminder_setting.new_record? %>
+	$("#new_user_reminder_setting").css({'background-color': '#F8BBBB'});	
+<% else %>
+	$("#new_user_reminder_setting").css({'background-color': 'white'});
+	$("#user_reminder_settings").append(" <%= escape_javascript(render @user_reminder_setting) %> ");
+	if(<%= @number_of_reminders %> > 4){
+		$("#add_user_reminder").hide();
+		$("#new_user_reminder_setting").hide();
+	}
+	$("#no-reminders").hide();
+<% end %>

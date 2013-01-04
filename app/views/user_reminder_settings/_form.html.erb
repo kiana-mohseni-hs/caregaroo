@@ -1,0 +1,6 @@
+<%= form_for([@user, UserReminderSetting.new], remote: true) do |f| %>
+	<%= f.select :delivery_type, ['email', 'sms'] %>
+	<%= f.text_field :time_before, size: 2 %>
+	<%= f.select :time_unit, ['minute', 'hour', 'day'] %>
+	<%= f.submit 'add' %>
+<% end %>

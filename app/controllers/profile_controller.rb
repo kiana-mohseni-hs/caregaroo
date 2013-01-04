@@ -4,6 +4,8 @@ class ProfileController < ApplicationController
   def info
     if params[:user_id].nil?
       @user = @current_user
+      @is_current_user = true
+      @user_reminder_settings = @user.user_reminder_settings
     else
       @user = User.where("id=? and network_id=?", params[:user_id], @current_user.network_id).first
     end

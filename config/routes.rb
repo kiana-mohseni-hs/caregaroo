@@ -61,7 +61,11 @@ Cg2App::Application.routes.draw do
 
   match 'fb_tab' => "landing#fb_tab", :as => 'fb_tab'
   get 'fb_tab_post' => "landing#fb_tab_post"
-  
+
+  resources :users do
+    resources :user_reminder_settings
+  end
+
   resources :comments do
     # the call in app/views/events/_comment.mobile.erb has method: :delete set but it still comes in as get 
     get 'remove', on: :member, as: :destroy

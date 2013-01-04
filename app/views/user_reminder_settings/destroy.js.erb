@@ -1,0 +1,8 @@
+$("#<%= dom_id(@user_reminder_setting) %>").fadeOut();
+if(<%= @number_of_reminders %> <= 4){
+	$("#add_user_reminder").show();
+	$("#new_user_reminder_setting").show();
+}
+if(<%= @number_of_reminders %> === 0){
+	$("#no-reminders").show();
+}

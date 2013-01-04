@@ -1,0 +1,6 @@
+<%= div_for user_reminder_setting do %>
+  <%= select_tag :delivery_type, options_for_select([user_reminder_setting.delivery_type]) %>
+  <%= text_field_tag :time_before, user_reminder_setting.time_before, size: 2 %>
+  <%= select_tag :time_unit, options_for_select([user_reminder_setting.time_unit]) %>
+  <%= link_to 'x', user_user_reminder_setting_path(@user, user_reminder_setting) , method: :delete, remote: true, class: "remove-reminder-setting" %>
+<% end %>
