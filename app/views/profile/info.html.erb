@@ -35,26 +35,28 @@
       </div>
     <% end %>
     <% if @is_current_user %>
-      <p class="sub_header">SEND ME REMINDERS:</p> 
-      <div class="row_space">
-        <div class="left_text">Send me reminders for Calendar events I am participating in.</div>
-      </div>
-      <div class="left_text">Reminders:</div>
-
-      <div id="reminders-container">
-        <div id="no-reminders" <%=  raw('style="display:none"') unless @user_reminder_settings.empty? %>>
-          No reminders set  
+      <p class="sub_header">SEND ME REMINDERS:</p>
+      <div class="profile_content"> 
+        <div class="row_space">
+          <div class="left_text">Send me reminders for Calendar events I am participating in.</div>
         </div>
-        
-        <div id="user_reminder_settings">
-          <%= render @user_reminder_settings %>
+        <div class="left_text">Reminders:</div>
+
+        <div id="reminders-container">
+          <div id="no-reminders" <%=  raw('style="display:none"') unless @user_reminder_settings.empty? %>
+            No reminders set  
+          </div>
+          
+          <div id="user_reminder_settings">
+            <%= render @user_reminder_settings %>
+          </div>
+
+          <a id="add_user_reminder" href="#" <%= raw('style="display:none"') if @user_reminder_settings.size > 4  %> >
+            Add a reminder
+          </a>
+
+          <%= render partial: "user_reminder_settings/form" %>
         </div>
-
-        <a id="add_user_reminder" href="#" <%= raw('style="display:none"') if @user_reminder_settings.size > 4  %> >
-          Add a reminder
-        </a>
-
-        <%= render partial: "user_reminder_settings/form" %>
       </div>
 
     <% end %>
@@ -76,3 +78,4 @@
 <% end %>
 
 
+  
