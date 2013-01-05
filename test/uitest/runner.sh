@@ -1,6 +1,13 @@
-PHANTOMJS_EXECUTABLE=lib/phantomjs-macosx/bin/phantomjs
-CASPERJS_BOOTSTRAP=lib/casperjs/bin/bootstrap.js
+# Determine if we are Windows (Cygwin)
+KERNEL=`uname -s`
+if [ $KERNEL == "CYGWIN_NT-6.1-WOW64" ]; then
+    PHANTOMJS_EXECUTABLE=lib/phantomjs-win/phantomjs.exe
+else
+    PHANTOMJS_EXECUTABLE=lib/phantomjs-macosx/bin/phantomjs
+fi
 
+# Define default variables
+CASPERJS_BOOTSTRAP=lib/casperjs/bin/bootstrap.js
 URL=http://cg2-staging.herokuapp.com
 SPEC=tests/suites
 PRE=tests/pre/generatetestnetworks.js
