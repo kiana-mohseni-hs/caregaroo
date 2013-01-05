@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_one  :notification
   has_many :posts, uniq: true, order: 'created_at DESC'
   has_many :user_reminder_settings
+  has_many :user_reminders
   has_many :latest_messages, :class_name => "Message", :finder_sql => Proc.new {
       %Q{
         SELECT MAX(id), * FROM messages WHERE folder_id in 

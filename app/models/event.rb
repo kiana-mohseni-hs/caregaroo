@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :network, :counter_cache => true
   belongs_to :event_type
   has_and_belongs_to_many :users
+  has_many :user_events
   belongs_to :creator, :class_name => "User", :foreign_key => "created_by_id"
   belongs_to :updater, :class_name => "User", :foreign_key => "updated_by_id"
   belongs_to :canceler, :class_name => "User", :foreign_key => "canceled_by_id"
@@ -37,6 +38,16 @@ class Event < ActiveRecord::Base
   
   scope :start_before_date, lambda { |date|  where(['start_at <= ?', date.beginning_of_day])  }
   scope :end_after_date, lambda { |date|  where(['end_at > ?', date.beginning_of_day])  }
+
+  after_save do |event|
+    event.users.each do |user|
+      if event.canceled
+        UserReminder.destroy_all(event_id: event.id)
+      else
+        UserReminder.create_user_reminders(user, event)
+      end
+    end
+  end
   
   def is_new?
     self.updated_at === self.created_at

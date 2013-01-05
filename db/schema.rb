@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130103233223) do
+ActiveRecord::Schema.define(:version => 20130105112027) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "relationship"
@@ -193,6 +193,19 @@ ActiveRecord::Schema.define(:version => 20130103233223) do
   end
 
   add_index "user_reminder_settings", ["user_id"], :name => "index_user_reminder_settings_on_user_id"
+
+  create_table "user_reminders", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "delivery_type"
+    t.datetime "moment"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "user_reminders", ["event_id"], :name => "index_user_reminders_on_event_id"
+  add_index "user_reminders", ["moment"], :name => "index_user_reminders_on_moment"
+  add_index "user_reminders", ["user_id"], :name => "index_user_reminders_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"
