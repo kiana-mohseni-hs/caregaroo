@@ -34,43 +34,34 @@
         <div><%= check_box_tag 'post_update', true, (@user.notification.post_update ? true : false), :disabled => true, :style => "float:right" %></div></div>
       </div>
     <% end %>
-    <% if @is_current_user %>
-      <p class="sub_header">SEND ME REMINDERS:</p>
-      <div class="profile_content"> 
-        <div class="row_space">
-          <div class="left_text">Send me reminders for Calendar events I am participating in.</div>
-        </div>
-        <div class="left_text">Reminders:</div>
 
-        <div id="reminders-container">
-          <div id="no-reminders" <%=  raw('style="display:none"') unless @user_reminder_settings.empty? %> >
-            No reminders set  
-          </div>
-          
-          <div id="user_reminder_settings">
-            <%= render @user_reminder_settings %>
-          </div>
+    <%= render partial: 'user_reminder_settings' %>
 
-          <a id="add_user_reminder" href="#" <%= raw('style="display:none"') if @user_reminder_settings.size > 4  %> >
-            Add a reminder
-          </a>
-
-          <%= render partial: "user_reminder_settings/form" %>
-        </div>
-      </div>
-
-    <% end %>
-
-    
   <% else %>
     <p>There's no profile.</p>
   <% end %>
   <% if !@user.profile.nil? %>
     <p class="sub_header">CONTACT</p>
       <div class="profile_content">
-        <div class="left_text">Home Phone:</div><div class="right_text"><%= @user.profile.phone_home %></div><br/>
-      <div class="left_text">Work Phone:</div><div class="right_text"><%= @user.profile.phone_work %> ext <%= @user.profile.phone_work_ext %></div><br/>
-      <div class="left_text">Mobile Phone:</div><div class="right_text"><%= @user.profile.phone_mobile %></div><br/>
+        <% if @user.profile.phone_home && !@user.profile.phone_home.strip.empty? %>
+          <% one_contact = true %>
+          <div class="left_text">Home Phone:</div><div class="right_text"><%= @user.profile.phone_home %></div><br/>
+        <% end %>
+        <% if @user.profile.phone_work && !@user.profile.phone_work.strip.empty? %>
+          <% one_contact = true %>
+          <div class="left_text">Work Phone:</div><div class="right_text"><%= @user.profile.phone_work %> 
+          <% if @user.profile.phone_work_ext && !@user.profile.phone_work_ext.strip.empty? %>
+            ext <%= @user.profile.phone_work_ext %>
+          <% end %>
+          </div><br/>
+        <%end %>
+        <% if @user.profile.phone_mobile && !@user.profile.phone_mobile.strip.empty? %>
+          <% one_contact = true %>
+          <div class="left_text">Mobile Phone:</div><div class="right_text"><%= @user.profile.phone_mobile %></div><br/>
+        <% end %>
+        <% if !one_contact %>
+          <div class="left_text">No contact provided.</div><br/>
+        <% end %>
       </div>
   <% end %>
 <% else %>

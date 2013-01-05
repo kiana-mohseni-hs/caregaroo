@@ -4,11 +4,11 @@ class ProfileController < ApplicationController
   def info
     if params[:user_id].nil?
       @user = @current_user
-      @is_current_user = true
-      @user_reminder_settings = @user.user_reminder_settings
     else
       @user = User.where("id=? and network_id=?", params[:user_id], @current_user.network_id).first
     end
+    @is_current_user = @user.id == @current_user.id
+    @user_reminder_settings = @user.user_reminder_settings
   end
   
   def edit_info
@@ -19,6 +19,9 @@ class ProfileController < ApplicationController
     if @user.profile.nil?
       @user.profile = Profile.new
     end
+    @is_current_user = true
+    @user_reminder_settings = @user.user_reminder_settings
+
     render "edit"
   end
 

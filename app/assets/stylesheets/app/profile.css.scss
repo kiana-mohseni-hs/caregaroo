@@ -8,8 +8,8 @@ td.ext { width: 30px; }
 
 
 .left_text {font-size:12px; float:left;}
-.sub_header{ margin-top:15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-.sub_header_tall{ @extend .sub_header; margin-bottom: 20px; }
+.sub_header{ margin-top:15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; clear: both;}
+.sub_header_tall{ @extend .sub_header; margin-bottom: 20px;}
 #save_updates_button{float:right;}
 .profile_user_pic { height:44px; width:50px; float:left; padding-right:5px;}
 .row_space{height:30px;}
@@ -18,7 +18,7 @@ td.ext { width: 30px; }
 #profile_sub_menu ul { list-style:none; text-align:center; }
 #profile_sub_menu li { background-color:#AAAAAA; float:left; width:80px; margin-right:1px; }
 #profile_sub_menu .selected{ background-color:#F47D29;  }
-.profile_content { margin-top:10px; }
+.profile_content { margin-top:10px; overflow: hidden;}
 #reminders-container {
   float: left;
   margin-left: 36px;
