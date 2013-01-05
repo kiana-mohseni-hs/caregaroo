@@ -15,7 +15,8 @@ class UserReminder < ActiveRecord::Base
   	startMoment = startMoment - startMoment.sec
   	startMoment = startMoment - startMoment.subsec
   	finishMoment = startMoment + 9.minutes
- 
+ 	puts 'oi'
+ 	puts UserReminder.find_all_by_moment(startMoment..finishMoment)
   	UserReminder.find_all_by_moment(startMoment..finishMoment).each do |user_remainder|
   		user_remainder.send("send_#{user_remainder.delivery_type}")
   	end
@@ -24,6 +25,7 @@ class UserReminder < ActiveRecord::Base
   def send_email
   	email = "Caregaroo Reminder: #{event.name} starts #{event.start_at} at #{event.location}"
   	logger.debug "sending email: #{email}"
+  	puts "sending email: #{email}"
   end
 
   def send_sms
