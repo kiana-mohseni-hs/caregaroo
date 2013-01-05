@@ -15,21 +15,19 @@ class UserReminder < ActiveRecord::Base
   	startMoment = startMoment - startMoment.sec
   	startMoment = startMoment - startMoment.subsec
   	finishMoment = startMoment + 9.minutes
- 	puts 'oi'
  	puts UserReminder.find_all_by_moment(startMoment..finishMoment)
   	UserReminder.find_all_by_moment(startMoment..finishMoment).each do |user_remainder|
   		user_remainder.send("send_#{user_remainder.delivery_type}")
   	end
   end
 
-  def send_email
-  	email = "Caregaroo Reminder: #{event.name} starts #{event.start_at} at #{event.location}"
-  	logger.debug "sending email: #{email}"
-  	puts "sending email: #{email}"
+  def send_email()
+  	puts "sending email: #{@user.id} - #{@event.id}"
+  	Resque.enqueue(UserReminderMailer, @user.id, @event.id)
   end
 
-  def send_sms
-  	sms = "Caregaroo Reminder: #{event.name} starts #{event.start_at} at #{event.location}"
+  def send_sms()
+  	sms = "Caregaroo Reminder: #{event.name}(#{event.creator}) starts #{event.start_at}
   	logger.debug "sending sms: #{sms}"
   end
 

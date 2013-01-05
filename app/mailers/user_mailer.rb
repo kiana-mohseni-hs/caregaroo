@@ -64,6 +64,14 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{receipient.first_name} #{receipient.last_name} <#{receipient.email}>", :subject => "Recent activity on #{network_for_who}'s network")
   end
   
+  def reminder(user_id, event_id)
+    @user = User.find(user_id)
+    @event = Event.find(event_id)
+    @who = @event.users.map{|u| "#{u.first_name} #{u.last_name}"}.join(', ')
+
+    mail(:to => "#{@user.first_name} #{@user.last_name} <#{@user.email}>", :subject => @event.name)
+  end
+
   private 
   def generate_token(email)
     Digest::SHA256.hexdigest(email.downcase + UNSUBSCRIBED_SECRET_KEY)
