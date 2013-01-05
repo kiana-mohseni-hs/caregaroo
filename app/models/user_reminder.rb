@@ -22,12 +22,12 @@ class UserReminder < ActiveRecord::Base
   end
 
   def send_email()
-  	puts "sending email: #{@user.id} - #{@event.id}"
-  	Resque.enqueue(UserReminderMailer, @user.id, @event.id)
+  	puts "sending email: #{user.id} - #{event.id}"
+  	Resque.enqueue(UserReminderMailer, user.id, event.id)
   end
 
   def send_sms()
-  	sms = "Caregaroo Reminder: #{event.name}(#{event.creator}) starts #{event.start_at}
+  	sms = "Caregaroo Reminder: #{event.name}(#{event.creator}) starts #{event.start_at}"
   	logger.debug "sending sms: #{sms}"
   end
 
