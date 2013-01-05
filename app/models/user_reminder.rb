@@ -15,7 +15,8 @@ class UserReminder < ActiveRecord::Base
   	startMoment = startMoment - startMoment.sec
   	startMoment = startMoment - startMoment.subsec
   	finishMoment = startMoment + 9.minutes
-  	UserReminder.find_by_moment(startMoment..finishMoment).each do |user_remainder|
+ 
+  	UserReminder.find_all_by_moment(startMoment..finishMoment).each do |user_remainder|
   		user_remainder.send("send_#{user_remainder.delivery_type}")
   	end
   end
