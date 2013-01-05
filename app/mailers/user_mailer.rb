@@ -63,10 +63,12 @@ class UserMailer < ActionMailer::Base
     @recipient_email = receipient.email
     mail(:to => "#{receipient.first_name} #{receipient.last_name} <#{receipient.email}>", :subject => "Recent activity on #{network_for_who}'s network")
   end
-  
+
   def reminder(user_id, event_id)
     @user = User.find(user_id)
     @event = Event.find(event_id)
+
+    @when = time_period_str
     @who = @event.users.map{|u| "#{u.first_name} #{u.last_name}"}.join(', ')
 
     mail(:to => "#{@user.first_name} #{@user.last_name} <#{@user.email}>", :subject => @event.name)
@@ -75,6 +77,14 @@ class UserMailer < ActionMailer::Base
   private 
   def generate_token(email)
     Digest::SHA256.hexdigest(email.downcase + UNSUBSCRIBED_SECRET_KEY)
+  end
+
+  def time_period_str
+      start = @event.start_at.in_time_zone(@user.time_zone)
+      finish = @event.end_at.in_time_zone(@user.time_zone)
+
+      return "#{start.strftime '%a %d %b %Y at %I:%M %p'} - #{finish.strftime '%I:%M %p'}" if @event.is_one_day?
+      "#{start.strftime '%a %d %b %Y at %I:%M %p'} - #{finish.strftime '%a %d %b %Y at %I:%M %p'}"
   end
   
 end
