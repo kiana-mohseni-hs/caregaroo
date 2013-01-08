@@ -51,10 +51,10 @@ Cg2App::Application.routes.draw do
   get "signup/:invitation_token" => "signup#new", :as => "signup_with_token"
 
   # marketing routes
-  post "pilot_signups/:id" => "pilot_signups#destroy", :as => "signup_delete"
-  get "download/ebook" => "download#ebook", :as => "download_ebook"
-  get "download/faq" => "download#faq", :as => "download_faq"
-  get "admin" => "pilot_signups#index", :as => "admin"
+  #post "pilot_signups/:id" => "pilot_signups#destroy", :as => "signup_delete"
+  #get "download/ebook" => "download#ebook", :as => "download_ebook"
+  #get "download/faq" => "download#faq", :as => "download_faq"
+  #get "admin" => "pilot_signups#index", :as => "admin"
   post "signup" => "register#signup", :as => "signup"
   match "product" => "home#product"
   #match "home_new" => "home#home_new", :as => "home_new"
